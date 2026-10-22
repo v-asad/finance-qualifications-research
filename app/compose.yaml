@@ -1,0 +1,28 @@
+services:
+  cfa-app:
+    build: .
+    image: ledger-cfa
+    container_name: cfa-app
+    restart: unless-stopped
+    environment:
+      DB_PATH: /app/data/cfa.db
+      SECURE_COOKIES: "true"
+      TRUST_PROXY: "127.0.0.1,172.16.0.0/12"
+      VAPID_SUBJECT: "mailto:admin@tomo.study"
+      LOG_LEVEL: info
+    volumes:
+      - ./data:/app/data
+    # Only reachable through the shared Caddy reverse proxy (no public port).
+    networks:
+      tomo:
+        aliases: [cfa-app]
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+    mem_limit: 512m
+    pids_limit: 200
+
+networks:
+  tomo:
+    name: tomo_default
+    external: true
