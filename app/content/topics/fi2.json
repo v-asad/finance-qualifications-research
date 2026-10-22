@@ -1,0 +1,3406 @@
+{
+ "id": "fi",
+ "name": "Fixed Income",
+ "weight": [
+  11,
+  14
+ ],
+ "blurb": "How bonds are priced, how their prices react to rates and credit, and how loans become securities: Fixed Income is the biggest topic by LM count and heavily numerical on duration, convexity and spreads.",
+ "accaNote": "FM gave you bond pricing, redemption yield and credit-rating-based cost of debt; AFM (if taken) introduced duration and convexity. Duration and convexity calculations, curve-based risk measures, credit analysis frameworks and securitization (ABS, MBS, CMOs) are new.",
+ "modules": [
+  {
+   "id": "fi-11",
+   "lm": 11,
+   "title": "Yield-Based Bond Duration Measures and Properties",
+   "summary": "Turns Macaulay duration into tools that estimate price change: modified duration (percentage change), money duration (currency change) and PVBP (value of one basis point), and explains how maturity, coupon and yield drive interest-rate risk.",
+   "acca": {
+    "overlap": "partial",
+    "papers": [
+     "AFM"
+    ],
+    "note": "AFM introduced Macaulay and modified duration as a price-sensitivity measure. New for CFA: annualising per-period duration for semiannual bonds, approximate modified duration from bumped prices, money duration, PVBP and the detailed properties (including the discount-bond exception)."
+   },
+   "lessons": [
+    {
+     "id": "fi-11-a",
+     "title": "Modified duration: from time to price sensitivity",
+     "minutes": 8,
+     "fastTrack": [
+      "AFM"
+     ],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Two meanings of duration",
+       "body": "**Macaulay duration** is a time measure: the PV-weighted average time to receive the bond's cash flows (in years).\n\n**Modified duration** is a *sensitivity* measure: the approximate percentage change in the full price for a 1-unit (100 bp) change in yield to maturity.\n\nModified duration is always a bit smaller than Macaulay duration, because you divide by (1 + yield per period)."
+      },
+      {
+       "kind": "formula",
+       "title": "Modified duration",
+       "formula": "ModDur = MacDur ÷ (1 + r)\n\n%ΔPV_{full} ≈ −AnnModDur × ΔYield",
+       "where": [
+        [
+         "MacDur",
+         "Macaulay duration"
+        ],
+        [
+         "r",
+         "yield per period (YTM ÷ periods per year)"
+        ],
+        [
+         "ΔYield",
+         "change in annual YTM, as a decimal"
+        ]
+       ],
+       "note": "Negative sign: yields up → price down."
+      },
+      {
+       "kind": "example",
+       "title": "5-year 5% annual bond at 6%",
+       "body": "Price = 95.79. MacDur = 4.535 years.\n\nModDur = 4.535 ÷ 1.06 = **4.278**.\n\nIf YTM rises 50 bp: %ΔP ≈ −4.278 × 0.0050 = **−2.14%**.\n\nIf YTM falls 50 bp: ≈ **+2.14%** (duration alone gives a symmetric estimate; convexity fixes this later)."
+      },
+      {
+       "kind": "concept",
+       "title": "Semiannual bonds: annualise",
+       "body": "For a semiannual bond, divide by (1 + YTM/2), not (1 + YTM).\n\nIf duration is measured in *periods*, divide by 2 to get years.\n\nExample: 3-year 4% semiannual bond at 5% YTM. MacDur = 5.709 half-years = 2.854 years. AnnModDur = 2.8543 ÷ 1.025 = **2.785**."
+      },
+      {
+       "kind": "tip",
+       "title": "ACCA vs CFA",
+       "body": "AFM used duration mainly as a ranking of interest-rate risk. CFA expects you to *use* it: compute %ΔP, convert periods to years, and keep the sign. Always express ΔYield as a decimal (25 bp = 0.0025)."
+      }
+     ]
+    },
+    {
+     "id": "fi-11-b",
+     "title": "Approximate duration, money duration and PVBP",
+     "minutes": 9,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Why approximate duration?",
+       "body": "You do not need Macaulay duration first. Reprice the bond with yield bumped down and up by the same amount and measure how steeply price moves.\n\nThis works for any bond you can price, and the same idea later becomes effective duration for bonds with options."
+      },
+      {
+       "kind": "formula",
+       "title": "Approximate modified duration",
+       "formula": "ApproxModDur = (PV_{−} − PV_{+}) ÷ (2 × ΔYield × PV_{0})",
+       "where": [
+        [
+         "PV_{−}",
+         "price when yield falls by ΔYield"
+        ],
+        [
+         "PV_{+}",
+         "price when yield rises by ΔYield"
+        ],
+        [
+         "PV_{0}",
+         "current price"
+        ]
+       ],
+       "note": "The 2 is there because the bump spans 2 × ΔYield."
+      },
+      {
+       "kind": "example",
+       "title": "Repricing the 5-year bond",
+       "body": "5-year 5% annual bond, YTM 6%. Bump ±10 bp:\n\n- PV_{0} = 95.7876\n- PV_{−} (5.90%) = 96.1985\n- PV_{+} (6.10%) = 95.3790\n\nApproxModDur = (96.1985 − 95.3790) ÷ (2 × 0.001 × 95.7876) = **4.278**, matching the exact 4.278.",
+       "calc": "PV0: 5 [N] 6 [I/Y] 5 [PMT] 100 [FV] [CPT] [PV] → −95.7876; change I/Y to 5.9 and 6.1 and recompute"
+      },
+      {
+       "kind": "formula",
+       "title": "Money duration and PVBP",
+       "formula": "MoneyDur = AnnModDur × PV_{full}\n\nΔPV ≈ −MoneyDur × ΔYield\n\nPVBP = (PV_{−} − PV_{+}) ÷ 2 (yield bumped ±1 bp)",
+       "where": [
+        [
+         "MoneyDur",
+         "currency loss per 1.00 (100%) change in yield"
+        ],
+        [
+         "PVBP",
+         "price value of a basis point; also called PV01 or DV01"
+        ]
+       ],
+       "note": "PVBP ≈ MoneyDur × 0.0001."
+      },
+      {
+       "kind": "example",
+       "title": "Money duration on a position",
+       "body": "Par 5,000,000; full price 102.50 per 100; AnnModDur 6.2.\n\nMarket value = 5,125,000. MoneyDur = 6.2 × 5,125,000 = 31,775,000.\n\nYields +25 bp: loss ≈ 31,775,000 × 0.0025 = **79,437.50**.\n\nPVBP of the position ≈ 31,775,000 × 0.0001 = 3,177.50."
+      },
+      {
+       "kind": "tip",
+       "title": "Common trap",
+       "body": "Money duration uses the **full** (dirty) price × position size, not par. Using par understates exposure for a premium bond and overstates it for a discount bond."
+      }
+     ]
+    },
+    {
+     "id": "fi-11-c",
+     "title": "What drives duration: maturity, coupon, yield",
+     "minutes": 7,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Three properties (ceteris paribus)",
+       "body": "- **Longer maturity → higher duration** (more distant cash flows).\n- **Higher coupon → lower duration** (more value arrives early).\n- **Higher yield → lower duration** (distant cash flows are discounted more heavily).\n\nExample (10-year bonds at 5%): 2% coupon MacDur 9.01, 8% coupon MacDur 7.54."
+      },
+      {
+       "kind": "compare",
+       "title": "Special cases",
+       "rows": [
+        [
+         "Bond",
+         "Macaulay duration"
+        ],
+        [
+         "Zero-coupon",
+         "= maturity"
+        ],
+        [
+         "Perpetuity",
+         "(1 + r) ÷ r"
+        ],
+        [
+         "Coupon bond",
+         "< maturity"
+        ],
+        [
+         "Floating-rate note",
+         "≈ time to next reset"
+        ]
+       ]
+      },
+      {
+       "kind": "example",
+       "title": "Perpetuity and zero",
+       "body": "Perpetuity at r = 5%: MacDur = 1.05 ÷ 0.05 = **21 years**; ModDur = 21 ÷ 1.05 = **20**.\n\n10-year zero at 4%: MacDur = **10**; ModDur = 10 ÷ 1.04 = **9.615**.\n\nNote the perpetuity has finite duration even though it never matures."
+      },
+      {
+       "kind": "tip",
+       "title": "Exam tip: the discount-bond exception",
+       "body": "For long-dated bonds trading at a **discount** (coupon well below yield), duration can *fall* slightly as maturity extends because it converges to the perpetuity value (1 + r)/r from above. For par and premium bonds, longer maturity always means higher duration. Also: between coupon dates, MacDur falls smoothly as time passes, then jumps up after each coupon."
+      }
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "fi-11-q01",
+     "lesson": "fi-11-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "A bond has a Macaulay duration of 7.20 and a yield to maturity of 4.0%, paid annually. Its modified duration is *closest* to:",
+     "options": [
+      "6.92",
+      "7.20",
+      "7.49"
+     ],
+     "answer": 0,
+     "explanation": "ModDur = MacDur ÷ (1 + r) = 7.20 ÷ 1.04 = 6.92. 7.20 is the Macaulay duration itself. 7.49 multiplies by 1.04 instead of dividing."
+    },
+    {
+     "id": "fi-11-q02",
+     "lesson": "fi-11-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A semiannual-pay bond has an annualised Macaulay duration of 8.00 years and a YTM of 6.0%. Its annualised modified duration is *closest* to:",
+     "options": [
+      "7.55",
+      "7.77",
+      "8.00"
+     ],
+     "answer": 1,
+     "explanation": "Yield per period = 6% ÷ 2 = 3%. ModDur = 8.00 ÷ 1.03 = 7.77. 7.55 wrongly divides by the full annual 1.06. 8.00 ignores the adjustment."
+    },
+    {
+     "id": "fi-11-q03",
+     "lesson": "fi-11-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A bond has an annual modified duration of 6.5. If its YTM rises by 30 bp, the full price will change by approximately:",
+     "options": [
+      "+1.95%",
+      "−19.50%",
+      "−1.95%"
+     ],
+     "answer": 2,
+     "explanation": "%ΔP ≈ −6.5 × 0.0030 = −1.95%. +1.95% has the wrong sign (yields up, prices down). −19.50% treats 30 bp as 0.03."
+    },
+    {
+     "id": "fi-11-q04",
+     "lesson": "fi-11-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Which statement about Macaulay and modified duration is *most* accurate?",
+     "options": [
+      "Modified duration estimates the percentage price change for a change in yield; Macaulay duration is a weighted-average time to cash flows.",
+      "Macaulay duration estimates the percentage price change; modified duration is a weighted-average time to cash flows.",
+      "For a coupon bond, modified duration exceeds Macaulay duration."
+     ],
+     "answer": 0,
+     "explanation": "Macaulay duration is a time measure (years); modified duration = MacDur ÷ (1 + r) converts it into a price-sensitivity measure. Because you divide by (1 + r) > 1, modified duration is always smaller than Macaulay duration when yields are positive."
+    },
+    {
+     "id": "fi-11-q05",
+     "lesson": "fi-11-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A bond is priced at 98.50. When its YTM is lowered by 10 bp the price becomes 99.12; when raised by 10 bp it becomes 97.89. The approximate modified duration is *closest* to:",
+     "options": [
+      "0.06",
+      "6.24",
+      "12.49"
+     ],
+     "answer": 1,
+     "explanation": "ApproxModDur = (99.12 − 97.89) ÷ (2 × 0.0010 × 98.50) = 1.23 ÷ 0.197 = 6.24. 12.49 omits the 2 in the denominator. 0.06 uses ΔYield = 0.10 instead of 0.0010."
+    },
+    {
+     "id": "fi-11-q06",
+     "lesson": "fi-11-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A portfolio holds 5,000,000 par of a bond with a full price of 102.50 per 100 and an annual modified duration of 6.2. If yields rise 25 bp, the approximate loss is:",
+     "options": [
+      "794,375",
+      "77,500",
+      "79,437.50"
+     ],
+     "answer": 2,
+     "explanation": "Market value = 5,000,000 × 1.025 = 5,125,000. MoneyDur = 6.2 × 5,125,000 = 31,775,000. Loss ≈ 31,775,000 × 0.0025 = 79,437.50. 77,500 uses par instead of full value. 794,375 uses 0.025 (250 bp) for 25 bp."
+    },
+    {
+     "id": "fi-11-q07",
+     "lesson": "fi-11-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A bond's full price is 100.0452 per 100 if its yield falls 1 bp and 99.9548 if it rises 1 bp. For a position of 2,000,000 par, the PVBP is *closest* to:",
+     "options": [
+      "904",
+      "1,808",
+      "452"
+     ],
+     "answer": 0,
+     "explanation": "PVBP per 100 = (100.0452 − 99.9548) ÷ 2 = 0.0452. Position = 2,000,000 ÷ 100 = 20,000 units × 0.0452 = 904. 1,808 forgets to divide by 2. 452 divides by 2 a second time."
+    },
+    {
+     "id": "fi-11-q08",
+     "lesson": "fi-11-c",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Holding other features constant, which change *increases* a bond's modified duration?",
+     "options": [
+      "A higher coupon rate",
+      "A lower yield to maturity",
+      "A shorter time to maturity"
+     ],
+     "answer": 1,
+     "explanation": "Lower yields discount distant cash flows less, so they carry more weight and duration rises. A higher coupon lowers duration (more value comes early), and shorter maturity generally lowers duration."
+    },
+    {
+     "id": "fi-11-q09",
+     "lesson": "fi-11-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A perpetual bond yields 5% annually. Its modified duration is:",
+     "options": [
+      "21.0",
+      "Undefined, because the bond never matures",
+      "20.0"
+     ],
+     "answer": 2,
+     "explanation": "MacDur of a perpetuity = (1 + r)/r = 1.05/0.05 = 21. ModDur = 21 ÷ 1.05 = 20. 21 is Macaulay, not modified, duration. A perpetuity has a finite duration because distant cash flows have tiny present values."
+    },
+    {
+     "id": "fi-11-q10",
+     "lesson": "fi-11-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "An analyst compares two 10-year bonds priced at a 5% yield: Bond P has a 2% coupon and Bond Q has an 8% coupon. Which statement is correct?",
+     "options": [
+      "Bond P has the higher duration because a larger share of its value comes at maturity.",
+      "Bond Q has the higher duration because it pays more cash.",
+      "Both have the same duration because they have the same maturity and yield."
+     ],
+     "answer": 0,
+     "explanation": "A low coupon pushes value towards the final principal payment, lengthening duration: Bond P MacDur ≈ 9.01 vs Bond Q ≈ 7.54. Equal maturity and yield do not imply equal duration; the coupon also matters."
+    },
+    {
+     "id": "fi-11-q11",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "A 3-year, 4% semiannual coupon bond yields 5%. Its Macaulay duration is 5.709 semiannual periods. The annualised modified duration is *closest* to:",
+     "options": [
+      "2.72",
+      "2.78",
+      "5.57"
+     ],
+     "answer": 1,
+     "explanation": "ModDur in periods = 5.709 ÷ 1.025 = 5.570; annualise by dividing by 2 → 2.785 ≈ 2.78. 5.57 forgets to annualise. 2.72 divides 2.854 years by 1.05 (the annual yield) instead of 1.025."
+    },
+    {
+     "id": "fi-11-q12",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A bond priced at 95.79 rises to 96.20 if its yield falls 10 bp and drops to 95.38 if its yield rises 10 bp. Using approximate modified duration, the estimated price change for a 25 bp yield *increase* is closest to:",
+     "options": [
+      "−10.70%",
+      "−0.43%",
+      "−1.07%"
+     ],
+     "answer": 2,
+     "explanation": "ApproxModDur = (96.20 − 95.38) ÷ (2 × 0.001 × 95.79) = 4.28. %ΔP ≈ −4.28 × 0.0025 = −1.07%. −0.43% uses the 10 bp bump instead of 25 bp. −10.70% uses 0.025 for 25 bp."
+    },
+    {
+     "id": "fi-11-q13",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Which bond has the *highest* interest-rate risk? All yield 3%.",
+     "options": [
+      "10-year, 2% coupon",
+      "5-year, 2% coupon",
+      "10-year, 6% coupon"
+     ],
+     "answer": 0,
+     "explanation": "Longer maturity and lower coupon both raise duration, so the 10-year 2% bond is most sensitive. The 10-year 6% bond has a higher coupon (lower duration); the 5-year 2% bond has a shorter maturity."
+    },
+    {
+     "id": "fi-11-q14",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A bond portfolio has a full market value of 8,400,000 and an annual modified duration of 5.5. If yields *fall* by 40 bp, the change in value is approximately:",
+     "options": [
+      "−184,800",
+      "+184,800",
+      "+18,480"
+     ],
+     "answer": 1,
+     "explanation": "MoneyDur = 5.5 × 8,400,000 = 46,200,000. ΔV ≈ −46,200,000 × (−0.0040) = +184,800. −184,800 has the wrong sign (falling yields raise prices). +18,480 uses 4 bp instead of 40 bp."
+    },
+    {
+     "id": "fi-11-q15",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "A bond has a full price of 103.40 per 100 and an annual modified duration of 7.1. Its PVBP per 100 of par is *closest* to:",
+     "options": [
+      "0.7341",
+      "0.0710",
+      "0.0734"
+     ],
+     "answer": 2,
+     "explanation": "PVBP ≈ AnnModDur × PV_full × 0.0001 = 7.1 × 103.40 × 0.0001 = 0.0734. 0.0710 uses par (100) instead of the full price. 0.7341 uses 10 bp instead of 1 bp."
+    }
+   ],
+   "flashcards": [
+    {
+     "id": "fi-11-f01",
+     "front": "Modified duration (formula)",
+     "back": "ModDur = MacDur ÷ (1 + r), where r is the yield per period. Annualise by dividing period-based duration by the number of periods per year."
+    },
+    {
+     "id": "fi-11-f02",
+     "front": "Approximate modified duration",
+     "back": "(PV_{−} − PV_{+}) ÷ (2 × ΔYield × PV_{0})"
+    },
+    {
+     "id": "fi-11-f03",
+     "front": "Percentage price change from duration",
+     "back": "%ΔPV_{full} ≈ −AnnModDur × ΔYield"
+    },
+    {
+     "id": "fi-11-f04",
+     "front": "Money duration",
+     "back": "AnnModDur × PV_{full} (position value). ΔPV ≈ −MoneyDur × ΔYield."
+    },
+    {
+     "id": "fi-11-f05",
+     "front": "PVBP",
+     "back": "Price value of a basis point = (PV_{−} − PV_{+}) ÷ 2 for a ±1 bp bump; ≈ MoneyDur × 0.0001."
+    },
+    {
+     "id": "fi-11-f06",
+     "front": "Duration: effect of higher coupon / higher yield / longer maturity",
+     "back": "Higher coupon → lower duration. Higher yield → lower duration. Longer maturity → higher duration (except some long-dated discount bonds)."
+    },
+    {
+     "id": "fi-11-f07",
+     "front": "Macaulay duration of a perpetuity",
+     "back": "(1 + r) ÷ r. Example: r = 5% → 21 years."
+    }
+   ]
+  },
+  {
+   "id": "fi-12",
+   "lm": 12,
+   "title": "Yield-Based Bond Convexity and Portfolio Properties",
+   "summary": "Adds convexity to the duration estimate so large yield moves are priced accurately, introduces money convexity, and shows how to aggregate duration and convexity across a portfolio (and why that shortcut assumes parallel shifts).",
+   "acca": {
+    "overlap": "partial",
+    "papers": [
+     "AFM"
+    ],
+    "note": "AFM mentioned convexity as the curvature that makes duration an underestimate of price rises. New for CFA: computing approximate convexity, the ½ × Convexity × (ΔY)² adjustment, money convexity and market-value-weighted portfolio duration and its limits."
+   },
+   "lessons": [
+    {
+     "id": "fi-12-a",
+     "title": "Convexity and the convexity adjustment",
+     "minutes": 9,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Why duration is not enough",
+       "body": "Duration draws a straight tangent line to the curved price–yield relationship. For small yield changes the line is close. For big moves it **underestimates price rises and overstates price falls**.\n\n**Convexity** measures the curvature. For an option-free bond it is positive, so the second-order term always *adds* to the estimate, whichever way yields move."
+      },
+      {
+       "kind": "formula",
+       "title": "Approximate convexity",
+       "formula": "ApproxCon = (PV_{−} + PV_{+} − 2 × PV_{0}) ÷ [(ΔYield)^{2} × PV_{0}]",
+       "where": [
+        [
+         "PV_{−}, PV_{+}",
+         "prices after yield falls / rises by ΔYield"
+        ],
+        [
+         "PV_{0}",
+         "current price"
+        ]
+       ],
+       "note": "Same bumped prices as approximate duration: one repricing exercise gives both."
+      },
+      {
+       "kind": "formula",
+       "title": "Duration plus convexity",
+       "formula": "%ΔPV_{full} ≈ (−AnnModDur × ΔYield) + ½ × AnnConvexity × (ΔYield)^{2}",
+       "where": [
+        [
+         "ΔYield",
+         "decimal, e.g. 100 bp = 0.01"
+        ]
+       ],
+       "note": "The ½ is easy to forget; (ΔYield)^{2} is always positive."
+      },
+      {
+       "kind": "example",
+       "title": "5-year 5% bond at 6%, ±100 bp",
+       "body": "Bump ±50 bp: PV_{0} 95.7876, PV_{−} 97.8649, PV_{+} 93.7665 → ApproxModDur 4.279, ApproxCon ≈ 23.5.\n\n+100 bp: −4.279% + ½ × 23.5 × 0.0001 = **−4.16%** (actual −4.16%).\n\n−100 bp: +4.279% + 0.12% = **+4.40%** (actual +4.40%).\n\nDuration alone would say ±4.28% for both."
+      },
+      {
+       "kind": "concept",
+       "title": "What gives more convexity?",
+       "body": "Same direction as duration, plus *dispersion*:\n\n- Longer maturity, lower coupon, lower yield → more convexity.\n- For the same duration, cash flows that are **more spread out** (a barbell) give more convexity than concentrated flows (a bullet).\n\nMore convexity is valuable to a bondholder: the bond gains more when yields fall and loses less when they rise."
+      },
+      {
+       "kind": "tip",
+       "title": "Common trap",
+       "body": "Do not subtract the convexity term when yields rise. With positive convexity the adjustment is **always added**, because (ΔYield)^{2} > 0."
+      }
+     ]
+    },
+    {
+     "id": "fi-12-b",
+     "title": "Money convexity and portfolio duration",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "formula",
+       "title": "Money convexity",
+       "formula": "MoneyCon = AnnConvexity × PV_{full}\n\nΔPV ≈ −MoneyDur × ΔYield + ½ × MoneyCon × (ΔYield)^{2}",
+       "where": [
+        [
+         "PV_{full}",
+         "full market value of the position"
+        ]
+       ],
+       "note": "Same as the % formula, just multiplied by the position value."
+      },
+      {
+       "kind": "example",
+       "title": "Money convexity on 10 million",
+       "body": "Position MV 10,000,000; AnnModDur 5; AnnConvexity 40. Yields +100 bp.\n\nDuration effect: −5 × 10,000,000 × 0.01 = −500,000.\nConvexity effect: ½ × 40 × 10,000,000 × 0.0001 = +20,000.\n\nEstimated change = **−480,000**."
+      },
+      {
+       "kind": "formula",
+       "title": "Portfolio duration and convexity",
+       "formula": "Portfolio duration ≈ Σ w_{i} × D_{i}\n\nPortfolio convexity ≈ Σ w_{i} × Con_{i}",
+       "where": [
+        [
+         "w_{i}",
+         "market value (full price) weight of bond i"
+        ],
+        [
+         "D_{i}",
+         "modified, Macaulay or effective duration of bond i"
+        ]
+       ],
+       "note": "Use market-value weights, not par weights or equal weights."
+      },
+      {
+       "kind": "example",
+       "title": "Three-bond portfolio",
+       "body": "MVs 4.0m, 3.5m, 2.5m (weights 40%, 35%, 25%); durations 3.2, 6.8, 11.5.\n\nPortfolio duration = 0.40 × 3.2 + 0.35 × 6.8 + 0.25 × 11.5 = **6.535**.\n\nA 50 bp parallel rise → ≈ −3.27% on the portfolio."
+      },
+      {
+       "kind": "concept",
+       "title": "Limitations of the weighted average",
+       "body": "The weighted average is easy and works for bonds with options, but it **assumes a parallel shift**: every bond's yield moves by the same amount. Real curves steepen, flatten and twist.\n\nThe theoretically better alternative (duration based on the portfolio's cash-flow yield) is rarely used: it is hard to compute and cannot handle embedded options. Non-parallel risk is handled with key-rate durations (next LM)."
+      }
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "fi-12-q01",
+     "lesson": "fi-12-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A bond has an annual modified duration of 7.0 and annual convexity of 60. If its yield rises by 150 bp, the estimated percentage change in full price is *closest* to:",
+     "options": [
+      "−9.83%",
+      "−10.50%",
+      "−11.18%"
+     ],
+     "answer": 0,
+     "explanation": "Duration effect = −7.0 × 0.015 = −10.50%. Convexity effect = ½ × 60 × 0.015^{2} = +0.675%. Total ≈ −9.83%. −10.50% ignores convexity; −11.18% wrongly subtracts the convexity term."
+    },
+    {
+     "id": "fi-12-q02",
+     "lesson": "fi-12-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A bond is priced at 100.00. With a 10 bp yield decrease it is worth 100.89; with a 10 bp increase, 99.12. Its approximate convexity is *closest* to:",
+     "options": [
+      "8.85",
+      "100.0",
+      "0.10"
+     ],
+     "answer": 1,
+     "explanation": "ApproxCon = (100.89 + 99.12 − 200.00) ÷ (0.0010^{2} × 100) = 0.01 ÷ 0.0001 = 100.0. 0.10 does not square ΔYield. 8.85 is the approximate modified duration, (100.89 − 99.12) ÷ (2 × 0.001 × 100)."
+    },
+    {
+     "id": "fi-12-q03",
+     "lesson": "fi-12-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "For an option-free bond, the convexity adjustment to a duration-based price estimate:",
+     "options": [
+      "is positive when yields fall and negative when yields rise.",
+      "is zero for small yield changes and negative for large ones.",
+      "is positive whether yields rise or fall."
+     ],
+     "answer": 2,
+     "explanation": "The adjustment is ½ × Convexity × (ΔYield)^{2}. With positive convexity and a squared yield change, it is always positive: price rises are bigger and falls smaller than duration predicts. It is small (not zero) for small moves."
+    },
+    {
+     "id": "fi-12-q04",
+     "lesson": "fi-12-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Two option-free bonds have the same price, yield and modified duration. Bond A's cash flows are more dispersed than Bond B's. For a large *decrease* in yields, Bond A will most likely:",
+     "options": [
+      "rise more than Bond B, because it has higher convexity.",
+      "rise by the same amount as Bond B, because durations are equal.",
+      "rise less than Bond B, because dispersion lowers duration."
+     ],
+     "answer": 0,
+     "explanation": "Greater dispersion of cash flows around the same duration means higher convexity. The convexity term adds to the price gain, so A rises more. Equal durations only give equal first-order estimates; duration is unchanged by assumption."
+    },
+    {
+     "id": "fi-12-q05",
+     "lesson": "fi-12-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A position has a full market value of 10,000,000, annual modified duration of 5 and annual convexity of 40. If yields rise by 100 bp, the estimated change in value is:",
+     "options": [
+      "−500,000",
+      "−480,000",
+      "−520,000"
+     ],
+     "answer": 1,
+     "explanation": "Duration: −5 × 10,000,000 × 0.01 = −500,000. Convexity: ½ × 40 × 10,000,000 × 0.0001 = +20,000. Total −480,000. −500,000 ignores convexity; −520,000 subtracts it."
+    },
+    {
+     "id": "fi-12-q06",
+     "lesson": "fi-12-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A portfolio holds three bonds with market values of 4.0m, 3.5m and 2.5m and modified durations of 3.2, 6.8 and 11.5 respectively. The portfolio's modified duration is *closest* to:",
+     "options": [
+      "7.17",
+      "7.78",
+      "6.54"
+     ],
+     "answer": 2,
+     "explanation": "Weights 0.40/0.35/0.25. Duration = 0.40 × 3.2 + 0.35 × 6.8 + 0.25 × 11.5 = 6.535. 7.17 is a simple equal-weighted average. 7.78 attaches the weights to the wrong bonds (0.25, 0.35, 0.40)."
+    },
+    {
+     "id": "fi-12-q07",
+     "lesson": "fi-12-b",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "The main limitation of computing portfolio duration as the market-value-weighted average of individual bond durations is that it:",
+     "options": [
+      "assumes all yields change by the same amount (a parallel shift).",
+      "ignores the different market values of the bonds.",
+      "cannot be used when the portfolio holds bonds with embedded options."
+     ],
+     "answer": 0,
+     "explanation": "The weighted-average method implicitly assumes a parallel yield-curve shift. It *can* include bonds with options (using effective duration), and it does use market-value weights. The cash-flow-yield method is the one that cannot handle options."
+    },
+    {
+     "id": "fi-12-q08",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A bond has annual modified duration of 7.0 and convexity of 60. If yields *fall* by 150 bp, the estimated percentage price change is *closest* to:",
+     "options": [
+      "+10.50%",
+      "+11.18%",
+      "+9.83%"
+     ],
+     "answer": 1,
+     "explanation": "Duration effect = −7.0 × (−0.015) = +10.50%. Convexity effect = ½ × 60 × 0.015^{2} = +0.675%. Total ≈ +11.18%. +10.50% ignores convexity; +9.83% subtracts it (the result for a rise in yields, with sign flipped)."
+    },
+    {
+     "id": "fi-12-q09",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "A position has a full market value of 2,500,000, annual modified duration of 8 and annual convexity of 90. If yields fall by 75 bp, the estimated gain is *closest* to:",
+     "options": [
+      "143,672",
+      "150,000",
+      "156,328"
+     ],
+     "answer": 2,
+     "explanation": "Duration: 8 × 0.0075 = 6.000%. Convexity: ½ × 90 × 0.0075^{2} = 0.253%. Total 6.253% × 2,500,000 = 156,328. 150,000 ignores convexity; 143,672 subtracts it."
+    },
+    {
+     "id": "fi-12-q10",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "A bond is priced at 95.7876. At a yield 50 bp lower it is 97.8649; at 50 bp higher, 93.7665. Using approximate duration and convexity, the estimated price change for a 100 bp yield *increase* is *closest* to:",
+     "options": [
+      "−4.16%",
+      "−4.28%",
+      "−4.40%"
+     ],
+     "answer": 0,
+     "explanation": "ApproxModDur = (97.8649 − 93.7665) ÷ (2 × 0.005 × 95.7876) = 4.279. ApproxCon = (97.8649 + 93.7665 − 191.5752) ÷ (0.005^{2} × 95.7876) ≈ 23.5. %ΔP ≈ −4.279% + ½ × 23.5 × 0.0001 = −4.16%. −4.28% omits convexity; −4.40% subtracts it."
+    },
+    {
+     "id": "fi-12-q11",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Which bond characteristics, all else equal, give the *highest* convexity?",
+     "options": [
+      "Long maturity, high coupon, high yield",
+      "Long maturity, low coupon, low yield",
+      "Short maturity, high coupon, low yield"
+     ],
+     "answer": 1,
+     "explanation": "Convexity rises with maturity and falls with coupon and yield, just like duration (and also rises with dispersion of cash flows). The other combinations each include at least one feature that reduces convexity."
+    },
+    {
+     "id": "fi-12-q12",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "An analyst estimates a portfolio's duration as the market-value-weighted average of its bonds' durations. This estimate will be *least* reliable when:",
+     "options": [
+      "all yields fall by 20 bp.",
+      "the portfolio contains only option-free government bonds.",
+      "the yield curve steepens sharply."
+     ],
+     "answer": 2,
+     "explanation": "The weighted average assumes a parallel shift. A steepening (short yields fall, long yields rise) is non-parallel, so the estimate can be badly wrong. A uniform 20 bp fall is exactly the case it handles; option-free bonds pose no special problem."
+    }
+   ],
+   "flashcards": [
+    {
+     "id": "fi-12-f01",
+     "front": "Approximate convexity",
+     "back": "(PV_{−} + PV_{+} − 2PV_{0}) ÷ [(ΔYield)^{2} × PV_{0}]"
+    },
+    {
+     "id": "fi-12-f02",
+     "front": "Price change with duration and convexity",
+     "back": "%ΔPV ≈ −AnnModDur × ΔY + ½ × AnnConvexity × (ΔY)^{2}"
+    },
+    {
+     "id": "fi-12-f03",
+     "front": "Money convexity",
+     "back": "AnnConvexity × PV_{full}; ΔPV ≈ −MoneyDur × ΔY + ½ × MoneyCon × (ΔY)^{2}"
+    },
+    {
+     "id": "fi-12-f04",
+     "front": "Sign of the convexity adjustment (option-free bond)",
+     "back": "Always positive, whether yields rise or fall."
+    },
+    {
+     "id": "fi-12-f05",
+     "front": "Portfolio duration (practical method)",
+     "back": "Σ (market-value weight × bond duration). Assumes a parallel yield-curve shift."
+    },
+    {
+     "id": "fi-12-f06",
+     "front": "What increases convexity?",
+     "back": "Longer maturity, lower coupon, lower yield, and greater dispersion of cash flows (barbell > bullet for the same duration)."
+    }
+   ]
+  },
+  {
+   "id": "fi-13",
+   "lm": 13,
+   "title": "Curve-Based and Empirical Fixed-Income Risk Measures",
+   "summary": "Measures interest-rate risk when cash flows change with rates (callable, putable, MBS) using effective duration and convexity from benchmark-curve shifts, handles non-parallel moves with key-rate durations, and contrasts analytical with empirical (regression-based) duration.",
+   "acca": {
+    "overlap": "none",
+    "papers": [],
+    "note": "ACCA does not cover effective duration, key-rate durations or empirical duration. Treat this LM as new."
+   },
+   "lessons": [
+    {
+     "id": "fi-13-a",
+     "title": "Effective duration and effective convexity",
+     "minutes": 9,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "When yield duration breaks",
+       "body": "Modified duration assumes cash flows are fixed. For a **callable** bond, a **putable** bond or an **MBS**, the cash flows themselves change when rates move (calls, puts, prepayments). Such bonds may not even have a meaningful YTM.\n\nFix: shift the **benchmark yield curve** (not the bond's own YTM) up and down, revalue the bond with a model that captures the option, and measure the price response. That is a *curve* duration."
+      },
+      {
+       "kind": "formula",
+       "title": "Effective duration and convexity",
+       "formula": "EffDur = (PV_{−} − PV_{+}) ÷ (2 × ΔCurve × PV_{0})\n\nEffCon = (PV_{−} + PV_{+} − 2 × PV_{0}) ÷ [(ΔCurve)^{2} × PV_{0}]",
+       "where": [
+        [
+         "ΔCurve",
+         "parallel shift in the benchmark curve"
+        ],
+        [
+         "PV_{−}, PV_{+}",
+         "model values after the curve shifts down / up"
+        ]
+       ],
+       "note": "Same shape as the approximate formulas; only the shock changes."
+      },
+      {
+       "kind": "example",
+       "title": "Callable bond near its call price",
+       "body": "PV_{0} 101.20; curve −25 bp → 102.00; +25 bp → 100.37.\n\nEffDur = (102.00 − 100.37) ÷ (2 × 0.0025 × 101.20) = **3.22**.\n\nEffCon = (102.00 + 100.37 − 202.40) ÷ (0.0025^{2} × 101.20) = **−47.4**.\n\nThe price gains less when rates fall than it loses when they rise: **negative convexity**."
+      },
+      {
+       "kind": "compare",
+       "title": "Options and convexity",
+       "rows": [
+        [
+         "Bond",
+         "When rates fall",
+         "When rates rise",
+         "Effective convexity"
+        ],
+        [
+         "Callable",
+         "Upside capped near call price (price compression)",
+         "Behaves like a straight bond",
+         "Negative at low rates"
+        ],
+        [
+         "Putable",
+         "Behaves like a straight bond",
+         "Put sets a price floor; duration shortens",
+         "Positive (more than straight)"
+        ],
+        [
+         "Option-free",
+         "Price rises",
+         "Price falls",
+         "Positive; EffDur ≈ ModDur"
+        ]
+       ]
+      },
+      {
+       "kind": "tip",
+       "title": "Exam tip",
+       "body": "Effective duration is the right measure for any bond with an embedded option or uncertain cash flows (callables, putables, MBS, ABS). For an option-free bond it gives about the same number as modified duration. For a floating-rate note it is roughly the time to the next reset."
+      }
+     ]
+    },
+    {
+     "id": "fi-13-b",
+     "title": "Key-rate and empirical duration",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Key-rate (partial) durations",
+       "body": "Effective duration assumes the whole curve moves in parallel. A **key-rate duration** shifts just one maturity point (e.g., the 5-year rate) and measures the price response.\n\nKey-rate durations reveal *where* on the curve the risk sits, so you can analyse steepening, flattening and twists.\n\n**Σ key-rate durations = effective duration.**"
+      },
+      {
+       "kind": "formula",
+       "title": "Price change from key-rate shifts",
+       "formula": "%ΔPV ≈ −Σ KRD_{k} × Δr_{k}",
+       "where": [
+        [
+         "KRD_{k}",
+         "key-rate duration at maturity k"
+        ],
+        [
+         "Δr_{k}",
+         "change in the rate at maturity k (decimal)"
+        ]
+       ]
+      },
+      {
+       "kind": "example",
+       "title": "Non-parallel move",
+       "body": "KRDs: 2y 0.5, 5y 1.8, 10y 3.2, 30y 1.0 (EffDur = 6.5).\n\nThe 2-year rate rises 20 bp and the 10-year falls 10 bp; others unchanged.\n\n%ΔPV ≈ −(0.5 × 0.0020) − (3.2 × −0.0010) = −0.10% + 0.32% = **+0.22%**.\n\nA parallel-duration view would miss that this portfolio gains."
+      },
+      {
+       "kind": "concept",
+       "title": "Analytical vs empirical duration",
+       "body": "**Analytical** duration (modified, effective) comes from a pricing formula and assumes government yields and credit spreads are independent.\n\n**Empirical** duration comes from regressing actual bond price changes on benchmark yield changes.\n\nFor **high-yield** bonds, spreads tend to *narrow* when government yields rise (both reflect a stronger economy), partly offsetting the rate move. So empirical duration is **lower** than analytical duration. For government bonds the two are close."
+      },
+      {
+       "kind": "tip",
+       "title": "Common trap",
+       "body": "Key-rate durations add up to effective duration, not to modified duration of each bond, and a 'parallel shift' answer is wrong whenever the question gives different changes at different maturities."
+      }
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "fi-13-q01",
+     "lesson": "fi-13-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A callable bond is valued at 101.20. Shifting the benchmark curve down 25 bp gives 102.00; up 25 bp gives 100.37. Its effective duration is *closest* to:",
+     "options": [
+      "3.22",
+      "6.44",
+      "−47.4"
+     ],
+     "answer": 0,
+     "explanation": "EffDur = (102.00 − 100.37) ÷ (2 × 0.0025 × 101.20) = 1.63 ÷ 0.506 = 3.22. 6.44 omits the 2 in the denominator. −47.4 is the effective convexity, not duration."
+    },
+    {
+     "id": "fi-13-q02",
+     "lesson": "fi-13-a",
+     "pool": "lesson",
+     "difficulty": 3,
+     "stem": "Using the same values (101.20; 102.00 at −25 bp; 100.37 at +25 bp), the bond's effective convexity is *closest* to:",
+     "options": [
+      "−0.12",
+      "−47.4",
+      "+47.4"
+     ],
+     "answer": 1,
+     "explanation": "EffCon = (102.00 + 100.37 − 2 × 101.20) ÷ (0.0025^{2} × 101.20) = −0.03 ÷ 0.0006325 = −47.4. The negative sign reflects the call cap. +47.4 has the wrong sign; −0.12 forgets to square ΔCurve."
+    },
+    {
+     "id": "fi-13-q03",
+     "lesson": "fi-13-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Effective duration rather than modified duration should be used for a callable bond because:",
+     "options": [
+      "callable bonds always trade at a premium.",
+      "callable bonds have no coupon payments.",
+      "the bond's future cash flows change when interest rates change."
+     ],
+     "answer": 2,
+     "explanation": "Modified duration assumes fixed cash flows. A call option changes the expected cash flows as rates move, so we revalue under shifted benchmark curves. Callable bonds do pay coupons and can trade at a discount."
+    },
+    {
+     "id": "fi-13-q04",
+     "lesson": "fi-13-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "When benchmark yields are well *below* the coupon rate, a callable bond most likely exhibits:",
+     "options": [
+      "negative effective convexity.",
+      "higher effective duration than an otherwise identical option-free bond.",
+      "the same effective convexity as an otherwise identical putable bond."
+     ],
+     "answer": 0,
+     "explanation": "At low yields the call is likely to be exercised, capping the price near the call price (price compression), so effective convexity is negative. The call also shortens effective duration versus the straight bond. A putable bond has positive convexity."
+    },
+    {
+     "id": "fi-13-q05",
+     "lesson": "fi-13-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A portfolio has key-rate durations of 0.5 (2-year), 1.8 (5-year), 3.2 (10-year) and 1.0 (30-year). If the 2-year rate rises 20 bp and the 10-year rate falls 10 bp, with other rates unchanged, the portfolio value changes by approximately:",
+     "options": [
+      "−1.30%",
+      "+0.22%",
+      "−0.42%"
+     ],
+     "answer": 1,
+     "explanation": "%ΔPV ≈ −(0.5 × 0.0020) − (3.2 × −0.0010) = −0.10% + 0.32% = +0.22%. −1.30% applies a parallel 20 bp rise to the full 6.5 effective duration. −0.42% adds both effects as losses, ignoring that the 10-year rate fell."
+    },
+    {
+     "id": "fi-13-q06",
+     "lesson": "fi-13-b",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "The sum of a bond's key-rate durations equals its:",
+     "options": [
+      "empirical duration.",
+      "Macaulay duration.",
+      "effective duration."
+     ],
+     "answer": 2,
+     "explanation": "Key-rate durations decompose effective duration by maturity, so they sum to effective duration. Macaulay duration is a time measure; empirical duration comes from regressing observed price changes."
+    },
+    {
+     "id": "fi-13-q07",
+     "lesson": "fi-13-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Compared with its analytical duration, a high-yield corporate bond's empirical duration is *most likely*:",
+     "options": [
+      "lower, because its credit spread tends to narrow when government yields rise.",
+      "higher, because high-yield bonds have more default risk.",
+      "equal, because both measure the same sensitivity."
+     ],
+     "answer": 0,
+     "explanation": "In a strengthening economy government yields rise while high-yield spreads tighten, partly offsetting each other, so observed price sensitivity to benchmark yields is lower. Analytical duration assumes no such correlation."
+    },
+    {
+     "id": "fi-13-q08",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A portfolio has key-rate durations of 0.5 (2-year), 1.8 (5-year), 3.2 (10-year) and 1.0 (30-year). The curve steepens: the 2-year rate falls 10 bp, the 5-year is unchanged, the 10-year rises 15 bp and the 30-year rises 20 bp. The estimated change in value is *closest* to:",
+     "options": [
+      "+0.63%",
+      "−0.63%",
+      "−0.73%"
+     ],
+     "answer": 1,
+     "explanation": "%ΔPV ≈ −[0.5 × (−0.0010) + 1.8 × 0 + 3.2 × 0.0015 + 1.0 × 0.0020] = −[−0.0005 + 0.0048 + 0.0020] = −0.63%. −0.73% treats the 2-year move as a rise. +0.63% gets the overall sign wrong."
+    },
+    {
+     "id": "fi-13-q09",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "A callable bond has effective duration of 3.22 and effective convexity of −47.4. If the benchmark curve shifts up 50 bp, the estimated percentage price change is *closest* to:",
+     "options": [
+      "−1.55%",
+      "−1.61%",
+      "−1.67%"
+     ],
+     "answer": 2,
+     "explanation": "%ΔP ≈ −3.22 × 0.005 + ½ × (−47.4) × 0.005^{2} = −1.610% − 0.059% = −1.67%. −1.61% ignores convexity. −1.55% treats convexity as positive (adds 0.059%)."
+    },
+    {
+     "id": "fi-13-q10",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Which bond's effective duration is *most likely* to shorten as interest rates rise sharply?",
+     "options": [
+      "A putable bond",
+      "A callable bond",
+      "An option-free bullet bond"
+     ],
+     "answer": 0,
+     "explanation": "As rates rise, the put becomes valuable and the bond is increasingly expected to be put back early, shortening its effective duration. A callable bond's duration *lengthens* as rates rise (the call becomes less likely). An option-free bond's duration falls only slightly with yield."
+    },
+    {
+     "id": "fi-13-q11",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Effective duration is preferred to modified duration for a mortgage-backed security mainly because:",
+     "options": [
+      "MBS prices are quoted on a discount basis.",
+      "prepayments make cash flows depend on interest rates, so a fixed-cash-flow YTM is not meaningful for sensitivity.",
+      "MBS pay floating coupons that reset every month."
+     ],
+     "answer": 1,
+     "explanation": "Borrowers prepay more when rates fall and less when they rise, so cash flows depend on the rate path. Effective duration revalues the security under shifted benchmark curves with a prepayment model. Pricing conventions and coupon type are not the reason."
+    },
+    {
+     "id": "fi-13-q12",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A floating-rate note resets quarterly and the next reset is in two months. Its effective (interest-rate) duration is *closest* to:",
+     "options": [
+      "0.25",
+      "its time to maturity",
+      "0.17"
+     ],
+     "answer": 2,
+     "explanation": "Because the coupon resets to market, the price returns towards par at each reset; interest-rate duration is roughly the time to the next reset: 2 months ≈ 0.17 years. 0.25 is the full reset period. Time to maturity would apply to a fixed-rate zero."
+    }
+   ],
+   "flashcards": [
+    {
+     "id": "fi-13-f01",
+     "front": "Effective duration",
+     "back": "(PV_{−} − PV_{+}) ÷ (2 × ΔCurve × PV_{0}); used for bonds with embedded options and MBS."
+    },
+    {
+     "id": "fi-13-f02",
+     "front": "Effective convexity",
+     "back": "(PV_{−} + PV_{+} − 2PV_{0}) ÷ [(ΔCurve)^{2} × PV_{0}]"
+    },
+    {
+     "id": "fi-13-f03",
+     "front": "Callable vs putable convexity",
+     "back": "Callable: negative convexity at low yields (price compression). Putable: more positive convexity than a straight bond at high yields."
+    },
+    {
+     "id": "fi-13-f04",
+     "front": "Key-rate durations",
+     "back": "Sensitivity to a shift at one maturity. Σ KRDs = effective duration. %ΔPV ≈ −Σ KRD_{k} × Δr_{k}."
+    },
+    {
+     "id": "fi-13-f05",
+     "front": "Empirical vs analytical duration (HY bonds)",
+     "back": "Empirical < analytical, because HY spreads tend to narrow when government yields rise."
+    },
+    {
+     "id": "fi-13-f06",
+     "front": "Effective duration of an FRN",
+     "back": "Approximately the time to the next coupon reset."
+    }
+   ]
+  },
+  {
+   "id": "fi-14",
+   "lm": 14,
+   "title": "Credit Risk",
+   "summary": "Breaks credit risk into probability of default and loss given default, explains how ratings agencies summarise it (and where ratings fall short), and shows what drives yield spreads and how spread changes move bond prices.",
+   "acca": {
+    "overlap": "partial",
+    "papers": [
+     "FM",
+     "AFM"
+    ],
+    "note": "FM/AFM used credit ratings and credit spreads to build a cost of debt. New for CFA: expected loss = PD × LGD, issuer vs issue ratings and notching, rating limitations, macro/market/issuer spread drivers, and spread duration price effects."
+   },
+   "lessons": [
+    {
+     "id": "fi-14-a",
+     "title": "Default probability, loss severity and expected loss",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "The building blocks",
+       "body": "**Credit risk** = the risk of loss because a borrower fails to pay in full and on time.\n\n- **Probability of default (PD)**: likelihood the issuer defaults over a period.\n- **Exposure at default (EAD)**: amount owed when default happens.\n- **Recovery rate**: % of EAD eventually recovered.\n- **Loss given default (LGD)** = loss severity = EAD × (1 − recovery rate)."
+      },
+      {
+       "kind": "formula",
+       "title": "Expected loss",
+       "formula": "EL = PD × LGD\n\nLGD = EAD × (1 − Recovery rate)\n\nYield spread ≈ PD × (1 − Recovery rate)",
+       "where": [
+        [
+         "PD",
+         "probability of default (annual)"
+        ],
+        [
+         "EAD",
+         "exposure at default"
+        ]
+       ],
+       "note": "The spread approximation ignores risk and liquidity premiums."
+      },
+      {
+       "kind": "example",
+       "title": "Expected loss on 10 million",
+       "body": "EAD 10,000,000; recovery 40%; PD 2%.\n\nLGD = 10,000,000 × (1 − 0.40) = 6,000,000.\n\nEL = 0.02 × 6,000,000 = **120,000** (1.2% of exposure).\n\nSo the investor needs at least ~1.2% of extra yield just to break even on expected losses."
+      },
+      {
+       "kind": "concept",
+       "title": "Other credit-related risks",
+       "body": "- **Downgrade (credit migration) risk**: a lower rating widens the spread and cuts price, even with no default.\n- **Spread risk**: spreads widen for market-wide reasons.\n- **Market liquidity risk**: a wide bid–ask spread means you receive less when you sell. Smaller, less frequent issuers carry more of it.\n\nAll show up in the yield spread over a government benchmark."
+      }
+     ]
+    },
+    {
+     "id": "fi-14-b",
+     "title": "Credit ratings, notching and their limits",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "compare",
+       "title": "Rating scale (S&P/Fitch vs Moody's)",
+       "rows": [
+        [
+         "Grade",
+         "S&P / Fitch",
+         "Moody's"
+        ],
+        [
+         "Highest",
+         "AAA",
+         "Aaa"
+        ],
+        [
+         "Lowest investment grade",
+         "BBB−",
+         "Baa3"
+        ],
+        [
+         "Highest high yield",
+         "BB+",
+         "Ba1"
+        ],
+        [
+         "Default",
+         "D",
+         "C (lowest)"
+        ]
+       ]
+      },
+      {
+       "kind": "concept",
+       "title": "Issuer vs issue ratings",
+       "body": "An **issuer rating** reflects the company's overall creditworthiness, usually for senior unsecured debt.\n\n**Issue ratings** adjust for an individual bond's seniority and security via **notching**:\n- Secured debt may be notched **up** (better recovery).\n- Subordinated debt is notched **down**.\n\nNotching is wider for lower-rated issuers, because default is more likely and recovery matters more. **Structural subordination**: holding-company debt ranks behind the debts of operating subsidiaries."
+      },
+      {
+       "kind": "concept",
+       "title": "Why ratings are useful",
+       "body": "- Simple, comparable summary of default risk across issuers and countries.\n- Used in regulations, investment mandates (e.g., investment-grade only) and bond covenants.\n- Rating changes are tracked as migration (transition) matrices."
+      },
+      {
+       "kind": "concept",
+       "title": "Limitations of ratings",
+       "body": "- **Lag**: market spreads usually move before ratings change.\n- **Ratings drift**: they change over time, so a rating is not permanent.\n- Firm-specific events (litigation, LBOs, accidents, fraud) are hard to anticipate.\n- Ratings focus on default risk, not on price or liquidity risk.\n- Agencies have made big errors (e.g., structured products before 2008)."
+      },
+      {
+       "kind": "tip",
+       "title": "ACCA vs CFA",
+       "body": "In FM/AFM you used a rating to *look up* a spread for the cost of debt. CFA asks why the market spread can differ from the rating (lags, liquidity, cycle) and how notching changes a specific bond's rating versus the issuer's."
+      }
+     ]
+    },
+    {
+     "id": "fi-14-c",
+     "title": "What drives spreads and how spreads move prices",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Three groups of spread drivers",
+       "body": "- **Macro (credit cycle)**: spreads widen as the economy weakens and default expectations rise; they narrow in expansions. Lower-rated bonds move most.\n- **Market factors**: dealer capacity, trading liquidity and new-issue supply. In stress, liquidity dries up and spreads gap wider.\n- **Issuer factors**: profitability, leverage, cash flow and ratings changes.\n\nHigh-yield spreads are much more volatile than investment-grade spreads."
+      },
+      {
+       "kind": "formula",
+       "title": "Price impact of a spread change",
+       "formula": "%ΔPV_{full} ≈ −(ModDur × ΔSpread) + ½ × Convexity × (ΔSpread)^{2}",
+       "where": [
+        [
+         "ModDur",
+         "spread duration (for fixed-rate bonds ≈ modified duration)"
+        ],
+        [
+         "ΔSpread",
+         "change in spread, decimal"
+        ]
+       ]
+      },
+      {
+       "kind": "example",
+       "title": "Spread widening",
+       "body": "ModDur 6.0, convexity 50. Spread widens 80 bp (yields on the benchmark unchanged).\n\nDuration effect: −6.0 × 0.008 = −4.80%.\nConvexity: ½ × 50 × 0.008^{2} = +0.16%.\n\n%ΔP ≈ **−4.64%**."
+      },
+      {
+       "kind": "tip",
+       "title": "Exam tip",
+       "body": "Spread duration measures sensitivity to the *spread* only; benchmark-rate risk is separate. Questions often state that 'the benchmark yield is unchanged' to signal that the whole yield move is spread."
+      }
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "fi-14-q01",
+     "lesson": "fi-14-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "An investor holds a bond with exposure at default of 10,000,000. The annual probability of default is 2% and the expected recovery rate is 40%. The expected loss is:",
+     "options": [
+      "120,000",
+      "200,000",
+      "80,000"
+     ],
+     "answer": 0,
+     "explanation": "LGD = 10,000,000 × (1 − 0.40) = 6,000,000. EL = 0.02 × 6,000,000 = 120,000. 80,000 uses the recovery rate instead of (1 − recovery). 200,000 ignores recovery altogether."
+    },
+    {
+     "id": "fi-14-q02",
+     "lesson": "fi-14-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A bond's annual probability of default is 3% and its recovery rate is 45%. The approximate yield spread needed to compensate for expected credit losses is *closest* to:",
+     "options": [
+      "1.35%",
+      "1.65%",
+      "3.00%"
+     ],
+     "answer": 1,
+     "explanation": "Spread ≈ PD × (1 − recovery) = 0.03 × 0.55 = 1.65%. 1.35% multiplies by the recovery rate (0.45). 3.00% ignores recovery."
+    },
+    {
+     "id": "fi-14-q03",
+     "lesson": "fi-14-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Loss given default is *best* described as:",
+     "options": [
+      "the expected loss over the year, equal to PD × exposure.",
+      "the probability that the issuer misses a payment.",
+      "the amount lost if default occurs, equal to exposure × (1 − recovery rate)."
+     ],
+     "answer": 2,
+     "explanation": "LGD (loss severity) is the loss if default happens: EAD × (1 − recovery). The likelihood of a missed payment is PD, not LGD. Expected loss multiplies PD by LGD, not by gross exposure."
+    },
+    {
+     "id": "fi-14-q04",
+     "lesson": "fi-14-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A bond's issuer is downgraded from A to BBB and the bond price falls, though no payment is missed. This illustrates:",
+     "options": [
+      "credit migration (downgrade) risk.",
+      "market liquidity risk.",
+      "default risk."
+     ],
+     "answer": 0,
+     "explanation": "Credit migration risk is the risk of loss from a lower rating and wider spread without default. Default risk requires a missed payment; liquidity risk concerns bid–ask costs of trading."
+    },
+    {
+     "id": "fi-14-q05",
+     "lesson": "fi-14-b",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "The lowest investment-grade rating on the S&P scale is:",
+     "options": [
+      "BBB",
+      "BBB−",
+      "BB+"
+     ],
+     "answer": 1,
+     "explanation": "Investment grade runs from AAA down to BBB− (Baa3 at Moody's). BB+ is the highest high-yield rating. BBB is one notch above the lowest investment-grade rating."
+    },
+    {
+     "id": "fi-14-q06",
+     "lesson": "fi-14-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A company's issuer rating is BB. Its secured bonds are rated BB+ and its subordinated bonds B+. This difference is *best* explained by:",
+     "options": [
+      "rating lags in the subordinated bond's rating.",
+      "structural subordination of the subordinated bonds.",
+      "notching for expected recovery differences across the capital structure."
+     ],
+     "answer": 2,
+     "explanation": "Issue ratings are notched from the issuer rating: secured debt (better recovery) up, subordinated debt down. Structural subordination concerns holding-company debt versus subsidiary debt, and lag is unrelated to seniority."
+    },
+    {
+     "id": "fi-14-q07",
+     "lesson": "fi-14-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Which is *least* likely a limitation of credit ratings?",
+     "options": [
+      "Ratings cannot be compared across issuers in different industries.",
+      "Ratings can lag changes in market-implied credit risk.",
+      "Ratings may fail to anticipate firm-specific events such as a leveraged buyout."
+     ],
+     "answer": 0,
+     "explanation": "Comparability across issuers, sectors and countries is a key *benefit* of ratings. Lagging market spreads and missing event risk (LBOs, litigation) are recognised limitations."
+    },
+    {
+     "id": "fi-14-q08",
+     "lesson": "fi-14-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A corporate bond has modified duration of 6.0 and convexity of 50. Its credit spread widens by 80 bp with the benchmark yield unchanged. The estimated price change is *closest* to:",
+     "options": [
+      "−4.96%",
+      "−4.64%",
+      "−4.80%"
+     ],
+     "answer": 1,
+     "explanation": "%ΔP ≈ −6.0 × 0.008 + ½ × 50 × 0.008^{2} = −4.80% + 0.16% = −4.64%. −4.80% ignores convexity; −4.96% subtracts the convexity term."
+    },
+    {
+     "id": "fi-14-q09",
+     "lesson": "fi-14-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "During an economic downturn, credit spreads *most likely*:",
+     "options": [
+      "narrow, because central banks cut policy rates.",
+      "widen equally across all rating categories.",
+      "widen more for high-yield bonds than for investment-grade bonds."
+     ],
+     "answer": 2,
+     "explanation": "Weaker growth raises expected defaults and lowers liquidity; lower-rated bonds have more default risk so their spreads widen most. Policy rate cuts lower benchmark yields, not credit spreads. The widening is not uniform."
+    },
+    {
+     "id": "fi-14-q10",
+     "lesson": "fi-14-c",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Which factor is a *market* (rather than macro or issuer) driver of credit spreads?",
+     "options": [
+      "A decline in dealer inventories that reduces trading liquidity",
+      "A fall in the issuer's interest coverage ratio",
+      "The economy moving into recession"
+     ],
+     "answer": 0,
+     "explanation": "Market factors include liquidity, dealer capacity and supply of new issues. A falling coverage ratio is issuer-specific; a recession is a macro (credit-cycle) factor."
+    },
+    {
+     "id": "fi-14-q11",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A bank has a 25,000,000 exposure to a senior secured loan with a 1.5% probability of default and an expected recovery rate of 70%. The expected loss is *closest* to:",
+     "options": [
+      "375,000",
+      "112,500",
+      "262,500"
+     ],
+     "answer": 1,
+     "explanation": "LGD = 25,000,000 × (1 − 0.70) = 7,500,000. EL = 0.015 × 7,500,000 = 112,500. 262,500 uses the recovery rate (70%) as the loss rate. 375,000 ignores recovery."
+    },
+    {
+     "id": "fi-14-q12",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A bond has modified duration of 6.0 and convexity of 50. If its credit spread *narrows* by 50 bp, the estimated price change is *closest* to:",
+     "options": [
+      "+2.94%",
+      "+3.00%",
+      "+3.06%"
+     ],
+     "answer": 2,
+     "explanation": "%ΔP ≈ −6.0 × (−0.005) + ½ × 50 × 0.005^{2} = +3.00% + 0.0625% = +3.06%. +3.00% ignores convexity; +2.94% subtracts it."
+    },
+    {
+     "id": "fi-14-q13",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "A high-yield bond (spread duration 4.5, convexity 30) sees its spread widen 120 bp while the government benchmark yield is unchanged. The estimated price change is *closest* to:",
+     "options": [
+      "−5.18%",
+      "−5.40%",
+      "−5.62%"
+     ],
+     "answer": 0,
+     "explanation": "%ΔP ≈ −4.5 × 0.012 + ½ × 30 × 0.012^{2} = −5.40% + 0.216% = −5.18%. −5.40% ignores convexity; −5.62% subtracts the convexity term."
+    },
+    {
+     "id": "fi-14-q14",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Two bonds of the same issuer have identical maturity and coupon. Bond X is secured by specific assets; Bond Y is senior unsecured. Compared with Bond Y, Bond X *most likely* has:",
+     "options": [
+      "a higher probability of default and a higher recovery rate.",
+      "the same probability of default but a lower loss given default.",
+      "a lower probability of default and the same recovery rate."
+     ],
+     "answer": 1,
+     "explanation": "Default is an issuer event, so both bonds share the same PD (cross-default). Security improves recovery, lowering LGD and therefore expected loss, which is why secured issues are notched up."
+    },
+    {
+     "id": "fi-14-q15",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "An analyst observes that a bond's spread has widened significantly over three months while its rating is unchanged. The *most* likely explanation consistent with known rating limitations is that:",
+     "options": [
+      "ratings agencies have overstated the issuer's default risk.",
+      "spread changes are unrelated to credit risk.",
+      "market prices often reflect changes in credit risk before ratings are revised."
+     ],
+     "answer": 2,
+     "explanation": "Ratings tend to lag: markets reprice credit continuously, while agencies change ratings slowly. Spreads do reflect credit risk (plus liquidity), and nothing suggests the agency overstated risk; if anything the rating may now be too high."
+    }
+   ],
+   "flashcards": [
+    {
+     "id": "fi-14-f01",
+     "front": "Expected loss",
+     "back": "EL = PD × LGD"
+    },
+    {
+     "id": "fi-14-f02",
+     "front": "Loss given default",
+     "back": "LGD = EAD × (1 − recovery rate); also called loss severity."
+    },
+    {
+     "id": "fi-14-f03",
+     "front": "Spread approximation for expected loss",
+     "back": "Spread ≈ PD × (1 − recovery rate)"
+    },
+    {
+     "id": "fi-14-f04",
+     "front": "Lowest investment-grade ratings",
+     "back": "BBB− (S&P/Fitch) and Baa3 (Moody's)."
+    },
+    {
+     "id": "fi-14-f05",
+     "front": "Notching",
+     "back": "Adjusting an issue rating from the issuer rating for seniority/security: secured up, subordinated down; wider notching for lower-rated issuers."
+    },
+    {
+     "id": "fi-14-f06",
+     "front": "Price effect of a spread change",
+     "back": "%ΔP ≈ −ModDur × ΔSpread + ½ × Convexity × (ΔSpread)^{2}"
+    },
+    {
+     "id": "fi-14-f07",
+     "front": "Three groups of spread drivers",
+     "back": "Macro (credit cycle), market (liquidity, dealer capacity, supply), issuer (financial performance, leverage)."
+    }
+   ]
+  },
+  {
+   "id": "fi-15",
+   "lm": 15,
+   "title": "Credit Analysis for Government Issuers",
+   "summary": "How to judge a sovereign's ability and willingness to repay using qualitative (institutional, economic, external, fiscal, monetary) and quantitative factors, why local- and foreign-currency debt are rated differently, and how general obligation and revenue bonds of non-sovereign governments differ.",
+   "acca": {
+    "overlap": "none",
+    "papers": [],
+    "note": "ACCA does not cover sovereign or municipal credit analysis. BT/SBL macro knowledge (fiscal and monetary policy, balance of payments) helps with intuition, but the framework is new."
+   },
+   "lessons": [
+    {
+     "id": "fi-15-a",
+     "title": "Sovereign credit: the five factor groups",
+     "minutes": 9,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Ability vs willingness to pay",
+       "body": "A sovereign usually has broad taxing power and (for local-currency debt) can print money, so **ability** to pay is often strong. But creditors cannot seize a country's assets or force it into bankruptcy, so **willingness** to pay matters too.\n\nAnalysts therefore combine political and institutional judgement with hard numbers."
+      },
+      {
+       "kind": "compare",
+       "title": "Qualitative factor groups",
+       "rows": [
+        [
+         "Group",
+         "What to look at"
+        ],
+        [
+         "Institutional",
+         "Political stability, rule of law, corruption, property rights, history of honouring debt"
+        ],
+        [
+         "Economic",
+         "GDP per capita, growth prospects, size and diversification of the economy"
+        ],
+        [
+         "External",
+         "FX reserves, reserve-currency status, current account, external debt"
+        ],
+        [
+         "Fiscal",
+         "Debt/GDP, deficits, interest/revenue, debt trend"
+        ],
+        [
+         "Monetary",
+         "Central bank independence, inflation track record, exchange-rate flexibility"
+        ]
+       ]
+      },
+      {
+       "kind": "formula",
+       "title": "Key quantitative ratios",
+       "formula": "Debt burden = Government debt ÷ GDP\n\nDebt affordability = Interest expense ÷ Government revenue\n\nExternal liquidity = FX reserves ÷ Short-term external debt",
+       "where": [
+        [
+         "GDP",
+         "gross domestic product"
+        ]
+       ],
+       "note": "Higher debt ratios → weaker; higher reserves cover → stronger."
+      },
+      {
+       "kind": "example",
+       "title": "Reading the ratios",
+       "body": "Government debt 1.8 trillion; GDP 2.4 trillion; interest 54 billion; revenue 600 billion.\n\nDebt/GDP = 1.8 ÷ 2.4 = **75%**.\nInterest/revenue = 54 ÷ 600 = **9%** of revenue goes on interest.\n\nThe trend matters as much as the level: a rising debt/GDP with slowing growth is a warning sign."
+      },
+      {
+       "kind": "tip",
+       "title": "Exam tip",
+       "body": "A **reserve-currency** issuer (e.g., the US dollar) can carry much more debt than an emerging market with the same debt/GDP, because global demand for its bonds is structural. Expect questions where an apparently worse ratio is offset by a qualitative strength."
+      }
+     ]
+    },
+    {
+     "id": "fi-15-b",
+     "title": "Local vs foreign currency debt and non-sovereigns",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Local vs foreign currency debt",
+       "body": "**Local-currency** sovereign debt can, in the extreme, be repaid by printing money (at the cost of inflation), so default risk is lower.\n\n**Foreign-currency** debt must be repaid with currency the government cannot create: it needs export earnings, reserves or new borrowing. Default risk is higher.\n\nAgencies give separate ratings; the **foreign-currency rating is typically lower** (often by one notch or more)."
+      },
+      {
+       "kind": "compare",
+       "title": "Non-sovereign government bonds",
+       "rows": [
+        [
+         "",
+         "General obligation (GO)",
+         "Revenue bond"
+        ],
+        [
+         "Backed by",
+         "Issuer's general taxing power",
+         "Revenues of a specific project (toll road, airport, utility)"
+        ],
+        [
+         "Analysis",
+         "Like a mini-sovereign: tax base, budget, debt burden, pensions",
+         "Like a corporate: project economics, DSCR"
+        ],
+        [
+         "Risk",
+         "Lower; but no money printing",
+         "Higher; depends on one project"
+        ]
+       ]
+      },
+      {
+       "kind": "formula",
+       "title": "Debt service coverage (revenue bonds)",
+       "formula": "DSCR = Net revenue available for debt service ÷ Debt service (interest + principal)",
+       "where": [
+        [
+         "Net revenue",
+         "operating revenue minus operating and maintenance costs"
+        ]
+       ],
+       "note": "Covenants often require a minimum DSCR, e.g., 1.25×."
+      },
+      {
+       "kind": "example",
+       "title": "Toll road bond",
+       "body": "Gross revenue 60m; operating costs 15m; annual debt service 30m.\n\nNet revenue = 60 − 15 = 45m.\n\nDSCR = 45 ÷ 30 = **1.5×**.\n\nUsing gross revenue (2.0×) overstates coverage."
+      },
+      {
+       "kind": "concept",
+       "title": "Other public-sector issuers",
+       "body": "- **Quasi-government / agencies**: often carry an implicit or explicit government guarantee, so spreads are tight.\n- **Supranationals** (e.g., World Bank): backed by member governments; usually very highly rated.\n- Regional governments, unlike sovereigns, **cannot print money** and often face balanced-budget rules, so their analysis leans more on tax base and budget discipline."
+      }
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "fi-15-q01",
+     "lesson": "fi-15-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A country has government debt of 1.8 trillion, GDP of 2.4 trillion, annual interest expense of 54 billion and government revenue of 600 billion. Its debt/GDP and interest/revenue ratios are:",
+     "options": [
+      "75% and 9%",
+      "133% and 9%",
+      "75% and 2.25%"
+     ],
+     "answer": 0,
+     "explanation": "Debt/GDP = 1.8 ÷ 2.4 = 75%. Interest/revenue = 54 ÷ 600 = 9%. 133% inverts the debt ratio. 2.25% divides interest by GDP instead of revenue."
+    },
+    {
+     "id": "fi-15-q02",
+     "lesson": "fi-15-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Which factor is part of the *external* assessment of a sovereign's creditworthiness?",
+     "options": [
+      "Central bank independence",
+      "The size of foreign-exchange reserves relative to short-term external debt",
+      "The level of corruption and rule of law"
+     ],
+     "answer": 1,
+     "explanation": "External factors cover the country's ability to meet foreign obligations: FX reserves, reserve-currency status, the current account and external debt. Central bank independence is a monetary factor; corruption and rule of law are institutional."
+    },
+    {
+     "id": "fi-15-q03",
+     "lesson": "fi-15-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Why is a sovereign's *willingness* to pay a particular focus in sovereign credit analysis?",
+     "options": [
+      "Sovereign bonds are always denominated in foreign currency.",
+      "Sovereigns cannot raise taxes, so ability to pay is always weak.",
+      "Bondholders generally cannot force a sovereign into bankruptcy or seize its assets."
+     ],
+     "answer": 2,
+     "explanation": "Sovereign immunity limits creditors' legal remedies, so a government able to pay may still choose not to. Sovereigns can generally raise taxes, and much sovereign debt is issued in local currency."
+    },
+    {
+     "id": "fi-15-q04",
+     "lesson": "fi-15-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Two countries have the same debt/GDP ratio. Country A issues in a global reserve currency; Country B is an emerging market borrowing mainly in US dollars. Compared with B, A *most likely* has:",
+     "options": [
+      "higher creditworthiness, because of structural demand for its debt and repayment in its own currency.",
+      "lower creditworthiness, because reserve-currency issuers run larger deficits.",
+      "the same creditworthiness, because debt/GDP is identical."
+     ],
+     "answer": 0,
+     "explanation": "Reserve-currency status is a key qualitative strength: deep, persistent demand for the debt and no need to earn foreign currency. B must repay in a currency it cannot print. Equal debt/GDP does not mean equal risk."
+    },
+    {
+     "id": "fi-15-q05",
+     "lesson": "fi-15-b",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Compared with its local-currency sovereign debt, a country's foreign-currency sovereign debt is *typically*:",
+     "options": [
+      "rated the same, because the issuer is the same.",
+      "rated lower, because the government cannot print the currency needed to repay.",
+      "rated higher, because foreign investors demand more protection."
+     ],
+     "answer": 1,
+     "explanation": "Foreign-currency debt depends on FX earnings and reserves; local-currency debt can be met by monetary means. Agencies usually rate foreign-currency debt lower. Same issuer does not imply the same rating."
+    },
+    {
+     "id": "fi-15-q06",
+     "lesson": "fi-15-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A toll road revenue bond has gross toll revenue of 60 million, operating and maintenance costs of 15 million and annual debt service of 30 million. The debt service coverage ratio is:",
+     "options": [
+      "2.0×",
+      "0.67×",
+      "1.5×"
+     ],
+     "answer": 2,
+     "explanation": "DSCR = net revenue ÷ debt service = (60 − 15) ÷ 30 = 1.5×. 2.0× uses gross revenue. 0.67× inverts the ratio."
+    },
+    {
+     "id": "fi-15-q07",
+     "lesson": "fi-15-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Compared with a general obligation bond issued by the same city, a revenue bond for a new airport is *most likely*:",
+     "options": [
+      "riskier, because repayment relies on the cash flows of a single project.",
+      "safer, because airport revenues are guaranteed by the national government.",
+      "equally risky, because both are backed by the city's taxing power."
+     ],
+     "answer": 0,
+     "explanation": "Revenue bonds are repaid only from the specific project's revenues, so they carry project risk; GO bonds are backed by the issuer's general taxing power. Revenue bonds do not have a national guarantee."
+    },
+    {
+     "id": "fi-15-q08",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Which combination of indicators points to the *weakest* sovereign credit profile?",
+     "options": [
+      "Debt/GDP 60% and stable; FX reserves 3× short-term external debt; independent central bank",
+      "Debt/GDP 90% and rising; FX reserves 0.6× short-term external debt; history of central bank financing of deficits",
+      "Debt/GDP 110% and stable; reserve-currency issuer; inflation-targeting central bank"
+     ],
+     "answer": 1,
+     "explanation": "Rising debt, reserves that do not cover short-term external debt (external liquidity risk) and weak monetary credibility all point to weakness. The country with 110% debt/GDP has high debt but strong offsets (reserve currency, credible central bank)."
+    },
+    {
+     "id": "fi-15-q09",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "An analyst evaluating a state government's general obligation bond would place *least* emphasis on:",
+     "options": [
+      "the state's pension and other long-term liabilities.",
+      "the economic base and tax revenues of the state.",
+      "the state's ability to print money to repay its debt."
+     ],
+     "answer": 2,
+     "explanation": "Regional governments cannot print money, unlike sovereigns; this is a key difference from sovereign analysis. Their tax base, budget discipline and long-term liabilities (pensions) are central to GO bond analysis."
+    },
+    {
+     "id": "fi-15-q10",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "A municipal water utility revenue bond has a covenant requiring DSCR of at least 1.25×. Gross revenue is 120 million, operating costs 48 million and debt service 40 million. Which statement is correct?",
+     "options": [
+      "DSCR is 1.8×, so the covenant is met.",
+      "DSCR is 3.0×, comfortably above the covenant.",
+      "DSCR is 0.56×, so the covenant is breached."
+     ],
+     "answer": 0,
+     "explanation": "Net revenue = 120 − 48 = 72m. DSCR = 72 ÷ 40 = 1.8× ≥ 1.25×, so the covenant is met. 3.0× uses gross revenue; 0.56× inverts the ratio."
+    },
+    {
+     "id": "fi-15-q11",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A country with a high debt burden but an independent central bank, a credible inflation-targeting record and a flexible exchange rate is strong in which factor group?",
+     "options": [
+      "External",
+      "Monetary",
+      "Institutional"
+     ],
+     "answer": 1,
+     "explanation": "Central bank independence, inflation credibility and exchange-rate flexibility are monetary factors. Institutional factors relate to governance, rule of law and political stability; external factors to reserves, current account and external debt."
+    }
+   ],
+   "flashcards": [
+    {
+     "id": "fi-15-f01",
+     "front": "Five sovereign factor groups",
+     "back": "Institutional, economic, external, fiscal, monetary."
+    },
+    {
+     "id": "fi-15-f02",
+     "front": "Sovereign debt burden and affordability ratios",
+     "back": "Debt/GDP (burden) and interest expense/government revenue (affordability)."
+    },
+    {
+     "id": "fi-15-f03",
+     "front": "External liquidity ratio",
+     "back": "FX reserves ÷ short-term external debt; below 1× signals vulnerability."
+    },
+    {
+     "id": "fi-15-f04",
+     "front": "Local- vs foreign-currency sovereign ratings",
+     "back": "Foreign-currency rating is usually lower: the government cannot print foreign currency."
+    },
+    {
+     "id": "fi-15-f05",
+     "front": "GO vs revenue bond",
+     "back": "GO: backed by general taxing power. Revenue: backed by a single project's revenues; analysed with DSCR."
+    },
+    {
+     "id": "fi-15-f06",
+     "front": "DSCR (revenue bond)",
+     "back": "Net revenue available for debt service ÷ debt service (interest + principal)."
+    }
+   ]
+  },
+  {
+   "id": "fi-16",
+   "lm": 16,
+   "title": "Credit Analysis for Corporate Issuers",
+   "summary": "A practical framework for corporate credit: the Cs of credit, qualitative business and management factors (including ESG), the key coverage and leverage ratios, and how seniority and security determine recovery and issue ratings.",
+   "acca": {
+    "overlap": "partial",
+    "papers": [
+     "FR",
+     "FM"
+    ],
+    "note": "FR covered ratio interpretation (gearing, interest cover) from an equity/general angle. New for CFA: the creditor's framework (capacity, capital, collateral, covenants), credit-specific ratios (FFO/debt, RCF/net debt, debt/EBITDA), seniority ranking, priority of claims and notching."
+   },
+   "lessons": [
+    {
+     "id": "fi-16-a",
+     "title": "The Cs of credit and qualitative factors",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "The four Cs",
+       "body": "A credit analyst asks: *will I be repaid in full and on time?*\n\n- **Capacity**: ability to generate cash to service debt (the core question).\n- **Capital**: the cushion of equity and other resources below the debt.\n- **Collateral**: assets pledged or available to repay if things go wrong.\n- **Covenants**: contractual terms that protect lenders.\n\nOlder frameworks list **character** (management integrity and track record) as a C; it is still assessed, under qualitative factors."
+      },
+      {
+       "kind": "concept",
+       "title": "Qualitative factors behind capacity",
+       "body": "- **Business model**: how and how reliably the firm makes money.\n- **Industry**: competition, cyclicality, barriers to entry, supplier/buyer power (Porter-style).\n- **Competitive position**: market share, cost position, pricing power.\n- **Management and governance**: strategy, track record, aggressiveness of accounting, treatment of creditors vs shareholders.\n- **ESG**: environmental liabilities, regulation, governance failures can all impair cash flow."
+      },
+      {
+       "kind": "concept",
+       "title": "Creditor vs equity mindset",
+       "body": "Equity investors care about the upside; creditors have **capped upside** (coupon + principal) and care mainly about the **downside**.\n\nSo credit analysts focus on cash-flow stability, debt capacity and what happens in a bad scenario, not on growth for its own sake. Debt-financed share buybacks may excite shareholders but weaken creditors."
+      },
+      {
+       "kind": "tip",
+       "title": "ACCA vs CFA",
+       "body": "FR ratio analysis took a general or equity viewpoint. In CFA credit questions, always ask 'does this help or hurt the *bondholder*?' A leveraged recapitalisation that raises ROE is negative for credit."
+      }
+     ]
+    },
+    {
+     "id": "fi-16-b",
+     "title": "Credit ratios: profitability, coverage, leverage",
+     "minutes": 9,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "compare",
+       "title": "Core credit ratios",
+       "rows": [
+        [
+         "Ratio",
+         "Measures",
+         "Better when"
+        ],
+        [
+         "EBIT ÷ interest",
+         "Coverage",
+         "Higher"
+        ],
+        [
+         "EBITDA ÷ interest",
+         "Coverage",
+         "Higher"
+        ],
+        [
+         "Debt ÷ EBITDA",
+         "Leverage",
+         "Lower"
+        ],
+        [
+         "FFO ÷ debt",
+         "Cash flow vs debt",
+         "Higher"
+        ],
+        [
+         "RCF ÷ net debt",
+         "Cash flow after dividends vs debt",
+         "Higher"
+        ],
+        [
+         "Debt ÷ capital",
+         "Leverage (balance sheet)",
+         "Lower"
+        ]
+       ]
+      },
+      {
+       "kind": "formula",
+       "title": "Definitions",
+       "formula": "FFO = Net income + D&A + other non-cash items (before working-capital changes)\n\nRCF = FFO − Dividends\n\nNet debt = Debt − Cash\n\nCapital = Debt + Equity",
+       "where": [
+        [
+         "FFO",
+         "funds from operations"
+        ],
+        [
+         "RCF",
+         "retained cash flow"
+        ]
+       ]
+      },
+      {
+       "kind": "example",
+       "title": "Computing the ratios",
+       "body": "EBITDA 400; D&A 100; interest 60; debt 1,400; cash 200; equity 1,000; FFO 280; dividends 80.\n\n- EBIT/interest = 300 ÷ 60 = **5.0×**\n- EBITDA/interest = 400 ÷ 60 = **6.7×**\n- Debt/EBITDA = 1,400 ÷ 400 = **3.5×**\n- FFO/debt = 280 ÷ 1,400 = **20%**\n- Debt/capital = 1,400 ÷ 2,400 = **58.3%**\n- RCF/net debt = 200 ÷ 1,200 = **16.7%**"
+      },
+      {
+       "kind": "concept",
+       "title": "Using the ratios",
+       "body": "- Compare against **peers** and the **rating category**, not in isolation.\n- Look at **trends** and forecasts (stress scenarios), not just one year.\n- Adjust debt for leases, pensions and off-balance-sheet obligations to compare fairly.\n- Rating agencies weigh the industry: a utility can carry more debt/EBITDA than a cyclical tech firm at the same rating."
+      },
+      {
+       "kind": "tip",
+       "title": "Common trap",
+       "body": "Debt/EBITDA and debt/capital are leverage ratios: **lower is better**. Coverage and cash-flow-to-debt ratios: **higher is better**. Do not mix them up when ranking issuers."
+      }
+     ]
+    },
+    {
+     "id": "fi-16-c",
+     "title": "Seniority, recovery and priority of claims",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Seniority ranking (highest first)",
+       "body": "1. First lien / senior secured\n2. Second lien / secured\n3. Senior unsecured\n4. Senior subordinated\n5. Subordinated\n6. Junior subordinated\n\nHigher rank → paid first in bankruptcy → higher recovery rate. Bonds of the same rank are **pari passu** (share equally)."
+      },
+      {
+       "kind": "concept",
+       "title": "Priority of claims in practice",
+       "body": "The **absolute priority rule** says senior claims are paid in full before any junior claim gets anything.\n\nIn practice, restructurings are negotiated: junior creditors (and even shareholders) sometimes receive something to avoid costly, slow litigation, so seniors may recover less than strict priority implies.\n\nAll debt of an issuer usually shares the same **probability of default** (cross-default clauses); seniority changes **loss given default**."
+      },
+      {
+       "kind": "example",
+       "title": "Liquidation waterfall",
+       "body": "Assets realise 500. Claims: senior secured 300, senior unsecured 300, subordinated 200.\n\n- Senior secured: paid 300 in full (100%).\n- Senior unsecured: remaining 200 → **66.7%** recovery.\n- Subordinated: **0%**.\n\nA pro-rata split (500 ÷ 800 = 62.5% to all) ignores priority."
+      },
+      {
+       "kind": "tip",
+       "title": "Exam tip",
+       "body": "Seniority ties back to ratings via **notching**: secured debt can be rated above the issuer rating, subordinated debt below it, with wider notching for high-yield issuers. Holding-company debt is **structurally subordinated** to operating-company debt."
+      }
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "fi-16-q01",
+     "lesson": "fi-16-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "In the Cs of credit framework, *capacity* refers to:",
+     "options": [
+      "the assets pledged to secure the debt.",
+      "the equity cushion that absorbs losses before debtholders.",
+      "the borrower's ability to generate cash flow to make interest and principal payments."
+     ],
+     "answer": 2,
+     "explanation": "Capacity is the ability to service debt from operations. Pledged assets are collateral; the equity cushion is capital."
+    },
+    {
+     "id": "fi-16-q02",
+     "lesson": "fi-16-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A company announces a large debt-financed share buyback. From a bondholder's perspective, this is *most likely*:",
+     "options": [
+      "negative, because leverage increases and the equity cushion shrinks.",
+      "neutral, because the buyback does not affect operating cash flow.",
+      "positive, because earnings per share will rise."
+     ],
+     "answer": 0,
+     "explanation": "Bondholders have capped upside and care about downside protection. More debt and less equity weaken capital and coverage. Higher EPS benefits shareholders, not creditors; interest on new debt does reduce cash available for existing debt service."
+    },
+    {
+     "id": "fi-16-q03",
+     "lesson": "fi-16-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Which is a *qualitative* factor in corporate credit analysis?",
+     "options": [
+      "FFO/debt relative to peers",
+      "Management's history of aggressive accounting choices",
+      "Debt/EBITDA trend over five years"
+     ],
+     "answer": 1,
+     "explanation": "Management quality, governance and accounting aggressiveness are qualitative. Debt/EBITDA and FFO/debt are quantitative ratios."
+    },
+    {
+     "id": "fi-16-q04",
+     "lesson": "fi-16-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A company has EBITDA of 400, depreciation and amortisation of 100, interest expense of 60 and total debt of 1,400. Its EBIT/interest and debt/EBITDA ratios are:",
+     "options": [
+      "6.7× and 3.5×",
+      "5.0× and 4.7×",
+      "5.0× and 3.5×"
+     ],
+     "answer": 2,
+     "explanation": "EBIT = 400 − 100 = 300; EBIT/interest = 300 ÷ 60 = 5.0×. Debt/EBITDA = 1,400 ÷ 400 = 3.5×. 6.7× is EBITDA/interest. 4.7× divides debt by EBIT (1,400 ÷ 300)."
+    },
+    {
+     "id": "fi-16-q05",
+     "lesson": "fi-16-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A company has FFO of 280, dividends of 80, total debt of 1,400 and cash of 200. Its RCF/net debt is *closest* to:",
+     "options": [
+      "16.7%",
+      "23.3%",
+      "14.3%"
+     ],
+     "answer": 0,
+     "explanation": "RCF = 280 − 80 = 200; net debt = 1,400 − 200 = 1,200; RCF/net debt = 16.7%. 14.3% divides by gross debt (1,400). 23.3% uses FFO instead of RCF (280 ÷ 1,200)."
+    },
+    {
+     "id": "fi-16-q06",
+     "lesson": "fi-16-b",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "All else equal, which change *improves* a company's credit profile?",
+     "options": [
+      "Debt/EBITDA rises from 2.5× to 3.5×",
+      "FFO/debt rises from 20% to 30%",
+      "EBITDA/interest falls from 8× to 6×"
+     ],
+     "answer": 1,
+     "explanation": "Higher FFO/debt means more cash flow per unit of debt. Rising debt/EBITDA (more leverage) and falling interest coverage both weaken credit."
+    },
+    {
+     "id": "fi-16-q07",
+     "lesson": "fi-16-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "In liquidation a company's assets realise 500. Claims are: senior secured 300, senior unsecured 300 and subordinated 200. Under absolute priority, the senior unsecured recovery rate is *closest* to:",
+     "options": [
+      "100%",
+      "62.5%",
+      "66.7%"
+     ],
+     "answer": 2,
+     "explanation": "Secured creditors take 300, leaving 200 for senior unsecured claims of 300: 200 ÷ 300 = 66.7%. 62.5% splits 500 pro rata across all 800 of claims. 100% would require assets of at least 600."
+    },
+    {
+     "id": "fi-16-q08",
+     "lesson": "fi-16-c",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Which ranks *highest* in the priority of claims?",
+     "options": [
+      "Second lien debt",
+      "Senior unsecured debt",
+      "Senior subordinated debt"
+     ],
+     "answer": 0,
+     "explanation": "Secured debt (first lien, then second lien) ranks ahead of all unsecured debt; senior unsecured ranks ahead of senior subordinated."
+    },
+    {
+     "id": "fi-16-q09",
+     "lesson": "fi-16-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A company's senior secured and subordinated bonds have the same maturity. Which statement is *most* accurate?",
+     "options": [
+      "The subordinated bonds have a higher probability of default.",
+      "Both have similar probability of default, but the subordinated bonds have higher loss given default.",
+      "Both have the same expected loss, because the issuer is the same."
+     ],
+     "answer": 1,
+     "explanation": "Default is an issuer event and cross-default clauses link the issues, so PD is broadly the same. Seniority determines recovery: subordinated bonds lose more given default, so their expected loss is higher."
+    },
+    {
+     "id": "fi-16-q10",
+     "lesson": "fi-16-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "In practice, recoveries in bankruptcy often deviate from the absolute priority rule because:",
+     "options": [
+      "courts are required to split recoveries pro rata among all creditors.",
+      "secured creditors are paid only after unsecured creditors.",
+      "negotiated settlements may give junior claimants some value to avoid lengthy litigation."
+     ],
+     "answer": 2,
+     "explanation": "Restructurings are frequently negotiated, and junior creditors or even shareholders may receive something to speed up the process, at the expense of seniors. Courts do not require pro rata splits, and secured creditors rank first."
+    },
+    {
+     "id": "fi-16-q11",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Company A: debt 900, EBITDA 300, interest 30. Company B: debt 1,200, EBITDA 250, interest 50. Based on these ratios, which statement is correct?",
+     "options": [
+      "A is the stronger credit: debt/EBITDA 3.0× vs 4.8× and EBITDA/interest 10.0× vs 5.0×.",
+      "B is the stronger credit because it has more debt capacity.",
+      "They are equivalent: both have EBITDA/interest above 5×."
+     ],
+     "answer": 0,
+     "explanation": "A: 900 ÷ 300 = 3.0×, 300 ÷ 30 = 10.0×. B: 1,200 ÷ 250 = 4.8×, 250 ÷ 50 = 5.0×. A has lower leverage and higher coverage. Higher debt is not a strength, and B's coverage is exactly 5.0×, half of A's."
+    },
+    {
+     "id": "fi-16-q12",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A company has debt of 1,400 and equity of 1,000. Its debt-to-capital ratio is *closest* to:",
+     "options": [
+      "41.7%",
+      "58.3%",
+      "140%"
+     ],
+     "answer": 1,
+     "explanation": "Debt/capital = 1,400 ÷ (1,400 + 1,000) = 58.3%. 41.7% is equity/capital. 140% is debt/equity."
+    },
+    {
+     "id": "fi-16-q13",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A holding company issues bonds while its operating subsidiaries also have their own debt. The holding company's bondholders face:",
+     "options": [
+      "contractual seniority over subsidiary creditors.",
+      "no additional risk, because consolidated cash flows are identical.",
+      "structural subordination, because subsidiary creditors are paid from subsidiary assets first."
+     ],
+     "answer": 2,
+     "explanation": "Holding-company creditors are paid from dividends upstreamed by subsidiaries, after subsidiary creditors have been served; this is structural subordination, often leading to a lower issue rating. Consolidated figures hide this ranking."
+    },
+    {
+     "id": "fi-16-q14",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "A distressed company's assets realise 450. Claims: first lien 250, second lien 150, senior unsecured 200. Under absolute priority, recovery rates are *closest* to:",
+     "options": [
+      "100%, 100% and 25%",
+      "100%, 100% and 0%",
+      "75% for all classes"
+     ],
+     "answer": 0,
+     "explanation": "First lien takes 250 (100%), second lien 150 (100%), leaving 50 for senior unsecured: 50 ÷ 200 = 25%. 75% (450 ÷ 600) is a pro rata split ignoring priority; 0% overlooks the 50 left over."
+    }
+   ],
+   "flashcards": [
+    {
+     "id": "fi-16-f01",
+     "front": "Four Cs of credit (current framework)",
+     "back": "Capacity, capital, collateral, covenants (character/management assessed qualitatively)."
+    },
+    {
+     "id": "fi-16-f02",
+     "front": "FFO and RCF",
+     "back": "FFO = net income + D&A + other non-cash items (pre working capital). RCF = FFO − dividends."
+    },
+    {
+     "id": "fi-16-f03",
+     "front": "Credit ratios: higher is better vs lower is better",
+     "back": "Higher: EBIT/interest, EBITDA/interest, FFO/debt, RCF/net debt. Lower: debt/EBITDA, debt/capital."
+    },
+    {
+     "id": "fi-16-f04",
+     "front": "Seniority ranking",
+     "back": "First lien → second lien → senior unsecured → senior subordinated → subordinated → junior subordinated."
+    },
+    {
+     "id": "fi-16-f05",
+     "front": "Absolute priority rule",
+     "back": "Senior claims paid in full before junior claims receive anything; in practice often violated by negotiated settlements."
+    },
+    {
+     "id": "fi-16-f06",
+     "front": "Seniority and default probability",
+     "back": "All issues of one issuer share broadly the same PD; seniority changes LGD and recovery."
+    }
+   ]
+  },
+  {
+   "id": "fi-17",
+   "lm": 17,
+   "title": "Fixed-Income Securitization",
+   "summary": "Explains how loans are pooled and turned into tradable securities through a special purpose entity, who the parties are, why bankruptcy remoteness and a true sale matter, and the benefits for issuers, investors and the economy.",
+   "acca": {
+    "overlap": "none",
+    "papers": [],
+    "note": "ACCA does not teach securitization structures. SBR's IFRS 9 derecognition rules give some background on 'true sale', but the CFA focus (parties, SPE, benefits for investors and markets) is new."
+   },
+   "lessons": [
+    {
+     "id": "fi-17-a",
+     "title": "What securitization is and why it exists",
+     "minutes": 7,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "The basic idea",
+       "body": "**Securitization** pools illiquid loans or receivables (mortgages, auto loans, credit card balances) and sells securities backed by the pool's cash flows.\n\nInstead of a bank holding a loan until maturity, the loan's interest and principal flow through to bond investors.\n\nThe bonds are called **asset-backed securities (ABS)**; those backed by mortgages are **mortgage-backed securities (MBS)**."
+      },
+      {
+       "kind": "compare",
+       "title": "Who benefits and how",
+       "rows": [
+        [
+         "Party",
+         "Main benefits"
+        ],
+        [
+         "Issuers (originators)",
+         "Get cash now; free up regulatory capital to make new loans; fund at a rate tied to the pool's quality, which can be cheaper than their own credit"
+        ],
+        [
+         "Investors",
+         "Access to loan pools they could not originate; choice of risk/return via tranches; often higher yield than similarly rated corporates"
+        ],
+        [
+         "Economy and markets",
+         "Disintermediation: more lending, lower borrowing costs, more liquid and transparent markets"
+        ]
+       ]
+      },
+      {
+       "kind": "concept",
+       "title": "Disintermediation",
+       "body": "Before securitization, banks were the only link between savers and borrowers and had to fund loans on their balance sheet.\n\nAfter securitization, investors fund borrowers *directly* through the securities, and banks earn fees for originating and servicing. This spreads risk more widely and increases credit supply.\n\nThe flip side (2007–08): complexity, weak underwriting and over-reliance on ratings can spread losses widely."
+      },
+      {
+       "kind": "tip",
+       "title": "Exam tip",
+       "body": "If a question asks why an issuer might securitize, think **liquidity, capital relief and cheaper funding**. If it asks about investors, think **tailored risk exposure via tranches** and access to assets. For the economy, think **disintermediation and market efficiency**."
+      }
+     ]
+    },
+    {
+     "id": "fi-17-b",
+     "title": "Parties, the SPE and bankruptcy remoteness",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "compare",
+       "title": "The parties",
+       "rows": [
+        [
+         "Party",
+         "Role"
+        ],
+        [
+         "Originator (seller)",
+         "Makes the loans and sells the pool to the SPE"
+        ],
+        [
+         "Special purpose entity (SPE/SPV)",
+         "Buys the pool and issues the securities; the legal issuer"
+        ],
+        [
+         "Servicer",
+         "Collects payments, handles delinquencies and foreclosures (often the originator)"
+        ],
+        [
+         "Trustee",
+         "Protects investors' interests and oversees the deal's terms"
+        ],
+        [
+         "Rating agencies / underwriters",
+         "Rate the tranches; structure and sell the deal"
+        ]
+       ]
+      },
+      {
+       "kind": "concept",
+       "title": "Bankruptcy remoteness and true sale",
+       "body": "The originator must make a **true sale** of the assets to the SPE: legally and economically transferred, not just pledged.\n\nThen, if the originator goes bankrupt, its creditors **cannot claim the pool**. The SPE is **bankruptcy remote**.\n\nResult: ABS investors depend on the **collateral's** performance, not the originator's creditworthiness. That is why a BB-rated company can issue AAA-rated ABS tranches."
+      },
+      {
+       "kind": "example",
+       "title": "A simple deal",
+       "body": "A finance company has 1 billion of auto loans. It sells them (true sale) to an SPE, receiving 1 billion of cash.\n\nThe SPE issues ABS in tranches to investors. Monthly loan payments go to the servicer → SPE → investors per the waterfall.\n\nThe finance company can now make another 1 billion of auto loans with the cash."
+      },
+      {
+       "kind": "tip",
+       "title": "Common trap",
+       "body": "The SPE, not the originator, is the issuer of the securities. And a 'secured loan' from investors to the originator is *not* securitization: without a true sale the assets stay in the originator's bankruptcy estate."
+      }
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "fi-17-q01",
+     "lesson": "fi-17-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Which is a benefit of securitization for the *originating bank*?",
+     "options": [
+      "It removes the need for the bank to obtain any credit ratings.",
+      "It frees up capital, allowing the bank to make more loans.",
+      "It increases the bank's exposure to the credit risk of the loans."
+     ],
+     "answer": 1,
+     "explanation": "Selling loans to an SPE generates cash and reduces required regulatory capital, so the bank can originate more loans. It reduces (not increases) retained credit risk, and the securities are typically rated."
+    },
+    {
+     "id": "fi-17-q02",
+     "lesson": "fi-17-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Securitization benefits investors *mainly* because it:",
+     "options": [
+      "eliminates prepayment risk.",
+      "guarantees principal repayment by the originator.",
+      "provides access to pools of loans with risk/return profiles tailored through tranching."
+     ],
+     "answer": 2,
+     "explanation": "Investors can buy exposure to loan pools and choose a tranche matching their risk appetite. The originator does not guarantee repayment (the assets are sold), and prepayment risk remains for amortising collateral such as mortgages."
+    },
+    {
+     "id": "fi-17-q03",
+     "lesson": "fi-17-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "How does securitization affect the broader economy?",
+     "options": [
+      "It can reduce borrowing costs and increase credit availability through disintermediation.",
+      "It increases banks' role as the sole intermediary between borrowers and savers.",
+      "It concentrates credit risk on bank balance sheets."
+     ],
+     "answer": 0,
+     "explanation": "By letting capital-market investors fund loans directly, securitization reduces dependence on bank balance sheets (disintermediation), spreads risk and can lower borrowing costs. It reduces, not increases, banks' sole-intermediary role and concentration of risk."
+    },
+    {
+     "id": "fi-17-q04",
+     "lesson": "fi-17-b",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "In a securitization, the entity that purchases the loan pool and issues the asset-backed securities is the:",
+     "options": [
+      "servicer.",
+      "special purpose entity.",
+      "trustee."
+     ],
+     "answer": 1,
+     "explanation": "The SPE buys the assets and is the legal issuer. The servicer collects payments; the trustee safeguards investors' interests."
+    },
+    {
+     "id": "fi-17-q05",
+     "lesson": "fi-17-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "The *primary* reason for transferring assets to a bankruptcy-remote SPE is to:",
+     "options": [
+      "allow the originator to continue to report the assets on its balance sheet.",
+      "ensure the originator guarantees the securities.",
+      "protect investors from the originator's creditors if the originator becomes insolvent."
+     ],
+     "answer": 2,
+     "explanation": "A true sale to a bankruptcy-remote SPE ring-fences the collateral, so investors rely on the pool, not the originator. The aim is the opposite of keeping assets on the originator's books or adding an originator guarantee."
+    },
+    {
+     "id": "fi-17-q06",
+     "lesson": "fi-17-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A BB-rated auto finance company issues ABS whose senior tranche is rated AAA. This is possible *mainly* because:",
+     "options": [
+      "the senior tranche's rating depends on the collateral and credit enhancement, not on the originator's credit.",
+      "rating agencies always rate ABS above the originator by six notches.",
+      "the originator guarantees the senior tranche."
+     ],
+     "answer": 0,
+     "explanation": "With a true sale and bankruptcy-remote SPE, the rating reflects the pool quality and structural protection (subordination, overcollateralisation). There is no fixed notching rule and no originator guarantee."
+    },
+    {
+     "id": "fi-17-q07",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Which party in a securitization is responsible for collecting loan payments and managing delinquent accounts?",
+     "options": [
+      "The special purpose entity",
+      "The servicer",
+      "The trustee"
+     ],
+     "answer": 1,
+     "explanation": "The servicer handles collections, delinquencies and foreclosures, often the originator acting for a fee. The trustee oversees the deal for investors; the SPE is a legal shell that owns the assets and issues the securities."
+    },
+    {
+     "id": "fi-17-q08",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "For a transfer of loans to an SPE to achieve bankruptcy remoteness, it must *most* importantly be:",
+     "options": [
+      "a secured loan from the SPE to the originator.",
+      "rated investment grade.",
+      "a true sale of the assets."
+     ],
+     "answer": 2,
+     "explanation": "Only a true sale removes the assets from the originator's estate. A secured loan leaves the assets with the originator (creditors could reach them). Ratings are irrelevant to the legal transfer."
+    },
+    {
+     "id": "fi-17-q09",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Which is *least* likely a benefit of securitization?",
+     "options": [
+      "Removal of all credit risk from the financial system",
+      "Lower funding costs for originators with weak credit",
+      "Greater liquidity for previously illiquid loans"
+     ],
+     "answer": 0,
+     "explanation": "Securitization transfers and spreads credit risk to investors; it does not remove it, as the 2007–08 crisis showed. Turning loans into tradable securities and cheaper funding for weaker originators are genuine benefits."
+    },
+    {
+     "id": "fi-17-q10",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "An originator sells a mortgage pool to an SPE but the court later rules the transfer was a disguised secured borrowing. The *most likely* consequence for ABS investors if the originator goes bankrupt is that:",
+     "options": [
+      "they will be unaffected, because the SPE is the issuer.",
+      "the pool may be treated as part of the originator's estate, exposing investors to the originator's bankruptcy.",
+      "they become senior to all of the originator's other creditors automatically."
+     ],
+     "answer": 1,
+     "explanation": "Without a true sale the SPE is not bankruptcy remote; the collateral can be pulled into the originator's estate and investors face delays and losses. Investors do not gain automatic seniority."
+    }
+   ],
+   "flashcards": [
+    {
+     "id": "fi-17-f01",
+     "front": "Securitization",
+     "back": "Pooling loans/receivables and issuing securities backed by the pool's cash flows via an SPE."
+    },
+    {
+     "id": "fi-17-f02",
+     "front": "Role of the SPE/SPV",
+     "back": "Buys the pool from the originator and issues the securities; designed to be bankruptcy remote."
+    },
+    {
+     "id": "fi-17-f03",
+     "front": "True sale",
+     "back": "Legal transfer of assets to the SPE so they are outside the originator's bankruptcy estate."
+    },
+    {
+     "id": "fi-17-f04",
+     "front": "Servicer vs trustee",
+     "back": "Servicer collects payments and handles defaults; trustee protects investors and oversees the deal."
+    },
+    {
+     "id": "fi-17-f05",
+     "front": "Benefits of securitization (issuers/investors/economy)",
+     "back": "Issuers: liquidity, capital relief, cheaper funding. Investors: tailored exposure via tranches. Economy: disintermediation, more credit, liquid markets."
+    }
+   ]
+  },
+  {
+   "id": "fi-18",
+   "lm": 18,
+   "title": "Asset-Backed Security (ABS) Instrument and Market Features",
+   "summary": "Compares covered bonds with ABS, explains internal and external credit enhancement (including the loss waterfall), and describes the main non-mortgage ABS (auto loan, credit card, solar) and CDOs/CLOs.",
+   "acca": {
+    "overlap": "none",
+    "papers": [],
+    "note": "ACCA does not cover ABS structures, credit enhancement or CLOs. Treat this LM as new."
+   },
+   "lessons": [
+    {
+     "id": "fi-18-a",
+     "title": "Covered bonds vs ABS",
+     "minutes": 7,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Covered bonds",
+       "body": "A **covered bond** is a senior bond issued by a bank and backed by a segregated pool of assets (the **cover pool**, usually mortgages or public-sector loans).\n\n- The assets stay **on the bank's balance sheet** (no SPE sale).\n- **Dual recourse**: investors have a claim on the bank *and* on the cover pool.\n- **Dynamic cover pool**: the bank must replace non-performing or prepaid assets.\n\nCommon in Europe; usually lower credit risk and lower yield than comparable ABS."
+      },
+      {
+       "kind": "compare",
+       "title": "Covered bond vs ABS",
+       "rows": [
+        [
+         "Feature",
+         "Covered bond",
+         "ABS"
+        ],
+        [
+         "Issuer",
+         "Bank itself",
+         "Bankruptcy-remote SPE"
+        ],
+        [
+         "Assets",
+         "Stay on bank balance sheet",
+         "Sold (true sale)"
+        ],
+        [
+         "Recourse",
+         "Dual: bank + cover pool",
+         "Collateral pool only"
+        ],
+        [
+         "Pool",
+         "Dynamic: bad assets replaced",
+         "Static (usually)"
+        ],
+        [
+         "Tranching",
+         "Usually single tranche",
+         "Multiple tranches"
+        ]
+       ]
+      },
+      {
+       "kind": "concept",
+       "title": "Covered bond redemption",
+       "body": "If the bank defaults, the cover pool keeps paying investors. Redemption regimes include:\n\n- **Hard bullet**: missing the scheduled maturity triggers default.\n- **Soft bullet**: maturity can be extended (e.g., 12 months) before default.\n- **Conditional pass-through**: converts to a pass-through security if unpaid at maturity.\n\nHard bullet = least extension risk for investors."
+      },
+      {
+       "kind": "tip",
+       "title": "Exam tip",
+       "body": "'Dual recourse' and 'dynamic pool' are the signature features of covered bonds. If a question mentions the issuer replacing bad loans, the answer is a covered bond, not an ABS."
+      }
+     ]
+    },
+    {
+     "id": "fi-18-b",
+     "title": "Credit enhancement and the waterfall",
+     "minutes": 9,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "compare",
+       "title": "Types of credit enhancement",
+       "rows": [
+        [
+         "Internal (structure)",
+         "External (third party)"
+        ],
+        [
+         "Subordination (senior/mezzanine/subordinated tranches)",
+         "Financial guarantee (surety bond)"
+        ],
+        [
+         "Overcollateralisation (collateral > bonds issued)",
+         "Letter of credit from a bank"
+        ],
+        [
+         "Excess spread (collateral yield > coupons + fees)",
+         "(Both expose investors to the provider's credit risk)"
+        ],
+        [
+         "Reserve (cash) accounts",
+         "—"
+        ]
+       ]
+      },
+      {
+       "kind": "concept",
+       "title": "Subordination: the waterfall",
+       "body": "Losses are allocated **bottom-up**: the most junior tranche absorbs losses first, then the next, and only then the senior tranche. Cash is paid **top-down**.\n\nSubordinated tranches are the **first-loss** pieces and earn the highest yield; senior tranches get the highest ratings."
+      },
+      {
+       "kind": "example",
+       "title": "Allocating losses",
+       "body": "Pool 100m. Tranches: A (senior) 70m, B (mezzanine) 20m, C (subordinated) 10m.\n\nLosses of **15m**: C loses 10m (100%), B loses 5m (**25%**), A loses 0.\n\nLosses of **32m**: C 10m, B 20m (wiped out), A 2m (**2.9%** of A)."
+      },
+      {
+       "kind": "example",
+       "title": "Overcollateralisation and excess spread",
+       "body": "**OC**: collateral 105m backs 100m of bonds → the first 5m of losses hit no bondholder.\n\n**Excess spread**: pool yields 9%; weighted bond coupon 5.5%; servicing fee 1%. Excess spread = 9 − 5.5 − 1 = **2.5%** a year, which can absorb losses or build a reserve."
+      },
+      {
+       "kind": "tip",
+       "title": "Common trap",
+       "body": "External enhancement is only as good as the provider: if the guarantor is downgraded, the tranche usually is too. Internal enhancement does not depend on a third party."
+      }
+     ]
+    },
+    {
+     "id": "fi-18-c",
+     "title": "Non-mortgage ABS and CDOs/CLOs",
+     "minutes": 9,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Auto loan ABS",
+       "body": "Backed by car loans (or leases). Loans **amortise**: each payment includes interest and scheduled principal, and borrowers can **prepay** (e.g., when they sell the car).\n\nStructures usually use subordination plus overcollateralisation and a reserve account. Credit risk depends on borrower quality (prime vs subprime)."
+      },
+      {
+       "kind": "concept",
+       "title": "Credit card ABS",
+       "body": "Credit card balances are **non-amortising**: there is no scheduled principal.\n\n- **Lockout (revolving) period**: principal repayments are *reinvested* in new receivables; investors get only interest (finance charges).\n- **Amortisation period**: principal is passed through after lockout.\n- **Early (rapid) amortisation** triggers: if performance deteriorates (e.g., excess spread falls), principal starts paying back early to protect investors.\n\nNo prepayment risk during lockout."
+      },
+      {
+       "kind": "concept",
+       "title": "Solar ABS",
+       "body": "Backed by loans or leases to homeowners for residential solar systems. Cash flows depend on borrower credit (often prime, high FICO), and loans may include a step-up if the homeowner doesn't apply a tax credit to principal.\n\nAttractive to ESG-focused investors as a green asset class."
+      },
+      {
+       "kind": "concept",
+       "title": "CDOs and CLOs",
+       "body": "A **collateralised debt obligation (CDO)** issues tranches backed by a pool of debt. A **collateralised loan obligation (CLO)**, the dominant type today, is backed by **leveraged (senior secured) bank loans**.\n\nA **collateral manager** actively buys and sells the loans. Debt tranches are paid first; the **equity tranche** gets the residual cash flow, earning the spread between collateral yield and funding cost (an *arbitrage* transaction)."
+      },
+      {
+       "kind": "example",
+       "title": "CLO equity return",
+       "body": "Collateral 400m yielding 8% → 32m. Debt tranches 360m costing 6% → 21.6m. Fees 2m.\n\nResidual to equity = 32 − 21.6 − 2 = 8.4m on 40m equity = **21%** (before any defaults).\n\nDefaults hit the equity first, so this return is highly sensitive to losses."
+      }
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "fi-18-q01",
+     "lesson": "fi-18-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Which feature distinguishes a covered bond from a typical ABS?",
+     "options": [
+      "The assets are sold to a bankruptcy-remote SPE.",
+      "The collateral pool is static and cannot be changed.",
+      "Investors have recourse to both the issuing bank and the cover pool."
+     ],
+     "answer": 2,
+     "explanation": "Dual recourse is the defining feature of covered bonds. Sale to an SPE and a static pool describe ABS; covered bond pools are dynamic and stay on the bank's balance sheet."
+    },
+    {
+     "id": "fi-18-q02",
+     "lesson": "fi-18-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A covered bond's issuer must replace any mortgages in the cover pool that become non-performing. This feature is known as a:",
+     "options": [
+      "dynamic cover pool.",
+      "static pool.",
+      "lockout period."
+     ],
+     "answer": 0,
+     "explanation": "A dynamic cover pool requires the issuer to substitute non-performing or prepaid assets. A static pool cannot change; a lockout period relates to credit card ABS reinvesting principal."
+    },
+    {
+     "id": "fi-18-q03",
+     "lesson": "fi-18-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Which covered bond redemption regime exposes investors to the *least* extension risk?",
+     "options": [
+      "Soft bullet",
+      "Hard bullet",
+      "Conditional pass-through"
+     ],
+     "answer": 1,
+     "explanation": "Under a hard bullet, failure to pay at scheduled maturity is a default event, so there is no extension. A soft bullet allows a defined extension; a conditional pass-through can extend until the cover pool pays off."
+    },
+    {
+     "id": "fi-18-q04",
+     "lesson": "fi-18-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "An ABS has a 100m pool and three tranches: A (senior) 70m, B (mezzanine) 20m and C (subordinated) 10m. If the pool suffers losses of 15m, the loss to tranche B as a percentage of its principal is:",
+     "options": [
+      "0%",
+      "15%",
+      "25%"
+     ],
+     "answer": 2,
+     "explanation": "C absorbs the first 10m. The remaining 5m hits B: 5 ÷ 20 = 25%. 15% applies the pool loss rate to every tranche (pro rata). 0% would be true only if losses were 10m or less."
+    },
+    {
+     "id": "fi-18-q05",
+     "lesson": "fi-18-b",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Which is an *external* form of credit enhancement?",
+     "options": [
+      "A letter of credit from a bank",
+      "Overcollateralisation",
+      "Excess spread"
+     ],
+     "answer": 0,
+     "explanation": "A letter of credit is provided by a third party. Overcollateralisation and excess spread are built into the deal's structure (internal)."
+    },
+    {
+     "id": "fi-18-q06",
+     "lesson": "fi-18-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "An ABS pool yields 9% a year. The weighted-average coupon on the tranches is 5.5% and servicing and other fees total 1%. Excess spread is:",
+     "options": [
+      "4.5%",
+      "2.5%",
+      "3.5%"
+     ],
+     "answer": 1,
+     "explanation": "Excess spread = collateral yield − coupons − fees = 9 − 5.5 − 1 = 2.5%. 3.5% forgets fees; 4.5% adds the fees instead of subtracting them (9 − 5.5 + 1)."
+    },
+    {
+     "id": "fi-18-q07",
+     "lesson": "fi-18-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "In a senior/subordinated structure, credit losses on the collateral are allocated:",
+     "options": [
+      "pro rata across all tranches.",
+      "first to the senior tranche, which has the largest principal.",
+      "first to the most junior tranche, then upward."
+     ],
+     "answer": 2,
+     "explanation": "Subordination means junior tranches absorb losses first (bottom-up), protecting senior tranches. Pro rata allocation would provide no enhancement."
+    },
+    {
+     "id": "fi-18-q08",
+     "lesson": "fi-18-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "During the lockout period of a credit card ABS, principal repayments from cardholders are:",
+     "options": [
+      "reinvested in new credit card receivables.",
+      "used to retire the senior tranche first.",
+      "passed through to investors each month."
+     ],
+     "answer": 0,
+     "explanation": "In the lockout (revolving) period principal is reinvested to buy new receivables; investors receive only interest. Principal is passed through only in the amortisation period or after an early amortisation trigger."
+    },
+    {
+     "id": "fi-18-q09",
+     "lesson": "fi-18-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "An early (rapid) amortisation provision in a credit card ABS is designed to:",
+     "options": [
+      "allow the issuer to call the securities at par.",
+      "protect investors by starting principal repayment if collateral performance deteriorates.",
+      "extend the life of the deal when rates rise."
+     ],
+     "answer": 1,
+     "explanation": "Triggers such as low excess spread end the revolving period early so investors are repaid before the collateral weakens further. It shortens, not extends, the deal and is not an issuer call."
+    },
+    {
+     "id": "fi-18-q10",
+     "lesson": "fi-18-c",
+     "pool": "lesson",
+     "difficulty": 3,
+     "stem": "A CLO holds 400m of leveraged loans yielding 8%. Its debt tranches total 360m with a weighted cost of 6%, annual fees are 2m and the equity tranche is 40m. Assuming no defaults, the annual return to the equity tranche is *closest* to:",
+     "options": [
+      "26%",
+      "2%",
+      "21%"
+     ],
+     "answer": 2,
+     "explanation": "Collateral income 32m − debt cost 21.6m − fees 2m = 8.4m; 8.4 ÷ 40 = 21%. 26% ignores fees (10.4 ÷ 40). 2% is simply the 8% − 6% spread with no leverage."
+    },
+    {
+     "id": "fi-18-q11",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "An ABS deal has collateral of 420m backing bonds of 400m: senior 300m, mezzanine 60m and subordinated 40m. If collateral losses are 70m, the mezzanine tranche loses:",
+     "options": [
+      "10m",
+      "30m",
+      "0m"
+     ],
+     "answer": 0,
+     "explanation": "Overcollateralisation absorbs the first 20m (420 − 400). The subordinated tranche absorbs the next 40m. The remaining 70 − 20 − 40 = 10m hits the mezzanine. 30m ignores the overcollateralisation; 0m ignores the subordinated tranche's limit."
+    },
+    {
+     "id": "fi-18-q12",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "An investor worried about the credit quality of a monoline insurer that guarantees an ABS tranche is concerned about which feature?",
+     "options": [
+      "Excess spread",
+      "External credit enhancement",
+      "Subordination"
+     ],
+     "answer": 1,
+     "explanation": "A financial guarantee is external enhancement; the tranche's protection depends on the guarantor's creditworthiness. Subordination and excess spread are internal and do not depend on a third party."
+    },
+    {
+     "id": "fi-18-q13",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Compared with auto loan ABS, credit card ABS are *most* distinct because the underlying receivables are:",
+     "options": [
+      "secured by the vehicles financed.",
+      "always issued to subprime borrowers.",
+      "non-amortising, with no scheduled principal payments."
+     ],
+     "answer": 2,
+     "explanation": "Credit card balances revolve and have no scheduled principal, hence the lockout and amortisation periods. Auto loans amortise and are secured by vehicles; credit card ABS are not limited to subprime borrowers."
+    },
+    {
+     "id": "fi-18-q14",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "In a CLO, the collateral manager's role is to:",
+     "options": [
+      "actively buy and sell loans in the portfolio within the deal's rules.",
+      "collect payments from mortgage borrowers.",
+      "guarantee the senior tranche against defaults."
+     ],
+     "answer": 0,
+     "explanation": "CLOs are actively managed: the collateral manager trades leveraged loans subject to quality and coverage tests. It does not guarantee tranches; mortgage collection is a servicer role in MBS."
+    }
+   ],
+   "flashcards": [
+    {
+     "id": "fi-18-f01",
+     "front": "Covered bond: three key features",
+     "back": "Bank issuer, assets stay on balance sheet; dual recourse (bank + cover pool); dynamic cover pool."
+    },
+    {
+     "id": "fi-18-f02",
+     "front": "Internal credit enhancement",
+     "back": "Subordination, overcollateralisation, excess spread, reserve accounts."
+    },
+    {
+     "id": "fi-18-f03",
+     "front": "External credit enhancement",
+     "back": "Financial guarantees and letters of credit; exposes investors to the provider's credit risk."
+    },
+    {
+     "id": "fi-18-f04",
+     "front": "Loss allocation in a senior/subordinated structure",
+     "back": "Bottom-up: most junior tranche absorbs losses first."
+    },
+    {
+     "id": "fi-18-f05",
+     "front": "Excess spread",
+     "back": "Collateral yield − tranche coupons − fees."
+    },
+    {
+     "id": "fi-18-f06",
+     "front": "Credit card ABS lockout period",
+     "back": "Principal repayments are reinvested in new receivables; investors receive only interest."
+    },
+    {
+     "id": "fi-18-f07",
+     "front": "Early amortisation trigger",
+     "back": "Ends the revolving period and starts principal repayment if collateral performance deteriorates."
+    },
+    {
+     "id": "fi-18-f08",
+     "front": "CLO",
+     "back": "CDO backed by leveraged loans; actively managed by a collateral manager; equity tranche earns the residual."
+    }
+   ]
+  },
+  {
+   "id": "fi-19",
+   "lm": 19,
+   "title": "Mortgage-Backed Security (MBS) Instrument and Market Features",
+   "summary": "Covers residential mortgage features, agency vs non-agency RMBS, pass-through securities and prepayment measures (SMM, CPR, PSA), contraction and extension risk, CMOs (sequential-pay, PAC/support) that redistribute prepayment risk, and CMBS with their call protection and balloon risk.",
+   "acca": {
+    "overlap": "none",
+    "papers": [],
+    "note": "ACCA does not cover mortgage-backed securities, prepayment conventions or CMO structures. Treat this LM as new."
+   },
+   "lessons": [
+    {
+     "id": "fi-19-a",
+     "title": "Residential mortgages and RMBS types",
+     "minutes": 8,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "compare",
+       "title": "Mortgage design choices",
+       "rows": [
+        [
+         "Feature",
+         "Options"
+        ],
+        [
+         "Maturity",
+         "Commonly 15–30 years (US); longer in some countries"
+        ],
+        [
+         "Interest rate",
+         "Fixed, adjustable (ARM), hybrid (fixed then floating), convertible"
+        ],
+        [
+         "Amortisation",
+         "Fully amortising, partially amortising (balloon), interest-only"
+        ],
+        [
+         "Prepayment",
+         "Allowed freely or subject to prepayment penalties"
+        ],
+        [
+         "Lender rights on default",
+         "Recourse (can pursue borrower) or non-recourse (only the property)"
+        ]
+       ]
+      },
+      {
+       "kind": "formula",
+       "title": "Loan-to-value ratio",
+       "formula": "LTV = Loan amount ÷ Property value",
+       "where": [
+        [
+         "LTV",
+         "higher LTV = less borrower equity = higher default and loss risk"
+        ]
+       ],
+       "note": "Example: 400,000 loan on a 500,000 home → LTV 80%."
+      },
+      {
+       "kind": "concept",
+       "title": "Non-recourse and strategic default",
+       "body": "With a **non-recourse** loan, the lender can only take the house. If the house is worth much less than the loan (negative equity), a borrower who *can* pay may choose to walk away: a **strategic default**.\n\nRecourse loans reduce this incentive because the lender can pursue the borrower's other assets."
+      },
+      {
+       "kind": "compare",
+       "title": "Agency vs non-agency RMBS",
+       "rows": [
+        [
+         "",
+         "Agency RMBS",
+         "Non-agency (private-label)"
+        ],
+        [
+         "Issuer / guarantor",
+         "Ginnie Mae (US govt full faith and credit); Fannie Mae, Freddie Mac (GSEs)",
+         "Private entities (banks, other issuers)"
+        ],
+        [
+         "Loans",
+         "Conforming: meet size, LTV and credit standards",
+         "Non-conforming (e.g., jumbo, weaker credit)"
+        ],
+        [
+         "Credit risk",
+         "Minimal: guaranteed",
+         "Real: needs credit enhancement and ratings"
+        ]
+       ]
+      },
+      {
+       "kind": "tip",
+       "title": "Exam tip",
+       "body": "For agency MBS the main risk is **prepayment risk**, not credit risk. For non-agency MBS, investors face both, which is why subordination and other credit enhancement (from LM 18) appear in non-agency deals."
+      }
+     ]
+    },
+    {
+     "id": "fi-19-b",
+     "title": "Pass-throughs, prepayment and WAL",
+     "minutes": 10,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "Mortgage pass-through securities",
+       "body": "A **pass-through** passes the pool's monthly cash flows (interest, scheduled principal and prepayments) to investors pro rata, minus fees.\n\n**Pass-through rate** = pool mortgage rate − servicing fee − guarantee fee. E.g., 6.5% − 0.25% − 0.25% = **6.0%**.\n\nBecause borrowers can prepay, the timing of principal is uncertain: that is **prepayment risk**."
+      },
+      {
+       "kind": "compare",
+       "title": "Prepayment risk: two sides",
+       "rows": [
+        [
+         "",
+         "Contraction risk",
+         "Extension risk"
+        ],
+        [
+         "Trigger",
+         "Rates fall",
+         "Rates rise"
+        ],
+        [
+         "Borrowers",
+         "Refinance, prepay faster",
+         "Prepay slower"
+        ],
+        [
+         "Effect",
+         "Principal returned early, reinvested at lower rates; price upside capped (negative convexity)",
+         "Life lengthens just when the investor wants money back to invest at higher rates"
+        ]
+       ]
+      },
+      {
+       "kind": "formula",
+       "title": "Prepayment measures",
+       "formula": "CPR = 1 − (1 − SMM)^{12}\n\nSMM = 1 − (1 − CPR)^{1/12}\n\nPrepayment_{t} = SMM × (Beginning balance − Scheduled principal)",
+       "where": [
+        [
+         "SMM",
+         "single monthly mortality: % of balance prepaid in a month"
+        ],
+        [
+         "CPR",
+         "conditional prepayment rate: annualised SMM"
+        ]
+       ],
+       "note": "Do not just multiply SMM by 12."
+      },
+      {
+       "kind": "example",
+       "title": "PSA benchmark",
+       "body": "**100 PSA**: CPR starts at 0.2% in month 1, rises 0.2% a month to 6% at month 30, then stays at 6%.\n\n**150 PSA** = 1.5 × that path.\n- Month 10: 1.5 × 2% = **3% CPR**.\n- Month 40: 1.5 × 6% = **9% CPR** → SMM = 1 − 0.91^{1/12} = **0.783%**.\n\nSMM 0.5% → CPR = 1 − 0.995^{12} = **5.84%**."
+      },
+      {
+       "kind": "formula",
+       "title": "Weighted average life (WAL)",
+       "formula": "WAL = Σ (t × Principal_{t}) ÷ Σ Principal_{t}",
+       "where": [
+        [
+         "t",
+         "time (years) principal is received"
+        ]
+       ],
+       "note": "Example: principal 30, 50, 20 in years 1, 2, 3 → WAL = (30 + 100 + 60) ÷ 100 = 1.9 years. Faster prepayments → shorter WAL."
+      }
+     ]
+    },
+    {
+     "id": "fi-19-c",
+     "title": "CMOs and commercial MBS",
+     "minutes": 9,
+     "fastTrack": [],
+     "cards": [
+      {
+       "kind": "concept",
+       "title": "CMOs: redistributing prepayment risk",
+       "body": "A **collateralised mortgage obligation (CMO)** carves pass-through cash flows into tranches with different exposure to prepayment risk. It *redistributes* risk; it does not eliminate it.\n\n**Sequential-pay**: all principal (scheduled + prepayments) goes to tranche A until it is retired, then to B, etc. Early tranches bear more contraction risk; later tranches more extension risk but get protection from contraction."
+      },
+      {
+       "kind": "concept",
+       "title": "PAC and support tranches",
+       "body": "A **planned amortisation class (PAC)** tranche receives principal on a fixed schedule as long as prepayments stay within a band (the PAC collar, e.g., 100–300 PSA).\n\nThe **support (companion)** tranche absorbs the variability: it takes extra principal when prepayments are fast and is paid later when they are slow.\n\nPAC: more predictable, lower yield. Support: most prepayment risk, higher yield."
+      },
+      {
+       "kind": "concept",
+       "title": "Commercial MBS (CMBS)",
+       "body": "Backed by loans on income-producing property (offices, malls, apartments). Lenders focus on the property's income:\n\n**DSCR = NOI ÷ Debt service** (higher is safer)\n**LTV = Loan ÷ Appraised value** (lower is safer)\n\nCMBS loans are usually **non-recourse** and often **balloon** loans: a large principal is due at maturity. **Balloon risk** = the borrower cannot refinance, extending the loan (a form of extension risk)."
+      },
+      {
+       "kind": "compare",
+       "title": "CMBS call protection",
+       "rows": [
+        [
+         "Level",
+         "Protection"
+        ],
+        [
+         "Loan level",
+         "Prepayment lockout; defeasance (borrower buys Treasuries replicating remaining payments); prepayment penalty points; yield maintenance (penalty makes lender whole)"
+        ],
+        [
+         "Structure level",
+         "Sequential tranching by rating: lower tranches absorb losses and prepayments are paid to senior tranches first"
+        ]
+       ]
+      },
+      {
+       "kind": "tip",
+       "title": "Common trap",
+       "body": "CMBS investors face much **less prepayment risk** than RMBS investors because of strong call protection, but more **credit and balloon risk**. Residential: prepayment-driven. Commercial: credit-driven."
+      }
+     ]
+    }
+   ],
+   "questions": [
+    {
+     "id": "fi-19-q01",
+     "lesson": "fi-19-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "A borrower takes a 400,000 mortgage to buy a home valued at 500,000. The loan-to-value ratio is:",
+     "options": [
+      "20%",
+      "80%",
+      "125%"
+     ],
+     "answer": 1,
+     "explanation": "LTV = 400,000 ÷ 500,000 = 80%. 125% inverts the ratio. 20% is the borrower's equity share."
+    },
+    {
+     "id": "fi-19-q02",
+     "lesson": "fi-19-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "Compared with a recourse mortgage, a non-recourse mortgage is *most likely* to:",
+     "options": [
+      "allow the lender to claim the borrower's other assets after foreclosure.",
+      "have a lower default rate, because borrowers have more equity.",
+      "increase the risk of strategic default when the property's value falls below the loan balance."
+     ],
+     "answer": 2,
+     "explanation": "With non-recourse loans the lender can only take the property, so a borrower in negative equity may walk away even though able to pay. Recourse loans allow claims on other assets."
+    },
+    {
+     "id": "fi-19-q03",
+     "lesson": "fi-19-a",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "For an investor in agency RMBS guaranteed by Fannie Mae or Freddie Mac, the *primary* risk is typically:",
+     "options": [
+      "prepayment risk.",
+      "credit risk of the underlying borrowers.",
+      "currency risk."
+     ],
+     "answer": 0,
+     "explanation": "Agency guarantees largely remove borrower credit risk, leaving uncertainty about the timing of principal (prepayment risk) as the key risk. Non-agency RMBS carry significant credit risk; currency risk is not inherent."
+    },
+    {
+     "id": "fi-19-q04",
+     "lesson": "fi-19-a",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "Non-agency RMBS differ from agency RMBS mainly because they:",
+     "options": [
+      "carry the full faith and credit of the US government.",
+      "require credit enhancement because there is no government or GSE guarantee.",
+      "are backed only by conforming loans."
+     ],
+     "answer": 1,
+     "explanation": "Private-label deals have no guarantee, so subordination and other enhancement are used. Agency deals use conforming loans; only Ginnie Mae carries the full faith and credit guarantee."
+    },
+    {
+     "id": "fi-19-q05",
+     "lesson": "fi-19-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A mortgage pool has a single monthly mortality rate of 0.5%. The conditional prepayment rate is *closest* to:",
+     "options": [
+      "6.00%",
+      "0.50%",
+      "5.84%"
+     ],
+     "answer": 2,
+     "explanation": "CPR = 1 − (1 − 0.005)^{12} = 5.84%. 6.00% simply multiplies SMM by 12, ignoring that each month's prepayments apply to a smaller balance. 0.50% is the monthly rate."
+    },
+    {
+     "id": "fi-19-q06",
+     "lesson": "fi-19-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A pool is prepaying at 150 PSA. The CPR in month 40 and month 10, respectively, are:",
+     "options": [
+      "9% and 3%",
+      "9% and 2%",
+      "6% and 2%"
+     ],
+     "answer": 0,
+     "explanation": "100 PSA: CPR = 0.2% × month up to 6% at month 30. At 150 PSA: month 40 = 1.5 × 6% = 9%; month 10 = 1.5 × 2% = 3%. 6% and 2% are the 100 PSA values; 9% and 2% scales month 40 but not month 10."
+    },
+    {
+     "id": "fi-19-q07",
+     "lesson": "fi-19-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A pass-through's pool has a beginning monthly balance of 200 million and scheduled principal of 0.4 million. If the SMM is 0.6%, the prepayment for the month is *closest* to:",
+     "options": [
+      "0.0024 million",
+      "1.1976 million",
+      "1.2000 million"
+     ],
+     "answer": 1,
+     "explanation": "Prepayment = SMM × (beginning balance − scheduled principal) = 0.006 × 199.6m = 1.1976m. 1.2000m forgets to subtract scheduled principal. 0.0024m applies SMM to the scheduled principal only."
+    },
+    {
+     "id": "fi-19-q08",
+     "lesson": "fi-19-b",
+     "pool": "lesson",
+     "difficulty": 1,
+     "stem": "When mortgage rates fall sharply, holders of mortgage pass-through securities are *most* exposed to:",
+     "options": [
+      "balloon risk.",
+      "extension risk.",
+      "contraction risk."
+     ],
+     "answer": 2,
+     "explanation": "Falling rates trigger refinancing and faster prepayments, shortening the security's life and forcing reinvestment at lower rates: contraction risk. Extension risk arises when rates rise; balloon risk is a CMBS concept."
+    },
+    {
+     "id": "fi-19-q09",
+     "lesson": "fi-19-b",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "An MBS is expected to repay principal of 30 in year 1, 50 in year 2 and 20 in year 3. Its weighted average life is:",
+     "options": [
+      "1.9 years",
+      "2.0 years",
+      "3.0 years"
+     ],
+     "answer": 0,
+     "explanation": "WAL = (1 × 30 + 2 × 50 + 3 × 20) ÷ 100 = 190 ÷ 100 = 1.9 years. 2.0 is an unweighted average of the years. 3.0 is the final maturity."
+    },
+    {
+     "id": "fi-19-q10",
+     "lesson": "fi-19-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "In a sequential-pay CMO with tranches A, B and C, an increase in prepayment speed will *most likely*:",
+     "options": [
+      "shorten tranche C's average life first.",
+      "shorten tranche A's average life first, while C's principal is still deferred.",
+      "be shared pro rata by all three tranches."
+     ],
+     "answer": 1,
+     "explanation": "All principal, including prepayments, goes to A until it is retired, then to B, then C. Faster prepayments shorten A's life first. Allocation is sequential, not pro rata."
+    },
+    {
+     "id": "fi-19-q11",
+     "lesson": "fi-19-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "In a CMO with a planned amortisation class (PAC) tranche and a support tranche, if prepayments are faster than expected but within the PAC collar:",
+     "options": [
+      "both tranches receive principal pro rata.",
+      "the PAC tranche receives the excess principal.",
+      "the support tranche absorbs the excess principal, keeping the PAC on schedule."
+     ],
+     "answer": 2,
+     "explanation": "The support tranche exists to absorb prepayment variability so the PAC follows its schedule within the collar. That makes the support tranche shorter here (contraction) and the PAC stable."
+    },
+    {
+     "id": "fi-19-q12",
+     "lesson": "fi-19-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A commercial property has net operating income of 1.2 million and annual debt service of 1.0 million. Its debt service coverage ratio is:",
+     "options": [
+      "1.20×",
+      "2.20×",
+      "0.83×"
+     ],
+     "answer": 0,
+     "explanation": "DSCR = NOI ÷ debt service = 1.2 ÷ 1.0 = 1.20×. 0.83× inverts the ratio; 2.20× adds the two figures."
+    },
+    {
+     "id": "fi-19-q13",
+     "lesson": "fi-19-c",
+     "pool": "lesson",
+     "difficulty": 2,
+     "stem": "A CMBS borrower who wishes to prepay must purchase a portfolio of government securities that replicates the remaining loan payments. This call-protection feature is:",
+     "options": [
+      "a prepayment lockout.",
+      "defeasance.",
+      "yield maintenance."
+     ],
+     "answer": 1,
+     "explanation": "Defeasance substitutes government securities for the loan's remaining payments. Yield maintenance is a cash penalty that makes the lender whole; a lockout simply prohibits prepayment for a period."
+    },
+    {
+     "id": "fi-19-q14",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A mortgage pool is prepaying at 200 PSA. In month 20, the single monthly mortality rate is *closest* to:",
+     "options": [
+      "8.00%",
+      "0.67%",
+      "0.69%"
+     ],
+     "answer": 2,
+     "explanation": "At 100 PSA, month-20 CPR = 0.2% × 20 = 4%; at 200 PSA, 8%. SMM = 1 − (1 − 0.08)^{1/12} = 0.69%. 0.67% simply divides 8% by 12. 8.00% is the annual CPR."
+    },
+    {
+     "id": "fi-19-q15",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A pool's SMM is 0.8%. Its CPR is *closest* to:",
+     "options": [
+      "9.19%",
+      "9.60%",
+      "0.80%"
+     ],
+     "answer": 0,
+     "explanation": "CPR = 1 − (1 − 0.008)^{12} = 9.19%. 9.60% multiplies by 12 (ignores the declining balance). 0.80% is the monthly rate."
+    },
+    {
+     "id": "fi-19-q16",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "A CMBS tranche has expected principal of 40 in year 1, 35 in year 2 and 25 in year 3. Its weighted average life is *closest* to:",
+     "options": [
+      "2.15 years",
+      "1.85 years",
+      "2.00 years"
+     ],
+     "answer": 1,
+     "explanation": "WAL = (1 × 40 + 2 × 35 + 3 × 25) ÷ 100 = 185 ÷ 100 = 1.85 years. 2.00 is the unweighted average; 2.15 reverses the principal amounts (25, 35, 40)."
+    },
+    {
+     "id": "fi-19-q17",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "Compared with RMBS investors, CMBS investors *most likely* face:",
+     "options": [
+      "the same risks, because both are backed by mortgages.",
+      "more prepayment risk and less credit risk.",
+      "less prepayment risk but significant balloon risk."
+     ],
+     "answer": 2,
+     "explanation": "CMBS loans have strong call protection (lockouts, defeasance, yield maintenance), so prepayment risk is low, but they are typically non-recourse balloon loans, creating balloon (refinancing) and credit risk."
+    },
+    {
+     "id": "fi-19-q18",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 3,
+     "stem": "An investor wants mortgage exposure with the *most* predictable principal repayment schedule over a range of prepayment speeds. The *best* choice is:",
+     "options": [
+      "the PAC tranche of a CMO.",
+      "the support tranche of a CMO.",
+      "a mortgage pass-through security."
+     ],
+     "answer": 0,
+     "explanation": "The PAC follows a fixed schedule as long as prepayments stay within the collar, because the support tranche absorbs variability. The support tranche is the least predictable; a pass-through passes all prepayment variability straight through."
+    },
+    {
+     "id": "fi-19-q19",
+     "lesson": null,
+     "pool": "exam",
+     "difficulty": 2,
+     "stem": "If interest rates rise sharply, the holder of the *last* tranche in a sequential-pay CMO is *most* exposed to:",
+     "options": [
+      "default risk from the GSE.",
+      "extension risk.",
+      "contraction risk."
+     ],
+     "answer": 1,
+     "explanation": "Rising rates slow prepayments, so the final tranche waits even longer for principal: extension risk. Contraction risk comes with falling rates; GSE default risk is not the issue here."
+    }
+   ],
+   "flashcards": [
+    {
+     "id": "fi-19-f01",
+     "front": "SMM ↔ CPR",
+     "back": "CPR = 1 − (1 − SMM)^{12}; SMM = 1 − (1 − CPR)^{1/12}"
+    },
+    {
+     "id": "fi-19-f02",
+     "front": "100 PSA benchmark",
+     "back": "CPR rises 0.2% per month to 6% at month 30, then stays at 6%. 200 PSA = double."
+    },
+    {
+     "id": "fi-19-f03",
+     "front": "Contraction vs extension risk",
+     "back": "Contraction: rates fall, prepayments speed up. Extension: rates rise, prepayments slow."
+    },
+    {
+     "id": "fi-19-f04",
+     "front": "Weighted average life",
+     "back": "Σ (t × principal_{t}) ÷ Σ principal_{t}"
+    },
+    {
+     "id": "fi-19-f05",
+     "front": "PAC vs support tranche",
+     "back": "PAC: scheduled principal within a PSA collar. Support: absorbs prepayment variability, higher yield."
+    },
+    {
+     "id": "fi-19-f06",
+     "front": "Agency vs non-agency RMBS",
+     "back": "Agency: guaranteed (Ginnie Mae, Fannie Mae, Freddie Mac); conforming loans; mainly prepayment risk. Non-agency: no guarantee; needs credit enhancement."
+    },
+    {
+     "id": "fi-19-f07",
+     "front": "CMBS call protection",
+     "back": "Loan level: lockout, defeasance, prepayment penalty points, yield maintenance. Structure level: sequential tranching."
+    },
+    {
+     "id": "fi-19-f08",
+     "front": "CMBS DSCR and LTV",
+     "back": "DSCR = NOI ÷ debt service (higher safer). LTV = loan ÷ appraised value (lower safer)."
+    }
+   ]
+  }
+ ]
+}

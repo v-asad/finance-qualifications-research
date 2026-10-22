@@ -1,0 +1,3686 @@
+{
+  "id": "fi",
+  "name": "Fixed Income",
+  "weight": [
+    11,
+    14
+  ],
+  "blurb": "How bonds are structured, issued, priced and quoted, and how yields, spreads, the term structure and duration drive their risk and return; a heavily weighted, calculation-rich topic.",
+  "accaNote": "FM gave you bond valuation as discounted cash flows and the redemption yield (and AFM, if taken, spot-rate pricing and duration). Almost everything else here is new: full vs flat pricing, yield and spread conventions, money-market quotes, forward rates, repos and market structure.",
+  "modules": [
+    {
+      "id": "fi-01",
+      "lm": 1,
+      "title": "Fixed-Income Instrument Features",
+      "summary": "The building blocks every bond shares: who issues it, when and how it pays, what currency it is in, where it ranks, and the legal contract (indenture and covenants) that protects lenders.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM"
+        ],
+        "note": "FM covered sources of long-term finance (bonds, security, covenants, convertibles) at a high level. New for CFA: precise terminology (tenor, par, seniority, contingency provisions), affirmative vs negative covenants, and how the trustee and indenture work."
+      },
+      "lessons": [
+        {
+          "id": "fi-01-a",
+          "title": "Anatomy of a bond",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "What a bond is",
+              "body": "A bond is a contract: the issuer borrows money today and promises fixed or formula-based payments later.\n\nSix features define almost every bond:\n- **Issuer** (who owes the money)\n- **Maturity** (when principal is repaid)\n- **Par value** (principal amount)\n- **Coupon rate and frequency**\n- **Seniority** (rank in default)\n- **Contingency provisions** (embedded options such as calls, puts, conversion)\n\nAdd the **currency** of payment and the legal **indenture**, and you have the full description."
+            },
+            {
+              "kind": "concept",
+              "title": "Issuers and maturity",
+              "body": "**Issuers:** corporations (financial and non-financial), sovereign governments, non-sovereign governments (states, cities), quasi-government agencies, and supranationals (e.g. World Bank).\n\n**Tenor** = time remaining to maturity. It shrinks every day.\n- Original maturity ≤ 1 year → **money market** security\n- Over 1 year → **capital market** security\n- No maturity → **perpetual** bond (pays coupons forever)"
+            },
+            {
+              "kind": "concept",
+              "title": "Par, coupon and quotes",
+              "body": "**Par (principal, face) value** is what is repaid at maturity. Prices are quoted as a **% of par**: a quote of 98.50 on a 1,000,000 par holding means 985,000.\n\n- Price > par → **premium** bond (coupon rate > market yield)\n- Price < par → **discount** bond (coupon rate < market yield)\n- Price = par → **par** bond\n\nCoupon = coupon rate × par, often paid **annually** (most Eurobonds) or **semiannually** (US and UK government bonds). A **zero-coupon** bond pays nothing until maturity and sells at a discount."
+            },
+            {
+              "kind": "concept",
+              "title": "Currency and yield",
+              "body": "Bonds can be issued in any currency. Variants:\n- **Dual-currency bond:** coupons in one currency, principal in another.\n- **Currency option bond:** the investor chooses which of two currencies to be paid in.\n\nThe **yield to maturity (YTM)** is the single discount rate that makes the present value of a bond's promised cash flows equal its price. It is the market's required return, and it moves inversely to price."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Premium/discount is about the **coupon rate vs the market yield**, not about credit quality. A AAA bond can trade at a discount if its coupon is below current yields."
+            }
+          ]
+        },
+        {
+          "id": "fi-01-b",
+          "title": "Indenture, covenants and seniority",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "The bond indenture",
+              "body": "The **indenture** (trust deed) is the legal contract between issuer and bondholders. It sets out the key terms, the source of repayment, any collateral, credit enhancements and covenants.\n\nBecause bondholders are many and scattered, a **trustee** (usually a bank) is appointed to monitor the issuer's compliance and act for bondholders if covenants are breached. The trustee's role is fiduciary but limited: it does not guarantee repayment."
+            },
+            {
+              "kind": "compare",
+              "title": "Affirmative vs negative covenants",
+              "rows": [
+                [
+                  "",
+                  "Affirmative",
+                  "Negative"
+                ],
+                [
+                  "Nature",
+                  "Things the issuer **must** do",
+                  "Things the issuer **must not** do"
+                ],
+                [
+                  "Examples",
+                  "Pay interest and principal on time; maintain insurance; comply with laws; provide financial reports; pari passu and cross-default clauses",
+                  "Limits on extra debt; restrictions on dividends/buybacks; negative pledge (no new liens); limits on asset sales; restrictions on mergers"
+                ],
+                [
+                  "Cost to issuer",
+                  "Low (administrative)",
+                  "Higher (restrict operations)"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Seniority and collateral",
+              "body": "**Secured** bonds are backed by specific assets (collateral); **unsecured** bonds (debentures) rely on the issuer's general credit.\n\nRanking in default: senior secured > senior unsecured > subordinated (junior). Higher rank → higher expected recovery → lower yield.\n\nCollateral examples: equipment trust certificates, mortgage-backed bonds, and **covered bonds** (backed by a segregated cover pool and still a claim on the issuer)."
+            },
+            {
+              "kind": "concept",
+              "title": "Contingency provisions",
+              "body": "A **contingency provision** is a clause that triggers an action if an event occurs. In bonds these are mostly **embedded options**:\n- **Call:** issuer can redeem early (bad for investor → higher yield)\n- **Put:** investor can sell back early (good for investor → lower yield)\n- **Conversion:** investor can swap the bond for equity (good for investor → lower yield)\n\nA bond with no embedded options is a **straight** (option-free) bond."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "A **negative pledge** is a *negative* covenant (do not pledge assets to other lenders), while **cross-default** and **pari passu** clauses are usually classified as *affirmative* covenants. Do not classify by whether the wording sounds negative."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM taught covenants as a way to reduce agency costs of debt. CFA expects you to **classify** each covenant as affirmative or negative and to link seniority and collateral to recovery and yield. The economics are familiar; the labels are what gets tested."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-01-q01",
+          "lesson": "fi-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A bond with a 4% annual coupon trades at a yield to maturity of 5%. The bond is most likely trading at:",
+          "options": [
+            "a premium to par.",
+            "par.",
+            "a discount to par."
+          ],
+          "answer": 2,
+          "explanation": "When the coupon rate (4%) is below the market yield (5%), the price must be below par so that the investor earns 5% through the pull to par. A premium would require a coupon above the yield; par would require them to be equal."
+        },
+        {
+          "id": "fi-01-q02",
+          "lesson": "fi-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A security issued with an original maturity of nine months is best described as a:",
+          "options": [
+            "money market security.",
+            "capital market security.",
+            "perpetual bond."
+          ],
+          "answer": 0,
+          "explanation": "Securities with an original maturity of one year or less trade in the money market. Capital market securities have original maturities over one year, and a perpetual bond has no maturity at all."
+        },
+        {
+          "id": "fi-01-q03",
+          "lesson": "fi-01-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An investor holds 2,000,000 par of a bond quoted at 101.25. The market value of the holding is closest to:",
+          "options": [
+            "2,001,250.",
+            "2,025,000.",
+            "2,250,000."
+          ],
+          "answer": 1,
+          "explanation": "Quotes are a percentage of par: 2,000,000 × 1.0125 = 2,025,000. 2,001,250 treats 1.25 as an absolute amount per bond; 2,250,000 misreads the quote as 112.5%."
+        },
+        {
+          "id": "fi-01-q04",
+          "lesson": "fi-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A bond that pays coupons in euros but repays principal in US dollars is a:",
+          "options": [
+            "currency option bond.",
+            "global bond.",
+            "dual-currency bond."
+          ],
+          "answer": 2,
+          "explanation": "A dual-currency bond fixes one currency for coupons and another for principal. A currency option bond lets the investor choose the currency; a global bond is issued simultaneously in several markets, not a payment-currency structure."
+        },
+        {
+          "id": "fi-01-q05",
+          "lesson": "fi-01-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is best classified as a negative covenant?",
+          "options": [
+            "The issuer must maintain insurance on its plant.",
+            "The issuer may not pledge its assets as collateral to other lenders.",
+            "The issuer must deliver audited financial statements annually."
+          ],
+          "answer": 1,
+          "explanation": "A negative pledge restricts what the issuer may do, so it is a negative covenant. Maintaining insurance and delivering financial statements are actions the issuer must perform, so they are affirmative covenants."
+        },
+        {
+          "id": "fi-01-q06",
+          "lesson": "fi-01-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with an otherwise identical senior unsecured bond of the same issuer, a subordinated bond will most likely have:",
+          "options": [
+            "the same yield because the default probability is identical.",
+            "a lower yield because it ranks behind more debt.",
+            "a higher yield because of lower expected recovery in default."
+          ],
+          "answer": 2,
+          "explanation": "Default probability is the same for all of one issuer's bonds (cross-default), but recovery differs by seniority. Subordinated holders recover less, so they demand a higher yield. Ranking lower increases, not decreases, the required yield."
+        },
+        {
+          "id": "fi-01-q07",
+          "lesson": "fi-01-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In a bond issue, the trustee's primary role is to:",
+          "options": [
+            "guarantee payment of interest and principal.",
+            "underwrite the bond issue and place it with investors.",
+            "monitor the issuer's compliance with the indenture on behalf of bondholders."
+          ],
+          "answer": 2,
+          "explanation": "The trustee acts for the dispersed bondholders and checks compliance with the indenture. It does not guarantee payments (that would be a credit enhancement) and underwriting is done by investment banks."
+        },
+        {
+          "id": "fi-01-q08",
+          "lesson": "fi-01-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Relative to an otherwise identical option-free bond, a putable bond will most likely trade at:",
+          "options": [
+            "a lower yield.",
+            "a higher yield.",
+            "the same yield, because the put is rarely exercised."
+          ],
+          "answer": 0,
+          "explanation": "The put option belongs to the investor, who pays for it by accepting a lower yield (higher price). A higher yield applies to callable bonds, where the issuer owns the option. The option has value whether or not it is ultimately exercised."
+        },
+        {
+          "id": "fi-01-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which provision in a bond indenture is most likely to benefit bondholders at the expense of the issuer's flexibility?",
+          "options": [
+            "A call provision",
+            "A clause allowing the issuer to add new pari passu debt freely",
+            "A restriction on dividend payments"
+          ],
+          "answer": 2,
+          "explanation": "Limits on dividends keep cash inside the company for creditors and restrict the issuer, so they protect bondholders. A call provision benefits the issuer. Freedom to add debt ranking equally dilutes existing bondholders' claims."
+        },
+        {
+          "id": "fi-01-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A bank issues bonds backed by a segregated pool of mortgages that remain on its balance sheet; bondholders also have a claim on the bank if the pool is insufficient. These are best described as:",
+          "options": [
+            "covered bonds.",
+            "debentures.",
+            "equipment trust certificates."
+          ],
+          "answer": 0,
+          "explanation": "Covered bonds give dual recourse: to the cover pool and to the issuer. Debentures are unsecured, and equipment trust certificates are secured by specific equipment such as aircraft or rail cars."
+        },
+        {
+          "id": "fi-01-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "An analyst compares two 10-year bonds issued by the same company on the same day: Bond X is senior secured with a 5.0% coupon; Bond Y is subordinated unsecured. Both trade at par. Bond Y's coupon is most likely:",
+          "options": [
+            "below 5.0%, because junior bonds have lower duration.",
+            "equal to 5.0%, because both have the same probability of default.",
+            "above 5.0%, because its loss given default is higher."
+          ],
+          "answer": 2,
+          "explanation": "Both trade at par, so each coupon equals its required yield. Same issuer means the same default probability, but the subordinated bond's lower recovery (higher loss given default) requires a higher yield and coupon. Duration is not driven by seniority."
+        },
+        {
+          "id": "fi-01-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A perpetual bond is best described as a bond that:",
+          "options": [
+            "pays no coupons but is redeemed at a premium.",
+            "can be renewed at the investor's option each year.",
+            "pays coupons indefinitely and has no stated maturity date."
+          ],
+          "answer": 2,
+          "explanation": "A perpetual bond has no maturity; the issuer pays coupons forever (often with call options). Annual renewal describes an extendible structure, and paying no coupons describes a zero-coupon bond."
+        },
+        {
+          "id": "fi-01-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which of the following is least likely to be found in a bond indenture?",
+          "options": [
+            "A description of the collateral backing the bonds",
+            "The bond's current market price and yield",
+            "A list of affirmative and negative covenants"
+          ],
+          "answer": 1,
+          "explanation": "The indenture is a legal contract fixed at issue: it contains collateral, covenants, credit enhancements and repayment terms. Market price and yield change daily and are not contractual terms."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-01-f01",
+          "front": "Six key bond features",
+          "back": "Issuer; maturity (tenor); par value; coupon rate & frequency; seniority; contingency provisions. Plus currency and the indenture."
+        },
+        {
+          "id": "fi-01-f02",
+          "front": "Affirmative vs negative covenant",
+          "back": "Affirmative = what the issuer must do (pay on time, insure, report, pari passu, cross-default). Negative = what it must not do (extra debt, dividends, negative pledge, asset sales)."
+        },
+        {
+          "id": "fi-01-f03",
+          "front": "Premium vs discount bond",
+          "back": "Coupon rate > YTM → premium (price > par). Coupon rate < YTM → discount. Equal → par."
+        },
+        {
+          "id": "fi-01-f04",
+          "front": "Money market vs capital market",
+          "back": "Original maturity ≤ 1 year → money market. > 1 year → capital market."
+        },
+        {
+          "id": "fi-01-f05",
+          "front": "Embedded options and yield",
+          "back": "Call (issuer's option) → higher yield. Put or conversion (investor's option) → lower yield."
+        },
+        {
+          "id": "fi-01-f06",
+          "front": "Seniority ranking",
+          "back": "Senior secured > senior unsecured > subordinated. Higher rank → higher recovery → lower yield."
+        }
+      ]
+    },
+    {
+      "id": "fi-02",
+      "lm": 2,
+      "title": "Fixed-Income Cash Flows and Types",
+      "summary": "How bonds repay principal (bullet, amortizing, sinking fund), how coupons can vary (floaters, step-ups, PIK, inflation-linked) and the legal, regulatory and tax wrappers bonds come in.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM"
+        ],
+        "note": "FM covered annuity maths, zero-coupon/deep-discount bonds and convertibles. New for CFA: the full menu of coupon and principal structures, index-linked mechanics, Eurobond vs domestic vs foreign bond classification and original-issue-discount tax treatment."
+      },
+      "lessons": [
+        {
+          "id": "fi-02-a",
+          "title": "Principal repayment structures",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Bullet vs amortizing",
+              "body": "**Bullet:** coupons only until maturity, then all principal at once. Most corporate and government bonds.\n\n**Fully amortizing:** each payment covers interest *and* principal; balance reaches zero at maturity (like a mortgage).\n\n**Partially amortizing:** some principal is repaid along the way and a **balloon** payment remains at maturity.\n\nMore amortization → principal comes back sooner → less credit risk and less interest-rate risk for the investor, but more reinvestment risk."
+            },
+            {
+              "kind": "formula",
+              "title": "Level payment of a fully amortizing bond",
+              "formula": "A = r × PV ÷ [1 − (1 + r)^{−N}]",
+              "where": [
+                [
+                  "A",
+                  "level payment per period"
+                ],
+                [
+                  "PV",
+                  "principal borrowed"
+                ],
+                [
+                  "r",
+                  "interest rate per period"
+                ],
+                [
+                  "N",
+                  "number of payments"
+                ]
+              ],
+              "note": "Interest each period = r × opening balance; principal = A − interest."
+            },
+            {
+              "kind": "example",
+              "title": "Amortizing schedule",
+              "body": "A 100,000 five-year loan at 6% annual, fully amortizing.\n\nA = 0.06 × 100,000 ÷ [1 − 1.06^{−5}] = **23,739.64** per year.\n\nYear 1: interest = 6,000.00; principal = 17,739.64; closing balance = 82,260.36. Interest falls and principal rises each year.",
+              "calc": "5 [N] 6 [I/Y] 100000 [PV] 0 [FV] [CPT] [PMT] → −23,739.64"
+            },
+            {
+              "kind": "concept",
+              "title": "Sinking fund",
+              "body": "A **sinking fund** requires the issuer to retire a set portion of the issue each year, either by calling bonds at a special sinking-fund price (usually par) chosen by lottery, or by buying them in the market.\n\n- Investor benefit: less credit risk, as debt is retired gradually.\n- Investor cost: reinvestment risk. If rates have fallen, bonds are called at par when they trade above par.\n\nThe issuer will buy in the market when price < call price and call at par when price > par."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Ranking by credit risk (least to most) for the same issuer and maturity: fully amortizing < partially amortizing < bullet. A bullet has all principal at risk until the very end."
+            }
+          ]
+        },
+        {
+          "id": "fi-02-b",
+          "title": "Coupon structures",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Floating-rate notes",
+              "body": "An **FRN** coupon resets each period: **market reference rate (MRR) + quoted margin**. MRRs today are mostly overnight risk-free rates such as SOFR (compounded in arrears) or term rates.\n\nBecause the coupon tracks market rates, an FRN's price stays close to par: low interest-rate risk, but credit risk remains.\n\nVariants: **caps** (max coupon, benefits issuer), **floors** (min coupon, benefits investor), **collars** (both), and **inverse floaters** (coupon = constant − MRR, rises when rates fall)."
+            },
+            {
+              "kind": "concept",
+              "title": "Coupons that change by design",
+              "body": "- **Step-up:** coupon rises on fixed dates (often paired with a call: if not called, investors earn more).\n- **Credit-linked:** coupon rises if the issuer is downgraded, falls if upgraded. Can hurt the issuer exactly when it is weak.\n- **Payment-in-kind (PIK):** issuer pays interest with more bonds instead of cash; common in high yield. Higher coupon to compensate.\n- **Deferred coupon (split coupon):** no coupons for the first years, then higher coupons. Suits start-ups and infrastructure projects."
+            },
+            {
+              "kind": "concept",
+              "title": "Index-linked (inflation-linked) bonds",
+              "body": "Payments are tied to an index, usually a consumer price index. Government linkers (e.g. US TIPS, UK index-linked gilts) dominate.\n\nStructures:\n- **Interest-indexed:** principal fixed, coupon adjusts.\n- **Capital-indexed (most common):** fixed coupon *rate* applied to an inflation-adjusted principal.\n- **Indexed-annuity:** fully amortizing, payments indexed.\n- **Zero-coupon indexed:** only principal adjusted.\n\nInvestors get protection against inflation eroding real returns."
+            },
+            {
+              "kind": "example",
+              "title": "Capital-indexed bond",
+              "body": "A capital-indexed bond has par 1,000 and a 2% annual real coupon. Inflation over the first year is 3%.\n\nAdjusted principal = 1,000 × 1.03 = 1,030.\nFirst coupon = 2% × 1,030 = **20.60** (not 20.00).\n\nThe coupon rate stays fixed; the principal it applies to grows with the index."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Do not confuse **credit-linked coupon** bonds (coupon changes with the issuer's rating) with **credit-linked notes** (a structured product whose principal is cut if a *reference* entity defaults). The first is a coupon structure; the second is credit protection embedded in a note."
+            }
+          ]
+        },
+        {
+          "id": "fi-02-c",
+          "title": "Embedded options, legal and tax considerations",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Callable, putable, convertible",
+              "rows": [
+                [
+                  "",
+                  "Who holds the option",
+                  "Effect on price vs straight bond"
+                ],
+                [
+                  "Callable",
+                  "Issuer (redeem early)",
+                  "Lower price, higher yield"
+                ],
+                [
+                  "Putable",
+                  "Investor (sell back early)",
+                  "Higher price, lower yield"
+                ],
+                [
+                  "Convertible",
+                  "Investor (swap into shares)",
+                  "Higher price, lower yield"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Call features",
+              "body": "Call styles: **American** (any time after the first call date), **European** (one date only), **Bermudan** (on set dates, e.g. coupon dates).\n\nA call period often starts after a **lockout** (call-protection) period. A **make-whole call** pays the PV of remaining cash flows at a small spread over government yields, so the issuer rarely uses it to refinance cheaply.\n\nIssuers call when rates fall, so investors face reinvestment risk and price compression near the call price."
+            },
+            {
+              "kind": "concept",
+              "title": "Convertibles and contingent convertibles",
+              "body": "**Convertible bond:** investor can exchange for a set number of shares.\n- Conversion ratio = shares per bond\n- Conversion price = par ÷ conversion ratio\n- Conversion value = conversion ratio × share price\n\n**Warrants** are detachable options to buy shares, often attached to bonds.\n\n**Contingent convertibles (CoCos):** bank bonds that convert to equity *automatically* when a capital trigger is breached. Conversion is not the investor's choice, so CoCos pay higher yields."
+            },
+            {
+              "kind": "concept",
+              "title": "Legal and regulatory wrappers",
+              "body": "- **Domestic bond:** local issuer, local currency, local market.\n- **Foreign bond:** foreign issuer in a local market and currency (e.g. Yankee bonds in the US, Samurai bonds in Japan).\n- **Eurobond:** issued outside the jurisdiction of the currency, lightly regulated, usually bearer form, often annual coupons.\n- **Global bond:** issued simultaneously in the Eurobond market and at least one domestic market.\n\nBearer bonds: owner not recorded. Registered bonds: ownership recorded, which helps tax authorities."
+            },
+            {
+              "kind": "concept",
+              "title": "Tax considerations",
+              "body": "Coupons are usually taxed as **income**; price gains/losses as **capital gains** (often at lower rates, with long-term vs short-term differences).\n\n**Original issue discount (OID):** for bonds issued at a discount (including zeros), some jurisdictions tax the accretion toward par as interest income each year, even though no cash is received. Bonds bought at a premium may allow the premium to be amortized as an offset against interest income.\n\nSome public-sector (municipal) bonds are tax-exempt."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM taught convertibles mainly from the issuer's financing viewpoint (conversion value vs redemption value). CFA adds the investor's view of each option's direction of value, the classification of bond markets (Eurobond, foreign, global) and OID tax rules. Learn the 'who owns the option' rule cold."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-02-q01",
+          "lesson": "fi-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 1,000,000 ten-year fully amortizing bond pays a 5% annual rate. The level annual payment is closest to:",
+          "options": [
+            "100,000.",
+            "129,505.",
+            "150,000."
+          ],
+          "answer": 1,
+          "explanation": "A = 0.05 × 1,000,000 ÷ [1 − 1.05^{−10}] = 129,504.57. 100,000 is principal ÷ 10 with no interest; 150,000 adds a full year's interest on the original balance (50,000) to 100,000 every year, ignoring that the balance declines.",
+          "calc": "10 [N] 5 [I/Y] 1000000 [PV] 0 [FV] [CPT] [PMT] → −129,504.57"
+        },
+        {
+          "id": "fi-02-q02",
+          "lesson": "fi-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "For a 100,000 five-year, 6% fully amortizing loan with annual payments of 23,739.64, the principal repaid in year 1 is closest to:",
+          "options": [
+            "6,000.00.",
+            "17,739.64.",
+            "20,000.00."
+          ],
+          "answer": 1,
+          "explanation": "Year-1 interest = 6% × 100,000 = 6,000. Principal = 23,739.64 − 6,000 = 17,739.64. 6,000 is the interest component; 20,000 is straight-line principal, which applies only to equal-principal (not level-payment) loans."
+        },
+        {
+          "id": "fi-02-q03",
+          "lesson": "fi-02-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "For the same issuer and maturity, which bond structure exposes the investor to the most credit risk?",
+          "options": [
+            "Fully amortizing",
+            "Partially amortizing with a balloon",
+            "Bullet"
+          ],
+          "answer": 2,
+          "explanation": "A bullet bond repays all principal at maturity, so the full amount is outstanding and at risk for the longest time. Amortizing structures return principal earlier; partial amortization sits in between."
+        },
+        {
+          "id": "fi-02-q04",
+          "lesson": "fi-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A bond has a sinking fund that lets the issuer call bonds at par or buy them in the market. Market rates have fallen and the bonds trade at 104. The issuer will most likely:",
+          "options": [
+            "suspend the sinking fund until prices fall.",
+            "buy the required bonds in the open market.",
+            "call the required bonds at par."
+          ],
+          "answer": 2,
+          "explanation": "Calling at par (100) is cheaper than buying at 104, so the issuer uses the call. Market purchases make sense only when price is below the sinking-fund price. Sinking-fund payments are mandatory and cannot be suspended at will."
+        },
+        {
+          "id": "fi-02-q05",
+          "lesson": "fi-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A capital-indexed bond has par of 1,000 and a 2% annual coupon. Inflation over the first year is 3%. The first coupon is closest to:",
+          "options": [
+            "20.00.",
+            "20.60.",
+            "50.00."
+          ],
+          "answer": 1,
+          "explanation": "The principal is indexed: 1,000 × 1.03 = 1,030, and the fixed 2% rate is applied to it: 20.60. 20.00 ignores indexation; 50.00 wrongly adds inflation to the coupon rate (2% + 3%) on the unadjusted principal."
+        },
+        {
+          "id": "fi-02-q06",
+          "lesson": "fi-02-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A bond that allows the issuer to pay interest with additional bonds instead of cash is a:",
+          "options": [
+            "deferred coupon bond.",
+            "step-up coupon bond.",
+            "payment-in-kind bond."
+          ],
+          "answer": 2,
+          "explanation": "PIK bonds pay interest in kind (more bonds). Deferred coupon bonds pay no coupons for an initial period and then cash coupons; step-up bonds pay cash coupons that rise on set dates."
+        },
+        {
+          "id": "fi-02-q07",
+          "lesson": "fi-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which feature of a floating-rate note benefits the issuer?",
+          "options": [
+            "A cap on the coupon rate",
+            "A floor on the coupon rate",
+            "A quoted margin that resets higher if the issuer is downgraded"
+          ],
+          "answer": 0,
+          "explanation": "A cap limits how much the issuer must pay when rates rise, so it benefits the issuer. A floor guarantees the investor a minimum coupon, and a rating-linked margin increase compensates investors for deterioration."
+        },
+        {
+          "id": "fi-02-q08",
+          "lesson": "fi-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An inverse floater's coupon is set at 8% − MRR. If the market reference rate falls, the coupon will:",
+          "options": [
+            "fall.",
+            "stay the same.",
+            "rise."
+          ],
+          "answer": 2,
+          "explanation": "Coupon = 8% − MRR, so a lower MRR gives a higher coupon (e.g. MRR 3% → 5%; MRR 2% → 6%). A conventional floater's coupon would fall; it would stay the same only for a fixed-rate bond."
+        },
+        {
+          "id": "fi-02-q09",
+          "lesson": "fi-02-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Bonds issued by a Japanese company in the US market and denominated in US dollars are best described as:",
+          "options": [
+            "Eurobonds.",
+            "foreign bonds.",
+            "global bonds."
+          ],
+          "answer": 1,
+          "explanation": "A foreign issuer selling bonds in another country's domestic market and currency creates a foreign bond (here a Yankee bond). A Eurobond is issued outside the currency's home jurisdiction; a global bond is issued in the Eurobond market and a domestic market at the same time."
+        },
+        {
+          "id": "fi-02-q10",
+          "lesson": "fi-02-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Relative to an otherwise identical straight bond, a callable bond most likely has:",
+          "options": [
+            "a higher price because the call adds flexibility.",
+            "the same price because the call is out of the money at issue.",
+            "a lower price because the investor has sold an option to the issuer."
+          ],
+          "answer": 2,
+          "explanation": "Callable bond value = straight bond value − call option value. The investor effectively sells the call to the issuer, so pays less (earns more yield). Flexibility benefits the issuer, not the holder, and an out-of-the-money option still has time value."
+        },
+        {
+          "id": "fi-02-q11",
+          "lesson": "fi-02-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A bank bond converts automatically into equity if the bank's capital ratio falls below a trigger. This is a:",
+          "options": [
+            "contingent convertible bond.",
+            "traditional convertible bond.",
+            "putable bond."
+          ],
+          "answer": 0,
+          "explanation": "Automatic conversion on a capital trigger defines a CoCo. In a traditional convertible, conversion is the investor's option; a putable bond lets the investor sell back for cash, not shares."
+        },
+        {
+          "id": "fi-02-q12",
+          "lesson": "fi-02-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "In jurisdictions with original issue discount (OID) rules, an investor in a zero-coupon bond will most likely:",
+          "options": [
+            "pay tax only when the bond matures, as a capital gain.",
+            "pay no tax because no coupons are received.",
+            "be taxed annually on part of the discount as interest income."
+          ],
+          "answer": 2,
+          "explanation": "OID rules treat the yearly accretion toward par as interest income, taxable each year even though no cash is received. Deferring all tax to maturity or exempting the discount is exactly what OID rules prevent."
+        },
+        {
+          "id": "fi-02-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A 500,000 loan is repaid with level annual payments over 4 years at 7%. The balance outstanding after the first payment is closest to:",
+          "options": [
+            "352,386.",
+            "375,000.",
+            "387,386."
+          ],
+          "answer": 2,
+          "explanation": "A = 0.07 × 500,000 ÷ [1 − 1.07^{−4}] = 147,614.06. Interest in year 1 = 35,000, so principal repaid = 112,614.06 and the balance = 387,385.94. 352,386 subtracts the whole payment from 500,000, ignoring that 35,000 of it is interest; 375,000 assumes equal principal repayments of 125,000.",
+          "calc": "4 [N] 7 [I/Y] 500000 [PV] 0 [FV] [CPT] [PMT] → −147,614.06; then [2ND][AMORT] P1 = 1 [ENTER] ↓ P2 = 1 [ENTER] ↓ BAL → 387,385.94"
+        },
+        {
+          "id": "fi-02-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Compared with a bullet bond, a bond with a sinking fund most likely offers investors:",
+          "options": [
+            "lower credit risk and lower reinvestment risk.",
+            "higher credit risk and lower reinvestment risk.",
+            "lower credit risk but higher reinvestment risk."
+          ],
+          "answer": 2,
+          "explanation": "Gradual retirement reduces the amount outstanding, lowering credit risk. But bonds may be called at par when rates have fallen, forcing reinvestment at lower yields. So credit risk falls while reinvestment risk rises."
+        },
+        {
+          "id": "fi-02-q15",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A convertible bond has par of 1,000 and a conversion price of 40. The share price is 36. The conversion value is closest to:",
+          "options": [
+            "900.",
+            "1,000.",
+            "1,111."
+          ],
+          "answer": 0,
+          "explanation": "Conversion ratio = 1,000 ÷ 40 = 25 shares. Conversion value = 25 × 36 = 900. 1,000 is par, not conversion value; 1,111 wrongly computes the ratio as par ÷ share price (27.78) and multiplies by the conversion price."
+        },
+        {
+          "id": "fi-02-q16",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An issuer with poor current cash flow but strong expected future cash flow from a construction project would most likely prefer:",
+          "options": [
+            "a credit-linked coupon bond.",
+            "a deferred coupon bond.",
+            "a capital-indexed bond."
+          ],
+          "answer": 1,
+          "explanation": "Deferred coupon bonds pay nothing in the early years and higher coupons later, matching project cash flows. A credit-linked coupon raises costs if the issuer weakens; a capital-indexed bond pays coupons from the start."
+        },
+        {
+          "id": "fi-02-q17",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A Eurobond is best described as a bond that is:",
+          "options": [
+            "issued in euros by a European company.",
+            "registered with a European regulator and sold to retail investors.",
+            "issued outside the jurisdiction of the currency in which it is denominated."
+          ],
+          "answer": 2,
+          "explanation": "The 'Euro' prefix refers to issuance outside the currency's home country (e.g. a US-dollar bond sold in London), not to the euro currency. Eurobonds are typically lightly regulated, not registered for retail sale."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-02-f01",
+          "front": "Level payment (amortizing bond)",
+          "back": "A = r × PV ÷ [1 − (1 + r)^{−N}]"
+        },
+        {
+          "id": "fi-02-f02",
+          "front": "Bullet vs amortizing vs sinking fund",
+          "back": "Bullet: all principal at maturity. Amortizing: principal repaid with each payment (fully or with balloon). Sinking fund: issuer retires part of the issue each year."
+        },
+        {
+          "id": "fi-02-f03",
+          "front": "Capital-indexed bond coupon",
+          "back": "Fixed real coupon rate × inflation-adjusted principal."
+        },
+        {
+          "id": "fi-02-f04",
+          "front": "PIK vs deferred coupon vs step-up",
+          "back": "PIK: interest paid with more bonds. Deferred: no coupons early, then higher. Step-up: coupon rises on set dates."
+        },
+        {
+          "id": "fi-02-f05",
+          "front": "FRN cap / floor",
+          "back": "Cap = maximum coupon (benefits issuer). Floor = minimum coupon (benefits investor)."
+        },
+        {
+          "id": "fi-02-f06",
+          "front": "Conversion value",
+          "back": "Conversion ratio × share price; conversion price = par ÷ conversion ratio."
+        },
+        {
+          "id": "fi-02-f07",
+          "front": "Domestic / foreign / Eurobond / global",
+          "back": "Foreign: foreign issuer in local market and currency. Eurobond: outside the currency's jurisdiction. Global: Eurobond market + a domestic market at once."
+        },
+        {
+          "id": "fi-02-f08",
+          "front": "Original issue discount (OID)",
+          "back": "Discount accretion on bonds issued below par is taxed as interest each year in some jurisdictions."
+        }
+      ]
+    },
+    {
+      "id": "fi-03",
+      "lm": 3,
+      "title": "Fixed-Income Issuance and Trading",
+      "summary": "How the bond market is segmented, who issues and buys, how bonds come to market (primary) and how they change hands afterwards (secondary, mostly dealer-based OTC).",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "ACCA did not cover bond-market structure in any depth. Everything here (market segments, index construction, auctions vs underwriting, dealer markets) is new."
+      },
+      "lessons": [
+        {
+          "id": "fi-03-a",
+          "title": "Market segments, issuers and investors",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Ways to slice the bond market",
+              "body": "Bond markets are classified by:\n- **Issuer type:** households (via securitization), non-financial corporates, financial corporates, governments, supranationals\n- **Credit quality:** **investment grade** (BBB−/Baa3 or above) vs **high yield** (below)\n- **Maturity:** money market (≤ 1 year) vs capital market\n- **Currency** and **geography:** developed vs emerging markets\n- **Coupon type:** fixed vs floating\n- **Use of proceeds:** e.g. **green bonds** (environmental projects)"
+            },
+            {
+              "kind": "concept",
+              "title": "Who invests",
+              "body": "- **Central banks:** monetary policy (open-market operations), FX reserves\n- **Institutional investors:** pension funds, insurers, sovereign wealth funds, endowments; they match long-dated liabilities\n- **Banks:** hold bonds for liquidity and as collateral\n- **Retail investors:** mostly indirectly via funds and ETFs\n\nMany institutions are restricted to investment-grade bonds, which is why a downgrade to high yield (a **fallen angel**) can trigger forced selling."
+            },
+            {
+              "kind": "concept",
+              "title": "Fixed-income indexes",
+              "body": "A bond index tracks a defined universe (e.g. global investment-grade aggregate). Indexes are usually **market-value weighted** by debt outstanding, which means the **most indebted issuers get the largest weights** (the 'bums problem').\n\nIndexes are harder to replicate than equity indexes: thousands of bonds, many illiquid, constant rebalancing as bonds mature and are issued. Managers use **stratified sampling** to match duration, sector and quality."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "The investment-grade cut-off is **BBB− (S&P/Fitch)** or **Baa3 (Moody's)**. Anything below is high yield (junk, speculative). Questions often hinge on this line."
+            }
+          ]
+        },
+        {
+          "id": "fi-03-b",
+          "title": "Primary and secondary markets",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Primary market methods",
+              "rows": [
+                [
+                  "Method",
+                  "Who bears the risk",
+                  "Typical use"
+                ],
+                [
+                  "Underwritten offering",
+                  "Investment bank buys the whole issue and resells",
+                  "Corporate bonds"
+                ],
+                [
+                  "Best-efforts offering",
+                  "Issuer; bank only sells on commission",
+                  "Riskier or smaller issuers"
+                ],
+                [
+                  "Auction",
+                  "Issuer; price set by bids",
+                  "Government bonds"
+                ],
+                [
+                  "Private placement",
+                  "Negotiated with a few qualified investors",
+                  "Smaller, customised, less liquid"
+                ],
+                [
+                  "Shelf registration",
+                  "Issuer files once, issues in tranches over time",
+                  "Frequent, well-known issuers"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Underwriting process",
+              "body": "In an underwritten deal the bank assesses funding needs, sets terms, and gauges demand during **book building**. In the **grey market** (forward market for not-yet-issued bonds) investors trade the deal before it settles, which helps set the final price.\n\nThe bank takes **price risk**: if it cannot sell at the agreed price, it absorbs the loss. Large deals use a **syndicate** of banks to share the risk."
+            },
+            {
+              "kind": "concept",
+              "title": "Secondary market",
+              "body": "Most bonds trade **over the counter (OTC)** through **dealers** who quote bid and ask prices and hold inventory, not on exchanges.\n\nWhy? Bonds are heterogeneous (one issuer can have dozens of issues), trade infrequently, and in large sizes. **Bid–offer spreads** range from a few cents for on-the-run sovereigns to several points for illiquid high-yield bonds.\n\nElectronic trading platforms have grown, but dealer quotes remain central. Settlement is typically T+1 or T+2 for corporates; T+1 for many governments."
+            },
+            {
+              "kind": "compare",
+              "title": "Bonds vs equities",
+              "rows": [
+                [
+                  "",
+                  "Bonds",
+                  "Equities"
+                ],
+                [
+                  "Main venue",
+                  "OTC dealer market",
+                  "Exchanges"
+                ],
+                [
+                  "Number of securities per issuer",
+                  "Many",
+                  "Usually one share class"
+                ],
+                [
+                  "Liquidity",
+                  "Lower, varies by issue",
+                  "Higher"
+                ],
+                [
+                  "Price transparency",
+                  "Lower",
+                  "Higher"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "In a **best-efforts** offering the bank is only an agent, so the **issuer** bears the risk that the bonds do not sell. In an **underwritten** (firm commitment) offering the **bank** bears that risk."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-03-q01",
+          "lesson": "fi-03-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A bond rated BBB− by S&P is best classified as:",
+          "options": [
+            "investment grade.",
+            "high yield.",
+            "in default."
+          ],
+          "answer": 0,
+          "explanation": "BBB− is the lowest investment-grade rating on the S&P/Fitch scale. BB+ and below are high yield; default ratings are D or SD."
+        },
+        {
+          "id": "fi-03-q02",
+          "lesson": "fi-03-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A common criticism of market-value-weighted bond indexes is that they:",
+          "options": [
+            "exclude government bonds.",
+            "are easier to replicate than equity indexes.",
+            "give the largest weights to the most heavily indebted issuers."
+          ],
+          "answer": 2,
+          "explanation": "Weights are based on debt outstanding, so issuers that borrow most get the biggest weights. Bond indexes are harder, not easier, to replicate, and broad aggregates include government bonds."
+        },
+        {
+          "id": "fi-03-q03",
+          "lesson": "fi-03-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A pension fund restricted to investment-grade bonds holds a bond that is downgraded from BBB to BB+. The bond is now best described as a:",
+          "options": [
+            "rising star.",
+            "fallen angel.",
+            "green bond."
+          ],
+          "answer": 1,
+          "explanation": "A fallen angel is a bond downgraded from investment grade to high yield; restricted holders may be forced to sell. A rising star is the reverse; green bond describes use of proceeds, not rating."
+        },
+        {
+          "id": "fi-03-q04",
+          "lesson": "fi-03-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which investor is most likely to buy bonds to implement monetary policy?",
+          "options": [
+            "A sovereign wealth fund",
+            "A life insurer",
+            "A central bank"
+          ],
+          "answer": 2,
+          "explanation": "Central banks buy and sell government bonds in open-market operations to influence rates and liquidity. Sovereign wealth funds and insurers invest for returns and liability matching."
+        },
+        {
+          "id": "fi-03-q05",
+          "lesson": "fi-03-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In a best-efforts offering, the risk that the bonds cannot be sold at the planned price is borne by:",
+          "options": [
+            "the investment bank.",
+            "the trustee.",
+            "the issuer."
+          ],
+          "answer": 2,
+          "explanation": "The bank acts only as an agent selling what it can; unsold bonds and price risk stay with the issuer. In an underwritten offering the bank bears it; the trustee has no placement role."
+        },
+        {
+          "id": "fi-03-q06",
+          "lesson": "fi-03-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Government bonds are most commonly issued through:",
+          "options": [
+            "public auctions.",
+            "best-efforts offerings.",
+            "private placements."
+          ],
+          "answer": 0,
+          "explanation": "Most sovereigns issue via regular public auctions, often to primary dealers. Best-efforts and private placements are corporate methods."
+        },
+        {
+          "id": "fi-03-q07",
+          "lesson": "fi-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with equities, the secondary market for corporate bonds is best described as:",
+          "options": [
+            "mainly exchange-traded with high price transparency.",
+            "mainly auction-based with daily price fixing.",
+            "mainly dealer-based OTC with lower transparency."
+          ],
+          "answer": 2,
+          "explanation": "Most bonds trade OTC through dealers who quote bid and ask prices, and transparency is lower than for exchange-traded equities. Auctions dominate the government primary market, not the secondary market."
+        },
+        {
+          "id": "fi-03-q08",
+          "lesson": "fi-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A frequent issuer files one registration document and then issues bonds in several tranches over two years as funding needs arise. This is a:",
+          "options": [
+            "private placement.",
+            "shelf registration.",
+            "grey-market offering."
+          ],
+          "answer": 1,
+          "explanation": "Shelf registration allows a single filing to cover multiple future issues. A private placement sells to a few qualified investors; the grey market is forward trading in a bond before it is issued."
+        },
+        {
+          "id": "fi-03-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about the grey market is most accurate? It:",
+          "options": [
+            "refers to trading in bonds after they have been called.",
+            "is an unregulated exchange for defaulted bonds.",
+            "is the forward market for bonds about to be issued and helps set their final price."
+          ],
+          "answer": 2,
+          "explanation": "Grey-market trading occurs before settlement of a new issue and gives the underwriter price discovery. It is not a venue for defaulted or called bonds."
+        },
+        {
+          "id": "fi-03-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which factor least explains why most bonds trade over the counter rather than on exchanges?",
+          "options": [
+            "Each issuer may have many different bond issues outstanding.",
+            "Many bond issues trade infrequently in large sizes.",
+            "Bond prices are not affected by interest rates."
+          ],
+          "answer": 2,
+          "explanation": "Heterogeneity (many issues per issuer) and infrequent, large trades favour dealer markets. The third statement is false: bond prices are highly sensitive to interest rates."
+        },
+        {
+          "id": "fi-03-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A bond-index fund uses stratified sampling mainly to:",
+          "options": [
+            "avoid holding government bonds.",
+            "match the index's key risk characteristics without buying every bond.",
+            "increase tracking error to earn alpha."
+          ],
+          "answer": 1,
+          "explanation": "Bond indexes contain thousands of often illiquid issues, so managers hold a sample that matches duration, sector, quality and maturity profile. The goal is low, not high, tracking error."
+        },
+        {
+          "id": "fi-03-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A corporate issuer wants certainty about the proceeds it will raise from a large bond issue. The most suitable method is:",
+          "options": [
+            "a Dutch auction run by the issuer.",
+            "a best-efforts offering.",
+            "an underwritten offering."
+          ],
+          "answer": 2,
+          "explanation": "In an underwritten (firm commitment) offering the bank buys the entire issue at an agreed price, guaranteeing proceeds. Best-efforts and issuer-run auctions leave the issuer exposed to weak demand."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-03-f01",
+          "front": "Investment grade cut-off",
+          "back": "BBB− (S&P/Fitch) or Baa3 (Moody's) and above. Below = high yield."
+        },
+        {
+          "id": "fi-03-f02",
+          "front": "Underwritten vs best-efforts",
+          "back": "Underwritten: bank buys issue, bears price risk. Best-efforts: bank sells as agent, issuer bears risk."
+        },
+        {
+          "id": "fi-03-f03",
+          "front": "Shelf registration",
+          "back": "One filing covers many future issues in tranches; for frequent, established issuers."
+        },
+        {
+          "id": "fi-03-f04",
+          "front": "Grey market",
+          "back": "Forward trading in bonds before issue; aids price discovery."
+        },
+        {
+          "id": "fi-03-f05",
+          "front": "Bond secondary market",
+          "back": "Mostly OTC dealer market; bid–offer spreads reflect liquidity."
+        },
+        {
+          "id": "fi-03-f06",
+          "front": "Problem with bond index weights",
+          "back": "Market-value weighting gives the biggest weights to the most indebted issuers."
+        }
+      ]
+    },
+    {
+      "id": "fi-04",
+      "lm": 4,
+      "title": "Fixed-Income Markets for Corporate Issuers",
+      "summary": "How companies fund themselves short term (bank lines, commercial paper, repos, deposits) and long term (investment-grade vs high-yield bonds), with the repo mechanics you must be able to calculate.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM"
+        ],
+        "note": "FM covered sources of short- and long-term finance (overdrafts, bank loans, commercial paper in outline, bonds). New for CFA: repo mechanics and calculations (haircut, repo rate, repurchase price), bank funding sources, and how IG and HY issuers differ in structure and covenants."
+      },
+      "lessons": [
+        {
+          "id": "fi-04-a",
+          "title": "Short-term corporate funding",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Bank and non-bank short-term funding",
+              "body": "Non-financial companies fund working capital through:\n- **Uncommitted lines:** bank may refuse to lend; cheapest, least reliable.\n- **Committed lines (revolvers):** bank must lend up to a limit for a commitment fee; very reliable, often backstop commercial paper.\n- **Secured (asset-based) loans:** backed by receivables or inventory, e.g. **factoring** (selling receivables).\n- **Commercial paper (CP):** short-term unsecured promissory notes."
+            },
+            {
+              "kind": "concept",
+              "title": "Commercial paper",
+              "body": "CP is issued by large, highly rated companies to fund working capital and as **bridge financing**.\n\n- US CP: maturities up to 270 days, issued at a **discount**.\n- Euro-CP (ECP): up to 364 days, often quoted on an **add-on** (interest-bearing) basis.\n\nIssuers roll CP over at maturity. **Rollover risk** (unable to reissue) is why rating agencies want CP backed by committed **backup lines of credit**."
+            },
+            {
+              "kind": "concept",
+              "title": "Bank funding sources",
+              "body": "Banks fund with:\n- **Retail deposits:** checking (demand) and savings accounts; stable and cheap.\n- **Wholesale funds:** central bank reserves borrowed in the **interbank** market, **certificates of deposit (CDs)**, and repos.\n- **CDs:** negotiable (tradable before maturity, large size) vs non-negotiable (early-withdrawal penalty).\n\nInterbank borrowing is unsecured and sensitive to counterparty fears; it can dry up in a crisis."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM framed short-term finance from the treasurer's viewpoint (overdraft vs loan, cost of trade credit). CFA wants the investor's and market's view: committed vs uncommitted lines, CP discount conventions, rollover risk and backup lines, and bank wholesale funding. Learn the terminology precisely."
+            }
+          ]
+        },
+        {
+          "id": "fi-04-b",
+          "title": "Repurchase agreements",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "What a repo is",
+              "body": "In a **repo** one party sells securities and agrees to buy them back later at a higher price. Economically it is a **collateralized loan**: the seller borrows cash, the buyer lends it.\n\n- **Repo rate:** the interest rate implied by the repurchase price.\n- **Repo margin / haircut:** the cash lent is less than the collateral value, protecting the lender.\n- From the lender's side the same trade is a **reverse repo**.\n\nMost repos are overnight; longer ones are **term repos**."
+            },
+            {
+              "kind": "formula",
+              "title": "Repo calculations",
+              "formula": "Loan = Collateral value × (1 − Haircut)\nRepo interest = Loan × Repo rate × Days/360\nRepurchase price = Loan + Repo interest",
+              "where": [
+                [
+                  "Haircut",
+                  "(Collateral value − Loan) ÷ Collateral value"
+                ],
+                [
+                  "Days/360",
+                  "most markets use an actual/360 money-market basis"
+                ]
+              ]
+            },
+            {
+              "kind": "example",
+              "title": "Repo example",
+              "body": "A dealer posts bonds worth 10,000,000 in a 30-day repo with a 2% haircut at a 4% repo rate.\n\nLoan = 10,000,000 × 0.98 = 9,800,000\nInterest = 9,800,000 × 0.04 × 30/360 = 32,666.67\nRepurchase price = **9,832,666.67**"
+            },
+            {
+              "kind": "concept",
+              "title": "What drives repo rates and haircuts",
+              "body": "Repo rate is **higher** (and haircut larger) when:\n- collateral is riskier or less liquid (special collateral in high demand gets a *lower* rate)\n- the term is longer\n- the counterparty is weaker\n- collateral is not delivered to the lender (e.g. held by the borrower's custodian)\n- general interest rates are higher\n\n**Tri-party repos** use an agent to hold collateral and manage settlement. Risks: default, collateral value falling, margin calls, and **legal** risk (enforceability of the agreement)."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Apply the repo rate to the **cash lent**, not the collateral value, and use **360** days unless told otherwise. Two common errors in one question: forgetting the haircut and using 365."
+            }
+          ]
+        },
+        {
+          "id": "fi-04-c",
+          "title": "Long-term corporate funding: IG vs HY",
+          "minutes": 6,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Investment grade vs high yield issuers",
+              "rows": [
+                [
+                  "",
+                  "Investment grade",
+                  "High yield"
+                ],
+                [
+                  "Typical tenor",
+                  "Long, up to 30+ years",
+                  "Shorter, often 5–10 years"
+                ],
+                [
+                  "Security",
+                  "Mostly senior unsecured",
+                  "Often secured or with guarantees"
+                ],
+                [
+                  "Covenants",
+                  "Light",
+                  "Extensive (debt, dividends, asset sales)"
+                ],
+                [
+                  "Call features",
+                  "Make-whole calls common",
+                  "Callable after lockout at a premium"
+                ],
+                [
+                  "Focus of analysis",
+                  "Spread vs government; rating stability",
+                  "Default and recovery; equity-like"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Why HY bonds look different",
+              "body": "High-yield issuers are riskier, so lenders demand more protection: **covenants** limiting extra debt and payouts, **security**, and shorter maturities. Issuers want flexibility to refinance if their credit improves, so HY bonds are usually **callable** after a lockout (e.g. non-call 3 years) at declining premiums.\n\nIG issuers often use **make-whole** calls, which are expensive to exercise and so do not much reduce the investor's yield."
+            },
+            {
+              "kind": "concept",
+              "title": "Other long-term options",
+              "body": "- **Bank term loans:** often floating rate, secured, with maintenance covenants; HY companies use **leveraged loans** (syndicated).\n- **Private placements** and private credit for smaller issuers.\n- **Medium-term notes (MTNs):** issued continuously under a programme, flexible maturities.\n\nCompanies match funding tenor to asset life and manage **refinancing risk** by spreading maturities."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "If a question describes a bond with heavy covenants, collateral, a short tenor and a call after a lockout period, it is describing a **high-yield** issue. Light covenants and a make-whole call point to **investment grade**."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-04-q01",
+          "lesson": "fi-04-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A borrowing facility for which the bank charges a fee and is legally obliged to lend up to a set limit is a(n):",
+          "options": [
+            "uncommitted line of credit.",
+            "committed line of credit.",
+            "factoring arrangement."
+          ],
+          "answer": 1,
+          "explanation": "A committed line obliges the bank to lend, which is why it charges a commitment fee. An uncommitted line can be refused at the bank's discretion; factoring is the sale of receivables."
+        },
+        {
+          "id": "fi-04-q02",
+          "lesson": "fi-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Rating agencies typically require commercial paper issuers to maintain backup lines of credit mainly to mitigate:",
+          "options": [
+            "currency risk.",
+            "interest-rate risk.",
+            "rollover risk."
+          ],
+          "answer": 2,
+          "explanation": "If the issuer cannot sell new CP to repay maturing CP, the backup line provides cash. That is rollover risk. CP's short maturity keeps interest-rate risk small, and currency risk is unrelated to backup lines."
+        },
+        {
+          "id": "fi-04-q03",
+          "lesson": "fi-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with US commercial paper, Euro-commercial paper is more likely to be:",
+          "options": [
+            "issued at a discount with maturities up to 270 days.",
+            "quoted on an add-on (interest-bearing) basis with maturities up to 364 days.",
+            "secured by inventory."
+          ],
+          "answer": 1,
+          "explanation": "ECP is commonly interest-bearing (add-on) with maturities up to 364 days; US CP is issued at a discount with maturities up to 270 days. Both are unsecured."
+        },
+        {
+          "id": "fi-04-q04",
+          "lesson": "fi-04-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which bank funding source is generally most stable?",
+          "options": [
+            "Negotiable certificates of deposit sold to money-market funds",
+            "Interbank borrowing",
+            "Retail deposits"
+          ],
+          "answer": 2,
+          "explanation": "Insured retail deposits are sticky and rarely withdrawn en masse. Interbank and wholesale CD funding are rate-sensitive and can disappear in stress."
+        },
+        {
+          "id": "fi-04-q05",
+          "lesson": "fi-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A dealer enters a 7-day repo using bonds with a market value of 20,000,000, a 2.5% haircut and a 3.6% repo rate (actual/360). The repo interest is closest to:",
+          "options": [
+            "13,463.",
+            "13,650.",
+            "14,000."
+          ],
+          "answer": 1,
+          "explanation": "Loan = 20,000,000 × (1 − 0.025) = 19,500,000. Interest = 19,500,000 × 0.036 × 7/360 = 13,650. 14,000 ignores the haircut (uses 20,000,000); 13,463 uses a 365-day year."
+        },
+        {
+          "id": "fi-04-q06",
+          "lesson": "fi-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Bonds worth 5,200,000 are used as collateral for a 5,000,000 repo loan. The haircut is closest to:",
+          "options": [
+            "3.85%.",
+            "4.00%.",
+            "96.15%."
+          ],
+          "answer": 0,
+          "explanation": "Haircut = (5,200,000 − 5,000,000) ÷ 5,200,000 = 3.85%. 4.00% divides by the loan amount instead of the collateral value; 96.15% is the loan-to-collateral ratio."
+        },
+        {
+          "id": "fi-04-q07",
+          "lesson": "fi-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "All else equal, which change would most likely lower the repo rate?",
+          "options": [
+            "Lengthening the repo term from overnight to three months",
+            "Using collateral that is in high demand (special) in the market",
+            "Leaving the collateral with the borrower's custodian rather than delivering it"
+          ],
+          "answer": 1,
+          "explanation": "Lenders accept a lower rate to obtain collateral that is in high demand. Longer terms and non-delivery of collateral increase the lender's risk and raise the repo rate."
+        },
+        {
+          "id": "fi-04-q08",
+          "lesson": "fi-04-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "From the perspective of the party lending cash and receiving securities, the transaction is a:",
+          "options": [
+            "repurchase agreement.",
+            "securities lending fee.",
+            "reverse repurchase agreement."
+          ],
+          "answer": 2,
+          "explanation": "The cash lender takes in securities and agrees to sell them back: a reverse repo. The cash borrower is doing the repo. A securities-lending fee arises when securities, not cash, are what is sought."
+        },
+        {
+          "id": "fi-04-q09",
+          "lesson": "fi-04-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with an investment-grade bond, a high-yield corporate bond is most likely to have:",
+          "options": [
+            "more restrictive covenants and a shorter maturity.",
+            "fewer covenants and a longer maturity.",
+            "a make-whole call and no security."
+          ],
+          "answer": 0,
+          "explanation": "HY lenders demand more protection (covenants, security) and lend for shorter terms. Fewer covenants, long maturities and make-whole calls characterise IG bonds."
+        },
+        {
+          "id": "fi-04-q10",
+          "lesson": "fi-04-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Why does a make-whole call provision have little effect on a bond's yield relative to an option-free bond?",
+          "options": [
+            "Make-whole calls are exercisable only by the investor.",
+            "Make-whole calls can only be exercised at maturity.",
+            "The issuer must pay roughly the present value of remaining cash flows, so calling to refinance cheaply is unattractive."
+          ],
+          "answer": 2,
+          "explanation": "The call price is the PV of remaining payments discounted at a small spread over government yields, so the issuer gains little from calling when rates fall. It can be exercised before maturity and belongs to the issuer, not the investor."
+        },
+        {
+          "id": "fi-04-q11",
+          "lesson": "fi-04-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A company issues notes continuously in varying maturities under a single programme. These are best described as:",
+          "options": [
+            "medium-term notes.",
+            "commercial paper.",
+            "leveraged loans."
+          ],
+          "answer": 0,
+          "explanation": "MTN programmes allow continuous issuance with flexible maturities. CP is short term (under a year); leveraged loans are syndicated bank loans."
+        },
+        {
+          "id": "fi-04-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A hedge fund borrows via a 14-day repo: collateral value 50,000,000, haircut 4%, repo rate 4.5% (actual/360). The repurchase price is closest to:",
+          "options": [
+            "48,084,000.",
+            "48,000,000.",
+            "48,087,500."
+          ],
+          "answer": 0,
+          "explanation": "Loan = 50,000,000 × 0.96 = 48,000,000. Interest = 48,000,000 × 0.045 × 14/360 = 84,000. Repurchase price = 48,084,000. 48,000,000 omits the interest; 48,087,500 computes interest on the full 50,000,000 collateral (87,500)."
+        },
+        {
+          "id": "fi-04-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which repo risk refers to the cash lender being unable to sell the collateral for enough to cover the loan if the borrower defaults?",
+          "options": [
+            "Collateral (market) risk",
+            "Rollover risk",
+            "Legal risk"
+          ],
+          "answer": 0,
+          "explanation": "If collateral value falls below the cash lent, the lender loses on liquidation; haircuts and margin calls address this. Rollover risk applies to refinancing short-term debt; legal risk concerns enforceability of the agreement."
+        },
+        {
+          "id": "fi-04-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "In a tri-party repo, the third party's main role is to:",
+          "options": [
+            "guarantee the borrower's repayment.",
+            "hold the collateral and manage settlement and valuation.",
+            "set the repo rate through an auction."
+          ],
+          "answer": 1,
+          "explanation": "A tri-party agent (custodian bank) holds collateral, values it and handles settlement for both sides. It does not guarantee repayment or set rates."
+        },
+        {
+          "id": "fi-04-q15",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A company factors its receivables. This is best described as:",
+          "options": [
+            "selling receivables to a third party to raise cash.",
+            "issuing unsecured short-term notes.",
+            "borrowing under an uncommitted bank line."
+          ],
+          "answer": 0,
+          "explanation": "Factoring is the sale of receivables (often at a discount) for immediate cash. Unsecured short-term notes are commercial paper; an uncommitted line is a bank facility."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-04-f01",
+          "front": "Repo loan amount",
+          "back": "Collateral value × (1 − haircut)"
+        },
+        {
+          "id": "fi-04-f02",
+          "front": "Repo interest",
+          "back": "Loan × repo rate × days/360"
+        },
+        {
+          "id": "fi-04-f03",
+          "front": "Haircut",
+          "back": "(Collateral value − loan) ÷ collateral value"
+        },
+        {
+          "id": "fi-04-f04",
+          "front": "Repo vs reverse repo",
+          "back": "Repo = cash borrower sells and repurchases securities. Reverse repo = cash lender's side."
+        },
+        {
+          "id": "fi-04-f05",
+          "front": "Higher repo rate when…",
+          "back": "Riskier/illiquid collateral, longer term, weaker counterparty, collateral not delivered, higher general rates. Special collateral → lower rate."
+        },
+        {
+          "id": "fi-04-f06",
+          "front": "US CP vs ECP",
+          "back": "US CP: discount, ≤ 270 days. ECP: often add-on, ≤ 364 days."
+        },
+        {
+          "id": "fi-04-f07",
+          "front": "IG vs HY bond features",
+          "back": "IG: long, unsecured, light covenants, make-whole calls. HY: shorter, secured, heavy covenants, callable after lockout."
+        }
+      ]
+    },
+    {
+      "id": "fi-05",
+      "lm": 5,
+      "title": "Fixed-Income Markets for Government Issuers",
+      "summary": "How sovereigns, sub-sovereigns, agencies and supranationals borrow, and how government bonds are issued (auctions) and traded (benchmarks, on-the-run vs off-the-run).",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "ACCA did not cover government debt markets. Auction types, on-the-run/off-the-run, and the credit features of non-sovereign, quasi-government and supranational issuers are all new."
+      },
+      "lessons": [
+        {
+          "id": "fi-05-a",
+          "title": "Government issuers and their credit",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Sovereign issuers",
+              "body": "National governments borrow to fund deficits and refinance maturing debt. Bonds in **local currency** are lowest risk because the government can tax and, ultimately, print money. **Foreign-currency** sovereign debt carries more default risk, so it is usually rated lower than local-currency debt of the same country.\n\nSovereign yields form the **benchmark (risk-free) curve** for that currency."
+            },
+            {
+              "kind": "concept",
+              "title": "Non-sovereign governments",
+              "body": "States, provinces, regions and cities issue bonds (e.g. US **municipals**).\n- **General obligation (GO) bonds:** backed by the issuer's taxing power.\n- **Revenue bonds:** repaid only from a specific project's revenue (toll road, airport); riskier, so higher yield.\n\nMany municipal bonds are tax-exempt in the US."
+            },
+            {
+              "kind": "concept",
+              "title": "Quasi-government and supranationals",
+              "body": "**Quasi-government (agency)** entities are owned or sponsored by governments (e.g. German KfW, US housing agencies). Often implicitly or explicitly guaranteed, so they trade at a small spread over sovereigns.\n\n**Supranationals** (World Bank, IMF, European Investment Bank, Asian Development Bank) are owned by member governments and lend for development. They typically have very high ratings and issue in many currencies."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Ranking of credit risk (usually): local-currency sovereign < quasi-government ≈ GO bond < revenue bond. Expect questions asking which bond has the highest yield among these."
+            }
+          ]
+        },
+        {
+          "id": "fi-05-b",
+          "title": "Issuing and trading government bonds",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Auctions",
+              "body": "Governments sell bonds by **public auction**, often to **primary dealers** who must bid and then distribute to investors.\n\n- **Single-price (uniform, Dutch) auction:** bids are filled from the highest price (lowest yield) down until the issue is sold; **all** winners pay the same clearing price. Used for US Treasuries.\n- **Multiple-price (discriminatory) auction:** each winner pays the price it bid.\n\n**Non-competitive bids** take the clearing price without bidding a yield, so small investors are guaranteed allocation."
+            },
+            {
+              "kind": "example",
+              "title": "Single-price auction",
+              "body": "A government offers 10bn. Competitive bids (yield, amount): 3.10% for 4bn; 3.12% for 3bn; 3.14% for 5bn. Non-competitive bids: 1bn.\n\nNon-competitive 1bn is filled first, leaving 9bn. Fill 4bn at 3.10%, 3bn at 3.12%, then 2bn of the 5bn at 3.14%.\n\nClearing (stop-out) yield = **3.14%**, paid by **all** winners in a single-price auction."
+            },
+            {
+              "kind": "concept",
+              "title": "On-the-run vs off-the-run",
+              "body": "The most recently issued bond of each maturity is **on-the-run**; older issues are **off-the-run**.\n\nOn-the-run bonds are the most liquid, so they trade at slightly **higher prices / lower yields** than similar off-the-run bonds. They serve as **benchmarks** for pricing other bonds (e.g. G-spreads).\n\nGovernments issue on a regular, predictable calendar to support liquidity and keep borrowing costs low."
+            },
+            {
+              "kind": "compare",
+              "title": "Government vs corporate issuance",
+              "rows": [
+                [
+                  "",
+                  "Government",
+                  "Corporate"
+                ],
+                [
+                  "Primary method",
+                  "Regular auctions",
+                  "Underwritten / syndicated deals"
+                ],
+                [
+                  "Schedule",
+                  "Predictable calendar",
+                  "Opportunistic"
+                ],
+                [
+                  "Secondary liquidity",
+                  "Highest (on-the-run)",
+                  "Lower, varies"
+                ],
+                [
+                  "Role",
+                  "Benchmark curve",
+                  "Priced as spread over benchmark"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "In a **single-price** auction, a bidder who bid a *lower* yield than the stop-out still receives the **stop-out yield** (gets a better deal than bid). In a multiple-price auction they receive exactly what they bid."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-05-q01",
+          "lesson": "fi-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A sovereign's foreign-currency bonds are most likely rated lower than its local-currency bonds because:",
+          "options": [
+            "the government cannot tax or create foreign currency to repay them.",
+            "foreign-currency bonds always have longer maturities.",
+            "foreign investors have lower recovery rights by law."
+          ],
+          "answer": 0,
+          "explanation": "The sovereign can raise taxes or print its own currency to repay local-currency debt, but it needs FX earnings or reserves for foreign-currency debt. Maturity and legal recovery rights do not explain the systematic gap."
+        },
+        {
+          "id": "fi-05-q02",
+          "lesson": "fi-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A municipal bond repaid only from the tolls of a new bridge is a:",
+          "options": [
+            "general obligation bond.",
+            "revenue bond.",
+            "supranational bond."
+          ],
+          "answer": 1,
+          "explanation": "Revenue bonds are serviced from a specific project's revenue. GO bonds are backed by the issuer's general taxing power; supranational bonds are issued by multilateral institutions such as the World Bank."
+        },
+        {
+          "id": "fi-05-q03",
+          "lesson": "fi-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Holding maturity and currency constant, which bond most likely has the highest yield?",
+          "options": [
+            "A sovereign bond",
+            "A general obligation bond of a large state",
+            "A revenue bond for a regional airport"
+          ],
+          "answer": 2,
+          "explanation": "The revenue bond relies on one project's cash flows, so it carries the most credit risk and the highest yield. The sovereign is lowest risk; a GO bond is backed by broad taxing power."
+        },
+        {
+          "id": "fi-05-q04",
+          "lesson": "fi-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The European Investment Bank and the World Bank are examples of:",
+          "options": [
+            "supranational issuers.",
+            "quasi-government agencies.",
+            "sovereign issuers."
+          ],
+          "answer": 0,
+          "explanation": "Both are multilateral institutions owned by several member governments: supranationals. Quasi-government agencies are sponsored by a single government."
+        },
+        {
+          "id": "fi-05-q05",
+          "lesson": "fi-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A government sells 10bn in a single-price auction after 1bn of non-competitive bids. Competitive bids are: 3.10% for 4bn, 3.12% for 3bn, 3.14% for 5bn. The yield paid to a bidder who bid 3.10% is:",
+          "options": [
+            "3.10%.",
+            "3.12%.",
+            "3.14%."
+          ],
+          "answer": 2,
+          "explanation": "9bn is available to competitive bidders: 4bn at 3.10%, 3bn at 3.12%, and 2bn at 3.14%. The stop-out yield is 3.14% and in a single-price auction every winner receives it. 3.10% would apply in a multiple-price auction."
+        },
+        {
+          "id": "fi-05-q06",
+          "lesson": "fi-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with an off-the-run government bond of similar maturity, an on-the-run bond most likely has:",
+          "options": [
+            "a higher yield because it is newer.",
+            "a lower yield because it is more liquid.",
+            "the same yield because both are default-free."
+          ],
+          "answer": 1,
+          "explanation": "Investors pay a premium for the on-the-run issue's liquidity, so its yield is slightly lower. Being default-free does not equalise liquidity premiums."
+        },
+        {
+          "id": "fi-05-q07",
+          "lesson": "fi-05-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In a government auction, a non-competitive bid is one in which the bidder:",
+          "options": [
+            "agrees to accept the auction's clearing yield in exchange for a guaranteed allocation.",
+            "bids a yield above the expected clearing level.",
+            "can only buy in the secondary market."
+          ],
+          "answer": 0,
+          "explanation": "Non-competitive bidders specify only the amount, accept the clearing yield and are filled first. They do not bid a yield at all."
+        },
+        {
+          "id": "fi-05-q08",
+          "lesson": "fi-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Governments issue bonds on a regular, pre-announced calendar mainly to:",
+          "options": [
+            "avoid paying primary dealers.",
+            "support market liquidity and lower borrowing costs.",
+            "allow issuance only when rates are low."
+          ],
+          "answer": 1,
+          "explanation": "Predictable issuance builds liquid benchmark issues and reduces the premium investors demand. Opportunistic timing is a corporate approach, and primary dealers remain part of the process."
+        },
+        {
+          "id": "fi-05-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A government offers 8bn in a single-price auction with no non-competitive bids. Bids: 2.50% for 3bn; 2.52% for 2bn; 2.55% for 4bn; 2.58% for 2bn. The stop-out yield and the allocation to the 2.55% bidder are:",
+          "options": [
+            "2.55%; 3bn.",
+            "2.55%; 4bn.",
+            "2.58%; 2bn."
+          ],
+          "answer": 0,
+          "explanation": "Fill 3bn at 2.50% and 2bn at 2.52% (5bn), leaving 3bn of the 4bn bid at 2.55%. Stop-out = 2.55%, partial allocation 3bn. 4bn over-allocates beyond the 8bn offered; 2.58% bidders get nothing."
+        },
+        {
+          "id": "fi-05-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which bond is most likely to be used as a benchmark when calculating a corporate bond's G-spread?",
+          "options": [
+            "The on-the-run government bond with similar maturity",
+            "An off-the-run supranational bond",
+            "A AAA corporate bond in the same sector"
+          ],
+          "answer": 0,
+          "explanation": "G-spreads are measured against government yields, typically liquid on-the-run issues (interpolated for maturity). Supranational and corporate bonds are not the government benchmark."
+        },
+        {
+          "id": "fi-05-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "In a multiple-price (discriminatory) auction, successful bidders:",
+          "options": [
+            "all pay the lowest accepted price.",
+            "each pay the price they bid.",
+            "pay the average of all bids."
+          ],
+          "answer": 1,
+          "explanation": "Discriminatory auctions charge each winner its own bid. The single-price (uniform) format charges all winners the clearing price."
+        },
+        {
+          "id": "fi-05-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A bond issued by a government-sponsored housing agency with an implicit government guarantee will most likely trade at a yield:",
+          "options": [
+            "slightly above the sovereign yield.",
+            "well below the sovereign yield.",
+            "equal to a high-yield corporate yield."
+          ],
+          "answer": 0,
+          "explanation": "Implied support makes agency credit risk low but not identical to the sovereign, and agency issues are less liquid, so they trade at a small positive spread. Yields below the sovereign or at high-yield levels are inconsistent with a government guarantee."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-05-f01",
+          "front": "GO vs revenue bond",
+          "back": "GO: backed by taxing power. Revenue: backed only by a project's revenue → riskier, higher yield."
+        },
+        {
+          "id": "fi-05-f02",
+          "front": "Local vs foreign-currency sovereign debt",
+          "back": "Local currency is safer (tax and print money); foreign currency usually rated lower."
+        },
+        {
+          "id": "fi-05-f03",
+          "front": "Single-price vs multiple-price auction",
+          "back": "Single-price (Dutch/uniform): all winners pay the clearing price. Multiple-price: each pays own bid."
+        },
+        {
+          "id": "fi-05-f04",
+          "front": "On-the-run",
+          "back": "Most recently issued government bond of a maturity; most liquid, lower yield, used as benchmark."
+        },
+        {
+          "id": "fi-05-f05",
+          "front": "Supranational issuer",
+          "back": "Multilateral body owned by several governments (World Bank, IMF, EIB, ADB)."
+        },
+        {
+          "id": "fi-05-f06",
+          "front": "Non-competitive bid",
+          "back": "Accepts the clearing yield; guaranteed allocation; filled first."
+        }
+      ]
+    },
+    {
+      "id": "fi-06",
+      "lm": 6,
+      "title": "Fixed-Income Bond Valuation: Prices and Yields",
+      "summary": "Pricing a fixed-rate bond by discounting its cash flows at the yield to maturity, handling settlement between coupon dates (full price, flat price, accrued interest), the key price–yield relationships, and matrix pricing for bonds that rarely trade.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM"
+        ],
+        "note": "FM covered bond valuation as the PV of interest and redemption at the investor's required return, and the redemption yield found by IRR. That is the first lesson here. New for CFA: pricing between coupon dates (full vs flat price, accrued interest, day-count conventions), convexity and pull-to-par relationships, and matrix pricing."
+      },
+      "lessons": [
+        {
+          "id": "fi-06-a",
+          "title": "Pricing a bond with its yield to maturity",
+          "minutes": 7,
+          "fastTrack": [
+            "FM"
+          ],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Bond price",
+              "formula": "P = PMT ÷ (1 + r)^{1} + PMT ÷ (1 + r)^{2} + … + (PMT + FV) ÷ (1 + r)^{N}",
+              "where": [
+                [
+                  "PMT",
+                  "coupon per period"
+                ],
+                [
+                  "FV",
+                  "par (redemption) value"
+                ],
+                [
+                  "r",
+                  "market discount rate (YTM) per period"
+                ],
+                [
+                  "N",
+                  "number of periods to maturity"
+                ]
+              ],
+              "note": "Semiannual bond: halve the coupon and the yield, double the periods."
+            },
+            {
+              "kind": "example",
+              "title": "Annual coupon bond",
+              "body": "A 5-year, 6% annual-coupon bond, par 100, YTM 5%.\n\nP = 6/1.05 + 6/1.05^{2} + 6/1.05^{3} + 6/1.05^{4} + 106/1.05^{5} = **104.33**\n\nCoupon (6%) > yield (5%) → premium. At a 7% yield the same bond is worth **95.90** (discount).",
+              "calc": "5 [N] 5 [I/Y] 6 [PMT] 100 [FV] [CPT] [PV] → −104.33"
+            },
+            {
+              "kind": "example",
+              "title": "Semiannual coupon bond",
+              "body": "A 10-year, 4% semiannual bond, YTM 5% (stated annual, semiannual compounding).\n\nN = 20, r = 2.5%, PMT = 2.\n\nP = **92.21**",
+              "calc": "20 [N] 2.5 [I/Y] 2 [PMT] 100 [FV] [CPT] [PV] → −92.21"
+            },
+            {
+              "kind": "example",
+              "title": "Solving for YTM",
+              "body": "A 4-year, 5% annual bond costs 96.50. YTM is the IRR of the cash flows: −96.50 today, then 5, 5, 5, 105.\n\nYTM ≈ **6.01%** (above the coupon, as expected for a discount bond).\n\nYTM assumes the bond is held to maturity, every payment is made on time, and coupons are reinvested at the YTM.",
+              "calc": "4 [N] −96.5 [PV] 5 [PMT] 100 [FV] [CPT] [I/Y] → 6.01"
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "This is FM's 'redemption yield' and bond value. Two CFA differences: (1) US and UK bonds pay **semiannually**, so you must convert N, r and PMT; (2) the YTM on a semiannual bond is quoted as **2 × periodic rate** (a semiannual bond basis), not an effective annual rate. Sign convention on the BA II Plus: PV and FV must have opposite signs."
+            }
+          ]
+        },
+        {
+          "id": "fi-06-b",
+          "title": "Between coupon dates: full price, flat price and accrued interest",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Why prices split in two",
+              "body": "Between coupon dates the seller has earned part of the next coupon. The buyer pays the **full (dirty, invoice) price**, which includes that **accrued interest (AI)**.\n\nDealers quote the **flat (clean) price** = full − AI, so that quoted prices do not jump on coupon dates simply because a coupon has been paid."
+            },
+            {
+              "kind": "formula",
+              "title": "Full price and accrued interest",
+              "formula": "PV_{full} = PV_{at last coupon} × (1 + r)^{t/T}\nAI = (t/T) × PMT\nPV_{flat} = PV_{full} − AI",
+              "where": [
+                [
+                  "t",
+                  "days from last coupon to settlement"
+                ],
+                [
+                  "T",
+                  "days in the coupon period"
+                ],
+                [
+                  "r",
+                  "YTM per period"
+                ]
+              ],
+              "note": "Day count: actual/actual for most government bonds; 30/360 for many corporates."
+            },
+            {
+              "kind": "example",
+              "title": "Full price with the BA II Plus",
+              "body": "5% semiannual bond maturing 15 Feb 2031; settlement 15 Apr 2027; YTM 6%. Last coupon 15 Feb 2027, next 15 Aug 2027: t = 59, T = 181 (act/act). 8 coupons remain.\n\nPV at last coupon = **96.4902** (8 [N] 3 [I/Y] 2.5 [PMT] 100 [FV] [CPT] [PV]).\nFull = 96.4902 × 1.03^{59/181} = **97.4243**\nAI = 2.5 × 59/181 = **0.8149**\nFlat = **96.6094**",
+              "calc": "[2ND][BOND] SDT = 4.1527 [ENTER] ↓ CPN = 5 [ENTER] ↓ RDT = 2.1531 [ENTER] ↓ RV = 100 [ENTER] ↓ ACT ↓ 2/Y ↓ YLD = 6 [ENTER] ↓ PRI [CPT] → 96.6094 ↓ AI → 0.8149 (full = PRI + AI)"
+            },
+            {
+              "kind": "example",
+              "title": "30/360 accrued interest",
+              "body": "A 6% annual-coupon corporate bond (30/360) last paid on 15 March; settlement is 20 July.\n\n30/360 days: 4 full months (120) + 5 days = 125.\nAI = 6 × 125/360 = **2.0833** per 100 par."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Compound the full price with **(1 + r)^{t/T}**, not with simple interest. And the BA II Plus PRI output is the **flat** price: add AI to get what the buyer actually pays."
+            }
+          ]
+        },
+        {
+          "id": "fi-06-c",
+          "title": "Price–yield relationships and matrix pricing",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Four relationships to memorise",
+              "body": "1. **Inverse:** price falls when yield rises.\n2. **Convexity:** for the same yield change, the price *gain* when yields fall exceeds the price *loss* when yields rise.\n3. **Coupon effect:** lower-coupon bonds are more price-sensitive to yield changes.\n4. **Maturity effect:** longer bonds are usually more price-sensitive (exceptions exist for long-dated deep-discount bonds).\n\nPlus **pull to par:** with yields unchanged, a premium bond's price falls and a discount bond's price rises toward par as maturity nears."
+            },
+            {
+              "kind": "example",
+              "title": "Convexity in numbers",
+              "body": "5-year 6% annual bond at a 6% yield: price 100.00.\n\nYield falls to 5% → 104.33 (**+4.33%**)\nYield rises to 7% → 95.90 (**−4.10%**)\n\nSame 100 bp move, bigger gain than loss. The price–yield curve is convex (bowed toward the origin)."
+            },
+            {
+              "kind": "concept",
+              "title": "Matrix pricing",
+              "body": "Some bonds (private placements, new issues, thinly traded corporates) have no recent trade. **Matrix pricing** estimates a yield from liquid **comparable bonds** with similar credit rating and coupon, by **linear interpolation** across maturity, then prices the bond with that yield.\n\nAlso used to set the coupon on a new issue: interpolate the comparable yield (or spread over government) for the planned maturity."
+            },
+            {
+              "kind": "example",
+              "title": "Matrix pricing example",
+              "body": "Price an illiquid 4-year, 5% annual bond. Comparable bonds of the same rating yield 4.40% (3-year) and 5.00% (5-year).\n\nInterpolated 4-year yield = 4.40% + (5.00% − 4.40%) × (4 − 3)/(5 − 3) = **4.70%**\n\nPrice at 4.70% = **101.07**",
+              "calc": "4 [N] 4.7 [I/Y] 5 [PMT] 100 [FV] [CPT] [PV] → −101.07"
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "If yields do not change, a bond's price moves along the **constant-yield price trajectory** toward par. A question saying 'yields unchanged after one year' wants you to reprice with N − 1, not keep the old price."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-06-q01",
+          "lesson": "fi-06-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A 5-year bond with a 6% annual coupon is priced at a YTM of 5%. Its price per 100 par is closest to:",
+          "options": [
+            "95.90.",
+            "100.00.",
+            "104.33."
+          ],
+          "answer": 2,
+          "explanation": "P = 6/1.05 + … + 106/1.05^{5} = 104.33. 95.90 is the price at a 7% yield; 100.00 would require the yield to equal the 6% coupon.",
+          "calc": "5 [N] 5 [I/Y] 6 [PMT] 100 [FV] [CPT] [PV] → −104.33"
+        },
+        {
+          "id": "fi-06-q02",
+          "lesson": "fi-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 10-year bond pays a 4% coupon semiannually and has a YTM of 5%. Its price per 100 par is closest to:",
+          "options": [
+            "92.21.",
+            "92.28.",
+            "107.79."
+          ],
+          "answer": 0,
+          "explanation": "N = 20, r = 2.5%, PMT = 2 → P = 92.21. 92.28 treats the bond as annual (N = 10, r = 5%, PMT = 4). 107.79 mirrors the discount as a premium (100 + 7.79); the bond must trade below par because its coupon is below the yield.",
+          "calc": "20 [N] 2.5 [I/Y] 2 [PMT] 100 [FV] [CPT] [PV] → −92.21"
+        },
+        {
+          "id": "fi-06-q03",
+          "lesson": "fi-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 4-year, 5% annual-coupon bond is priced at 96.50. Its yield to maturity is closest to:",
+          "options": [
+            "4.04%.",
+            "5.18%.",
+            "6.01%."
+          ],
+          "answer": 2,
+          "explanation": "Solve 96.50 = Σ 5/(1 + r)^{t} + 100/(1 + r)^{4}: r = 6.01%. 5.18% is the current yield (5/96.50); 4.04% would imply a premium price, impossible when price is below par.",
+          "calc": "4 [N] −96.5 [PV] 5 [PMT] 100 [FV] [CPT] [I/Y] → 6.01"
+        },
+        {
+          "id": "fi-06-q04",
+          "lesson": "fi-06-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A 5-year zero-coupon bond has a YTM of 4% (annual compounding). Its price per 100 par is closest to:",
+          "options": [
+            "80.00.",
+            "82.19.",
+            "96.15."
+          ],
+          "answer": 1,
+          "explanation": "P = 100/1.04^{5} = 82.19. 80.00 uses simple interest (100 − 5 × 4); 96.15 discounts for only one year.",
+          "calc": "5 [N] 4 [I/Y] 0 [PMT] 100 [FV] [CPT] [PV] → −82.19"
+        },
+        {
+          "id": "fi-06-q05",
+          "lesson": "fi-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 4% annual-coupon bond has exactly 3 years of coupons remaining as of its last coupon date; YTM is 5%. Settlement is 73 days into a 365-day period. The full price is closest to:",
+          "options": [
+            "97.28.",
+            "98.23.",
+            "98.25."
+          ],
+          "answer": 1,
+          "explanation": "PV at last coupon = 97.2768 (3 [N] 5 [I/Y] 4 [PMT] 100 [FV]). Full = 97.2768 × 1.05^{73/365} = 98.23. 97.28 ignores the time since the last coupon; 98.25 uses simple interest (1 + 0.05 × 73/365) instead of compounding.",
+          "calc": "3 [N] 5 [I/Y] 4 [PMT] 100 [FV] [CPT] [PV] → −97.2768; × 1.05 [y^x] (73 ÷ 365) [=] → 98.2306"
+        },
+        {
+          "id": "fi-06-q06",
+          "lesson": "fi-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "For the bond in which the full price is 98.2306, the coupon is 4 (annual) and settlement is 73 days into a 365-day period, the flat price is closest to:",
+          "options": [
+            "97.43.",
+            "98.23.",
+            "99.03."
+          ],
+          "answer": 0,
+          "explanation": "AI = 4 × 73/365 = 0.80. Flat = 98.2306 − 0.80 = 97.43. 98.23 is the full price; 99.03 adds AI instead of subtracting it."
+        },
+        {
+          "id": "fi-06-q07",
+          "lesson": "fi-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 6% annual-coupon corporate bond uses a 30/360 day count. The last coupon was paid on 15 March and settlement is 20 July. Accrued interest per 100 par is closest to:",
+          "options": [
+            "2.05.",
+            "2.08.",
+            "2.12."
+          ],
+          "answer": 1,
+          "explanation": "30/360: March 15 → July 15 = 4 months × 30 = 120 days, plus 5 = 125. AI = 6 × 125/360 = 2.0833. 2.05 divides 125 days by 365; 2.12 counts the 127 actual days over 360 (actual/360). Only 125/360 follows the 30/360 convention."
+        },
+        {
+          "id": "fi-06-q08",
+          "lesson": "fi-06-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The price a buyer actually pays for a bond between coupon dates is the:",
+          "options": [
+            "flat price.",
+            "full price.",
+            "clean price."
+          ],
+          "answer": 1,
+          "explanation": "The invoice amount is the full (dirty) price, which includes accrued interest owed to the seller. The flat price is the same thing as the clean price, the quoted figure without AI."
+        },
+        {
+          "id": "fi-06-q09",
+          "lesson": "fi-06-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A bond's yield falls by 100 bp and its price rises 4.33%. If instead the yield had risen by 100 bp, the price change would most likely be:",
+          "options": [
+            "a fall of less than 4.33%.",
+            "a fall of exactly 4.33%.",
+            "a fall of more than 4.33%."
+          ],
+          "answer": 0,
+          "explanation": "Convexity makes price gains from falling yields larger than losses from equal rising yields. For a 5-year 6% bond at 6%, the figures are +4.33% and −4.10%."
+        },
+        {
+          "id": "fi-06-q10",
+          "lesson": "fi-06-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Holding other features constant, which bond is most sensitive to a change in market yields?",
+          "options": [
+            "10-year, 6% coupon",
+            "10-year, 2% coupon",
+            "3-year, 2% coupon"
+          ],
+          "answer": 1,
+          "explanation": "Lower coupon and longer maturity both increase sensitivity. The 10-year 2% bond combines the longest maturity with the lowest coupon. The 10-year 6% has a higher coupon; the 3-year 2% has a short maturity."
+        },
+        {
+          "id": "fi-06-q11",
+          "lesson": "fi-06-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Comparable bonds of the same rating yield 3.20% (2-year) and 4.10% (5-year). Using matrix pricing, the price of a 3-year, 4% annual-coupon bond is closest to:",
+          "options": [
+            "99.72.",
+            "101.40.",
+            "102.25."
+          ],
+          "answer": 1,
+          "explanation": "Interpolated 3-year yield = 3.20% + 0.90% × (1/3) = 3.50%. Price at 3.50% = 101.40. 102.25 uses the 2-year yield (3.20%); 99.72 uses the 5-year yield (4.10%).",
+          "calc": "3 [N] 3.5 [I/Y] 4 [PMT] 100 [FV] [CPT] [PV] → −101.40"
+        },
+        {
+          "id": "fi-06-q12",
+          "lesson": "fi-06-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "If market yields remain unchanged, the price of a bond trading at a premium will:",
+          "options": [
+            "rise toward par over time.",
+            "fall toward par over time.",
+            "stay constant until maturity."
+          ],
+          "answer": 1,
+          "explanation": "Pull to par: a premium bond's price declines toward 100 as maturity approaches (and a discount bond's rises). It does not stay constant."
+        },
+        {
+          "id": "fi-06-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A 3-year, 8% annual-coupon bond is bought at a YTM of 6%. One year later, with the YTM still 6%, the bond's price will be:",
+          "options": [
+            "lower than at purchase.",
+            "higher than at purchase.",
+            "unchanged at its purchase price."
+          ],
+          "answer": 0,
+          "explanation": "Price at purchase = 105.35 (3 years at 6%); one year later with 2 years left = 103.67. A premium bond moves down toward par when the yield is unchanged. 'Higher' describes a discount bond; 'unchanged' ignores the pull to par."
+        },
+        {
+          "id": "fi-06-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A 5% semiannual bond has 8 coupons remaining as of its last coupon date. Settlement is 59 days into a 181-day period and the YTM is 6%. The flat price is closest to:",
+          "options": [
+            "96.49.",
+            "96.61.",
+            "97.42."
+          ],
+          "answer": 1,
+          "explanation": "PV at last coupon = 96.4902. Full = 96.4902 × 1.03^{59/181} = 97.4243. AI = 2.5 × 59/181 = 0.8149. Flat = 96.6094. 96.49 ignores accrual since the last coupon; 97.42 is the full price.",
+          "calc": "8 [N] 3 [I/Y] 2.5 [PMT] 100 [FV] [CPT] [PV] → −96.4902; × 1.03 [y^x] (59 ÷ 181) [=] → 97.4243; − 0.8149 → 96.6094"
+        },
+        {
+          "id": "fi-06-q15",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A 7-year bond pays a 3.5% coupon semiannually and trades at 102.40. Its YTM, quoted on a semiannual bond basis, is closest to:",
+          "options": [
+            "1.56%.",
+            "3.12%.",
+            "3.14%."
+          ],
+          "answer": 1,
+          "explanation": "With N = 14, PMT = 1.75, PV = −102.40, FV = 100: periodic r = 1.558%; YTM = 2 × 1.558% = 3.12%. 1.56% is the unannualised periodic rate; 3.14% is the effective annual rate (1.01558^{2} − 1), not the semiannual bond basis.",
+          "calc": "14 [N] −102.4 [PV] 1.75 [PMT] 100 [FV] [CPT] [I/Y] → 1.558; × 2 = 3.12"
+        },
+        {
+          "id": "fi-06-q16",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about the flat price is most accurate?",
+          "options": [
+            "It includes accrued interest and is the amount the buyer pays.",
+            "It excludes accrued interest so quotes do not jump around coupon dates.",
+            "It equals the full price on all days except coupon dates."
+          ],
+          "answer": 1,
+          "explanation": "Dealers quote flat (clean) prices to avoid the saw-tooth pattern caused by coupon payments. The full price includes AI and is what is paid; the two are equal only on coupon dates, when AI is zero."
+        },
+        {
+          "id": "fi-06-q17",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "An analyst uses matrix pricing for a new 4-year, 5% annual bond. Comparable yields are 4.40% (3-year) and 5.00% (5-year). Which price is closest?",
+          "options": [
+            "100.00",
+            "101.07",
+            "102.16"
+          ],
+          "answer": 1,
+          "explanation": "Interpolated yield = 4.70%; price = 101.07. 100.00 assumes the 5.00% 5-year yield applies; 102.16 uses the 3-year yield of 4.40%.",
+          "calc": "4 [N] 4.7 [I/Y] 5 [PMT] 100 [FV] [CPT] [PV] → −101.07"
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-06-f01",
+          "front": "Bond price formula",
+          "back": "P = Σ PMT/(1 + r)^{t} + FV/(1 + r)^{N}; r = YTM per period"
+        },
+        {
+          "id": "fi-06-f02",
+          "front": "Full price",
+          "back": "PV_{full} = PV at last coupon × (1 + r)^{t/T} = flat price + AI"
+        },
+        {
+          "id": "fi-06-f03",
+          "front": "Accrued interest",
+          "back": "AI = (t/T) × PMT; t = days since last coupon, T = days in period"
+        },
+        {
+          "id": "fi-06-f04",
+          "front": "Flat (clean) vs full (dirty) price",
+          "back": "Flat = quoted, excludes AI. Full = paid, includes AI."
+        },
+        {
+          "id": "fi-06-f05",
+          "front": "Price sensitivity is greater when…",
+          "back": "Coupon is lower, maturity is longer, yield is lower."
+        },
+        {
+          "id": "fi-06-f06",
+          "front": "Convexity effect",
+          "back": "Price rise from a yield fall > price fall from an equal yield rise."
+        },
+        {
+          "id": "fi-06-f07",
+          "front": "Matrix pricing",
+          "back": "Interpolate yields of comparable liquid bonds (same rating) by maturity, then price with that yield."
+        },
+        {
+          "id": "fi-06-f08",
+          "front": "Day-count conventions",
+          "back": "Actual/actual: most government bonds. 30/360: many corporate bonds."
+        }
+      ]
+    },
+    {
+      "id": "fi-07",
+      "lm": 7,
+      "title": "Yield and Yield Spread Measures for Fixed-Rate Bonds",
+      "summary": "Converting yields between compounding frequencies, the alternative yield measures quoted in markets (current, simple, yield to call, yield to worst), and the spread measures used to separate benchmark rates from credit and liquidity premiums.",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "FM gave you the redemption yield only. Periodicity conversion, street conventions, yield to worst and the G-, I- and Z-spreads are all new."
+      },
+      "lessons": [
+        {
+          "id": "fi-07-a",
+          "title": "Periodicity and annualizing yields",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Why periodicity matters",
+              "body": "A yield is only meaningful with its **periodicity** (compounding frequency). A 6% yield compounded semiannually earns more than 6% compounded annually.\n\nTo compare bonds that pay at different frequencies, convert all yields to the same periodicity. More frequent compounding → lower stated rate for the same effective return."
+            },
+            {
+              "kind": "formula",
+              "title": "Periodicity conversion",
+              "formula": "(1 + APR_{m} ÷ m)^{m} = (1 + APR_{n} ÷ n)^{n}",
+              "where": [
+                [
+                  "APR_{m}",
+                  "stated annual rate with m periods a year"
+                ],
+                [
+                  "APR_{n}",
+                  "equivalent stated annual rate with n periods a year"
+                ]
+              ],
+              "note": "Set n = 1 to get the effective annual rate."
+            },
+            {
+              "kind": "example",
+              "title": "Conversions",
+              "body": "- 6% semiannual → annual: 1.03^{2} − 1 = **6.09%**\n- 8% quarterly → semiannual: 2 × (1.02^{2} − 1) = **8.08%**\n- 5% annual → semiannual: 2 × (1.05^{0.5} − 1) = **4.94%**\n- 4.8% monthly → semiannual: 2 × [(1 + 0.004)^{6} − 1] = **4.85%**",
+              "calc": "Semiannual → effective annual: [2ND][ICONV] NOM = 6 [ENTER] ↑ C/Y = 2 [ENTER] ↑ EFF [CPT] → 6.09"
+            },
+            {
+              "kind": "concept",
+              "title": "Street convention and true yield",
+              "body": "**Street convention** YTM assumes payments on scheduled dates, ignoring weekends and holidays. **True yield** uses the actual payment dates, so it is never higher than the street yield.\n\n**Government equivalent yield** restates a corporate (30/360) yield on an actual/actual basis so it can be compared with government yields."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "When comparing a semiannual-pay bond with an annual-pay bond, convert one of them first. The question will often show the semiannual yield looking lower but actually being higher on an annual basis."
+            }
+          ]
+        },
+        {
+          "id": "fi-07-b",
+          "title": "Current yield, simple yield and yield to worst",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Current yield and simple yield",
+              "formula": "Current yield = Annual coupon ÷ Flat price\nSimple yield = (Annual coupon ± Straight-line amortization) ÷ Flat price",
+              "where": [
+                [
+                  "Amortization",
+                  "(Par − Price) ÷ Years to maturity: added for a discount bond, subtracted for a premium bond"
+                ]
+              ],
+              "note": "Current yield ignores time value and the gain/loss to par."
+            },
+            {
+              "kind": "example",
+              "title": "Current vs simple yield",
+              "body": "A 5% annual bond with 4 years left trades at 95.\n\nCurrent yield = 5 ÷ 95 = **5.26%**\nSimple yield = (5 + 5/4) ÷ 95 = **6.58%**\n\nThe simple yield adds the straight-line gain to par (1.25 a year). It is popular in Japan."
+            },
+            {
+              "kind": "concept",
+              "title": "Yield to call and yield to worst",
+              "body": "For a callable bond, compute a **yield to call (YTC)** for each call date, using that date as maturity and the call price as the redemption amount.\n\n**Yield to worst (YTW)** = the lowest of the YTM and all YTCs. It is the yield the investor can count on if the issuer acts in its own interest.\n\nYTW is a quick measure, but it ignores interest-rate volatility. The option-adjusted yield (from a model) is more rigorous."
+            },
+            {
+              "kind": "example",
+              "title": "Yield to worst example",
+              "body": "A 5-year 6% annual bond trades at 104. Callable in 2 years at 102, in 3 years at 101, in 4 years at 100.\n\nYTM = 5.07%\nYTC (2 yrs, 102) = **4.83%**\nYTC (3 yrs, 101) = 4.85%\nYTC (4 yrs, 100) = 4.88%\n\nYTW = **4.83%**, the first call.",
+              "calc": "YTC₂: 2 [N] −104 [PV] 6 [PMT] 102 [FV] [CPT] [I/Y] → 4.83"
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Current yield uses the **flat** price and the **annual** coupon. For a premium bond, current yield > YTM; for a discount bond, current yield < YTM. If a question gives you a semiannual coupon, double it first."
+            }
+          ]
+        },
+        {
+          "id": "fi-07-c",
+          "title": "Yield spreads: G, I and Z",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Decomposing a yield",
+              "body": "Bond yield = **benchmark yield** + **spread**.\n- Benchmark captures macro factors common to all bonds: expected inflation, real rates (and maturity).\n- Spread captures issuer-specific factors: credit risk, liquidity, tax status.\n\nSpread changes therefore tell you how the market's view of the issuer has changed, separately from rate moves."
+            },
+            {
+              "kind": "formula",
+              "title": "Spread measures",
+              "formula": "G-spread = YTM_{bond} − Government yield (same maturity, interpolated)\nI-spread = YTM_{bond} − Swap rate (same maturity)\nZ-spread: P = Σ PMT ÷ (1 + z_{t} + Z)^{t} + FV ÷ (1 + z_{N} + Z)^{N}",
+              "where": [
+                [
+                  "z_{t}",
+                  "government spot rate for period t"
+                ],
+                [
+                  "Z",
+                  "constant spread added to every spot rate"
+                ]
+              ],
+              "note": "OAS = Z-spread − option value (callable: OAS < Z)."
+            },
+            {
+              "kind": "example",
+              "title": "G-spread and I-spread",
+              "body": "A 4-year corporate bond yields 5.40%. Government yields: 3-year 3.80%, 5-year 4.20%, so interpolated 4-year = **4.00%**. The 4-year swap rate is 4.15%.\n\nG-spread = 5.40% − 4.00% = **140 bp**\nI-spread = 5.40% − 4.15% = **125 bp**"
+            },
+            {
+              "kind": "example",
+              "title": "Z-spread pricing",
+              "body": "Government spot rates: 3.0%, 3.5%, 4.0% for years 1–3. A 3-year 5% annual bond has a Z-spread of 100 bp.\n\nP = 5/1.04 + 5/1.045^{2} + 105/1.05^{3} = **100.09**\n\nWithout the spread the bond would be worth 102.87. The Z-spread is better than the G-spread when the yield curve is not flat, because it discounts each cash flow at its own spot rate."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "For bonds with embedded options use the **OAS**: it strips out the option's value. Callable: OAS = Z − call value, so OAS < Z. Putable: OAS > Z. Comparing Z-spreads of a callable and a straight bond overstates the callable's credit compensation."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-07-q01",
+          "lesson": "fi-07-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A bond's yield is 6.00% stated on a semiannual basis. The equivalent annual-pay (effective annual) yield is closest to:",
+          "options": [
+            "5.91%.",
+            "6.00%.",
+            "6.09%."
+          ],
+          "answer": 2,
+          "explanation": "1.03^{2} − 1 = 6.09%. 6.00% ignores compounding; 5.91% compounds in the wrong direction (converts as if going from annual to semiannual).",
+          "calc": "[2ND][ICONV] NOM = 6 [ENTER] ↑ C/Y = 2 [ENTER] ↑ EFF [CPT] → 6.09"
+        },
+        {
+          "id": "fi-07-q02",
+          "lesson": "fi-07-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An 8.00% yield is stated on a quarterly-compounding basis. The equivalent yield on a semiannual bond basis is closest to:",
+          "options": [
+            "7.92%.",
+            "8.08%.",
+            "8.24%."
+          ],
+          "answer": 1,
+          "explanation": "Quarterly rate 2% compounds to 1.02^{2} − 1 = 4.04% per half year; × 2 = 8.08%. 8.24% is the effective annual rate (1.02^{4} − 1); 7.92% converts in the wrong direction."
+        },
+        {
+          "id": "fi-07-q03",
+          "lesson": "fi-07-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An annual-pay bond yields 5.00%. The equivalent semiannual bond-basis yield is closest to:",
+          "options": [
+            "4.94%.",
+            "5.00%.",
+            "5.06%."
+          ],
+          "answer": 0,
+          "explanation": "2 × (1.05^{0.5} − 1) = 4.94%. Moving to more frequent compounding lowers the stated rate for the same effective return. 5.06% compounds in the wrong direction."
+        },
+        {
+          "id": "fi-07-q04",
+          "lesson": "fi-07-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Compared with the street-convention yield, a bond's true yield is:",
+          "options": [
+            "always higher.",
+            "never higher.",
+            "identical by definition."
+          ],
+          "answer": 1,
+          "explanation": "True yield uses actual payment dates, including delays for weekends and holidays, so cash arrives no earlier and the yield is never higher than the street yield."
+        },
+        {
+          "id": "fi-07-q05",
+          "lesson": "fi-07-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A 5% annual-coupon bond trades at a flat price of 95. Its current yield is closest to:",
+          "options": [
+            "4.75%.",
+            "5.00%.",
+            "5.26%."
+          ],
+          "answer": 2,
+          "explanation": "Current yield = 5 ÷ 95 = 5.26%. 5.00% is the coupon rate on par; 4.75% multiplies rather than divides by the price ratio."
+        },
+        {
+          "id": "fi-07-q06",
+          "lesson": "fi-07-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 5% annual-coupon bond with 4 years to maturity trades at 95. Its simple yield is closest to:",
+          "options": [
+            "5.26%.",
+            "6.25%.",
+            "6.58%."
+          ],
+          "answer": 2,
+          "explanation": "Simple yield = (5 + (100 − 95)/4) ÷ 95 = 6.25 ÷ 95 = 6.58%. 6.25% forgets to divide by the price; 5.26% is the current yield, which omits the gain to par."
+        },
+        {
+          "id": "fi-07-q07",
+          "lesson": "fi-07-b",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "A 5-year 6% annual bond trades at 104. It is callable in 2 years at 102, in 3 years at 101 and in 4 years at 100. Its yield to worst is closest to:",
+          "options": [
+            "4.83%.",
+            "4.88%.",
+            "5.07%."
+          ],
+          "answer": 0,
+          "explanation": "YTC(2y, 102) = 4.83%, YTC(3y, 101) = 4.85%, YTC(4y, 100) = 4.88%, YTM = 5.07%. YTW is the lowest: 4.83%. 4.88% is the yield to the last par call; 5.07% is the YTM.",
+          "calc": "2 [N] −104 [PV] 6 [PMT] 102 [FV] [CPT] [I/Y] → 4.83"
+        },
+        {
+          "id": "fi-07-q08",
+          "lesson": "fi-07-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "For a bond trading at a discount, which ordering is correct?",
+          "options": [
+            "Coupon rate < current yield < YTM",
+            "YTM < current yield < coupon rate",
+            "Current yield < coupon rate < YTM"
+          ],
+          "answer": 0,
+          "explanation": "Below par, coupon ÷ price > coupon ÷ par, so current yield > coupon rate; YTM adds the gain to par, so YTM > current yield. The reverse ordering (YTM < current yield < coupon rate) applies to a premium bond."
+        },
+        {
+          "id": "fi-07-q09",
+          "lesson": "fi-07-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 4-year corporate bond yields 5.40%. Government yields are 3.80% (3-year) and 4.20% (5-year). The G-spread is closest to:",
+          "options": [
+            "120 bp.",
+            "140 bp.",
+            "160 bp."
+          ],
+          "answer": 1,
+          "explanation": "Interpolated 4-year government yield = 3.80% + 0.40% × (1/2) = 4.00%. G-spread = 5.40% − 4.00% = 140 bp. 160 bp uses the 3-year yield; 120 bp uses the 5-year yield."
+        },
+        {
+          "id": "fi-07-q10",
+          "lesson": "fi-07-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The I-spread is measured relative to:",
+          "options": [
+            "the swap rate of the same maturity.",
+            "the government bond yield of the same maturity.",
+            "the government spot curve, as a constant spread."
+          ],
+          "answer": 0,
+          "explanation": "I-spread (interpolated spread) uses swap rates. The G-spread uses government yields; the Z-spread is the constant spread over the government spot curve."
+        },
+        {
+          "id": "fi-07-q11",
+          "lesson": "fi-07-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Government spot rates are 3.0%, 3.5% and 4.0% for years 1 to 3. A 3-year 5% annual bond has a Z-spread of 100 bp. Its price is closest to:",
+          "options": [
+            "100.00.",
+            "100.09.",
+            "102.87."
+          ],
+          "answer": 1,
+          "explanation": "P = 5/1.04 + 5/1.045^{2} + 105/1.05^{3} = 100.09. 102.87 ignores the Z-spread; 100.00 discounts all cash flows at a flat 5% (the 3-year spot plus spread), ignoring the shape of the curve."
+        },
+        {
+          "id": "fi-07-q12",
+          "lesson": "fi-07-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "For a callable bond, the option-adjusted spread is most likely:",
+          "options": [
+            "greater than its Z-spread.",
+            "less than its Z-spread.",
+            "equal to its Z-spread."
+          ],
+          "answer": 1,
+          "explanation": "OAS = Z-spread − value of the call (in spread terms). Part of the callable bond's extra spread compensates for the call, not credit risk, so OAS < Z. OAS > Z applies to putable bonds."
+        },
+        {
+          "id": "fi-07-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Bond A pays semiannually and yields 4.90% (semiannual basis). Bond B pays annually and yields 4.95% (annual basis). Same credit and maturity. Which statement is most accurate?",
+          "options": [
+            "Bond B offers the higher yield because 4.95% > 4.90%.",
+            "Bond A offers the higher yield on a comparable basis.",
+            "The yields are identical once converted."
+          ],
+          "answer": 1,
+          "explanation": "Convert A to annual: 1.0245^{2} − 1 = 4.96%, which exceeds B's 4.95%. Concluding that B is higher because 4.95% > 4.90% compares stated rates with different periodicity."
+        },
+        {
+          "id": "fi-07-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A bond's G-spread widens while government yields are unchanged. This most likely reflects:",
+          "options": [
+            "higher expected inflation.",
+            "a deterioration in the issuer's credit or liquidity.",
+            "a fall in real interest rates."
+          ],
+          "answer": 1,
+          "explanation": "Inflation and real rates sit in the benchmark yield, which is unchanged. A wider spread reflects issuer-specific factors: credit risk, liquidity or tax."
+        },
+        {
+          "id": "fi-07-q15",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Why is the Z-spread generally preferred to the G-spread when the yield curve is steep?",
+          "options": [
+            "It discounts each cash flow at its own spot rate plus the spread.",
+            "It uses swap rates, which have no credit risk.",
+            "It removes the value of embedded options."
+          ],
+          "answer": 0,
+          "explanation": "The G-spread compares single yields and ignores curve shape; the Z-spread uses the full spot curve. Swap rates belong to the I-spread, and option removal is the OAS."
+        },
+        {
+          "id": "fi-07-q16",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A 6% semiannual-coupon bond trades at a flat price of 103.00 with a YTM of 5.20%. Its current yield is closest to:",
+          "options": [
+            "2.91%.",
+            "5.20%.",
+            "5.83%."
+          ],
+          "answer": 2,
+          "explanation": "Current yield = annual coupon ÷ flat price = 6 ÷ 103 = 5.83%. 2.91% uses the semiannual coupon (3); 5.20% is the YTM. For a premium bond, current yield exceeds YTM."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-07-f01",
+          "front": "Periodicity conversion",
+          "back": "(1 + APR_{m}/m)^{m} = (1 + APR_{n}/n)^{n}"
+        },
+        {
+          "id": "fi-07-f02",
+          "front": "Current yield",
+          "back": "Annual coupon ÷ flat price"
+        },
+        {
+          "id": "fi-07-f03",
+          "front": "Simple yield",
+          "back": "(Annual coupon ± straight-line amortization of discount/premium) ÷ flat price"
+        },
+        {
+          "id": "fi-07-f04",
+          "front": "Yield to worst",
+          "back": "Lowest of YTM and every yield to call"
+        },
+        {
+          "id": "fi-07-f05",
+          "front": "G-spread vs I-spread",
+          "back": "G: over (interpolated) government yield. I: over swap rate."
+        },
+        {
+          "id": "fi-07-f06",
+          "front": "Z-spread",
+          "back": "Constant spread over each government spot rate that makes PV = price."
+        },
+        {
+          "id": "fi-07-f07",
+          "front": "OAS vs Z-spread",
+          "back": "OAS = Z − option cost. Callable: OAS < Z. Putable: OAS > Z."
+        },
+        {
+          "id": "fi-07-f08",
+          "front": "Discount bond yield ordering",
+          "back": "Coupon rate < current yield < YTM (reverse for a premium bond)."
+        }
+      ]
+    },
+    {
+      "id": "fi-08",
+      "lm": 8,
+      "title": "Yield and Yield Spread Measures for Floating-Rate Instruments",
+      "summary": "How to value and compare floating-rate notes using the quoted margin and the discount margin, and how to price money-market instruments quoted on a discount or add-on basis and convert between conventions.",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "FM touched FRNs and short-term investments only descriptively. Discount margin, money-market discount vs add-on conventions, 360 vs 365-day years and bond-equivalent yields are new and frequently tested."
+      },
+      "lessons": [
+        {
+          "id": "fi-08-a",
+          "title": "Floating-rate notes: quoted margin and discount margin",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Quoted margin vs discount margin",
+              "body": "An FRN pays **MRR + quoted margin (QM)**, where QM is fixed at issue to compensate for the issuer's credit risk at that time.\n\nThe **discount margin (DM)** (required margin) is the spread investors require *today*.\n\n- DM = QM → FRN priced at par on reset dates\n- DM > QM (credit worsened) → **discount**\n- DM < QM (credit improved) → **premium**\n\nThis mirrors coupon vs YTM for fixed-rate bonds."
+            },
+            {
+              "kind": "formula",
+              "title": "FRN pricing model",
+              "formula": "PV = Σ [(MRR + QM) × FV ÷ m] ÷ [1 + (MRR + DM) ÷ m]^{t} + FV ÷ [1 + (MRR + DM) ÷ m]^{N}",
+              "where": [
+                [
+                  "MRR",
+                  "market reference rate (assumed constant)"
+                ],
+                [
+                  "QM",
+                  "quoted margin (sets the coupon)"
+                ],
+                [
+                  "DM",
+                  "discount margin (sets the discount rate)"
+                ],
+                [
+                  "m",
+                  "payments per year"
+                ]
+              ],
+              "note": "Coupon uses QM; discount rate uses DM."
+            },
+            {
+              "kind": "example",
+              "title": "Pricing an FRN",
+              "body": "3-year FRN, quarterly, MRR 4.00%, QM 0.60%, DM 0.80%.\n\nCoupon per quarter = (4.60%/4) × 100 = 1.15\nDiscount rate per quarter = 4.80%/4 = 1.20%\nN = 12\n\nPV = **99.44** (discount, because DM > QM).",
+              "calc": "12 [N] 1.2 [I/Y] 1.15 [PMT] 100 [FV] [CPT] [PV] → −99.44"
+            },
+            {
+              "kind": "example",
+              "title": "Solving for the discount margin",
+              "body": "2-year FRN, semiannual, MRR 3.00%, QM 0.50%, price 99.50.\n\nCoupon = 3.50%/2 × 100 = 1.75; N = 4. Solve for the periodic rate: 1.8810%.\n\nAnnual rate = 3.762%. DM = 3.762% − 3.00% = **0.76%** (76 bp).",
+              "calc": "4 [N] −99.5 [PV] 1.75 [PMT] 100 [FV] [CPT] [I/Y] → 1.881; × 2 − 3.00 = 0.762"
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Do not swap QM and DM. The **QM goes in the coupon** (PMT); the **DM goes in the discount rate** (I/Y). Swapping them in the 3-year example gives 100.56 instead of 99.44."
+            }
+          ]
+        },
+        {
+          "id": "fi-08-b",
+          "title": "Money-market yields",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Two quoting conventions",
+              "body": "Money-market instruments (T-bills, CP, CDs, repos) are quoted with simple (non-compounded) rates, but in two ways:\n- **Discount basis:** rate is a % of **face value** (T-bills, US CP, banker's acceptances). Understates the true return.\n- **Add-on basis:** interest is added to the principal; rate is a % of **price** (CDs, repos, interbank deposits, ECP).\n\nYear length may be **360** or **365** days depending on the market."
+            },
+            {
+              "kind": "formula",
+              "title": "Money-market formulas",
+              "formula": "Discount: PV = FV × (1 − Days/Year × DR); DR = (Year/Days) × (FV − PV) ÷ FV\nAdd-on: PV = FV ÷ (1 + Days/Year × AOR); AOR = (Year/Days) × (FV − PV) ÷ PV",
+              "where": [
+                [
+                  "DR",
+                  "discount rate"
+                ],
+                [
+                  "AOR",
+                  "add-on rate"
+                ],
+                [
+                  "Year",
+                  "360 or 365"
+                ]
+              ],
+              "note": "Bond-equivalent yield (BEY) = add-on rate on a 365-day year."
+            },
+            {
+              "kind": "example",
+              "title": "Converting a T-bill quote",
+              "body": "A 180-day T-bill is quoted at a 4.00% discount rate (360-day year).\n\nPV = 100 × (1 − 180/360 × 0.04) = **98.00**\nAOR (360) = (360/180) × 2/98 = **4.08%**\nBEY (365) = (365/180) × 2/98 = **4.14%**\n\nThe discount rate always looks lower than the true return because it divides by face value, not price."
+            },
+            {
+              "kind": "example",
+              "title": "Comparing CP and a CD",
+              "body": "90-day CP at a 3.90% discount rate vs a 90-day CD at a 3.95% add-on rate, both on 360 days.\n\nCP price = 100 × (1 − 90/360 × 0.039) = 99.025\nCP add-on = (360/90) × 0.975/99.025 = **3.94%**\n\nThe CD pays more (3.95% > 3.94%), although the gap is far smaller than the quotes suggest."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "To compare money-market instruments, convert everything to the **same basis**: add-on, same year length (usually 365, the BEY). Discount-basis rates are always below the equivalent add-on rate."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-08-q01",
+          "lesson": "fi-08-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An FRN pays MRR + 0.60% quarterly and has 3 years to maturity. MRR is 4.00% and the discount margin is 0.80%. Its price per 100 par is closest to:",
+          "options": [
+            "99.44.",
+            "100.00.",
+            "100.56."
+          ],
+          "answer": 0,
+          "explanation": "Coupon = 4.60%/4 = 1.15; discount rate = 4.80%/4 = 1.20%; N = 12 → PV = 99.44. 100.56 swaps QM and DM; 100.00 would require DM = QM.",
+          "calc": "12 [N] 1.2 [I/Y] 1.15 [PMT] 100 [FV] [CPT] [PV] → −99.44"
+        },
+        {
+          "id": "fi-08-q02",
+          "lesson": "fi-08-a",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "A 2-year FRN pays MRR + 0.50% semiannually. MRR is 3.00% and the FRN trades at 99.50. The discount margin is closest to:",
+          "options": [
+            "26 bp.",
+            "50 bp.",
+            "76 bp."
+          ],
+          "answer": 2,
+          "explanation": "N = 4, PMT = 1.75, PV = −99.50, FV = 100 → periodic rate 1.881%, annual 3.762%. DM = 3.762% − 3.00% = 76 bp. 50 bp is the quoted margin, which applies only at par; 26 bp moves in the wrong direction (a price below par requires DM > QM).",
+          "calc": "4 [N] −99.5 [PV] 1.75 [PMT] 100 [FV] [CPT] [I/Y] → 1.881"
+        },
+        {
+          "id": "fi-08-q03",
+          "lesson": "fi-08-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Since issue, an FRN issuer's credit quality has improved. On a reset date, the FRN will most likely trade:",
+          "options": [
+            "at a premium, because the discount margin is now below the quoted margin.",
+            "at a discount, because the discount margin is now above the quoted margin.",
+            "at par, because the coupon resets to market rates."
+          ],
+          "answer": 0,
+          "explanation": "Better credit lowers the required margin (DM) below the fixed QM, so the FRN pays more than investors now require and trades above par. The reset adjusts MRR but not the margin, so par holds only if DM = QM."
+        },
+        {
+          "id": "fi-08-q04",
+          "lesson": "fi-08-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In the FRN pricing model, the quoted margin is used to determine:",
+          "options": [
+            "the discount rate.",
+            "the coupon payment.",
+            "the market reference rate."
+          ],
+          "answer": 1,
+          "explanation": "Coupon = (MRR + QM) × FV/m. The discount rate uses MRR + DM. The MRR itself is set by the market, not by the margin."
+        },
+        {
+          "id": "fi-08-q05",
+          "lesson": "fi-08-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 180-day T-bill is quoted at a 4.00% discount rate (360-day year). Its price per 100 face is closest to:",
+          "options": [
+            "98.00.",
+            "98.03.",
+            "98.04."
+          ],
+          "answer": 0,
+          "explanation": "PV = 100 × (1 − 180/360 × 0.04) = 98.00. 98.04 treats 4% as an add-on rate (100/1.02); 98.03 uses 365 days in the discount formula (100 × (1 − 180/365 × 0.04) = 98.03)."
+        },
+        {
+          "id": "fi-08-q06",
+          "lesson": "fi-08-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 120-day T-bill trades at 98.75 per 100 face. Its bond-equivalent yield is closest to:",
+          "options": [
+            "3.75%.",
+            "3.80%.",
+            "3.85%."
+          ],
+          "answer": 2,
+          "explanation": "BEY = (365/120) × (1.25/98.75) = 3.85%. 3.75% is the discount rate ((360/120) × 1.25/100); 3.80% is the add-on rate on a 360-day year."
+        },
+        {
+          "id": "fi-08-q07",
+          "lesson": "fi-08-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An investor compares 90-day CP quoted at a 3.90% discount rate with a 90-day CD quoted at a 3.95% add-on rate, both on a 360-day year. Which statement is most accurate?",
+          "options": [
+            "The CP offers the higher return: 3.96% vs 3.95%.",
+            "The CD offers the higher return: 3.95% vs 3.94% for the CP.",
+            "Both offer the same return once converted."
+          ],
+          "answer": 1,
+          "explanation": "CP price = 99.025; add-on equivalent = (360/90) × 0.975/99.025 = 3.94%, below the CD's 3.95%. Converting a discount rate always raises it, but here not by enough to beat the CD."
+        },
+        {
+          "id": "fi-08-q08",
+          "lesson": "fi-08-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which money-market instrument is typically quoted on a discount basis?",
+          "options": [
+            "US Treasury bill",
+            "Certificate of deposit",
+            "Repurchase agreement"
+          ],
+          "answer": 0,
+          "explanation": "T-bills (and US CP, banker's acceptances) use the discount basis. CDs and repos use add-on rates."
+        },
+        {
+          "id": "fi-08-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A bank deposit of 1,000,000 for 90 days pays an add-on rate of 4.20% on a 365-day basis. The amount repaid at maturity is closest to:",
+          "options": [
+            "1,010,356.",
+            "1,010,500.",
+            "1,042,000."
+          ],
+          "answer": 0,
+          "explanation": "FV = 1,000,000 × (1 + 90/365 × 0.042) = 1,010,356.16. 1,010,500 uses a 360-day year; 1,042,000 applies the full annual rate."
+        },
+        {
+          "id": "fi-08-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A 180-day T-bill has a 4.00% discount rate (360-day). Its bond-equivalent yield is closest to:",
+          "options": [
+            "4.06%.",
+            "4.08%.",
+            "4.14%."
+          ],
+          "answer": 2,
+          "explanation": "Price = 98.00. BEY = (365/180) × 2/98 = 4.14%. 4.08% is the add-on rate on 360 days; 4.06% applies 365/360 to the discount rate (4.00% × 365/360) without converting to an add-on basis."
+        },
+        {
+          "id": "fi-08-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "If an FRN's discount margin rises after issue while MRR is unchanged, the FRN's price will most likely:",
+          "options": [
+            "rise.",
+            "fall.",
+            "remain at par because the coupon resets."
+          ],
+          "answer": 1,
+          "explanation": "A higher DM raises the discount rate while the coupon (MRR + fixed QM) does not change, so price falls below par. Resets only adjust for MRR, not the margin."
+        },
+        {
+          "id": "fi-08-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Compared with the add-on rate for the same money-market instrument and year convention, the discount rate is:",
+          "options": [
+            "always lower.",
+            "always higher.",
+            "higher when maturity is short."
+          ],
+          "answer": 0,
+          "explanation": "The discount rate divides interest by face value, which exceeds price, so it is always lower than the add-on rate."
+        },
+        {
+          "id": "fi-08-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A 3-year quarterly FRN with QM 0.60% trades at 99.44 when MRR is 4.00%. If the issuer is upgraded and the DM falls to 0.60%, the price on the next reset date is closest to:",
+          "options": [
+            "99.44.",
+            "100.00.",
+            "100.56."
+          ],
+          "answer": 1,
+          "explanation": "With DM equal to QM, the coupon rate equals the discount rate, so the FRN prices at par on a reset date. 99.44 is the old price (DM 0.80%); 100.56 would require DM below QM (e.g. 0.40%)."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-08-f01",
+          "front": "FRN: QM vs DM",
+          "back": "QM is fixed in the coupon; DM is the margin required now. DM > QM → discount; DM < QM → premium."
+        },
+        {
+          "id": "fi-08-f02",
+          "front": "Discount-basis price",
+          "back": "PV = FV × (1 − Days/Year × DR)"
+        },
+        {
+          "id": "fi-08-f03",
+          "front": "Add-on rate",
+          "back": "AOR = (Year/Days) × (FV − PV) ÷ PV"
+        },
+        {
+          "id": "fi-08-f04",
+          "front": "Bond-equivalent yield (MM)",
+          "back": "Add-on rate on a 365-day year."
+        },
+        {
+          "id": "fi-08-f05",
+          "front": "Discount vs add-on quotes",
+          "back": "Discount: T-bills, US CP, BAs. Add-on: CDs, repos, deposits, ECP."
+        },
+        {
+          "id": "fi-08-f06",
+          "front": "Discount rate vs add-on rate",
+          "back": "Discount rate is always lower (divides by face value, not price)."
+        }
+      ]
+    },
+    {
+      "id": "fi-09",
+      "lm": 9,
+      "title": "The Term Structure of Interest Rates: Spot, Par, and Forward Curves",
+      "summary": "The three ways to describe the yield curve (spot, par and forward rates), how to price bonds with spot or forward rates, and how to move between the curves (bootstrapping and forward-rate calculations).",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "AFM"
+        ],
+        "note": "If you took AFM, you used spot-rate yield curves (and maybe bootstrapping) to value bonds. New for CFA: par curves, implied forward rates and their notation (e.g. 2y1y), pricing with forwards, and comparing the shapes of the three curves."
+      },
+      "lessons": [
+        {
+          "id": "fi-09-a",
+          "title": "Spot rates and pricing with spot rates",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Spot rates",
+              "body": "A **spot rate** (zero rate) z_{t} is the yield on a zero-coupon bond maturing at time t. The plot of spot rates against maturity is the **spot curve**.\n\nA coupon bond is a bundle of zeros, so each cash flow should be discounted at the spot rate for its own date, not a single YTM. If the curve is not flat, the bond's YTM is a weighted average of the spot rates."
+            },
+            {
+              "kind": "formula",
+              "title": "Pricing with spot rates",
+              "formula": "P = PMT ÷ (1 + z_{1})^{1} + PMT ÷ (1 + z_{2})^{2} + … + (PMT + FV) ÷ (1 + z_{N})^{N}\nDF_{t} = 1 ÷ (1 + z_{t})^{t}",
+              "where": [
+                [
+                  "z_{t}",
+                  "spot rate for maturity t"
+                ],
+                [
+                  "DF_{t}",
+                  "discount factor for time t"
+                ]
+              ]
+            },
+            {
+              "kind": "example",
+              "title": "Spot-rate pricing",
+              "body": "Spot rates: z_{1} = 3%, z_{2} = 4%, z_{3} = 5%.\nDiscount factors: 0.97087, 0.92456, 0.86384.\n\n3-year 5% annual bond:\nP = 5 × 0.97087 + 5 × 0.92456 + 105 × 0.86384 = **100.18**\n\nIts YTM (about 4.93%) sits between the spot rates, closest to z_{3} because most value is in the final payment."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "AFM's 'yield curve' bond valuation is exactly spot-rate pricing. CFA adds discount-factor notation, par and forward curves, and the idea that arbitrage forces every bond to price off the same spot curve. If you skipped AFM, this is new but quick."
+            }
+          ]
+        },
+        {
+          "id": "fi-09-b",
+          "title": "Par rates and bootstrapping",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Par rates",
+              "body": "A **par rate** is the coupon rate that would make a bond priced off the spot curve trade exactly at par. The **par curve** is what governments' newly issued bonds approximately show.\n\nFor each maturity N, the par rate p solves:\n\n**1 = p × (DF_{1} + … + DF_{N}) + DF_{N}**\n\nso p = (1 − DF_{N}) ÷ Σ DF_{t}."
+            },
+            {
+              "kind": "example",
+              "title": "Par rates from spot rates",
+              "body": "Spot 3%, 4%, 5% (DFs 0.97087, 0.92456, 0.86384).\n\n1-year par = 3.00%\n2-year par = (1 − 0.92456) ÷ (0.97087 + 0.92456) = **3.98%**\n3-year par = (1 − 0.86384) ÷ 2.75927 = **4.93%**\n\nIn an upward-sloping curve, par rates lie **below** spot rates."
+            },
+            {
+              "kind": "concept",
+              "title": "Bootstrapping spot rates",
+              "body": "**Bootstrapping** reverses the process: start from par rates and solve for spot rates one maturity at a time.\n\n1. The 1-year par rate is the 1-year spot rate.\n2. For year 2: 100 = p_{2} × 100 × DF_{1} + (100 + p_{2} × 100) × DF_{2}. Solve for DF_{2}, then z_{2}.\n3. Repeat for each later year, using the DFs already found."
+            },
+            {
+              "kind": "example",
+              "title": "Bootstrapping example",
+              "body": "Par rates: 2.0% (1y), 3.0% (2y), 3.5% (3y).\n\nz_{1} = 2.000%; DF_{1} = 0.98039\nYear 2: 100 = 3 × 0.98039 + 103 × DF_{2} → DF_{2} = 0.94233 → z_{2} = **3.015%**\nYear 3: 100 = 3.5 × (0.98039 + 0.94233) + 103.5 × DF_{3} → DF_{3} = 0.90116 → z_{3} = **3.530%**"
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Curve ordering when the spot curve slopes **up**: forward > spot > par. When it slopes **down**: forward < spot < par. When flat, all three are equal."
+            }
+          ]
+        },
+        {
+          "id": "fi-09-c",
+          "title": "Forward rates",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "What a forward rate is",
+              "body": "An **implied forward rate** is the rate for a loan starting in the future, locked in today, that is consistent with current spot rates.\n\nNotation: **AyBy** = a B-year rate starting A years from now. **2y1y** = the 1-year rate two years forward.\n\nIntuition: investing for 3 years at z_{3} must give the same result as investing for 2 years at z_{2} and then for 1 year at the 2y1y rate. Otherwise there is an arbitrage."
+            },
+            {
+              "kind": "formula",
+              "title": "Forward rates from spot rates",
+              "formula": "(1 + z_{A})^{A} × (1 + IFR_{A,B−A})^{B−A} = (1 + z_{B})^{B}",
+              "where": [
+                [
+                  "z_{A}, z_{B}",
+                  "spot rates for A and B years (B > A)"
+                ],
+                [
+                  "IFR_{A,B−A}",
+                  "implied forward rate for B − A years starting at A"
+                ]
+              ],
+              "note": "Quick approximation: IFR ≈ (B × z_{B} − A × z_{A}) ÷ (B − A)."
+            },
+            {
+              "kind": "example",
+              "title": "Computing forwards",
+              "body": "Spot 3%, 4%, 5%.\n\n1y1y = 1.04^{2} ÷ 1.03 − 1 = **5.01%**\n2y1y = 1.05^{3} ÷ 1.04^{2} − 1 = **7.03%**\n1y2y = (1.05^{3} ÷ 1.03)^{1/2} − 1 = **6.01%**\n\nPricing with forwards gives the same price: 5/1.03 + 5/(1.03 × 1.0501) + 105/(1.03 × 1.0501 × 1.0703) = 100.18."
+            },
+            {
+              "kind": "concept",
+              "title": "Using forward rates",
+              "body": "A forward rate is a **breakeven** rate: if the future spot rate turns out equal to today's forward, returns from rolling short bonds and buying long bonds are the same.\n\nIf an investor expects future spot rates to be **below** current forward rates, longer bonds are attractive (their value will rise more than the forwards imply). This is the basis of **riding the yield curve** in an upward-sloping curve."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Use **geometric** linking, not arithmetic averaging. The approximation (B × z_{B} − A × z_{A})/(B − A) is close but slightly off: for 2y1y it gives 7.00% vs the exact 7.03%. On the exam, compute exactly unless options are far apart."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-09-q01",
+          "lesson": "fi-09-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Spot rates are 3% (1-year), 4% (2-year) and 5% (3-year). The price of a 3-year, 5% annual-coupon bond per 100 par is closest to:",
+          "options": [
+            "97.33.",
+            "100.00.",
+            "100.18."
+          ],
+          "answer": 2,
+          "explanation": "P = 5/1.03 + 5/1.04^{2} + 105/1.05^{3} = 4.854 + 4.623 + 90.703 = 100.18. 100.00 discounts everything at 5% (the 3-year spot); 97.33 discounts every flow at a flat 6%, which overstates discounting."
+        },
+        {
+          "id": "fi-09-q02",
+          "lesson": "fi-09-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Using spot rates of 3%, 4% and 5% for years 1 to 3, the price of a 3-year 6% annual bond is closest to:",
+          "options": [
+            "100.00.",
+            "102.72.",
+            "102.94."
+          ],
+          "answer": 2,
+          "explanation": "P = 6 × 0.97087 + 6 × 0.92456 + 106 × 0.86384 = 102.94. 100.00 assumes the 6% coupon equals the yield; 102.72 discounts every flow at the 5% 3-year spot rate."
+        },
+        {
+          "id": "fi-09-q03",
+          "lesson": "fi-09-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The 2-year discount factor when the 2-year spot rate is 4% is closest to:",
+          "options": [
+            "0.9246.",
+            "0.9259.",
+            "0.9615."
+          ],
+          "answer": 0,
+          "explanation": "DF_{2} = 1/1.04^{2} = 0.9246. 0.9259 uses simple interest (1/1.08); 0.9615 is the one-year factor 1/1.04."
+        },
+        {
+          "id": "fi-09-q04",
+          "lesson": "fi-09-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Spot rates are 3% (1-year) and 4% (2-year). The 2-year par rate is closest to:",
+          "options": [
+            "3.50%.",
+            "3.98%.",
+            "4.00%."
+          ],
+          "answer": 1,
+          "explanation": "Par = (1 − DF_{2}) ÷ (DF_{1} + DF_{2}) = (1 − 0.92456) ÷ (0.97087 + 0.92456) = 3.98%. 3.50% is the simple average of the spots; 4.00% is the 2-year spot itself. With an upward-sloping curve, par is just below the spot."
+        },
+        {
+          "id": "fi-09-q05",
+          "lesson": "fi-09-b",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "Par rates are 2.0% (1-year) and 3.0% (2-year), annual coupons. The bootstrapped 2-year spot rate is closest to:",
+          "options": [
+            "2.985%.",
+            "3.000%.",
+            "3.015%."
+          ],
+          "answer": 2,
+          "explanation": "DF_{1} = 1/1.02 = 0.98039. 100 = 3 × 0.98039 + 103 × DF_{2} → DF_{2} = 0.94233 → z_{2} = 0.94233^{−1/2} − 1 = 3.015%. 3.000% treats par and spot as equal; 2.985% errs in the wrong direction (spot exceeds par when the curve slopes up)."
+        },
+        {
+          "id": "fi-09-q06",
+          "lesson": "fi-09-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "When the spot curve is upward sloping, which ordering is correct for a given maturity beyond one year?",
+          "options": [
+            "Par rate < spot rate < forward rate",
+            "Forward rate < spot rate < par rate",
+            "Spot rate < par rate < forward rate"
+          ],
+          "answer": 0,
+          "explanation": "In an upward-sloping curve forwards are above spots, and par rates (weighted averages of spots that put weight on earlier, lower rates) are below spots. Forward < spot < par applies to a downward-sloping curve."
+        },
+        {
+          "id": "fi-09-q07",
+          "lesson": "fi-09-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The 2-year spot rate is 4% and the 3-year spot rate is 5%. The 2y1y implied forward rate is closest to:",
+          "options": [
+            "4.50%.",
+            "7.00%.",
+            "7.03%."
+          ],
+          "answer": 2,
+          "explanation": "1.05^{3}/1.04^{2} − 1 = 7.03%. 7.00% is the arithmetic approximation (3 × 5 − 2 × 4); 4.50% simply averages the two spot rates."
+        },
+        {
+          "id": "fi-09-q08",
+          "lesson": "fi-09-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The 1-year spot rate is 2.5% and the 1y1y forward rate is 3.5%. The 2-year spot rate is closest to:",
+          "options": [
+            "3.00%.",
+            "3.50%.",
+            "6.09%."
+          ],
+          "answer": 0,
+          "explanation": "(1 + z_{2})^{2} = 1.025 × 1.035 → z_{2} = 2.999% ≈ 3.00%. 3.50% is the forward itself; 6.09% is the 2-year cumulative return, not an annual rate."
+        },
+        {
+          "id": "fi-09-q09",
+          "lesson": "fi-09-c",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "Spot rates are 3.2% (2-year) and 4.0% (5-year). The 2y3y implied forward rate is closest to:",
+          "options": [
+            "3.60%.",
+            "4.54%.",
+            "4.80%."
+          ],
+          "answer": 1,
+          "explanation": "(1.04^{5}/1.032^{2})^{1/3} − 1 = 4.54%. 3.60% simply averages the two spot rates; 4.80% adds the spot difference (0.80%) to the 5-year spot. The arithmetic approximation (5 × 4.0 − 2 × 3.2)/3 = 4.53% is close to the exact geometric answer."
+        },
+        {
+          "id": "fi-09-q10",
+          "lesson": "fi-09-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An investor expects future 1-year rates to be lower than the current implied forward rates. To maximise return, she should most likely:",
+          "options": [
+            "buy longer-maturity bonds.",
+            "roll over 1-year bonds.",
+            "hold cash until rates rise."
+          ],
+          "answer": 0,
+          "explanation": "If future spot rates come in below today's forwards, long bonds gain more than the forwards price in, so longer bonds outperform rolling short ones. Rolling short bonds locks in the lower future rates she expects."
+        },
+        {
+          "id": "fi-09-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Spot rates are 3% (1-year), 4% (2-year) and 5% (3-year). The 1y2y implied forward rate is closest to:",
+          "options": [
+            "5.01%.",
+            "6.01%.",
+            "7.03%."
+          ],
+          "answer": 1,
+          "explanation": "(1.05^{3}/1.03)^{1/2} − 1 = 6.01%. 5.01% is 1y1y and 7.03% is 2y1y; the 1y2y rate is roughly their geometric average."
+        },
+        {
+          "id": "fi-09-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Par rates are 2.0%, 3.0% and 3.5% for years 1 to 3. Given z_{1} = 2.000% and z_{2} = 3.015%, the bootstrapped 3-year spot rate is closest to:",
+          "options": [
+            "3.500%.",
+            "3.530%.",
+            "3.560%."
+          ],
+          "answer": 1,
+          "explanation": "100 = 3.5 × (0.98039 + 0.94233) + 103.5 × DF_{3} → DF_{3} = 0.90116 → z_{3} = 3.530%. 3.500% equates spot with par; 3.560% overstates the adjustment."
+        },
+        {
+          "id": "fi-09-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about pricing an option-free bond is most accurate?",
+          "options": [
+            "Pricing with spot rates and pricing with the corresponding forward rates give the same value.",
+            "Pricing with forward rates always gives a higher value in an upward-sloping curve.",
+            "Only YTM pricing is free of arbitrage."
+          ],
+          "answer": 0,
+          "explanation": "Forward rates are derived from spot rates, so discounting by successive forwards reproduces each spot discount factor and the same price. Arbitrage-free pricing uses spot (or forward) rates, not a single YTM."
+        },
+        {
+          "id": "fi-09-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "With spot rates of 3%, 4% and 5%, a 3-year 5% annual bond trades at 100.18. Its YTM is closest to:",
+          "options": [
+            "4.00%.",
+            "4.93%.",
+            "5.00%."
+          ],
+          "answer": 1,
+          "explanation": "Solve 100.18 = Σ 5/(1 + y)^{t} + 100/(1 + y)^{3}: y ≈ 4.93%. It is close to the 3-year spot because most of the value is the final payment, but below it because coupons are discounted at lower rates. 4.00% is the 2-year spot; 5.00% is the 3-year spot.",
+          "calc": "3 [N] −100.18 [PV] 5 [PMT] 100 [FV] [CPT] [I/Y] → 4.93"
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-09-f01",
+          "front": "Spot rate",
+          "back": "Yield on a zero-coupon bond for maturity t; discount each cash flow at its own spot rate."
+        },
+        {
+          "id": "fi-09-f02",
+          "front": "Discount factor",
+          "back": "DF_{t} = 1/(1 + z_{t})^{t}"
+        },
+        {
+          "id": "fi-09-f03",
+          "front": "Par rate formula",
+          "back": "1 = p × Σ DF_{t} + DF_{N} → p = (1 − DF_{N}) ÷ Σ DF_{t}"
+        },
+        {
+          "id": "fi-09-f04",
+          "front": "Forward from spot",
+          "back": "(1 + z_{A})^{A} × (1 + IFR_{A,B−A})^{B−A} = (1 + z_{B})^{B}"
+        },
+        {
+          "id": "fi-09-f05",
+          "front": "Notation 2y1y",
+          "back": "1-year rate starting 2 years from now."
+        },
+        {
+          "id": "fi-09-f06",
+          "front": "Curve ordering (upward slope)",
+          "back": "Forward > spot > par. Reverse when downward sloping."
+        },
+        {
+          "id": "fi-09-f07",
+          "front": "Bootstrapping",
+          "back": "Solve spot rates sequentially from par rates, using earlier discount factors."
+        }
+      ]
+    },
+    {
+      "id": "fi-10",
+      "lm": 10,
+      "title": "Interest Rate Risk and Return",
+      "summary": "Where a bond investor's return comes from (coupons, reinvestment income, price changes), how the investment horizon decides whether rising rates help or hurt, and Macaulay duration as the horizon at which those effects offset.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "AFM"
+        ],
+        "note": "AFM introduced Macaulay duration as a weighted-average time to cash flows. New for CFA: decomposing horizon returns, carrying value vs price, reinvestment vs market price risk, and the duration gap."
+      },
+      "lessons": [
+        {
+          "id": "fi-10-a",
+          "title": "Sources of return and horizon",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Three sources of return",
+              "body": "A fixed-rate bond investor earns:\n1. **Coupon payments**\n2. **Reinvestment income** (interest on interest) on those coupons\n3. **Capital gain or loss** if sold before maturity\n\nIf the bond is held to maturity and rates never change, the realized return = the YTM at purchase. That requires every coupon to be reinvested at that same YTM."
+            },
+            {
+              "kind": "concept",
+              "title": "Two opposing rate risks",
+              "body": "When yields rise:\n- **Reinvestment income rises** (good)\n- **Market price falls** (bad, if sold before maturity)\n\nWhen yields fall, the reverse.\n\n**Long horizon** → reinvestment effect dominates: rising rates help.\n**Short horizon** → price effect dominates: rising rates hurt.\n\nThe two risks offset at a horizon equal to the bond's **Macaulay duration**."
+            },
+            {
+              "kind": "example",
+              "title": "Horizon matters",
+              "body": "Buy a 5-year 6% annual bond at par (YTM 6%). Yields immediately rise to 7% and stay there.\n\n**Hold 5 years:** coupons reinvested at 7% grow to 34.50; plus 100 par = 134.50. Return = (134.50/100)^{1/5} − 1 = **6.11%** (> 6%).\n\n**Sell after 2 years:** coupons with reinvestment = 12.42; sale price (3 years left, at 7%) = 97.38; total 109.80. Return = **4.78%** (< 6%).",
+              "calc": "Hold to maturity: 5 [N] 7 [I/Y] 0 [PV] 6 [PMT] [CPT] [FV] → −34.50"
+            },
+            {
+              "kind": "concept",
+              "title": "Carrying value and capital gains",
+              "body": "A capital gain is measured against the bond's **carrying value** (the price on its constant-yield path at the purchase YTM), not the purchase price.\n\nExample: buy the 5-year 6% bond at 95.90 (YTM 7%). After 2 years, carrying value = PV at 7% with 3 years left = 97.38. The 1.48 rise is **interest income** (amortized discount). Sell at 98.50 → capital gain = 98.50 − 97.38 = **1.12**."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Interest income for a discount bond includes the amortization of the discount, not just coupons. Only the price change **relative to carrying value** counts as a capital gain or loss."
+            }
+          ]
+        },
+        {
+          "id": "fi-10-b",
+          "title": "Macaulay duration and the duration gap",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Macaulay duration",
+              "formula": "MacDur = Σ t × w_{t}, where w_{t} = PV(CF_{t}) ÷ Price",
+              "where": [
+                [
+                  "t",
+                  "time of cash flow (in periods)"
+                ],
+                [
+                  "w_{t}",
+                  "share of the bond's value received at time t"
+                ]
+              ],
+              "note": "Divide by periods per year to express in years. Between coupon dates, subtract t/T."
+            },
+            {
+              "kind": "example",
+              "title": "Computing MacDur",
+              "body": "3-year 6% annual bond at a 6% yield (price 100):\n\nYear 1: PV 5.660, weight 0.0566, t × w = 0.0566\nYear 2: PV 5.340, weight 0.0534, t × w = 0.1068\nYear 3: PV 89.000, weight 0.8900, t × w = 2.6700\n\nMacDur = **2.83 years**. A 3-year zero would have MacDur = 3.00."
+            },
+            {
+              "kind": "concept",
+              "title": "Duration properties",
+              "body": "- **Zero-coupon bond:** MacDur = maturity.\n- **Coupon bond:** MacDur < maturity (coupons pull the average earlier).\n- Higher coupon → lower duration; higher yield → lower duration.\n- **Perpetuity:** MacDur = (1 + r)/r. At 5%: 21 years.\n\nMacDur is both a measure of the **weighted-average time to receive cash** and the **investment horizon** at which reinvestment and price risk offset."
+            },
+            {
+              "kind": "formula",
+              "title": "Duration gap",
+              "formula": "Duration gap = MacDur − Investment horizon",
+              "where": [
+                [
+                  "Gap > 0",
+                  "price risk dominates: investor is hurt by rising rates"
+                ],
+                [
+                  "Gap < 0",
+                  "reinvestment risk dominates: investor is hurt by falling rates"
+                ],
+                [
+                  "Gap = 0",
+                  "approximately immunized for a one-off parallel shift"
+                ]
+              ]
+            },
+            {
+              "kind": "example",
+              "title": "Duration gap in action",
+              "body": "The 5-year 6% bond at 6% has MacDur = **4.47**.\n\n- Horizon 2 years: gap = +2.47 → price risk dominates. Rates up 100 bp → realized return 4.78% (< 6%); rates down to 5% → 7.25%.\n- Horizon 5 years: gap = −0.53 → reinvestment risk dominates. Rates up → 6.11%; rates down → 5.89%."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "AFM used duration to compare bond risk. CFA tests the **horizon logic**: match MacDur to your horizon to neutralize a one-time rate shift. Learn the sign of the gap and which risk dominates; questions rarely require a full duration calculation without the table."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "fi-10-q01",
+          "lesson": "fi-10-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is not a source of return for a fixed-rate bond investor?",
+          "options": [
+            "Reinvestment of coupon payments",
+            "Capital gain or loss on sale before maturity",
+            "Changes in the issuer's dividend policy"
+          ],
+          "answer": 2,
+          "explanation": "The three sources are coupons, reinvestment income and capital gains/losses. Dividend policy affects shareholders, not the bond's cash flows directly."
+        },
+        {
+          "id": "fi-10-q02",
+          "lesson": "fi-10-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An investor buys a 5-year 6% annual bond at par. Yields immediately rise to 7% and stay there. If she holds to maturity, her annualized realized return is closest to:",
+          "options": [
+            "5.89%.",
+            "6.00%.",
+            "6.11%."
+          ],
+          "answer": 2,
+          "explanation": "Coupons reinvested at 7% grow to 6 × [(1.07^{5} − 1)/0.07] = 34.50. Total = 134.50; return = 1.3450^{1/5} − 1 = 6.11%. 6.00% ignores the higher reinvestment rate; 5.89% is the result if rates had fallen to 5%.",
+          "calc": "5 [N] 7 [I/Y] 0 [PV] 6 [PMT] [CPT] [FV] → −34.50"
+        },
+        {
+          "id": "fi-10-q03",
+          "lesson": "fi-10-a",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "For the same bond and rate rise (6% par bond, yields to 7%), if the investor sells after 2 years, her annualized return is closest to:",
+          "options": [
+            "4.78%.",
+            "6.00%.",
+            "6.11%."
+          ],
+          "answer": 0,
+          "explanation": "Coupons with reinvestment = 6 + 6 × 1.07 = 12.42. Sale price (3 years at 7%) = 97.38. Total 109.80 → 1.0980^{1/2} − 1 = 4.78%. The short horizon means the price loss outweighs higher reinvestment income; 6.11% is the hold-to-maturity result."
+        },
+        {
+          "id": "fi-10-q04",
+          "lesson": "fi-10-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An investor bought a 5-year 6% annual bond at 95.90 (YTM 7%). Two years later she sells at 98.50. The bond's carrying value at a 7% yield is 97.38. Her capital gain is closest to:",
+          "options": [
+            "1.12.",
+            "1.48.",
+            "2.60."
+          ],
+          "answer": 0,
+          "explanation": "Capital gain = sale price − carrying value = 98.50 − 97.38 = 1.12. 2.60 measures against purchase price, treating discount amortization (1.48) as a capital gain; 1.48 is the amortization itself, which is interest income."
+        },
+        {
+          "id": "fi-10-q05",
+          "lesson": "fi-10-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 3-year 6% annual bond yields 6%. Its Macaulay duration is closest to:",
+          "options": [
+            "2.67 years.",
+            "2.83 years.",
+            "3.00 years."
+          ],
+          "answer": 1,
+          "explanation": "Weights: 0.0566, 0.0534, 0.8900. MacDur = 1 × 0.0566 + 2 × 0.0534 + 3 × 0.8900 = 2.83. 3.00 is the maturity (true only for a zero); 2.67 counts only the final cash flow's contribution."
+        },
+        {
+          "id": "fi-10-q06",
+          "lesson": "fi-10-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A bond has a Macaulay duration of 8 years. An investor's horizon is 6 years. Which risk dominates?",
+          "options": [
+            "Reinvestment risk, so falling rates hurt.",
+            "Market price risk, so rising rates hurt.",
+            "Neither, because the bond is immunized."
+          ],
+          "answer": 1,
+          "explanation": "Duration gap = 8 − 6 = +2 > 0: the investor will sell a bond with considerable remaining duration, so price risk dominates and rising rates reduce the realized return."
+        },
+        {
+          "id": "fi-10-q07",
+          "lesson": "fi-10-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The Macaulay duration of a 7-year zero-coupon bond is:",
+          "options": [
+            "less than 7 years.",
+            "exactly 7 years.",
+            "more than 7 years."
+          ],
+          "answer": 1,
+          "explanation": "A zero has a single cash flow at maturity, so all weight is at year 7. Coupon bonds have MacDur below maturity."
+        },
+        {
+          "id": "fi-10-q08",
+          "lesson": "fi-10-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The Macaulay duration of a perpetuity yielding 5% is closest to:",
+          "options": [
+            "20 years.",
+            "21 years.",
+            "infinite."
+          ],
+          "answer": 1,
+          "explanation": "MacDur = (1 + r)/r = 1.05/0.05 = 21. 20 is 1/r (modified-duration-style result); duration is finite because distant cash flows have tiny present values."
+        },
+        {
+          "id": "fi-10-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "An investor with a 5-year horizon buys a 5-year 6% annual bond at par (MacDur 4.47). Yields fall immediately to 5% and stay there. Her realized annual return is closest to:",
+          "options": [
+            "5.89%.",
+            "6.00%.",
+            "7.25%."
+          ],
+          "answer": 0,
+          "explanation": "Holding to maturity, coupons are reinvested at 5%: 6 × [(1.05^{5} − 1)/0.05] = 33.15; total 133.15 → 5.89%. The negative duration gap (4.47 − 5) means reinvestment risk dominates, so falling rates hurt. 7.25% is the 2-year-horizon result."
+        },
+        {
+          "id": "fi-10-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "All else equal, which change increases a coupon bond's Macaulay duration?",
+          "options": [
+            "A higher coupon rate",
+            "A higher yield to maturity",
+            "A lower coupon rate"
+          ],
+          "answer": 2,
+          "explanation": "A lower coupon shifts relative value to the final principal payment, lengthening the weighted-average time. Higher coupons and higher yields both shorten duration."
+        },
+        {
+          "id": "fi-10-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An investor buys a 4-year 5% annual bond at par and holds to maturity. Yields fall immediately to 4% and stay there. Her realized return is closest to:",
+          "options": [
+            "4.93%.",
+            "5.00%.",
+            "7.78%."
+          ],
+          "answer": 0,
+          "explanation": "Coupons reinvested at 4%: 5 × [(1.04^{4} − 1)/0.04] = 21.23; total 121.23 → 1.2123^{1/4} − 1 = 4.93%. 5.00% assumes reinvestment at the original YTM; 7.78% is the return from selling after one year at the higher price."
+        },
+        {
+          "id": "fi-10-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A pension fund must pay a fixed amount in 4.5 years and holds a bond with a Macaulay duration of 4.5 years. Following a one-time parallel rise in yields, the fund's realized return over 4.5 years will most likely be:",
+          "options": [
+            "approximately equal to the original yield.",
+            "well below the original yield because prices fall.",
+            "well above the original yield because reinvestment income rises."
+          ],
+          "answer": 0,
+          "explanation": "With a zero duration gap, the price loss and the higher reinvestment income roughly offset, so the realized horizon return stays close to the original YTM. That is the logic of immunization against a single parallel shift."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "fi-10-f01",
+          "front": "Three sources of bond return",
+          "back": "Coupons, reinvestment income on coupons, capital gain/loss on sale."
+        },
+        {
+          "id": "fi-10-f02",
+          "front": "Macaulay duration",
+          "back": "MacDur = Σ t × PV(CF_{t})/Price: weighted-average time to cash flows."
+        },
+        {
+          "id": "fi-10-f03",
+          "front": "Duration gap",
+          "back": "MacDur − investment horizon. > 0: price risk dominates. < 0: reinvestment risk dominates."
+        },
+        {
+          "id": "fi-10-f04",
+          "front": "Rising rates, long horizon",
+          "back": "Help the investor: reinvestment gains outweigh price losses."
+        },
+        {
+          "id": "fi-10-f05",
+          "front": "MacDur of zero / perpetuity",
+          "back": "Zero: = maturity. Perpetuity: (1 + r)/r."
+        },
+        {
+          "id": "fi-10-f06",
+          "front": "Capital gain on a bond",
+          "back": "Sale price − carrying value (amortized cost at purchase YTM), not purchase price."
+        },
+        {
+          "id": "fi-10-f07",
+          "front": "Duration drivers",
+          "back": "Higher coupon → lower duration. Higher yield → lower duration. Longer maturity → usually higher."
+        }
+      ]
+    }
+  ]
+}

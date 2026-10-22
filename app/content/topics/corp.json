@@ -1,0 +1,2573 @@
+{
+  "id": "corp",
+  "name": "Corporate Finance",
+  "weight": [
+    6,
+    9
+  ],
+  "blurb": "How companies are organized, governed and financed: ownership forms, stakeholders and ESG, governance, working capital, capital investment decisions, capital structure and business models. Mostly qualitative, with WACC, MM, NPV/IRR, ROIC, the cash conversion cycle and the cost of trade credit as the key calculations.",
+  "accaNote": "Strong overlap with FM (NPV/IRR, working capital, WACC, MM) and SBL (governance, stakeholders, strategy). Learn CFA's notation (r_0, DIO/DSO/DPO, ROIC) and named lists (project types, allocation pitfalls, liquidity sources, ESG approaches, pricing strategies), which ACCA did not teach.",
+  "modules": [
+    {
+      "id": "corp-01",
+      "lm": 1,
+      "title": "Organizational Forms, Corporate Issuer Features, and Ownership",
+      "summary": "How businesses are legally organized (sole proprietorship, partnerships, corporations), what each form means for liability, taxes and capital raising, and how public and private companies differ and go public.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "LW",
+          "BT"
+        ],
+        "note": "LW covered sole traders, partnerships and limited companies (separate legal personality, limited liability). New for CFA: US-style terminology (GP/LP, double taxation, pass-through), public vs private issuer trade-offs, IPOs vs direct listings vs SPACs, and buyouts/take-privates."
+      },
+      "lessons": [
+        {
+          "id": "corp-01-a",
+          "title": "Business structures: proprietorships, partnerships, corporations",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Why the legal form matters",
+              "body": "Every business form answers four questions differently: **who owns it**, **who controls it**, **who bears losses** (liability), and **how profits are taxed**. Analysts care because these drive access to capital and the conflicts between owners and managers.\n\nThe spectrum runs from the **sole proprietorship** (owner = business) to the **corporation** (a separate legal person owned by shareholders, run by managers)."
+            },
+            {
+              "kind": "compare",
+              "title": "The main forms at a glance",
+              "rows": [
+                [
+                  "",
+                  "Sole proprietorship",
+                  "General partnership",
+                  "Limited partnership",
+                  "Corporation"
+                ],
+                [
+                  "Legal identity",
+                  "Same as owner",
+                  "Same as partners",
+                  "Same as partners",
+                  "Separate legal entity"
+                ],
+                [
+                  "Liability",
+                  "Unlimited",
+                  "Unlimited (all GPs)",
+                  "GP unlimited; LPs limited",
+                  "Limited to investment"
+                ],
+                [
+                  "Control",
+                  "Owner",
+                  "Partners",
+                  "GP runs it; LPs passive",
+                  "Board/managers"
+                ],
+                [
+                  "Tax",
+                  "Pass-through",
+                  "Pass-through",
+                  "Pass-through",
+                  "Entity tax + tax on dividends"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Limited partnerships",
+              "body": "A **limited partnership** needs at least one **general partner (GP)** who manages the business and has unlimited liability. **Limited partners (LPs)** provide capital, have no say in day-to-day management and can lose only what they invested.\n\nThis is the standard structure for private equity, hedge funds and many real-estate funds. Some jurisdictions also allow LLPs/LLCs that give limited liability while keeping pass-through taxation."
+            },
+            {
+              "kind": "concept",
+              "title": "Corporations: the big advantages",
+              "body": "A corporation is a **separate legal person**: it can own assets, sign contracts, sue and be sued. Owners (shareholders) have **limited liability**, ownership is **easily transferable**, and the firm has **perpetual life**, which makes raising large amounts of capital far easier.\n\nThe cost: **separation of ownership and control** creates principal–agent problems, and profits may be taxed twice."
+            },
+            {
+              "kind": "example",
+              "title": "Double taxation in numbers",
+              "body": "Corporate pre-tax profit 100, corporate tax 21%, all after-tax profit paid out, dividend tax 15%.\n\n- Corporate tax: 100 × 21% = 21 → 79 left\n- Dividend tax: 79 × 15% = 11.85 → shareholder keeps **67.15**\n- Effective total tax = 1 − 0.79 × 0.85 = **32.85%**\n\nIn a pass-through entity the 100 is taxed once, at the owner's personal rate."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Limited partners have limited liability **only** because they are passive. In a limited partnership the GP still has unlimited liability. And \"double taxation\" applies to **distributed** corporate profits; some countries soften it with imputation or reduced dividend rates."
+            }
+          ]
+        },
+        {
+          "id": "corp-01-b",
+          "title": "Public vs private issuers and going public",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Public vs private companies",
+              "body": "A **public** company's shares trade on an exchange: easy liquidity for owners, access to deep capital markets, but heavy **disclosure and regulatory** costs and short-term market pressure.\n\nA **private** company's shares do not trade publicly: ownership is concentrated (founders, PE funds, VC), disclosure is limited, shares are **illiquid**, and capital comes from private placements, banks and private equity/credit."
+            },
+            {
+              "kind": "compare",
+              "title": "Routes to becoming public",
+              "rows": [
+                [
+                  "",
+                  "How it works",
+                  "Key feature"
+                ],
+                [
+                  "IPO",
+                  "New shares sold to investors via underwriting banks",
+                  "Raises new capital; costly, priced by bookbuilding"
+                ],
+                [
+                  "Direct listing",
+                  "Existing shares simply listed; no new shares, no underwriter",
+                  "Cheaper; no new capital raised"
+                ],
+                [
+                  "SPAC",
+                  "Listed shell raises cash, then merges with a private target",
+                  "Faster, more price certainty; sponsor dilution"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Going private and staying private",
+              "body": "A public company can **go private** through a **leveraged buyout (LBO)** by a private-equity sponsor, or a **management buyout (MBO)** where existing managers buy the firm, typically funded with heavy debt.\n\nTrends: companies are staying private longer because private capital is abundant, and the number of listed companies in many developed markets has fallen."
+            },
+            {
+              "kind": "concept",
+              "title": "Ownership and voting",
+              "body": "Public shareholders have voting rights (usually one share, one vote) and a residual claim. Some firms use **dual-class shares**: founders hold high-vote shares and keep control with a minority economic stake.\n\nPublic company ownership can be **dispersed** (many small holders, managers powerful) or **concentrated** (a family, the state or a parent company in control)."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Know which route raises **new** money: an IPO (primary offering) does; a **direct listing does not** (only existing holders sell); a SPAC raises cash at its own IPO and later uses it to buy the target. Secondary offerings by existing shareholders do not give the company cash."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "corp-01-q01",
+          "lesson": "corp-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which business form gives all owners limited liability AND separates ownership from management?",
+          "options": [
+            "Corporation",
+            "General partnership",
+            "Sole proprietorship"
+          ],
+          "answer": 0,
+          "explanation": "A corporation is a separate legal entity: shareholders' liability is limited to their investment and the business is run by a board and managers. A general partnership and a sole proprietorship both expose owners to unlimited liability and owners usually run the business themselves."
+        },
+        {
+          "id": "corp-01-q02",
+          "lesson": "corp-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In a limited partnership, the partner who has unlimited liability is the:",
+          "options": [
+            "limited partner.",
+            "general partner.",
+            "silent partner who contributes the most capital."
+          ],
+          "answer": 1,
+          "explanation": "The general partner manages the partnership and bears unlimited liability. Limited partners are passive investors whose liability is limited to their investment, regardless of how much capital they put in."
+        },
+        {
+          "id": "corp-01-q03",
+          "lesson": "corp-01-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A corporation earns pre-tax profit of 200, pays corporate tax of 25% and distributes all after-tax profit. Shareholders pay 20% tax on dividends. The amount the shareholders keep after all taxes is closest to:",
+          "options": [
+            "110",
+            "150",
+            "120"
+          ],
+          "answer": 2,
+          "explanation": "After corporate tax: 200 × 0.75 = 150. After dividend tax: 150 × 0.80 = **120** (effective tax 40%). 150 ignores the dividend tax; 110 wrongly adds the two rates (200 × (1 − 0.45))."
+        },
+        {
+          "id": "corp-01-q04",
+          "lesson": "corp-01-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with a sole proprietorship, a key DISADVANTAGE of a corporation is most likely:",
+          "options": [
+            "potential double taxation of distributed profits.",
+            "difficulty transferring ownership.",
+            "unlimited liability for owners."
+          ],
+          "answer": 0,
+          "explanation": "Distributed corporate profits can be taxed at the entity level and again as dividends. Unlimited liability is a feature of the sole proprietorship, not the corporation, and corporate shares are easier, not harder, to transfer."
+        },
+        {
+          "id": "corp-01-q05",
+          "lesson": "corp-01-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which method of going public does NOT raise new capital for the company?",
+          "options": [
+            "Initial public offering",
+            "Direct listing",
+            "Merger with a SPAC"
+          ],
+          "answer": 1,
+          "explanation": "In a direct listing existing shares are simply listed and sold by current holders, so the company receives no new money. An IPO sells newly issued shares, and a SPAC merger brings the SPAC's cash into the combined company."
+        },
+        {
+          "id": "corp-01-q06",
+          "lesson": "corp-01-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Relative to a public company, a private company most likely has:",
+          "options": [
+            "higher disclosure requirements.",
+            "greater access to capital from retail investors.",
+            "less liquid shares and more concentrated ownership."
+          ],
+          "answer": 2,
+          "explanation": "Private shares do not trade on an exchange, so they are illiquid, and ownership is typically concentrated among founders, VC or PE funds. Public companies face the higher disclosure burden and have access to retail investors."
+        },
+        {
+          "id": "corp-01-q07",
+          "lesson": "corp-01-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A private-equity firm uses mostly borrowed money to acquire all the shares of a listed company and delist it. This is best described as a(n):",
+          "options": [
+            "leveraged buyout.",
+            "SPAC merger.",
+            "direct listing."
+          ],
+          "answer": 0,
+          "explanation": "A leveraged buyout is a debt-financed acquisition that takes a public company private. A direct listing and a SPAC merger are routes to becoming public, the opposite direction."
+        },
+        {
+          "id": "corp-01-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about limited partnerships is most accurate?",
+          "options": [
+            "Limited partners typically participate in day-to-day management.",
+            "At least one partner bears unlimited liability.",
+            "Profits are taxed first at the partnership level and again when distributed."
+          ],
+          "answer": 1,
+          "explanation": "A limited partnership must have at least one general partner with unlimited liability. Limited partners are passive (taking part in management can cost them their limited liability), and partnerships are pass-through entities, so profits are taxed once at the partner level."
+        },
+        {
+          "id": "corp-01-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A founder wants to raise capital from public investors while keeping voting control with only 15% of the economic interest. The most suitable structure is:",
+          "options": [
+            "a direct listing of one-share-one-vote stock.",
+            "a general partnership.",
+            "dual-class shares."
+          ],
+          "answer": 2,
+          "explanation": "Dual-class shares give the founder a class with superior voting rights, separating control from economic ownership. A general partnership cannot raise public equity and exposes partners to unlimited liability, and one-share-one-vote stock would leave her with only 15% of the votes."
+        },
+        {
+          "id": "corp-01-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Pre-tax profit of 100 is earned in two structures. Partnership: partners pay 35% personal tax on all profit. Corporation: 21% corporate tax, all after-tax profit distributed, 20% dividend tax. Which structure leaves the owners with more after tax, and by how much?",
+          "options": [
+            "Partnership, by 1.8",
+            "Corporation, by 1.8",
+            "Partnership, by 14.0"
+          ],
+          "answer": 0,
+          "explanation": "Partnership: 100 × (1 − 0.35) = 65.0. Corporation: 100 × 0.79 × 0.80 = 63.2. Partnership wins by **1.8**. 14.0 compares 65 with 79 (forgetting the dividend tax); saying the corporation wins reverses the comparison."
+        },
+        {
+          "id": "corp-01-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Compared with a traditional IPO, a SPAC merger most likely offers the target company:",
+          "options": [
+            "no dilution to existing shareholders.",
+            "greater certainty about price and timing.",
+            "a listing without any regulatory filings."
+          ],
+          "answer": 1,
+          "explanation": "The target negotiates its valuation directly with the SPAC, so price and timing are more certain than in an IPO bookbuild. SPAC sponsors' shares and warrants cause dilution, and the merged company still faces public-company filings."
+        },
+        {
+          "id": "corp-01-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which feature is LEAST likely to be associated with the corporate form?",
+          "options": [
+            "Perpetual life independent of owners",
+            "Ownership easily transferred by selling shares",
+            "Owners personally liable for business debts"
+          ],
+          "answer": 2,
+          "explanation": "Corporate shareholders have limited liability; personal liability for business debts belongs to sole proprietors and general partners. Perpetual life and easy transfer of ownership are core corporate features."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "corp-01-f01",
+          "front": "Sole proprietorship vs corporation: liability and tax?",
+          "back": "Sole prop: unlimited liability, profits taxed once as owner's income (pass-through). Corporation: limited liability, profits taxed at entity level and again when paid as dividends (double taxation)."
+        },
+        {
+          "id": "corp-01-f02",
+          "front": "General partner vs limited partner",
+          "back": "GP: manages, unlimited liability. LP: passive investor, liability limited to investment. A limited partnership needs at least one GP."
+        },
+        {
+          "id": "corp-01-f03",
+          "front": "Effective tax on distributed corporate profit",
+          "back": "1 − (1 − t_{corp})(1 − t_{div}). E.g. 21% and 15% → 1 − 0.79 × 0.85 = 32.85%."
+        },
+        {
+          "id": "corp-01-f04",
+          "front": "IPO vs direct listing vs SPAC",
+          "back": "IPO: new shares, underwriters, raises capital. Direct listing: existing shares listed, no new capital, cheaper. SPAC: listed cash shell merges with a private target; faster and more price certainty, but sponsor dilution."
+        },
+        {
+          "id": "corp-01-f05",
+          "front": "Key corporate features",
+          "back": "Separate legal entity, limited liability, easy transfer of ownership, perpetual life, separation of ownership and control (agency costs), potential double taxation."
+        },
+        {
+          "id": "corp-01-f06",
+          "front": "LBO vs MBO",
+          "back": "Both take a company private using heavy debt. LBO: led by a private-equity sponsor. MBO: led by the company's existing managers."
+        }
+      ]
+    },
+    {
+      "id": "corp-02",
+      "lm": 2,
+      "title": "Investors and Other Stakeholders",
+      "summary": "How debt and equity claims differ in risk and payoff, who the corporate stakeholders are and what each wants, and how ESG factors enter investment analysis.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "SBL",
+          "FM"
+        ],
+        "note": "SBL covered stakeholders, Mendelow's matrix and sustainability/integrated reporting; FM covered the risk-return of debt vs equity. New for CFA: payoff diagrams for lenders and shareholders (equity as a call option), the investor's view of ESG integration, and CFA terminology for each stakeholder group."
+      },
+      "lessons": [
+        {
+          "id": "corp-02-a",
+          "title": "Lenders vs shareholders: claims and payoffs",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Two very different claims",
+              "body": "**Lenders (debtholders)** have a contractual, **fixed** claim: interest and principal, paid before shareholders, with the upside capped at what they are owed.\n\n**Shareholders** have a **residual** claim: whatever is left after all other claims. Their downside is limited to their investment (limited liability) but their upside is **unlimited**.\n\nResult: equity is riskier and requires a higher expected return than debt of the same firm."
+            },
+            {
+              "kind": "formula",
+              "title": "Payoffs at debt maturity",
+              "formula": "Debt payoff = min(V, D)     Equity payoff = max(0, V − D)",
+              "where": [
+                [
+                  "V",
+                  "value of the firm's assets at maturity"
+                ],
+                [
+                  "D",
+                  "face value of debt owed"
+                ]
+              ],
+              "note": "Equity behaves like a call option on the firm's assets with strike D."
+            },
+            {
+              "kind": "example",
+              "title": "Payoffs in three scenarios",
+              "body": "Debt face value 60.\n\n- V = 100: lenders get 60, shareholders 40\n- V = 70: lenders get 60, shareholders 10\n- V = 50: lenders get 50 (loss of 10), shareholders 0\n\nShareholders gain every unit above 60; lenders never get more than 60 but bear losses once V < 60."
+            },
+            {
+              "kind": "concept",
+              "title": "Why the payoff shapes create conflict",
+              "body": "Because shareholders keep all the upside but share the downside with lenders, they benefit from **more risk** (higher volatility raises the value of a call option). Lenders prefer **less risk**, stable cash flows and conservative payouts.\n\nThis is the root of the shareholder–creditor conflict: risky projects, big dividends or extra borrowing can transfer value from lenders to shareholders. Lenders protect themselves with **covenants** and collateral."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM taught that debt is cheaper because it is less risky and ranks first. CFA goes further: it frames **equity as a call option** and **risky debt as risk-free debt plus a short put** on firm value, and asks which party gains when risk changes. Expect questions like \"which stakeholder benefits if the firm takes on a riskier project?\" (shareholders)."
+            }
+          ]
+        },
+        {
+          "id": "corp-02-b",
+          "title": "Stakeholder groups and ESG considerations",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Who the stakeholders are",
+              "rows": [
+                [
+                  "Stakeholder",
+                  "Main interest"
+                ],
+                [
+                  "Shareholders",
+                  "Share price and dividends (residual value)"
+                ],
+                [
+                  "Creditors",
+                  "Timely interest and principal; low risk"
+                ],
+                [
+                  "Board of directors",
+                  "Oversight on behalf of shareholders"
+                ],
+                [
+                  "Managers",
+                  "Pay, job security, power, reputation"
+                ],
+                [
+                  "Employees",
+                  "Wages, safety, job security, development"
+                ],
+                [
+                  "Customers / suppliers",
+                  "Quality, fair prices / timely payment, long relationship"
+                ],
+                [
+                  "Governments / regulators",
+                  "Tax, compliance, public interest"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Shareholder vs stakeholder theory",
+              "body": "**Shareholder theory**: the firm's main goal is to maximize shareholder value; other groups are protected by contracts and law.\n\n**Stakeholder theory**: the firm should balance the interests of all groups (employees, customers, communities, environment) because long-run value depends on them.\n\nCFA expects you to recognize both views and the conflicts that arise when a decision helps one group at another's expense."
+            },
+            {
+              "kind": "concept",
+              "title": "ESG factors investors consider",
+              "body": "- **Environmental**: climate and carbon emissions, pollution, water, biodiversity, natural-resource use\n- **Social**: labor standards, health and safety, human rights, data privacy, product safety, community relations\n- **Governance**: board structure and independence, executive pay, shareholder rights, accounting quality, bribery and corruption\n\nInvestors assess whether these are **material**: likely to affect cash flows, risk or cost of capital."
+            },
+            {
+              "kind": "concept",
+              "title": "How investors use ESG",
+              "body": "Common approaches:\n\n- **Negative screening**: exclude sectors or companies (e.g. tobacco, weapons)\n- **Positive / best-in-class screening**: favor top ESG performers within each sector\n- **ESG integration**: build material ESG risks into forecasts, valuation and risk analysis\n- **Thematic investing**: target themes such as clean energy\n- **Impact investing**: seek measurable social/environmental impact alongside return\n- **Engagement / active ownership**: use voting and dialogue to change behavior"
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "SBL framed stakeholders through **Mendelow's matrix** (power vs interest) and sustainability reporting from the company's side. CFA looks from the **investor's** side: which ESG issues are **material** to value, and which ESG investment approach is being described. Mendelow is not tested; the investment-approach vocabulary (screening, integration, thematic, impact) is."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "corp-02-q01",
+          "lesson": "corp-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A firm has debt with a face value of 80 due in one year. If the firm's assets are worth 65 at maturity, the payoffs to debtholders and shareholders are:",
+          "options": [
+            "debtholders 65; shareholders 0.",
+            "debtholders 80; shareholders −15.",
+            "debtholders 65; shareholders 15."
+          ],
+          "answer": 0,
+          "explanation": "Debt payoff = min(V, D) = min(65, 80) = 65; equity payoff = max(0, V − D) = max(0, −15) = 0. Limited liability means shareholders cannot receive a negative payoff, and there is nothing left over for them."
+        },
+        {
+          "id": "corp-02-q02",
+          "lesson": "corp-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A company replaces a low-risk project with a much riskier project of the same expected value. Which group is most likely to benefit?",
+          "options": [
+            "Debtholders",
+            "Shareholders",
+            "Neither, because expected value is unchanged"
+          ],
+          "answer": 1,
+          "explanation": "Equity is like a call option on the firm's assets: shareholders keep all the upside but their downside is floored at zero, so higher volatility raises equity value. Debtholders' upside is capped, so more risk only raises their expected losses: value moves from creditors to shareholders even with the same expected firm value."
+        },
+        {
+          "id": "corp-02-q03",
+          "lesson": "corp-02-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Compared with debtholders, shareholders of the same firm have:",
+          "options": [
+            "a fixed claim and limited upside.",
+            "priority in liquidation and unlimited upside.",
+            "a residual claim and unlimited upside."
+          ],
+          "answer": 2,
+          "explanation": "Shareholders are residual claimants: they are paid after all other claims and benefit from all value above the debt. Debtholders have the fixed, prior claim with capped upside."
+        },
+        {
+          "id": "corp-02-q04",
+          "lesson": "corp-02-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An investor excludes all companies that derive more than 10% of revenue from thermal coal. This approach is best described as:",
+          "options": [
+            "negative screening.",
+            "ESG integration.",
+            "impact investing."
+          ],
+          "answer": 0,
+          "explanation": "Excluding companies or sectors based on specific activities is negative (exclusionary) screening. ESG integration builds ESG factors into valuation without necessarily excluding anything, and impact investing targets measurable positive impact."
+        },
+        {
+          "id": "corp-02-q05",
+          "lesson": "corp-02-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Board independence, executive compensation and shareholder voting rights fall into which ESG category?",
+          "options": [
+            "Social",
+            "Governance",
+            "Environmental"
+          ],
+          "answer": 1,
+          "explanation": "These relate to how the company is directed and controlled, so they are governance factors. Social factors cover employees, customers, communities and human rights; environmental factors cover emissions, pollution and resources."
+        },
+        {
+          "id": "corp-02-q06",
+          "lesson": "corp-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which stakeholder is most likely to prefer that a company keeps high cash balances and pays low dividends?",
+          "options": [
+            "Shareholders seeking income",
+            "Managers paid through share options",
+            "Creditors"
+          ],
+          "answer": 2,
+          "explanation": "Creditors want the firm to preserve cash and stay safe so their fixed claims are paid. Income-seeking shareholders want dividends, and option-holding managers favor actions that lift the share price, including risk-taking or buybacks."
+        },
+        {
+          "id": "corp-02-q07",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An analyst adjusts her forecasts of a mining company's future cash flows for expected costs of tightening water regulations and lowers its valuation. This is an example of:",
+          "options": [
+            "ESG integration.",
+            "thematic investing.",
+            "positive screening."
+          ],
+          "answer": 0,
+          "explanation": "Building material ESG factors directly into cash-flow forecasts and valuation is ESG integration. Positive screening selects best-in-class companies, and thematic investing targets themes such as clean energy; neither describes adjusting a valuation."
+        },
+        {
+          "id": "corp-02-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A firm's assets will be worth either 150 or 50 with equal probability in one year. It owes debt with face value 100. If the firm switches to a strategy where assets will be worth 200 or 0 with equal probability, the expected payoff to shareholders changes from:",
+          "options": [
+            "25 to 100.",
+            "25 to 50.",
+            "0 to 0."
+          ],
+          "answer": 1,
+          "explanation": "Original: equity = 0.5 × max(0, 150 − 100) + 0.5 × max(0, 50 − 100) = 0.5 × 50 = 25. Riskier: 0.5 × (200 − 100) + 0.5 × 0 = 50. Expected firm value is 100 in both cases, but equity value doubles while debt falls from 0.5 × 100 + 0.5 × 50 = 75 to 50. 100 forgets to weight the good outcome by its probability; 0 to 0 subtracts debt from expected firm value (100 − 100) and ignores limited liability."
+        },
+        {
+          "id": "corp-02-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about stakeholder theory is most accurate?",
+          "options": [
+            "It holds that a firm should serve only its shareholders, with other groups protected by contracts.",
+            "It holds that the board represents creditors first because they rank ahead of shareholders.",
+            "It holds that a firm should balance the interests of shareholders, employees, customers, suppliers and society."
+          ],
+          "answer": 2,
+          "explanation": "Stakeholder theory says the firm should take account of all groups affected by it. Serving only shareholders describes shareholder theory, and boards owe duties primarily to the company and its shareholders, not to creditors."
+        },
+        {
+          "id": "corp-02-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which of the following is most likely a social (S) consideration for an investor analysing a clothing retailer?",
+          "options": [
+            "Labor conditions in its overseas supplier factories",
+            "The proportion of independent directors on its board",
+            "The carbon footprint of its distribution network"
+          ],
+          "answer": 0,
+          "explanation": "Labor standards in the supply chain are a social factor. Board independence is governance and carbon footprint is environmental."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "corp-02-f01",
+          "front": "Payoff to debtholders and shareholders at maturity",
+          "back": "Debt = min(V, D); Equity = max(0, V − D). Equity ≈ call option on firm assets with strike = face value of debt."
+        },
+        {
+          "id": "corp-02-f02",
+          "front": "Who gains when a firm takes more risk (same expected value)?",
+          "back": "Shareholders (option-like upside, floored downside). Debtholders lose: their upside is capped but losses rise."
+        },
+        {
+          "id": "corp-02-f03",
+          "front": "Shareholder theory vs stakeholder theory",
+          "back": "Shareholder: maximize shareholder value; others protected by contracts/law. Stakeholder: balance interests of all groups (employees, customers, suppliers, community)."
+        },
+        {
+          "id": "corp-02-f04",
+          "front": "Six ESG investment approaches",
+          "back": "Negative screening, positive/best-in-class screening, ESG integration, thematic investing, impact investing, engagement/active ownership."
+        },
+        {
+          "id": "corp-02-f05",
+          "front": "Examples of E, S and G factors",
+          "back": "E: emissions, pollution, water, biodiversity. S: labor standards, health & safety, human rights, data privacy, product safety. G: board structure, exec pay, shareholder rights, accounting quality, corruption."
+        }
+      ]
+    },
+    {
+      "id": "corp-03",
+      "lm": 3,
+      "title": "Corporate Governance: Conflicts, Mechanisms, Risks, and Benefits",
+      "summary": "The conflicts of interest among managers, shareholders, creditors and other stakeholders, the internal and external mechanisms that control them, and why governance quality matters to investors.",
+      "acca": {
+        "overlap": "strong",
+        "papers": [
+          "SBL"
+        ],
+        "note": "SBL covered agency theory, board structures, committees, NEDs and director remuneration in depth. New for CFA: the controlling vs minority shareholder conflict (dual-class shares, related-party transactions), shareholder vs creditor conflicts, shareholder activism and proxy contests, and governance risk from the investor's perspective."
+      },
+      "lessons": [
+        {
+          "id": "corp-03-a",
+          "title": "Governance conflicts: agency and beyond",
+          "minutes": 8,
+          "fastTrack": [
+            "SBL"
+          ],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Principal–agent problem",
+              "body": "**Corporate governance** is the system of controls and procedures by which a company is directed and managed.\n\nThe core issue is **agency**: shareholders (principals) hire managers (agents), but managers may pursue their own interests. Examples: empire building, excess perks, entrenchment, avoiding risky but valuable projects (to protect their jobs), or taking excessive risk when paid in options. **Information asymmetry** makes this hard to monitor."
+            },
+            {
+              "kind": "compare",
+              "title": "The main conflicts",
+              "rows": [
+                [
+                  "Conflict",
+                  "What goes wrong"
+                ],
+                [
+                  "Shareholders vs managers",
+                  "Perks, empire building, entrenchment, wrong risk appetite"
+                ],
+                [
+                  "Controlling vs minority shareholders",
+                  "Related-party deals, unfair takeover terms, dual-class control"
+                ],
+                [
+                  "Shareholders vs creditors",
+                  "Riskier projects, big payouts, extra debt that hurt lenders"
+                ],
+                [
+                  "Managers/board vs other stakeholders",
+                  "Cost cuts that hurt employees, customers or the community"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Controlling vs minority shareholders",
+              "body": "Where a family, founder, government or parent company holds a controlling stake, the risk shifts from weak managers to **expropriation of minorities**: related-party transactions on unfair terms, electing friendly directors, blocking takeovers, or approving a merger that benefits the controller.\n\n**Dual-class** structures and **cumulative voting** (which helps minorities win board seats) are key exam terms here."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "SBL's agency theory carries over directly. Watch for CFA-specific angles: the **controlling vs minority shareholder** conflict (common outside the US/UK), the **shareholder vs creditor** conflict, and **managers vs stakeholders** as separate exam items. CFA also notes that options-heavy pay can push managers to take **too much** risk, while job security pushes them to take **too little**."
+            }
+          ]
+        },
+        {
+          "id": "corp-03-b",
+          "title": "Governance mechanisms, risks and benefits",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Shareholder mechanisms",
+              "body": "- **Reporting and transparency**: audited accounts, disclosures\n- **General meetings and voting**: elect directors, approve major deals; **proxy voting** lets absent holders vote\n- **Say on pay**: advisory or binding votes on executive pay\n- **Shareholder activism**: investors (often hedge funds) push for change through engagement, media campaigns, **proxy fights** (nominating their own directors) or lawsuits\n- **Market for corporate control**: the threat of a **hostile takeover** disciplines poor managers"
+            },
+            {
+              "kind": "concept",
+              "title": "Board and its committees",
+              "body": "The **board of directors** oversees management on shareholders' behalf. Key features: a majority of **independent** directors, separation of CEO and chair, and **staggered** vs annual elections (staggered boards make takeovers harder).\n\nStandard committees: **audit** (financial reporting, auditors, internal control), **compensation/remuneration**, **nomination** (board candidates), plus risk, governance or investment committees in some firms."
+            },
+            {
+              "kind": "concept",
+              "title": "Creditor and other mechanisms",
+              "body": "**Creditors** protect themselves with the **indenture**: **covenants** (affirmative: things the firm must do; negative: things it must not do, e.g. limits on new debt or dividends), collateral, and committees of creditors in bankruptcy.\n\n**Employees** rely on labor law, contracts and unions; **customers and suppliers** on contracts and the law; **governments** on regulation. **Executive pay** that links rewards to long-term performance aligns managers with shareholders."
+            },
+            {
+              "kind": "compare",
+              "title": "Why governance matters to investors",
+              "rows": [
+                [
+                  "Poor governance risks",
+                  "Good governance benefits"
+                ],
+                [
+                  "Weak control systems, fraud, accounting manipulation",
+                  "Better operating performance and efficiency"
+                ],
+                [
+                  "Poor decisions (bad M&A, mispriced risk)",
+                  "Lower cost of capital (debt and equity)"
+                ],
+                [
+                  "Legal, regulatory and reputational damage",
+                  "Higher valuations and better control of risk"
+                ],
+                [
+                  "Higher default and bankruptcy risk",
+                  "Stronger investor and lender confidence"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Classify the mechanism by **whose** interests it protects: covenants → creditors; proxy fights, say on pay, activism → shareholders; cumulative voting → minority shareholders; staggered boards and poison pills → protect managers (entrenchment) and are seen as **weak** governance by most investors."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "corp-03-q01",
+          "lesson": "corp-03-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A CEO uses company funds to buy a corporate jet mainly for personal travel. This is an example of a conflict between:",
+          "options": [
+            "shareholders and creditors.",
+            "managers and shareholders.",
+            "controlling and minority shareholders."
+          ],
+          "answer": 1,
+          "explanation": "Excess perks consumed by managers at shareholders' expense are a classic principal–agent (manager–shareholder) conflict. The other two conflicts involve different parties."
+        },
+        {
+          "id": "corp-03-q02",
+          "lesson": "corp-03-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A family owns 55% of a listed company and sells it land it owns privately at a price well above market value. The group most harmed is:",
+          "options": [
+            "the controlling family.",
+            "creditors.",
+            "minority shareholders."
+          ],
+          "answer": 2,
+          "explanation": "This related-party transaction on unfair terms transfers value from the company (and so from minority shareholders) to the controlling family. Creditors are harmed only indirectly if solvency suffers, and the family gains rather than loses."
+        },
+        {
+          "id": "corp-03-q03",
+          "lesson": "corp-03-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Senior managers whose wealth is concentrated in the company and whose pay has no equity component are most likely to:",
+          "options": [
+            "take too little risk.",
+            "take too much risk.",
+            "act exactly in line with shareholders' risk preferences."
+          ],
+          "answer": 0,
+          "explanation": "Managers with undiversified exposure (salary and job) and no upside participation tend to avoid risky but value-creating projects. Heavy option-based pay is what can lead to too much risk; diversified shareholders generally want more risk-taking than such managers."
+        },
+        {
+          "id": "corp-03-q04",
+          "lesson": "corp-03-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which board committee is primarily responsible for overseeing the external auditor and the integrity of financial statements?",
+          "options": [
+            "Nomination committee",
+            "Audit committee",
+            "Compensation committee"
+          ],
+          "answer": 1,
+          "explanation": "The audit committee oversees financial reporting, internal controls and the relationship with the external auditor. The nomination committee identifies board candidates and the compensation committee sets executive pay."
+        },
+        {
+          "id": "corp-03-q05",
+          "lesson": "corp-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A bond indenture prohibits the issuer from paying dividends above 40% of net income. This is best described as a(n):",
+          "options": [
+            "say-on-pay provision protecting shareholders.",
+            "affirmative covenant protecting shareholders.",
+            "negative covenant protecting creditors."
+          ],
+          "answer": 2,
+          "explanation": "A restriction on what the issuer may do is a negative covenant, and limiting payouts keeps cash in the firm for lenders. Affirmative covenants require actions (e.g. maintain insurance), and say on pay concerns executive compensation."
+        },
+        {
+          "id": "corp-03-q06",
+          "lesson": "corp-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which feature is most likely to be viewed by investors as weakening corporate governance?",
+          "options": [
+            "A staggered board",
+            "A majority of independent directors",
+            "Annual say-on-pay votes"
+          ],
+          "answer": 0,
+          "explanation": "A staggered board means only part of the board stands for election each year, making it harder for shareholders or acquirers to replace directors, which entrenches management. Independent directors and say-on-pay votes strengthen shareholder oversight."
+        },
+        {
+          "id": "corp-03-q07",
+          "lesson": "corp-03-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An activist hedge fund nominates its own slate of directors and asks other shareholders to vote for them at the annual meeting. This is a:",
+          "options": [
+            "tender offer.",
+            "proxy fight.",
+            "hostile takeover."
+          ],
+          "answer": 1,
+          "explanation": "A proxy fight (proxy contest) is a campaign to win shareholder votes for a dissident slate of directors. A tender offer is an offer to buy shares directly from shareholders, and a hostile takeover involves acquiring control against the board's wishes."
+        },
+        {
+          "id": "corp-03-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Cumulative voting is most likely to benefit:",
+          "options": [
+            "management seeking to entrench itself.",
+            "creditors seeking protection from risky projects.",
+            "minority shareholders seeking board representation."
+          ],
+          "answer": 2,
+          "explanation": "Cumulative voting lets shareholders concentrate all their votes on one director candidate, which helps minority holders elect at least some directors. It does not help management entrench itself and is unrelated to creditor protection."
+        },
+        {
+          "id": "corp-03-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A highly leveraged company close to financial distress pays a large special dividend funded by selling its most liquid assets. This action most likely represents:",
+          "options": [
+            "a shareholder–creditor conflict in which value is transferred to shareholders.",
+            "a manager–shareholder conflict in which managers consume perks.",
+            "a controlling–minority conflict in which minorities gain at the expense of the controller."
+          ],
+          "answer": 0,
+          "explanation": "Paying out cash when default risk is high moves value from creditors (who are left with fewer assets backing their claims) to shareholders. Nothing here involves management perks, and minority vs controlling holders receive the dividend pro rata."
+        },
+        {
+          "id": "corp-03-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which is LEAST likely to be a benefit of effective corporate governance?",
+          "options": [
+            "A lower cost of debt",
+            "Guaranteed higher returns on equity in every period",
+            "Better control of operational and legal risks"
+          ],
+          "answer": 1,
+          "explanation": "Good governance is associated with better performance, lower funding costs and better risk control, but it cannot guarantee higher returns in every period. Lower cost of debt and better risk control are recognized benefits."
+        },
+        {
+          "id": "corp-03-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Executive compensation that is most likely to align managers with long-term shareholder interests includes:",
+          "options": [
+            "a fixed salary with an annual bonus based on revenue growth.",
+            "short-dated options that can be exercised immediately.",
+            "restricted shares that vest over several years with clawback provisions."
+          ],
+          "answer": 2,
+          "explanation": "Long-vesting equity with clawbacks ties rewards to sustained shareholder value and lets the firm recover pay for misconduct. Revenue-based bonuses encourage growth at any cost, and short-dated immediately exercisable options reward short-term share price moves and excess risk."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "corp-03-f01",
+          "front": "Four main governance conflicts",
+          "back": "Shareholders vs managers; controlling vs minority shareholders; shareholders vs creditors; managers/board vs other stakeholders."
+        },
+        {
+          "id": "corp-03-f02",
+          "front": "Core board committees and roles",
+          "back": "Audit: reporting, controls, external auditor. Compensation: executive pay. Nomination: board candidates/succession. (Often also risk, governance, investment committees.)"
+        },
+        {
+          "id": "corp-03-f03",
+          "front": "Affirmative vs negative covenants",
+          "back": "Affirmative: what the issuer must do (pay on time, maintain insurance, provide accounts). Negative: what it must not do (extra debt, big dividends, asset sales, liens)."
+        },
+        {
+          "id": "corp-03-f04",
+          "front": "Proxy fight vs tender offer",
+          "back": "Proxy fight: dissident seeks shareholder votes to elect its directors. Tender offer: bidder offers to buy shares directly from shareholders, often at a premium."
+        },
+        {
+          "id": "corp-03-f05",
+          "front": "Cumulative voting vs straight voting",
+          "back": "Cumulative: votes = shares × seats, can be piled on one candidate → helps minorities win seats. Straight: one vote per share per seat → majority elects every director."
+        },
+        {
+          "id": "corp-03-f06",
+          "front": "Risks of poor governance",
+          "back": "Weak controls and fraud, poor decisions, legal/regulatory/reputational risk, higher default risk, higher cost of capital, lower valuation."
+        }
+      ]
+    },
+    {
+      "id": "corp-04",
+      "lm": 4,
+      "title": "Working Capital and Liquidity",
+      "summary": "How the cash conversion cycle drives working-capital needs, the sources and drags on liquidity, how firms choose conservative or aggressive working-capital and short-term funding policies, and the cost of trade credit.",
+      "acca": {
+        "overlap": "strong",
+        "papers": [
+          "FM"
+        ],
+        "note": "FM covered the cash operating cycle, working-capital ratios, receivables/payables/inventory policy, conservative/aggressive financing and the cost of early-settlement discounts. New for CFA: DIO/DSO/DPO labels, primary vs secondary liquidity sources, drags and pulls on liquidity, and the menu of short-term funding instruments (lines of credit, banker's acceptances, commercial paper, factoring)."
+      },
+      "lessons": [
+        {
+          "id": "corp-04-a",
+          "title": "Cash conversion cycle and liquidity ratios",
+          "minutes": 8,
+          "fastTrack": [
+            "FM"
+          ],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Cash conversion cycle",
+              "formula": "CCC = DIO + DSO − DPO",
+              "where": [
+                [
+                  "DIO",
+                  "days of inventory on hand = inventory ÷ (COGS/365)"
+                ],
+                [
+                  "DSO",
+                  "days of sales outstanding = receivables ÷ (sales/365)"
+                ],
+                [
+                  "DPO",
+                  "days payables outstanding = payables ÷ (purchases or COGS/365)"
+                ]
+              ],
+              "note": "The number of days cash is tied up between paying suppliers and collecting from customers."
+            },
+            {
+              "kind": "example",
+              "title": "Computing the CCC",
+              "body": "Sales 730, COGS 511, receivables 60, inventory 70, payables 42.\n\n- DSO = 60 ÷ (730/365) = 60 ÷ 2 = **30 days**\n- DIO = 70 ÷ (511/365) = 70 ÷ 1.4 = **50 days**\n- DPO = 42 ÷ 1.4 = **30 days**\n- CCC = 50 + 30 − 30 = **50 days**\n\nA longer CCC means more working capital to finance; a shorter (even negative) CCC frees cash."
+            },
+            {
+              "kind": "formula",
+              "title": "Liquidity ratios",
+              "formula": "Current = CA ÷ CL     Quick = (cash + marketable securities + receivables) ÷ CL     Cash = (cash + marketable securities) ÷ CL",
+              "where": [
+                [
+                  "CA",
+                  "current assets"
+                ],
+                [
+                  "CL",
+                  "current liabilities"
+                ]
+              ],
+              "note": "Each ratio is stricter than the one before: quick drops inventory; cash also drops receivables."
+            },
+            {
+              "kind": "example",
+              "title": "Liquidity ratios in practice",
+              "body": "Cash 20, marketable securities 15, receivables 40, inventory 50; current liabilities 75.\n\n- Current = 125 ÷ 75 = **1.67**\n- Quick = 75 ÷ 75 = **1.00**\n- Cash = 35 ÷ 75 = **0.47**\n\nA big gap between current and quick ratio signals reliance on inventory, the least liquid current asset."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "To **shorten** the CCC: cut DIO (leaner inventory), cut DSO (collect faster) or **raise** DPO (pay later). Raising DPO lowers the CCC, so do not add it. Also: a very high current ratio is not always good; it may mean idle cash or slow-moving inventory."
+            }
+          ]
+        },
+        {
+          "id": "corp-04-b",
+          "title": "Sources of liquidity, drags and pulls",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Primary vs secondary sources",
+              "body": "**Primary sources** are used in normal operations without changing the business: cash balances, cash flow from operations, short-term investments, trade credit, and bank lines of credit.\n\n**Secondary sources** are used under stress and may change the firm's financial or operating position: **liquidating assets**, renegotiating debt, **filing for bankruptcy** protection and reorganizing, or suspending dividends.\n\nUsing secondary sources is a red flag about financial health."
+            },
+            {
+              "kind": "compare",
+              "title": "Drags vs pulls on liquidity",
+              "rows": [
+                [
+                  "",
+                  "Drag on liquidity",
+                  "Pull on liquidity"
+                ],
+                [
+                  "Meaning",
+                  "Slows cash coming in",
+                  "Speeds cash going out"
+                ],
+                [
+                  "Examples",
+                  "Uncollected receivables, obsolete inventory, tight credit markets",
+                  "Suppliers demanding faster payment, reduced credit limits, early loan repayments"
+                ],
+                [
+                  "Effect",
+                  "Raises DSO or DIO",
+                  "Lowers DPO or drains cash"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Measuring liquidity risk",
+              "body": "Analysts look at:\n\n- liquidity ratios and the **CCC** trend\n- how much of the firm's funding is **short-term** and needs rolling over\n- **concentration** of funding (one bank, one market)\n- **undrawn committed lines** available\n- vulnerability to covenant triggers or rating downgrades that would cut off funding\n\nA profitable company can still fail if it cannot meet payments as they fall due."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "A bank line of credit is a **primary** source of liquidity (normal operations). Selling a factory, renegotiating debt terms or using bankruptcy protection are **secondary** sources. Questions often hinge on this classification."
+            }
+          ]
+        },
+        {
+          "id": "corp-04-c",
+          "title": "Working-capital approaches, short-term funding and trade credit",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Working-capital investment approaches",
+              "rows": [
+                [
+                  "",
+                  "Conservative",
+                  "Moderate",
+                  "Aggressive"
+                ],
+                [
+                  "Current assets held",
+                  "High (cash, inventory, generous credit)",
+                  "Medium",
+                  "Low (lean)"
+                ],
+                [
+                  "Funding",
+                  "Mostly long-term",
+                  "Matching: permanent long-term, seasonal short-term",
+                  "Mostly short-term"
+                ],
+                [
+                  "Liquidity risk",
+                  "Low",
+                  "Medium",
+                  "High"
+                ],
+                [
+                  "Cost / return",
+                  "Higher cost, lower return",
+                  "Balanced",
+                  "Lower cost, higher expected return"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Short-term funding choices",
+              "body": "- **Lines of credit**: uncommitted (bank can refuse), regular/committed (fee on unused part), revolving (multi-year, most reliable)\n- **Secured loans / asset-based loans**: backed by receivables or inventory\n- **Factoring**: selling receivables to a factor at a discount\n- **Banker's acceptances**: bank-guaranteed trade bills\n- **Commercial paper**: short-term unsecured notes, only for large, highly rated issuers\n- **Trade credit**: paying suppliers later\n\nBigger, safer firms have more choice and lower costs."
+            },
+            {
+              "kind": "formula",
+              "title": "Cost of trade credit (forgoing a discount)",
+              "formula": "Cost = (1 + d ÷ (1 − d))^{365 ÷ n} − 1",
+              "where": [
+                [
+                  "d",
+                  "discount for early payment (decimal)"
+                ],
+                [
+                  "n",
+                  "days paid beyond the discount period = payment day − discount day"
+                ]
+              ],
+              "note": "If this exceeds the firm's short-term borrowing rate, borrow and take the discount."
+            },
+            {
+              "kind": "example",
+              "title": "2/10 net 30",
+              "body": "Terms 2/10 net 30: 2% off if paid within 10 days, otherwise full amount by day 30.\n\nPaying on day 30 instead of 10 means borrowing for 20 days at 0.02 ÷ 0.98 = 2.04%.\n\nCost = (1.020408)^{365/20} − 1 = **44.6%**\n\nPaying on day 60 (stretching): n = 50, cost = **15.9%**. Stretching cuts the cost but harms supplier relations.",
+              "calc": "1.020408 [y^x] 18.25 [=] [−] 1 [=] → 0.4459 (18.25 = 365 ÷ 20)"
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM's early-settlement discount formula is the same compound version: (1 + d/(100 − d))^{365/t} − 1. CFA uses the same input, **days beyond the discount period** (FM's reduction in the payment period), not total credit days: for 2/10 net 30, n = **20**, not 30. CFA also expects you to know the short-term funding instruments by name and to rank them (commercial paper cheapest but only for top issuers)."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "corp-04-q01",
+          "lesson": "corp-04-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A company has DIO of 45 days, DSO of 38 days and DPO of 30 days. Its cash conversion cycle is closest to:",
+          "options": [
+            "53 days.",
+            "113 days.",
+            "37 days."
+          ],
+          "answer": 0,
+          "explanation": "CCC = DIO + DSO − DPO = 45 + 38 − 30 = **53 days**. 113 adds DPO instead of subtracting it; 37 subtracts DSO instead of adding it (45 − 38 + 30)."
+        },
+        {
+          "id": "corp-04-q02",
+          "lesson": "corp-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which change will most likely shorten a company's cash conversion cycle?",
+          "options": [
+            "Granting customers longer credit terms",
+            "Paying suppliers more slowly",
+            "Building larger safety stocks of inventory"
+          ],
+          "answer": 1,
+          "explanation": "Paying suppliers later raises DPO, which is subtracted in CCC = DIO + DSO − DPO, so the CCC falls. Longer customer credit raises DSO and larger inventory raises DIO, both lengthening the cycle."
+        },
+        {
+          "id": "corp-04-q03",
+          "lesson": "corp-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A firm has cash of 30, marketable securities 10, receivables 50, inventory 80 and current liabilities 100. Its quick ratio is closest to:",
+          "options": [
+            "0.40",
+            "1.70",
+            "0.90"
+          ],
+          "answer": 2,
+          "explanation": "Quick = (30 + 10 + 50) ÷ 100 = **0.90**. 1.70 is the current ratio (includes inventory); 0.40 is the cash ratio (excludes receivables)."
+        },
+        {
+          "id": "corp-04-q04",
+          "lesson": "corp-04-a",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "Annual sales are 1,095 and COGS is 730. Average receivables are 90, average inventory 100 and average payables 60 (use COGS for DPO). The cash conversion cycle is closest to:",
+          "options": [
+            "50 days.",
+            "65 days.",
+            "110 days."
+          ],
+          "answer": 0,
+          "explanation": "DSO = 90 ÷ (1,095/365) = 90 ÷ 3 = **30**. DIO = 100 ÷ (730/365) = 100 ÷ 2 = **50**. DPO = 60 ÷ 2 = **30**. CCC = 50 + 30 − 30 = **50 days**. 65 wrongly divides receivables by daily COGS (90 ÷ 2 = 45 → 50 + 45 − 30); 110 adds DPO instead of subtracting it."
+        },
+        {
+          "id": "corp-04-q05",
+          "lesson": "corp-04-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is a secondary source of liquidity?",
+          "options": [
+            "A committed bank line of credit",
+            "Renegotiating the terms of existing debt",
+            "Cash flow from operations"
+          ],
+          "answer": 1,
+          "explanation": "Renegotiating debt changes the firm's financial position and signals stress, so it is a secondary source. Bank lines and operating cash flow are primary sources used in normal business."
+        },
+        {
+          "id": "corp-04-q06",
+          "lesson": "corp-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A key supplier reduces the credit period it gives the company from 60 days to 30 days. This is best described as a:",
+          "options": [
+            "drag on liquidity.",
+            "secondary source of liquidity.",
+            "pull on liquidity."
+          ],
+          "answer": 2,
+          "explanation": "Having to pay suppliers sooner accelerates cash outflows, which is a pull on liquidity. A drag slows cash inflows (e.g. slow collections), and a secondary source is something the firm draws on under stress."
+        },
+        {
+          "id": "corp-04-q07",
+          "lesson": "corp-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A company's receivables collection slows sharply as several large customers delay payment. This most likely:",
+          "options": [
+            "is a drag on liquidity that increases DSO.",
+            "is a pull on liquidity that decreases DPO.",
+            "has no effect on the cash conversion cycle."
+          ],
+          "answer": 0,
+          "explanation": "Slow collections delay cash inflows (a drag) and raise DSO, lengthening the CCC. A pull relates to faster outflows such as suppliers shortening terms."
+        },
+        {
+          "id": "corp-04-q08",
+          "lesson": "corp-04-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A supplier offers terms of 2/10, net 30. The effective annual cost of forgoing the discount and paying on day 30 is closest to:",
+          "options": [
+            "37.2%",
+            "44.6%",
+            "27.9%"
+          ],
+          "answer": 1,
+          "explanation": "Cost = (1 + 0.02/0.98)^{365/20} − 1 = 1.020408^{18.25} − 1 = **44.6%**. 37.2% is the simple (non-compounded) rate 2.04% × 18.25; 27.9% wrongly uses 365/30 = 12.17 periods (counting the whole 30 days)."
+        },
+        {
+          "id": "corp-04-q09",
+          "lesson": "corp-04-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A company that holds high levels of cash and inventory and finances them mainly with long-term debt and equity follows a(n):",
+          "options": [
+            "aggressive approach.",
+            "moderate approach.",
+            "conservative approach."
+          ],
+          "answer": 2,
+          "explanation": "High current-asset levels funded by long-term sources is the conservative approach: low liquidity risk but higher cost. An aggressive approach keeps lean current assets funded short-term; a moderate approach matches maturities."
+        },
+        {
+          "id": "corp-04-q10",
+          "lesson": "corp-04-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which short-term funding source is typically available only to large, financially strong companies?",
+          "options": [
+            "Commercial paper",
+            "Factoring of receivables",
+            "Asset-based loans"
+          ],
+          "answer": 0,
+          "explanation": "Commercial paper is unsecured, so only large issuers with high credit ratings can access it cheaply. Factoring and asset-based loans are secured on receivables/inventory and are used by weaker or smaller firms."
+        },
+        {
+          "id": "corp-04-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Terms are 1/10, net 40. A company can borrow short-term at 9% a year. Should it take the discount, and what is the cost of forgoing it?",
+          "options": [
+            "No; cost of forgoing the discount is about 9.1%",
+            "Yes; cost of forgoing the discount is about 13.0%",
+            "Yes; cost of forgoing the discount is about 12.3%"
+          ],
+          "answer": 1,
+          "explanation": "Cost = (1 + 0.01/0.99)^{365/30} − 1 = 1.010101^{12.167} − 1 = **13.0%**. Since 13.0% > 9%, borrow at 9% and take the discount. 12.3% is the simple annualized rate (1.0101% × 12.167); 9.1% uses 1% × 365/40 (simple rate over the whole credit period) and wrongly concludes 'no' (even 9.1% would exceed the 9% borrowing rate)."
+        },
+        {
+          "id": "corp-04-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about working-capital approaches is most accurate?",
+          "options": [
+            "An aggressive approach lowers liquidity risk because it uses cheaper short-term financing.",
+            "A moderate approach finances all current assets with short-term debt.",
+            "A conservative approach typically has higher financing costs but lower liquidity risk."
+          ],
+          "answer": 2,
+          "explanation": "Holding more current assets funded long-term costs more but reduces the risk of a funding squeeze. Aggressive policies raise liquidity (rollover) risk, and the moderate approach funds permanent current assets long-term and only seasonal needs short-term."
+        },
+        {
+          "id": "corp-04-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which line of credit gives a borrower the most reliable access to funds?",
+          "options": [
+            "Revolving credit agreement",
+            "Uncommitted line",
+            "Overdraft arranged informally with the bank"
+          ],
+          "answer": 0,
+          "explanation": "A revolving credit agreement is a formal, often multi-year commitment, so it is the most reliable. An uncommitted line can be refused by the bank at any time, and an informal overdraft is not a binding commitment either."
+        },
+        {
+          "id": "corp-04-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A company's DSO rises from 40 to 48 days, DIO falls from 65 to 60 days and DPO rises from 35 to 38 days. The change in its cash conversion cycle is:",
+          "options": [
+            "an increase of 6 days.",
+            "no change.",
+            "a decrease of 6 days."
+          ],
+          "answer": 1,
+          "explanation": "Old CCC = 65 + 40 − 35 = 70. New CCC = 60 + 48 − 38 = 70. **No change**: +8 DSO − 5 DIO − 3 extra DPO = 0. +6 comes from adding the DPO change instead of subtracting it (8 − 5 + 3)."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "corp-04-f01",
+          "front": "Cash conversion cycle formula",
+          "back": "CCC = DIO + DSO − DPO. DIO = inventory/(COGS/365); DSO = receivables/(sales/365); DPO = payables/(purchases/365)."
+        },
+        {
+          "id": "corp-04-f02",
+          "front": "Current vs quick vs cash ratio",
+          "back": "Current = CA/CL. Quick = (cash + mkt securities + receivables)/CL. Cash = (cash + mkt securities)/CL."
+        },
+        {
+          "id": "corp-04-f03",
+          "front": "Cost of trade credit (forgone discount)",
+          "back": "(1 + d/(1 − d))^{365/n} − 1, where n = days paid beyond the discount period. 2/10 net 30 → n = 20 → 44.6%."
+        },
+        {
+          "id": "corp-04-f04",
+          "front": "Primary vs secondary liquidity sources",
+          "back": "Primary: cash, operating cash flow, short-term investments, trade credit, bank lines. Secondary: asset sales, debt renegotiation, bankruptcy reorganization, suspending dividends."
+        },
+        {
+          "id": "corp-04-f05",
+          "front": "Drag vs pull on liquidity",
+          "back": "Drag: delays inflows (slow collections, obsolete inventory, tight credit). Pull: accelerates outflows (suppliers cut credit terms, lenders reduce lines, early repayments)."
+        },
+        {
+          "id": "corp-04-f06",
+          "front": "Conservative vs aggressive working-capital approach",
+          "back": "Conservative: high current assets, long-term funding, low liquidity risk, higher cost. Aggressive: lean current assets, short-term funding, high liquidity risk, lower cost."
+        },
+        {
+          "id": "corp-04-f07",
+          "front": "Take the discount or not?",
+          "back": "Take it (borrowing if needed) whenever the cost of forgoing it exceeds the firm's short-term borrowing rate."
+        }
+      ]
+    },
+    {
+      "id": "corp-05",
+      "lm": 5,
+      "title": "Capital Investments and Capital Allocation",
+      "summary": "The types of capital projects, the capital allocation process, NPV and IRR decision rules, ROIC as a test of value creation, common capital allocation pitfalls, and how real options add value.",
+      "acca": {
+        "overlap": "strong",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM covered NPV, IRR, payback, ARR and capital rationing; AFM covered real options. New for CFA: the classification of capital projects (going concern, regulatory, expansion, other), ROIC vs cost of capital as an investor's value-creation test, the named behavioral pitfalls of capital allocation, and the real-option NPV adjustment."
+      },
+      "lessons": [
+        {
+          "id": "corp-05-a",
+          "title": "Types of capital projects and the allocation process",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Types of capital investment",
+              "rows": [
+                [
+                  "Type",
+                  "Purpose",
+                  "Example"
+                ],
+                [
+                  "Going concern",
+                  "Keep the business running: maintenance and replacement",
+                  "Replace worn-out machines"
+                ],
+                [
+                  "Regulatory / compliance",
+                  "Required by law or regulators; often negative NPV on their own",
+                  "Emissions-control equipment"
+                ],
+                [
+                  "Expansion",
+                  "Grow the business: new products, markets, capacity",
+                  "New factory, acquisition"
+                ],
+                [
+                  "Other",
+                  "Projects outside normal business; hard to evaluate",
+                  "Pet projects, high-risk bets"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "The capital allocation process",
+              "body": "1. **Idea generation**: the most important step; ideas come from anywhere in the firm\n2. **Investment analysis**: forecast cash flows, evaluate profitability (NPV, IRR)\n3. **Planning and prioritization**: fit projects with strategy, timing and resources\n4. **Monitoring and post-audit**: compare actual with forecast results to improve future decisions and spot errors\n\nKey principles: use **incremental after-tax cash flows**, ignore **sunk costs**, include **opportunity costs** and **externalities** (e.g. cannibalization), and discount at the required return reflecting the project's risk."
+            },
+            {
+              "kind": "compare",
+              "title": "Capital allocation pitfalls",
+              "rows": [
+                [
+                  "Pitfall",
+                  "What it looks like"
+                ],
+                [
+                  "Inertia",
+                  "Budgets copied from last year regardless of opportunity"
+                ],
+                [
+                  "Source-of-capital bias",
+                  "Spending freely from internal cash, being stricter with outside money"
+                ],
+                [
+                  "Failing to consider alternatives",
+                  "Only one option analysed; no 'do nothing' or competitor response"
+                ],
+                [
+                  "Pushing pet projects",
+                  "Senior managers' favorites skip normal scrutiny"
+                ],
+                [
+                  "Internal forecasting errors",
+                  "Ignoring overheads, wrong discount rate, inconsistent assumptions"
+                ],
+                [
+                  "EPS/accounting focus",
+                  "Choosing projects that lift short-term EPS rather than value"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM taught relevant cash flows (sunk costs out, opportunity costs in) and post-completion audit, so the process is familiar. New for CFA: the **four project types** and the **named pitfalls** (inertia, source-of-capital bias, failing to consider alternatives, pet projects, forecasting errors). Expect \"which pitfall is shown?\" vignette questions."
+            }
+          ]
+        },
+        {
+          "id": "corp-05-b",
+          "title": "NPV and IRR",
+          "minutes": 8,
+          "fastTrack": [
+            "FM"
+          ],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "NPV and IRR",
+              "formula": "NPV = Σ CF_{t} ÷ (1 + r)^{t} − CF_{0}     IRR: Σ CF_{t} ÷ (1 + IRR)^{t} − CF_{0} = 0",
+              "where": [
+                [
+                  "CF_{t}",
+                  "after-tax cash flow in year t"
+                ],
+                [
+                  "r",
+                  "required rate of return (project's cost of capital)"
+                ],
+                [
+                  "CF_{0}",
+                  "initial investment"
+                ]
+              ],
+              "note": "Accept if NPV > 0 or IRR > r. NPV is the expected change in shareholder wealth."
+            },
+            {
+              "kind": "example",
+              "title": "NPV and IRR on the calculator",
+              "body": "Invest 1,000; cash flows 300, 400, 500, 200; required return 10%.\n\nNPV = 300/1.1 + 400/1.1^{2} + 500/1.1^{3} + 200/1.1^{4} − 1,000 = **115.57**\n\nIRR = **15.32%** > 10% → accept.",
+              "calc": "[CF] [2ND][CLR WORK] −1000 [ENTER] [↓] 300 [ENTER] [↓][↓] 400 [ENTER] [↓][↓] 500 [ENTER] [↓][↓] 200 [ENTER] [NPV] 10 [ENTER] [↓] [CPT] → 115.57; [IRR] [CPT] → 15.32"
+            },
+            {
+              "kind": "concept",
+              "title": "When NPV and IRR disagree",
+              "body": "For a single conventional project, NPV and IRR give the same accept/reject decision. For **mutually exclusive** projects they can rank differently because of **scale** or **timing** of cash flows.\n\nIRR assumes reinvestment at the IRR; NPV assumes reinvestment at the cost of capital (more realistic). IRR can also have **multiple** or **no** solutions with non-conventional cash flows.\n\n**Rule: when they conflict, use NPV.**"
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "NPV profiles: NPV falls as the discount rate rises; the curve hits zero at the IRR. Two projects' NPV profiles cross at the **crossover rate**; below it the project with later or larger cash flows usually has the higher NPV."
+            }
+          ]
+        },
+        {
+          "id": "corp-05-c",
+          "title": "ROIC and real options",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Return on invested capital",
+              "formula": "ROIC = after-tax operating profit ÷ average invested capital",
+              "where": [
+                [
+                  "After-tax operating profit",
+                  "EBIT × (1 − t)"
+                ],
+                [
+                  "Invested capital",
+                  "debt + equity (average of opening and closing)"
+                ]
+              ],
+              "note": "Value is created when ROIC > cost of capital (WACC); destroyed when ROIC < WACC."
+            },
+            {
+              "kind": "example",
+              "title": "ROIC vs WACC",
+              "body": "EBIT 150, tax rate 25%, invested capital 900 at start and 1,100 at end; WACC 9%.\n\n- After-tax operating profit = 150 × 0.75 = 112.5\n- Average invested capital = (900 + 1,100) ÷ 2 = 1,000\n- ROIC = 112.5 ÷ 1,000 = **11.25%**\n\nROIC exceeds WACC by 2.25 percentage points, so the company's past investments have **created** value."
+            },
+            {
+              "kind": "concept",
+              "title": "Real options",
+              "body": "Real options are rights, not obligations, to change a project later. They have value because managers act only when it pays.\n\n- **Timing**: delay investing until uncertainty clears\n- **Sizing**: **abandonment** (exit if bad) or **growth/expansion** (scale up if good)\n- **Flexibility**: **price-setting** or **production-flexibility** (e.g. switch inputs, add shifts)\n- **Fundamental**: payoff depends on an underlying price (e.g. oil wells, mines)"
+            },
+            {
+              "kind": "formula",
+              "title": "Project NPV with a real option",
+              "formula": "NPV = NPV (without option) − cost of option + value of option",
+              "note": "A negative-NPV project can become acceptable once the option's value is counted."
+            },
+            {
+              "kind": "example",
+              "title": "Timing option",
+              "body": "Invest now: NPV 10m. Or wait one year: 50% chance NPV (at year 1) is 40m, 50% chance it is −20m, in which case the firm will not invest (0). Discount at 10%.\n\nValue of waiting = 0.5 × 40 ÷ 1.10 = **18.18m** > 10m → **wait**.\n\nThe flexibility to skip the bad outcome is what the timing option is worth."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM judged projects by NPV only; CFA also asks whether the **company** earns **ROIC above its cost of capital**, the investor's test of value creation. Note ROIC uses **after-tax operating** profit and **average** debt + equity, not net income or ending capital. Real options (AFM) are tested only qualitatively plus the simple NPV adjustment: no Black–Scholes."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "corp-05-q01",
+          "lesson": "corp-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A utility must install new scrubbers to meet tightened air-quality laws. This capital project is best classified as:",
+          "options": [
+            "going concern.",
+            "expansion.",
+            "regulatory/compliance."
+          ],
+          "answer": 2,
+          "explanation": "Projects required by regulators or law are regulatory/compliance projects; they often have negative stand-alone NPV but are needed to keep operating. Going-concern projects maintain or replace existing assets, and expansion projects grow the business."
+        },
+        {
+          "id": "corp-05-q02",
+          "lesson": "corp-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A division manager applies a 12% hurdle rate to projects funded by a new bond issue but approves projects funded from retained earnings with little analysis. This pitfall is best described as:",
+          "options": [
+            "source-of-capital bias.",
+            "failing to consider alternatives.",
+            "inertia."
+          ],
+          "answer": 0,
+          "explanation": "Treating internally generated cash as if it were cheaper or freer than external capital is source-of-capital bias; all capital has an opportunity cost. Inertia is copying last year's budget, and failing to consider alternatives means evaluating only one option."
+        },
+        {
+          "id": "corp-05-q03",
+          "lesson": "corp-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "In evaluating a new product, a firm should EXCLUDE which of the following from the project's cash flows?",
+          "options": [
+            "Lost sales of an existing product the new product will replace",
+            "Market research spent last year on the product",
+            "Rent the firm could earn by leasing out the factory space it will use"
+          ],
+          "answer": 1,
+          "explanation": "Last year's market research is a sunk cost and is not incremental. Cannibalized sales are a negative externality and must be included, and forgone rent is an opportunity cost that must also be included."
+        },
+        {
+          "id": "corp-05-q04",
+          "lesson": "corp-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The capital allocation step that compares actual results with forecasts and improves future decisions is:",
+          "options": [
+            "planning and prioritization.",
+            "idea generation.",
+            "monitoring and post-audit."
+          ],
+          "answer": 2,
+          "explanation": "The post-audit checks realized against projected results, spotting systematic forecasting errors. Idea generation creates proposals; planning and prioritization schedules and ranks projects."
+        },
+        {
+          "id": "corp-05-q05",
+          "lesson": "corp-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A project costs 1,000 and generates after-tax cash flows of 300, 400, 500 and 200 in years 1–4. At a 10% required return, its NPV is closest to:",
+          "options": [
+            "115.6",
+            "400.0",
+            "−43.8"
+          ],
+          "answer": 0,
+          "explanation": "NPV = 300/1.1 + 400/1.1^{2} + 500/1.1^{3} + 200/1.1^{4} − 1,000 = 272.73 + 330.58 + 375.66 + 136.60 − 1,000 = **115.57**. 400.0 ignores discounting (1,400 − 1,000). −43.8 discounts the total 1,400 as if it all arrived in year 4 (1,400 ÷ 1.1^{4} − 1,000).",
+          "calc": "[CF] −1000 [ENTER] [↓] 300 [ENTER] [↓][↓] 400 [ENTER] [↓][↓] 500 [ENTER] [↓][↓] 200 [ENTER] [NPV] 10 [ENTER] [↓] [CPT] → 115.57"
+        },
+        {
+          "id": "corp-05-q06",
+          "lesson": "corp-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Using the same cash flows (−1,000; 300; 400; 500; 200), the project's IRR is closest to:",
+          "options": [
+            "10.0%",
+            "15.3%",
+            "40.0%"
+          ],
+          "answer": 1,
+          "explanation": "The IRR solves NPV = 0: **15.32%**, found with [IRR] [CPT]. 10% is the required return, not the IRR; 40% is total undiscounted profit 400 ÷ 1,000.",
+          "calc": "[CF] −1000, 300, 400, 500, 200 [IRR] [CPT] → 15.32"
+        },
+        {
+          "id": "corp-05-q07",
+          "lesson": "corp-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Two mutually exclusive projects have IRRs of 18% (Project X) and 14% (Project Y). At the firm's 10% cost of capital, Y has the higher NPV. The firm should choose:",
+          "options": [
+            "Project X, because it has the higher IRR.",
+            "neither, because the rankings conflict.",
+            "Project Y, because it has the higher NPV."
+          ],
+          "answer": 2,
+          "explanation": "When NPV and IRR rank mutually exclusive projects differently, choose the higher NPV, which measures the increase in shareholder wealth and assumes reinvestment at the cost of capital. Conflicting rankings are common (scale/timing differences) and do not mean rejecting both."
+        },
+        {
+          "id": "corp-05-q08",
+          "lesson": "corp-05-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A company has EBIT of 150, a 25% tax rate, and invested capital of 900 at the start of the year and 1,100 at the end. Its WACC is 9%. ROIC and the value conclusion are:",
+          "options": [
+            "11.25%; value created.",
+            "15.00%; value created.",
+            "10.23%; value destroyed."
+          ],
+          "answer": 0,
+          "explanation": "ROIC = 150 × (1 − 0.25) ÷ [(900 + 1,100)/2] = 112.5 ÷ 1,000 = **11.25%** > 9% → value created. 15% uses pre-tax EBIT. 10.23% uses ending capital (112.5 ÷ 1,100), and it is still above 9%, so 'value destroyed' is wrong anyway."
+        },
+        {
+          "id": "corp-05-q09",
+          "lesson": "corp-05-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A project has an NPV of −4 million without any options. Building it with extra land costs 2 million more but gives an expansion option valued at 7 million. The project's NPV including the option is:",
+          "options": [
+            "−4 million",
+            "+1 million",
+            "+5 million"
+          ],
+          "answer": 1,
+          "explanation": "NPV = NPV(without option) − cost of option + value of option = −4 − 2 + 7 = **+1 million** → accept. +5 ignores the option's cost; −4 ignores the option altogether."
+        },
+        {
+          "id": "corp-05-q10",
+          "lesson": "corp-05-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A mining company can close a mine temporarily if metal prices fall below its cash cost. This is best described as a(n):",
+          "options": [
+            "timing option.",
+            "growth option.",
+            "production-flexibility option."
+          ],
+          "answer": 2,
+          "explanation": "The ability to vary output (including shutting temporarily) as conditions change is a flexibility option, specifically production flexibility. A timing option is about when to invest, and a growth option is about scaling up."
+        },
+        {
+          "id": "corp-05-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Investing now gives an NPV of 10m. Alternatively the firm can wait one year: there is a 50% chance the NPV (measured at year 1) will be 40m and a 50% chance it will be −20m, in which case it will not invest. At a 10% discount rate, the firm should:",
+          "options": [
+            "wait, because the value of waiting is 18.18m.",
+            "invest now, because 10m exceeds the expected NPV of waiting of 9.09m.",
+            "wait, because the value of waiting is 20.00m."
+          ],
+          "answer": 0,
+          "explanation": "With the option to walk away, the bad outcome is worth 0, not −20m. Value of waiting = 0.5 × 40 ÷ 1.10 = **18.18m** > 10m → wait. 9.09m wrongly includes the −20m outcome ((0.5 × 40 − 0.5 × 20) ÷ 1.1); 20.00m forgets to discount."
+        },
+        {
+          "id": "corp-05-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A company's ROIC has been 7% for five years while its WACC is 9%. The most likely conclusion is that the company:",
+          "options": [
+            "has created value as long as ROIC is positive.",
+            "has destroyed value, even if its earnings have grown.",
+            "should increase investment to raise ROIC above WACC."
+          ],
+          "answer": 1,
+          "explanation": "When ROIC < WACC, each unit of capital earns less than investors require, so value is destroyed; growth in earnings funded by more capital makes it worse. A positive ROIC is not enough, and investing more at the same returns would destroy more value."
+        },
+        {
+          "id": "corp-05-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A board approves next year's capital budget by increasing every division's prior-year allocation by 5% without reviewing new opportunities. This pitfall is:",
+          "options": [
+            "internal forecasting errors.",
+            "pushing pet projects.",
+            "inertia."
+          ],
+          "answer": 2,
+          "explanation": "Mechanically carrying forward previous allocations is inertia; it ignores where the best opportunities are now. Pet projects involve senior managers' favorites bypassing scrutiny; forecasting errors are mistakes in cash-flow or discount-rate inputs."
+        },
+        {
+          "id": "corp-05-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Project A costs 500 and pays 250 a year for 3 years. Project B costs 500 and pays 900 at the end of year 3. The projects are mutually exclusive and the required return is 8%. Which statement is correct?",
+          "options": [
+            "A has the higher IRR, but B has the higher NPV, so choose B.",
+            "A has both the higher IRR and the higher NPV, so choose A.",
+            "A has the higher IRR, so choose A even though B has the higher NPV."
+          ],
+          "answer": 0,
+          "explanation": "NPV A = 250 × annuity factor (8%, 3) − 500 = 644.27 − 500 = **144.27**; IRR A = **23.38%**. NPV B = 900 ÷ 1.08^{3} − 500 = 714.45 − 500 = **214.45**; IRR B = **21.64%**. The rankings conflict because of cash-flow timing; for mutually exclusive projects choose the higher NPV, so **B**. Choosing A on IRR assumes reinvestment at A's high IRR, which is unrealistic.",
+          "calc": "[CF] −500 [ENTER] [↓] 250 [ENTER] [↓] 3 [ENTER] [NPV] 8 [ENTER] [↓][CPT] → 144.27; [IRR][CPT] → 23.38"
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "corp-05-f01",
+          "front": "Four types of capital projects",
+          "back": "Going concern (maintenance/replacement), regulatory/compliance, expansion, other (high-risk or pet projects)."
+        },
+        {
+          "id": "corp-05-f02",
+          "front": "Capital allocation pitfalls",
+          "back": "Inertia; source-of-capital bias; failing to consider alternatives; pushing pet projects; internal forecasting errors; focusing on EPS/accounting results instead of value."
+        },
+        {
+          "id": "corp-05-f03",
+          "front": "NPV vs IRR conflict rule",
+          "back": "For mutually exclusive projects with conflicting rankings (scale or timing differences), choose the higher NPV. NPV assumes reinvestment at the cost of capital; IRR at the IRR."
+        },
+        {
+          "id": "corp-05-f04",
+          "front": "ROIC formula and test",
+          "back": "ROIC = after-tax operating profit ÷ average invested capital (debt + equity). Value created if ROIC > WACC."
+        },
+        {
+          "id": "corp-05-f05",
+          "front": "Types of real options",
+          "back": "Timing (delay); sizing (abandonment, growth/expansion); flexibility (price-setting, production-flexibility); fundamental (payoff tied to an underlying price)."
+        },
+        {
+          "id": "corp-05-f06",
+          "front": "Project NPV with a real option",
+          "back": "NPV = NPV(no option) − cost of option + value of option."
+        }
+      ]
+    },
+    {
+      "id": "corp-06",
+      "lm": 6,
+      "title": "Capital Structure",
+      "summary": "How WACC is built, what drives a company's mix of debt and equity (life-cycle stage, business and financial risk), the Modigliani–Miller propositions with and without taxes, and the trade-off, pecking-order, signaling and agency views of capital structure.",
+      "acca": {
+        "overlap": "strong",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM covered WACC with market-value weights, CAPM, MM with and without tax, the traditional view and pecking order. New for CFA: CFA notation (r_0 for the unlevered cost of capital), capital structure by company life-cycle stage, the static trade-off model with costs of financial distress, agency costs of debt and equity, and target vs optimal capital structure."
+      },
+      "lessons": [
+        {
+          "id": "corp-06-a",
+          "title": "Weighted average cost of capital",
+          "minutes": 7,
+          "fastTrack": [
+            "FM"
+          ],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "WACC",
+              "formula": "WACC = w_{d} r_{d} (1 − t) + w_{p} r_{p} + w_{e} r_{e}",
+              "where": [
+                [
+                  "w_{d}, w_{p}, w_{e}",
+                  "target weights of debt, preferred and common equity (market values)"
+                ],
+                [
+                  "r_{d}",
+                  "pre-tax cost of debt"
+                ],
+                [
+                  "t",
+                  "marginal tax rate"
+                ],
+                [
+                  "r_{p}, r_{e}",
+                  "costs of preferred and common equity"
+                ]
+              ],
+              "note": "Only debt gets the tax shield because interest is tax-deductible."
+            },
+            {
+              "kind": "example",
+              "title": "WACC example",
+              "body": "Target weights: debt 30%, preferred 10%, equity 60%. Pre-tax cost of debt 7%, tax rate 30%, preferred 8%, equity 12%.\n\nWACC = 0.30 × 7% × 0.70 + 0.10 × 8% + 0.60 × 12%\n= 1.47% + 0.80% + 7.20% = **9.47%**"
+            },
+            {
+              "kind": "concept",
+              "title": "Which weights to use",
+              "body": "Use the firm's **target** capital structure at **market values**. If no target is known, use current market-value weights, the industry average, or the trend in the firm's structure.\n\nBook values of equity are usually far from market values, so book weights distort WACC. The WACC is the right discount rate only for projects with the **same risk** as the firm's existing business."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Classic slips: forgetting (1 − t) on debt, applying (1 − t) to preferred or equity, or using book weights when market values are given. If you see both, CFA wants **market values**."
+            }
+          ]
+        },
+        {
+          "id": "corp-06-b",
+          "title": "Modigliani–Miller propositions",
+          "minutes": 9,
+          "fastTrack": [
+            "FM"
+          ],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "MM without taxes",
+              "body": "Assumptions: perfect markets, no taxes, no transaction or bankruptcy costs, investors borrow at the same rate as firms, everyone has the same information.\n\n**Proposition I**: V_{L} = V_{U}. Capital structure is **irrelevant** to firm value.\n\n**Proposition II**: the cost of equity rises linearly with leverage, exactly offsetting the cheaper debt, so **WACC stays constant** at r_{0}."
+            },
+            {
+              "kind": "formula",
+              "title": "MM Proposition II (no taxes)",
+              "formula": "r_{e} = r_{0} + (r_{0} − r_{d}) × (D ÷ E)",
+              "where": [
+                [
+                  "r_{0}",
+                  "cost of capital of an all-equity (unlevered) firm"
+                ],
+                [
+                  "r_{d}",
+                  "cost of debt"
+                ],
+                [
+                  "D ÷ E",
+                  "debt-to-equity ratio (market values)"
+                ]
+              ],
+              "note": "Example: r_{0} 10%, r_{d} 6%, D/E 0.5 → r_{e} = 10% + 4% × 0.5 = 12%."
+            },
+            {
+              "kind": "formula",
+              "title": "MM with corporate taxes",
+              "formula": "V_{L} = V_{U} + t × D     r_{e} = r_{0} + (r_{0} − r_{d}) × (1 − t) × (D ÷ E)",
+              "where": [
+                [
+                  "t × D",
+                  "present value of the debt tax shield (perpetual debt)"
+                ]
+              ],
+              "note": "Interest is tax-deductible, so leverage adds value and WACC falls as debt rises. Taken literally: 100% debt is optimal."
+            },
+            {
+              "kind": "example",
+              "title": "MM with taxes in numbers",
+              "body": "Unlevered firm value 1,000, tax rate 30%. It issues 400 of perpetual debt and buys back shares.\n\nV_{L} = 1,000 + 0.30 × 400 = **1,120**.\n\nCost of equity with r_{0} 9%, r_{d} 5%, D/E = 1:\nr_{e} = 9% + 4% × 0.70 × 1 = **11.8%** (vs 13% without taxes).\n\nCost of equity still rises with leverage, but more slowly."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "Same theory as FM, new notation. FM's k_{eg} = k_{ei} + (1 − T)(k_{ei} − k_{d})V_{d}/V_{e} is CFA's r_{e} = r_{0} + (r_{0} − r_{d})(1 − t)(D/E), and FM's V_{g} = V_{u} + TB_{d} is V_{L} = V_{U} + tD. CFA questions often ask what happens to **WACC** (constant without taxes; falls with taxes) rather than to firm value."
+            }
+          ]
+        },
+        {
+          "id": "corp-06-c",
+          "title": "Trade-off, pecking order, and real-world capital structure",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Static trade-off theory",
+              "formula": "V_{L} = V_{U} + t × D − PV(costs of financial distress)",
+              "where": [
+                [
+                  "Costs of financial distress",
+                  "direct (legal, admin fees) and indirect (lost customers, suppliers, staff, forgone projects)"
+                ]
+              ],
+              "note": "Optimal capital structure is where the marginal tax benefit of debt equals the marginal expected cost of distress; WACC is minimized there."
+            },
+            {
+              "kind": "concept",
+              "title": "Pecking order and signaling",
+              "body": "**Pecking order** (from information asymmetry): managers prefer **internal funds** first, then **debt**, and **new equity** last, because issuing equity signals that managers think shares are overvalued.\n\n**Signaling**: taking on debt signals confidence in future cash flows (commitment to pay interest); issuing equity is a negative signal, so share prices often fall on equity issue announcements."
+            },
+            {
+              "kind": "concept",
+              "title": "Agency costs and leverage",
+              "body": "**Agency costs of equity**: managers misuse free cash flow. Debt reduces them by forcing cash out as interest (Jensen's **free cash flow hypothesis**), so some debt can **add** value.\n\n**Agency costs of debt**: with high leverage, shareholders may take excessive risk or underinvest, and lenders respond with covenants and higher rates. Net agency costs are another reason the optimal debt level is below 100%."
+            },
+            {
+              "kind": "compare",
+              "title": "Capital structure over the life cycle",
+              "rows": [
+                [
+                  "Stage",
+                  "Typical financing",
+                  "Why"
+                ],
+                [
+                  "Start-up",
+                  "Equity (VC); little or no debt",
+                  "Negative cash flow, few tangible assets, high business risk"
+                ],
+                [
+                  "Growth",
+                  "Mostly equity; debt rising",
+                  "Cash flow turning positive but volatile; reinvestment needs high"
+                ],
+                [
+                  "Mature",
+                  "Significant debt",
+                  "Stable cash flows, tangible assets for collateral; debt cheapest source"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Other factors and target vs optimal",
+              "body": "More debt capacity: stable revenue, low **operating** leverage, tangible assets, low business risk, subscription/recurring sales. Less: cyclical revenue, high fixed costs, intangible assets.\n\n**Optimal** structure minimizes WACC/maximizes value. Firms set a **target** close to it and let actual weights drift (market values move, issues are lumpy), then adjust. Investors also watch **credit ratings**, debt covenants, tax status and management's preferences."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Rising debt raises the cost of equity under **every** MM version; what differs is WACC. And the **pecking order** says equity is the **last** resort, not debt. Do not confuse the static trade-off (balance tax shield vs distress costs) with pecking order (information asymmetry, no target ratio)."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "corp-06-q01",
+          "lesson": "corp-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A company's target capital structure is 40% debt and 60% equity. Its pre-tax cost of debt is 6%, its cost of equity is 11% and its tax rate is 25%. The WACC is closest to:",
+          "options": [
+            "9.00%",
+            "8.40%",
+            "7.10%"
+          ],
+          "answer": 1,
+          "explanation": "WACC = 0.40 × 6% × (1 − 0.25) + 0.60 × 11% = 1.80% + 6.60% = **8.40%**. 9.00% forgets the tax shield (2.40% + 6.60%). 7.10% swaps the weights (0.60 × 4.50% + 0.40 × 11% = 2.70% + 4.40%)."
+        },
+        {
+          "id": "corp-06-q02",
+          "lesson": "corp-06-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "When calculating WACC, the weights should preferably be based on:",
+          "options": [
+            "book values from the latest balance sheet.",
+            "the proportion of each source used to fund the current year's projects.",
+            "the company's target capital structure at market values."
+          ],
+          "answer": 2,
+          "explanation": "WACC should reflect the long-run target mix at market values. Book values (especially of equity) can differ widely from market values, and using the specific source of this year's funding is the marginal-source error (and a source-of-capital bias)."
+        },
+        {
+          "id": "corp-06-q03",
+          "lesson": "corp-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A company has 40% debt (pre-tax cost 7%), 10% preferred stock (cost 8%) and 50% common equity (cost 12%). The tax rate is 30%. The WACC is closest to:",
+          "options": [
+            "8.76%",
+            "9.60%",
+            "8.52%"
+          ],
+          "answer": 0,
+          "explanation": "WACC = 0.40 × 7% × 0.70 + 0.10 × 8% + 0.50 × 12% = 1.96% + 0.80% + 6.00% = **8.76%**. 9.60% omits the tax shield on debt (2.80% + 0.80% + 6.00%). 8.52% wrongly applies (1 − t) to preferred too (1.96% + 0.56% + 6.00%)."
+        },
+        {
+          "id": "corp-06-q04",
+          "lesson": "corp-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Under MM with no taxes, an unlevered firm has a cost of capital of 10%. It recapitalizes to a debt-to-equity ratio of 0.5 with a cost of debt of 6%. Its cost of equity becomes:",
+          "options": [
+            "11.3%",
+            "12.0%",
+            "10.0%"
+          ],
+          "answer": 1,
+          "explanation": "r_{e} = r_{0} + (r_{0} − r_{d})(D/E) = 10% + (10% − 6%) × 0.5 = **12.0%**. 11.3% wrongly uses D/V (0.5 ÷ 1.5 = 1/3) instead of D/E (10% + 4% ÷ 3); 10.0% assumes the cost of equity is unaffected by leverage (it is WACC that stays at 10%)."
+        },
+        {
+          "id": "corp-06-q05",
+          "lesson": "corp-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "According to MM Proposition I with corporate taxes, as a company increases its use of debt:",
+          "options": [
+            "firm value falls because the cost of equity rises.",
+            "firm value is unchanged and WACC is unchanged.",
+            "firm value rises and WACC falls."
+          ],
+          "answer": 2,
+          "explanation": "With taxes, V_{L} = V_{U} + tD: the debt tax shield adds value, and WACC falls as more debt is used. Unchanged value and WACC is MM without taxes; the rising cost of equity does not fully offset the tax benefit."
+        },
+        {
+          "id": "corp-06-q06",
+          "lesson": "corp-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An all-equity firm worth 1,000 issues 400 of perpetual debt and uses the proceeds to repurchase shares. The corporate tax rate is 30%. Under MM with taxes, the value of the levered firm is closest to:",
+          "options": [
+            "1,120",
+            "1,000",
+            "1,400"
+          ],
+          "answer": 0,
+          "explanation": "V_{L} = V_{U} + tD = 1,000 + 0.30 × 400 = **1,120**. 1,000 is the MM no-tax answer; 1,400 wrongly adds the full amount of debt rather than the tax shield on it."
+        },
+        {
+          "id": "corp-06-q07",
+          "lesson": "corp-06-b",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "Under MM with taxes, r_{0} = 9%, r_{d} = 5%, the tax rate is 30% and the target debt-to-equity ratio is 1.0. The cost of equity is closest to:",
+          "options": [
+            "13.0%",
+            "11.8%",
+            "10.2%"
+          ],
+          "answer": 1,
+          "explanation": "r_{e} = r_{0} + (r_{0} − r_{d})(1 − t)(D/E) = 9% + 4% × 0.70 × 1.0 = **11.8%**. 13.0% ignores taxes; 10.2% multiplies by t instead of (1 − t) (9% + 4% × 0.30)."
+        },
+        {
+          "id": "corp-06-q08",
+          "lesson": "corp-06-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "According to the pecking order theory, managers prefer to finance new investment in which order?",
+          "options": [
+            "New equity, debt, internal funds",
+            "Debt, internal funds, new equity",
+            "Internal funds, debt, new equity"
+          ],
+          "answer": 2,
+          "explanation": "Because of information asymmetry, managers use internally generated funds first, then debt (which is less sensitive to mispricing), and issue new equity last since it signals overvaluation."
+        },
+        {
+          "id": "corp-06-q09",
+          "lesson": "corp-06-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which company is most likely to have the highest proportion of debt in its capital structure?",
+          "options": [
+            "A mature regulated utility with stable cash flows",
+            "A start-up biotech with no revenue",
+            "A fast-growing software firm with volatile earnings"
+          ],
+          "answer": 0,
+          "explanation": "Mature firms with stable cash flows and tangible assets can service and secure debt cheaply, so they carry the most leverage. Start-ups and volatile growth firms rely mainly on equity because their cash flows are negative or uncertain."
+        },
+        {
+          "id": "corp-06-q10",
+          "lesson": "corp-06-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Under the static trade-off theory, the optimal capital structure occurs where:",
+          "options": [
+            "the firm is financed entirely by debt.",
+            "the marginal tax benefit of debt equals the marginal expected cost of financial distress.",
+            "the cost of equity equals the after-tax cost of debt."
+          ],
+          "answer": 1,
+          "explanation": "The static trade-off balances the value of the debt tax shield against the present value of financial distress costs; at the optimum the marginal benefit equals the marginal cost and WACC is minimized. 100% debt is MM with taxes and ignores distress costs; the third option has no theoretical basis."
+        },
+        {
+          "id": "corp-06-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Under MM with taxes, r_{0} = 10%, r_{d} = 6%, t = 25% and D/E = 0.5. The firm's WACC is closest to:",
+          "options": [
+            "8.00%",
+            "10.00%",
+            "9.17%"
+          ],
+          "answer": 2,
+          "explanation": "r_{e} = 10% + 4% × 0.75 × 0.5 = 11.5%. D/V = 0.5 ÷ 1.5 = 1/3, E/V = 2/3. WACC = (1/3) × 6% × 0.75 + (2/3) × 11.5% = 1.50% + 7.67% = **9.17%** (check: r_{0}(1 − t × D/V) = 10% × (1 − 0.25/3) = 9.17%). 10.00% is the no-tax WACC (r_{0}); 8.00% wrongly uses D/E = 0.5 as the debt weight (0.5 × 4.5% + 0.5 × 11.5%)."
+        },
+        {
+          "id": "corp-06-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A company announces a large issue of new common shares. Under signaling theory, the share price most likely:",
+          "options": [
+            "falls, because investors infer that managers believe the shares are overvalued.",
+            "rises, because new equity reduces bankruptcy risk.",
+            "is unaffected, because capital structure is irrelevant."
+          ],
+          "answer": 0,
+          "explanation": "Managers know more than investors and tend to issue equity when they think it is overpriced, so an equity issue is a negative signal. The lower bankruptcy risk is a real effect but the signal dominates in practice; irrelevance only holds under MM's perfect-market assumptions."
+        },
+        {
+          "id": "corp-06-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about the agency costs of capital structure is most accurate?",
+          "options": [
+            "Higher leverage always increases total agency costs.",
+            "Debt can reduce the agency costs of equity by limiting the free cash flow available to managers.",
+            "Agency costs of debt fall as leverage increases."
+          ],
+          "answer": 1,
+          "explanation": "Committing cash to interest payments disciplines managers (free cash flow hypothesis), reducing agency costs of equity. But as leverage gets high, agency costs of debt (risk-shifting, underinvestment) rise, so the effect on total agency costs is not always an increase."
+        },
+        {
+          "id": "corp-06-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A company's target debt weight is 35%, but after a sharp rise in its share price its market-value debt weight has fallen to 28%. The company is most likely to:",
+          "options": [
+            "immediately issue debt to restore the 35% weight.",
+            "change its target to 28% to match the current weights.",
+            "tolerate the deviation and move back toward the target over time."
+          ],
+          "answer": 2,
+          "explanation": "Firms manage capital structure toward a target range, accepting temporary deviations caused by market-value changes because frequent issuance is costly. There is no need to issue immediately, and a share-price move is not by itself a reason to change the long-run target."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "corp-06-f01",
+          "front": "WACC formula",
+          "back": "WACC = w_{d} r_{d}(1 − t) + w_{p} r_{p} + w_{e} r_{e}, using target market-value weights."
+        },
+        {
+          "id": "corp-06-f02",
+          "front": "MM without taxes: Props I and II",
+          "back": "I: V_{L} = V_{U} (capital structure irrelevant). II: r_{e} = r_{0} + (r_{0} − r_{d})(D/E); WACC constant at r_{0}."
+        },
+        {
+          "id": "corp-06-f03",
+          "front": "MM with corporate taxes: Props I and II",
+          "back": "I: V_{L} = V_{U} + tD. II: r_{e} = r_{0} + (r_{0} − r_{d})(1 − t)(D/E). WACC falls as debt rises; optimum = 100% debt (in theory)."
+        },
+        {
+          "id": "corp-06-f04",
+          "front": "Static trade-off theory",
+          "back": "V_{L} = V_{U} + tD − PV(financial distress costs). Optimal debt where marginal tax benefit = marginal distress cost; WACC minimized."
+        },
+        {
+          "id": "corp-06-f05",
+          "front": "Pecking order theory",
+          "back": "Internal funds → debt → new equity (last). Driven by information asymmetry; equity issue signals overvaluation."
+        },
+        {
+          "id": "corp-06-f06",
+          "front": "Capital structure by life-cycle stage",
+          "back": "Start-up: equity, little debt. Growth: mostly equity, rising debt. Mature: substantial debt (stable cash flows, collateral)."
+        },
+        {
+          "id": "corp-06-f07",
+          "front": "Agency costs of equity vs debt",
+          "back": "Equity: managers waste free cash flow → debt disciplines them. Debt: high leverage → risk-shifting, underinvestment → lenders demand covenants/higher rates."
+        }
+      ]
+    },
+    {
+      "id": "corp-07",
+      "lm": 7,
+      "title": "Business Models",
+      "summary": "What a business model is (customer, value proposition, channels, pricing, value chain), the main pricing strategies, and common business-model types such as platforms, subscriptions, licensing and franchising, and how analysts judge them.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "SBL"
+        ],
+        "note": "SBL covered strategy, Porter's value chain, competitive advantage and digital business models. New for CFA: the analyst's checklist of business-model features, named pricing strategies (value-based, cost-plus, freemium, tiered, dynamic, auction, bundling, razors-and-blades) and model types such as network effects, crowdsourcing and conglomerates."
+      },
+      "lessons": [
+        {
+          "id": "corp-07-a",
+          "title": "Business-model features and pricing",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "What a business model answers",
+              "body": "A **business model** describes how a company makes money. An analyst should be able to answer:\n\n- **Who** is the customer?\n- **What** is sold (the **value proposition**: why customers choose this product)?\n- **Where** and **how** is it sold (**channels**)?\n- **How** is it priced?\n- **How** is it delivered (the **value chain**: the activities and assets needed)?\n\nIt also explains the firm's **unit economics**: revenue and cost per unit, and how profits scale."
+            },
+            {
+              "kind": "concept",
+              "title": "Value chain vs supply chain",
+              "body": "The **supply chain** is the sequence of steps to make and deliver a product (sourcing, production, distribution).\n\nThe **value chain** is the set of activities by which the firm **adds value** for customers, and which of them it does itself vs outsources. A firm's competitive advantage usually sits in the parts of the value chain it does better than rivals.\n\nChannels can be **direct** (own stores, website, salesforce) or **intermediated** (distributors, retailers, marketplaces); **omnichannel** combines them."
+            },
+            {
+              "kind": "compare",
+              "title": "Pricing strategies",
+              "rows": [
+                [
+                  "Strategy",
+                  "Idea"
+                ],
+                [
+                  "Value-based",
+                  "Price on what the customer will pay (differentiated products)"
+                ],
+                [
+                  "Cost-plus",
+                  "Cost + markup (commodity-like products)"
+                ],
+                [
+                  "Freemium",
+                  "Basic version free; pay for premium features"
+                ],
+                [
+                  "Tiered",
+                  "Different prices for different volumes or versions"
+                ],
+                [
+                  "Dynamic",
+                  "Price varies with demand or time (airlines, ride-hailing)"
+                ],
+                [
+                  "Auction / reverse auction",
+                  "Buyers or sellers bid"
+                ],
+                [
+                  "Bundling",
+                  "Several products sold together for one price"
+                ],
+                [
+                  "Razors-and-blades",
+                  "Cheap base product, profitable consumables"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Pricing power links to market structure: firms with **differentiated** products can use **value-based** pricing; firms in **competitive commodity** markets are **price-takers** and often fall back on cost-plus. Razors-and-blades and freemium are about the **lifetime** value of a customer, not first-sale profit."
+            }
+          ]
+        },
+        {
+          "id": "corp-07-b",
+          "title": "Types of business models",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Platforms and network effects",
+              "body": "A **platform** connects two or more user groups (buyers and sellers, riders and drivers) rather than making products itself.\n\n**Network effects**: the product becomes more valuable as more people use it. **Direct** (same-side): more users of a messaging app help each user. **Indirect** (cross-side): more sellers attract more buyers and vice versa.\n\nStrong network effects can create **winner-takes-most** markets and high barriers to entry."
+            },
+            {
+              "kind": "compare",
+              "title": "Other common models",
+              "rows": [
+                [
+                  "Model",
+                  "How it earns money"
+                ],
+                [
+                  "Subscription / recurring",
+                  "Regular fees for continuing access; predictable revenue"
+                ],
+                [
+                  "Licensing",
+                  "Fees/royalties for use of IP (brands, patents, software)"
+                ],
+                [
+                  "Franchising",
+                  "Franchisees run units under the brand, paying fees and royalties"
+                ],
+                [
+                  "Crowdsourcing",
+                  "Users contribute content or ideas (reviews, open source)"
+                ],
+                [
+                  "Asset-light / outsourcing",
+                  "Few owned assets; outsourced production or delivery"
+                ],
+                [
+                  "Conglomerate",
+                  "Many unrelated businesses under one owner"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Judging a business model",
+              "body": "Analysts ask whether the model is **sustainable** and **profitable**:\n\n- **Unit economics**: does each sale earn more than it costs (including customer acquisition)?\n- **Scalability** and **operating leverage**: high fixed, low variable costs → profits grow fast once volumes rise\n- **Customer retention** and lifetime value (for subscriptions)\n- **Competitive moat**: brand, network effects, switching costs, scale, IP\n- **Capital intensity**: how much investment growth requires\n\nNew or start-up models often lose money early by design; the key is a credible path to profit."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "SBL gave you strategy frameworks (Porter, value chain, digital disruption). CFA's angle is narrower and more vocabulary-driven: identify the **pricing strategy** or **model type** from a short description, and link it to risk and profitability (e.g. subscription → recurring revenue; conglomerate → diversification but possible **conglomerate discount**)."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "corp-07-q01",
+          "lesson": "corp-07-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A printer manufacturer sells printers near cost and earns most of its profit from ink cartridges. This pricing approach is best described as:",
+          "options": [
+            "razors-and-blades.",
+            "bundling.",
+            "cost-plus pricing."
+          ],
+          "answer": 0,
+          "explanation": "Selling the base product cheaply and making money on recurring consumables is the razors-and-blades model. Bundling sells several products together at one price, and cost-plus sets each price as cost plus a markup."
+        },
+        {
+          "id": "corp-07-q02",
+          "lesson": "corp-07-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An airline raises fares as a flight fills up and as departure approaches. This is:",
+          "options": [
+            "tiered pricing.",
+            "dynamic pricing.",
+            "value-based pricing."
+          ],
+          "answer": 1,
+          "explanation": "Prices that change with demand and timing are dynamic pricing. Tiered pricing offers set price levels by volume or version, and value-based pricing sets a price on perceived customer value rather than continuously adjusting with demand."
+        },
+        {
+          "id": "corp-07-q03",
+          "lesson": "corp-07-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A software firm offers a basic version of its app at no charge and sells advanced features for a monthly fee. This is best described as:",
+          "options": [
+            "bundling.",
+            "an auction model.",
+            "freemium pricing."
+          ],
+          "answer": 2,
+          "explanation": "Free basic product plus paid premium features is freemium. An auction sets prices through bidding, and bundling combines several products into one package price."
+        },
+        {
+          "id": "corp-07-q04",
+          "lesson": "corp-07-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A producer of a commodity chemical with many similar competitors is most likely to use:",
+          "options": [
+            "cost-plus pricing.",
+            "value-based pricing.",
+            "freemium pricing."
+          ],
+          "answer": 0,
+          "explanation": "With an undifferentiated product and many competitors, the firm has little pricing power; prices gravitate to cost plus a normal margin. Value-based pricing needs a differentiated product, and freemium suits digital products with near-zero marginal cost."
+        },
+        {
+          "id": "corp-07-q05",
+          "lesson": "corp-07-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An online marketplace becomes more attractive to buyers as more sellers join, and more attractive to sellers as more buyers join. This illustrates:",
+          "options": [
+            "direct network effects.",
+            "indirect (cross-side) network effects.",
+            "economies of scope."
+          ],
+          "answer": 1,
+          "explanation": "Value flowing between two different user groups is an indirect, cross-side network effect. Direct network effects occur within the same user group (e.g. more users of a messaging app), and economies of scope relate to producing several products jointly."
+        },
+        {
+          "id": "corp-07-q06",
+          "lesson": "corp-07-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A restaurant chain lets independent owners operate outlets under its brand in exchange for an upfront fee and ongoing royalties. This business model is:",
+          "options": [
+            "licensing of a patent.",
+            "a conglomerate.",
+            "franchising."
+          ],
+          "answer": 2,
+          "explanation": "Franchisees run their own units under the franchisor's brand and systems, paying fees and royalties. Licensing grants use of IP without the full operating system, and a conglomerate owns many unrelated businesses itself."
+        },
+        {
+          "id": "corp-07-q07",
+          "lesson": "corp-07-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which feature most likely makes a subscription business model attractive to investors?",
+          "options": [
+            "Revenue that is recurring and more predictable",
+            "Revenue that depends on one-off large orders",
+            "The absence of any customer acquisition costs"
+          ],
+          "answer": 0,
+          "explanation": "Subscriptions generate recurring revenue, improving forecastability and supporting valuations. One-off orders are the opposite, and subscription firms do incur acquisition costs (often heavily up front)."
+        },
+        {
+          "id": "corp-07-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An analyst evaluating a fast-growing start-up with heavy losses is most likely to focus on:",
+          "options": [
+            "current net income margin compared with mature peers.",
+            "unit economics and a credible path to profitability.",
+            "dividend payout ratio."
+          ],
+          "answer": 1,
+          "explanation": "Early-stage models often lose money by design; what matters is whether each customer or unit is profitable after acquisition costs and whether scale will deliver profits. Comparing current margins with mature firms or looking at dividends is not informative for a loss-making start-up."
+        },
+        {
+          "id": "corp-07-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A company owns unrelated businesses in insurance, railways, confectionery and energy. Investors most likely value it:",
+          "options": [
+            "at a premium to the sum of its parts because of network effects.",
+            "the same as a subscription company with recurring revenue.",
+            "at a conglomerate discount to the sum of its parts."
+          ],
+          "answer": 2,
+          "explanation": "Conglomerates often trade below the sum of their parts because of complexity, capital misallocation risk and lack of focus. Unrelated businesses do not create network effects, and the description has nothing to do with subscriptions."
+        },
+        {
+          "id": "corp-07-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A cable company sells internet, TV and phone service together for one monthly price lower than the sum of the separate prices. This is:",
+          "options": [
+            "bundling.",
+            "tiered pricing.",
+            "dynamic pricing."
+          ],
+          "answer": 0,
+          "explanation": "Selling several products as a package at a single price is bundling. Tiered pricing offers different levels of one product or volume; dynamic pricing changes prices with demand over time."
+        },
+        {
+          "id": "corp-07-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Which business is most likely to benefit from strong operating leverage once it scales?",
+          "options": [
+            "A staffing agency that pays workers per hour placed",
+            "A cloud software company with high development costs and near-zero cost per extra user",
+            "A grocery wholesaler with thin margins and mostly variable costs"
+          ],
+          "answer": 1,
+          "explanation": "Operating leverage comes from high fixed and low variable costs: once fixed development costs are covered, each extra user adds almost pure profit. The staffing agency and wholesaler have mostly variable costs, so profits grow roughly in line with revenue."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "corp-07-f01",
+          "front": "Five questions a business model answers",
+          "back": "Who is the customer? What is sold (value proposition)? Where/how sold (channels)? How priced? How delivered (value chain)?"
+        },
+        {
+          "id": "corp-07-f02",
+          "front": "Value-based vs cost-plus pricing",
+          "back": "Value-based: price on customer's perceived value (differentiated products). Cost-plus: cost + markup (commodity/price-taker products)."
+        },
+        {
+          "id": "corp-07-f03",
+          "front": "Freemium vs razors-and-blades",
+          "back": "Freemium: basic product free, premium features paid. Razors-and-blades: base product cheap, profits from recurring consumables."
+        },
+        {
+          "id": "corp-07-f04",
+          "front": "Direct vs indirect network effects",
+          "back": "Direct: value rises with more users of the same type (messaging). Indirect/cross-side: more of one group attracts the other (buyers ↔ sellers)."
+        },
+        {
+          "id": "corp-07-f05",
+          "front": "Franchising vs licensing",
+          "back": "Franchising: franchisee runs a full business under the brand and system, pays fees/royalties. Licensing: fee/royalty for use of specific IP (brand, patent, software)."
+        },
+        {
+          "id": "corp-07-f06",
+          "front": "Conglomerate discount",
+          "back": "Diversified groups of unrelated businesses often trade below the sum of their parts (complexity, poor capital allocation, lack of focus)."
+        }
+      ]
+    }
+  ]
+}

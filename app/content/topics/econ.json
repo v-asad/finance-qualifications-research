@@ -1,0 +1,2770 @@
+{
+  "id": "econ",
+  "name": "Economics",
+  "weight": [
+    6,
+    9
+  ],
+  "blurb": "Micro (firms and market structures), macro (business cycles, fiscal and monetary policy), geopolitics, trade and FX: mostly concepts, plus a reliable source of points in FX quote, cross-rate and forward calculations.",
+  "accaNote": "BT gave you demand/supply, market structures, the multiplier and fiscal/monetary tools; FM gave you interest rate parity and forwards. New: CFA's price/base FX notation, oligopoly models, HHI, business-cycle indicators, geopolitics and trade-restriction welfare effects.",
+  "modules": [
+    {
+      "id": "econ-01",
+      "lm": 1,
+      "title": "The Firm and Market Structures",
+      "summary": "How a firm decides how much to produce, when to shut down, and how the number of rivals and product differences shape pricing power, from perfect competition to monopoly.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "BT",
+          "MA"
+        ],
+        "note": "BT introduced demand/supply, elasticity and the four market structures; MA gave fixed vs variable costs and breakeven. New for CFA: shutdown vs exit rules using AVC and ATC, oligopoly models (Cournot, Stackelberg, kinked demand, Nash), and concentration measures (CR_{N}, HHI)."
+      },
+      "lessons": [
+        {
+          "id": "econ-01-a",
+          "title": "Costs, breakeven and shutdown",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Profit is maximized where MR = MC",
+              "body": "Keep producing while the next unit adds more revenue than cost. Profit peaks where **marginal revenue = marginal cost** (with MC rising). This rule holds in every market structure; what differs is how MR relates to price.\n\n- Perfect competition: P = MR, so P = MC.\n- Any firm with a downward-sloping demand curve: MR < P, so P > MC."
+            },
+            {
+              "kind": "compare",
+              "title": "Short run vs long run decisions",
+              "rows": [
+                [
+                  "Price vs costs",
+                  "Short run",
+                  "Long run"
+                ],
+                [
+                  "P ≥ ATC",
+                  "Operate (profit ≥ 0)",
+                  "Stay"
+                ],
+                [
+                  "AVC ≤ P < ATC",
+                  "Operate (covers some fixed cost)",
+                  "Exit"
+                ],
+                [
+                  "P < AVC",
+                  "Shut down",
+                  "Exit"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Breakeven and shutdown points",
+              "body": "- **Breakeven point**: P = minimum ATC. Economic profit is zero (normal profit is earned, because economic cost includes the opportunity cost of capital).\n- **Shutdown point**: P = minimum AVC. Below this, producing loses more than the fixed cost you would lose by closing.\n\nIn the short run fixed costs are sunk either way, so ignore them when deciding whether to operate."
+            },
+            {
+              "kind": "example",
+              "title": "Operate or shut down?",
+              "body": "Fixed cost = 20. TC at Q = 0…5: 20, 26, 30, 36, 44, 54, so MC = 6, 4, 6, 8, 10. Price = 9.\n\nProduce Q = 4 (4th unit MC 8 < 9; 5th unit MC 10 > 9). Profit = 36 − 44 = −8. AVC = 24/4 = 6 < 9, so **operate**: losing 8 beats losing the fixed cost of 20. In the long run the firm exits unless price rises above ATC."
+            },
+            {
+              "kind": "concept",
+              "title": "Economies and diseconomies of scale",
+              "body": "The long-run average cost (LRAC) curve shows the lowest cost for each output level once all inputs can vary.\n\n- **Economies of scale** (LRAC falling): specialization, bulk buying, spreading R&D and ads.\n- **Diseconomies** (LRAC rising): bureaucracy, coordination problems, rising input prices.\n- **Minimum efficient scale**: the lowest output at which LRAC reaches its minimum. In the long run competitive firms are pushed to operate here."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "MA breakeven was *accounting* breakeven (contribution covers fixed costs). CFA's breakeven is *economic*: TR = total economic cost, which includes the normal return on capital. So economic profit of zero is still an acceptable outcome. Also new: the short-run question is \"Does P cover **AVC**?\", not \"Does P cover total cost?\". Fixed costs are sunk in the short run."
+            }
+          ]
+        },
+        {
+          "id": "econ-01-b",
+          "title": "The four market structures",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Market structures at a glance",
+              "rows": [
+                [
+                  "Feature",
+                  "Perfect comp.",
+                  "Monop. comp.",
+                  "Oligopoly",
+                  "Monopoly"
+                ],
+                [
+                  "Sellers",
+                  "Many",
+                  "Many",
+                  "Few",
+                  "One"
+                ],
+                [
+                  "Product",
+                  "Identical",
+                  "Differentiated",
+                  "Same or diff.",
+                  "Unique"
+                ],
+                [
+                  "Entry barriers",
+                  "None",
+                  "Low",
+                  "High",
+                  "Very high"
+                ],
+                [
+                  "Pricing power",
+                  "None",
+                  "Some",
+                  "Some to large",
+                  "Large"
+                ],
+                [
+                  "Non-price competition",
+                  "None",
+                  "Ads, brands",
+                  "Ads, brands",
+                  "Advertising"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Perfect competition and monopolistic competition",
+              "body": "**Perfect competition**: the firm is a price taker facing a horizontal demand curve, so P = MR = MC. Short-run profits attract entry until long-run economic profit is zero at minimum ATC.\n\n**Monopolistic competition**: downward-sloping demand from product differentiation. Short run: produce where MR = MC and price from the demand curve. Long run: entry drives economic profit to zero (P = ATC) but **not** at minimum ATC, so there is excess capacity."
+            },
+            {
+              "kind": "formula",
+              "title": "Monopoly pricing and elasticity",
+              "formula": "MR = P × (1 − 1/|E_{P}|)",
+              "where": [
+                [
+                  "MR",
+                  "marginal revenue"
+                ],
+                [
+                  "P",
+                  "price"
+                ],
+                [
+                  "E_{P}",
+                  "own-price elasticity of demand"
+                ]
+              ],
+              "note": "Set MR = MC, so P = MC ÷ (1 − 1/|E_{P}|). A monopolist always operates on the elastic part of demand (|E_{P}| > 1), because MR < 0 when demand is inelastic."
+            },
+            {
+              "kind": "example",
+              "title": "Monopolist's price",
+              "body": "MC = 20 and the monopolist estimates |E_{P}| = 2 at the current output.\n\nP = 20 ÷ (1 − 1/2) = **40**. Check: MR = 40 × (1 − 0.5) = 20 = MC. The markup over MC is large because demand is not very elastic. With |E_{P}| = 4, P = 20 ÷ 0.75 = 26.67."
+            },
+            {
+              "kind": "concept",
+              "title": "Monopoly: regulation and price discrimination",
+              "body": "Monopolies arise from economies of scale (natural monopoly), patents, control of resources or government licences. Output is lower and price higher than under competition, which creates a deadweight loss.\n\n**Price discrimination** charges different prices to groups with different elasticities (and no resale); it raises output and producer surplus. Regulators may set price at marginal cost (efficient but may cause losses) or **average cost** (zero economic profit)."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "\"Price = MC\" is a *perfect competition* result only. In every other structure P > MC. And the long-run zero-profit result applies to both perfect and monopolistic competition, but only perfect competition produces at minimum ATC."
+            }
+          ]
+        },
+        {
+          "id": "econ-01-c",
+          "title": "Oligopoly and concentration measures",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Oligopoly models",
+              "rows": [
+                [
+                  "Model",
+                  "Key idea",
+                  "Outcome"
+                ],
+                [
+                  "Kinked demand",
+                  "Rivals match price cuts, ignore rises",
+                  "Sticky prices"
+                ],
+                [
+                  "Cournot",
+                  "Firms choose quantity at the same time",
+                  "P between competitive and monopoly"
+                ],
+                [
+                  "Stackelberg",
+                  "Leader picks quantity first",
+                  "Leader gets more output and profit"
+                ],
+                [
+                  "Dominant firm",
+                  "One large low-cost firm sets price",
+                  "Small firms are price takers"
+                ],
+                [
+                  "Nash",
+                  "Each choice is best given rivals' choices",
+                  "No one gains by deviating alone"
+                ]
+              ]
+            },
+            {
+              "kind": "example",
+              "title": "Linear demand: P = 100 − Q, MC = 10",
+              "body": "- Monopoly (or perfect cartel): Q = 45, P = 55.\n- Cournot duopoly: each firm 30, Q = 60, P = 40.\n- Stackelberg: leader 45, follower 22.5, Q = 67.5, P = 32.5.\n- Perfect competition: Q = 90, P = 10.\n\nMore firms competing on quantity → price falls toward MC."
+            },
+            {
+              "kind": "concept",
+              "title": "Collusion and game theory",
+              "body": "Collusion (a cartel) lets firms act like a monopoly, but each member is tempted to cheat by producing more. That is the **prisoner's dilemma**: the Nash equilibrium is for all to cheat, which leaves them all worse off.\n\nCollusion is more likely with few firms, similar costs and products, stable demand, high entry barriers, weak competition laws and easy monitoring of rivals."
+            },
+            {
+              "kind": "formula",
+              "title": "Concentration measures",
+              "formula": "CR_{N} = Σ s_{i} (top N firms);  HHI = Σ s_{i}^{2}",
+              "where": [
+                [
+                  "s_{i}",
+                  "market share of firm i (in % → HHI 0–10,000; as a decimal → 0–1)"
+                ]
+              ],
+              "note": "1/HHI (decimal) = equivalent number of equal-sized firms. HHI is better than CR_{N} because it reflects the size distribution and reacts to mergers among the top firms."
+            },
+            {
+              "kind": "example",
+              "title": "Concentration example",
+              "body": "Four firms with shares 40%, 30%, 20%, 10%.\n\n- CR_{4} = 100%.\n- HHI = 40² + 30² + 20² + 10² = 1,600 + 900 + 400 + 100 = **3,000** (0.30 in decimals).\n- Equivalent firms = 1/0.30 ≈ 3.3.\n\nIf the 20% and 10% firms merge, HHI rises by 2 × 20 × 10 = 400 to 3,400, but CR_{4} stays 100%."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Concentration ratios ignore potential entrants and elasticity, and a merger *within* the top N leaves CR_{N} unchanged. Use HHI to judge market power, then sanity-check with entry barriers: a high HHI with easy entry may still behave competitively."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "econ-01-q01",
+          "lesson": "econ-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In the short run, a firm should shut down when price is below:",
+          "options": [
+            "average variable cost",
+            "average total cost",
+            "marginal revenue"
+          ],
+          "answer": 0,
+          "explanation": "The shutdown point is minimum AVC: below it the firm loses more by producing than the fixed cost it loses by closing. Price below ATC (but above AVC) means the firm should keep operating in the short run but exit in the long run. MR is not the shutdown benchmark; MR = MC sets output."
+        },
+        {
+          "id": "econ-01-q02",
+          "lesson": "econ-01-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A perfectly competitive firm faces a market price of $15. At its profit-maximizing output, AVC = $12 and ATC = $17. The firm should:",
+          "options": [
+            "shut down immediately",
+            "operate in the short run and exit in the long run if the price persists",
+            "operate in both the short run and the long run"
+          ],
+          "answer": 1,
+          "explanation": "Price ($15) covers AVC ($12), so producing makes a contribution of $3 per unit toward fixed costs; shutting down would lose all fixed costs. But P < ATC ($17), so the firm makes an economic loss and should exit in the long run. Shutting down is only optimal below AVC; staying long term requires P ≥ ATC."
+        },
+        {
+          "id": "econ-01-q03",
+          "lesson": "econ-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "When a firm's long-run average cost falls as output increases, it is experiencing:",
+          "options": [
+            "diminishing marginal returns",
+            "diseconomies of scale",
+            "economies of scale"
+          ],
+          "answer": 2,
+          "explanation": "Falling LRAC as all inputs are scaled up is economies of scale. Diminishing marginal returns is a short-run concept (adding a variable input to a fixed one). Diseconomies of scale mean LRAC rises with output."
+        },
+        {
+          "id": "econ-01-q04",
+          "lesson": "econ-01-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which market structure earns zero economic profit in the long run but does NOT produce at minimum average total cost?",
+          "options": [
+            "Monopolistic competition",
+            "Perfect competition",
+            "Monopoly"
+          ],
+          "answer": 0,
+          "explanation": "Under monopolistic competition, free entry drives economic profit to zero (P = ATC), but the demand curve slopes down, so the tangency is left of minimum ATC (excess capacity). Perfect competition ends at minimum ATC. A monopoly can keep positive economic profit because barriers block entry."
+        },
+        {
+          "id": "econ-01-q05",
+          "lesson": "econ-01-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A monopolist has marginal cost of $30 and faces price elasticity of demand of −4 at its profit-maximizing output. Its price is closest to:",
+          "options": [
+            "$22.50",
+            "$40.00",
+            "$120.00"
+          ],
+          "answer": 1,
+          "explanation": "P = MC ÷ (1 − 1/|E|) = 30 ÷ (1 − 0.25) = 30 ÷ 0.75 = $40. $22.50 multiplies MC by 0.75 instead of dividing. $120 multiplies MC by |E|."
+        },
+        {
+          "id": "econ-01-q06",
+          "lesson": "econ-01-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A firm that faces a horizontal demand curve for its product is most likely operating in:",
+          "options": [
+            "monopolistic competition",
+            "oligopoly",
+            "perfect competition"
+          ],
+          "answer": 2,
+          "explanation": "A horizontal (perfectly elastic) demand curve means the firm is a price taker, which is the defining feature of perfect competition. Monopolistic competitors and oligopolists face downward-sloping demand because of differentiation or few rivals."
+        },
+        {
+          "id": "econ-01-q07",
+          "lesson": "econ-01-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Five firms have market shares of 30%, 25%, 20%, 15% and 10%. The Herfindahl–Hirschman Index is closest to:",
+          "options": [
+            "2,250",
+            "7,500",
+            "10,000"
+          ],
+          "answer": 0,
+          "explanation": "HHI = 30² + 25² + 20² + 15² + 10² = 900 + 625 + 400 + 225 + 100 = 2,250. 7,500 is the three-firm concentration ratio (75%) mistakenly scaled up. 10,000 would be a pure monopoly."
+        },
+        {
+          "id": "econ-01-q08",
+          "lesson": "econ-01-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "In which oligopoly model do prices tend to be rigid because rivals match price cuts but not price increases?",
+          "options": [
+            "Cournot",
+            "Kinked demand curve",
+            "Stackelberg"
+          ],
+          "answer": 1,
+          "explanation": "The kinked demand model assumes rivals follow price cuts (demand inelastic below the current price) but ignore increases (demand elastic above it), creating a gap in MR so prices stay put. Cournot has firms choosing quantities at the same time. Stackelberg has a leader setting quantity first."
+        },
+        {
+          "id": "econ-01-q09",
+          "lesson": "econ-01-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Two members of a cartel each benefit if both restrict output, but each gains even more by cheating if the other complies. The Nash equilibrium of this game is most likely that:",
+          "options": [
+            "both firms restrict output",
+            "one firm cheats and the other restricts",
+            "both firms cheat"
+          ],
+          "answer": 2,
+          "explanation": "This is a prisoner's dilemma: whatever the rival does, cheating is each firm's best response, so the Nash equilibrium is both cheat, even though joint restriction would give both a higher profit. Joint restriction is not stable because each has an incentive to deviate. A mixed outcome is not stable because the complying firm would switch to cheating."
+        },
+        {
+          "id": "econ-01-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A competitive firm has fixed costs of 20 and total costs of 26, 30, 36, 44 and 54 at outputs of 1 to 5 units. The market price is 9. The firm's profit-maximizing output and resulting profit are:",
+          "options": [
+            "4 units; loss of 8",
+            "5 units; loss of 9",
+            "3 units; loss of 9"
+          ],
+          "answer": 0,
+          "explanation": "MC by unit: 6, 4, 6, 8, 10. Produce while MC ≤ P = 9, so stop at 4 units. Profit = 9 × 4 − 44 = −8. At 5 units profit = 45 − 54 = −9 (the 5th unit costs 10 > 9). At 3 units profit = 27 − 36 = −9. Since AVC at 4 units = 24/4 = 6 < 9, operating (−8) beats shutting down (−20)."
+        },
+        {
+          "id": "econ-01-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Two firms with market shares of 25% and 15% merge. Other shares are unchanged. The HHI (on a 0–10,000 scale) increases by:",
+          "options": [
+            "375",
+            "750",
+            "1,600"
+          ],
+          "answer": 1,
+          "explanation": "Change in HHI = (25 + 15)² − 25² − 15² = 1,600 − 625 − 225 = 750 (= 2 × 25 × 15). 1,600 is the merged firm's squared share, forgetting to subtract the squares already counted. 375 is 25 × 15, forgetting the factor of 2."
+        },
+        {
+          "id": "econ-01-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Compared with a Cournot duopoly facing the same demand and costs, a Stackelberg equilibrium most likely has:",
+          "options": [
+            "lower total output and a higher price",
+            "the same total output, but the leader produces more",
+            "higher total output and a lower price"
+          ],
+          "answer": 2,
+          "explanation": "With P = 100 − Q and MC = 10, Cournot gives Q = 60 (P = 40). Stackelberg gives a leader output of 45 plus a follower output of 22.5, so Q = 67.5 and P = 32.5. The first mover expands output, so total output rises and price falls. Total output does not stay the same."
+        },
+        {
+          "id": "econ-01-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A regulator of a natural monopoly that wants the firm to earn zero economic profit without needing a subsidy would most likely set price equal to:",
+          "options": [
+            "average cost",
+            "marginal cost",
+            "the profit-maximizing monopoly price"
+          ],
+          "answer": 0,
+          "explanation": "Average-cost pricing sets P = ATC, so economic profit is zero and no subsidy is needed. For a natural monopoly, MC lies below ATC (falling average costs), so MC pricing is efficient but produces losses that need a subsidy. The unregulated monopoly price yields positive economic profit."
+        },
+        {
+          "id": "econ-01-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "An analyst observes an industry with an HHI of 1,800, low entry barriers, and products that consumers see as close but imperfect substitutes, with heavy brand advertising. The structure is most likely:",
+          "options": [
+            "oligopoly, because HHI is above 1,500",
+            "monopolistic competition",
+            "perfect competition"
+          ],
+          "answer": 1,
+          "explanation": "Differentiated products, heavy advertising and low entry barriers point to monopolistic competition. A moderate HHI alone does not prove oligopoly: low entry barriers limit pricing power. Perfect competition needs identical products and no advertising."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "econ-01-f01",
+          "front": "Profit-maximizing rule (all market structures)",
+          "back": "Produce where MR = MC (MC rising). Perfect competition: P = MR = MC."
+        },
+        {
+          "id": "econ-01-f02",
+          "front": "Shutdown point vs breakeven point",
+          "back": "Shutdown: P = min AVC (short run, shut down if P < AVC). Breakeven: P = min ATC (long run, exit if P < ATC)."
+        },
+        {
+          "id": "econ-01-f03",
+          "front": "Monopoly MR and elasticity",
+          "back": "MR = P(1 − 1/|E|). Price = MC ÷ (1 − 1/|E|). A monopolist operates only where demand is elastic."
+        },
+        {
+          "id": "econ-01-f04",
+          "front": "HHI formula and interpretation",
+          "back": "HHI = Σ(share_{i})². In %: 0–10,000; in decimals: 0–1. 1/HHI = equivalent number of equal-sized firms. Merger raises HHI by 2 × s_{1} × s_{2}."
+        },
+        {
+          "id": "econ-01-f05",
+          "front": "N-firm concentration ratio weakness",
+          "back": "CR_{N} = sum of top-N shares. It ignores the size distribution, does not change when two top-N firms merge, and ignores entry barriers and elasticity."
+        },
+        {
+          "id": "econ-01-f06",
+          "front": "Cournot vs Stackelberg",
+          "back": "Cournot: simultaneous quantity choice; price between competitive and monopoly. Stackelberg: sequential; the leader has a first-mover advantage, total output is higher and price lower than Cournot."
+        },
+        {
+          "id": "econ-01-f07",
+          "front": "Kinked demand curve",
+          "back": "Rivals match price cuts but not increases → gap in MR → prices are sticky even if MC changes within the gap."
+        },
+        {
+          "id": "econ-01-f08",
+          "front": "Long-run outcome: perfect vs monopolistic competition",
+          "back": "Both earn zero economic profit. Perfect competition produces at min ATC; monopolistic competition has excess capacity (P = ATC above its minimum)."
+        }
+      ]
+    },
+    {
+      "id": "econ-02",
+      "lm": 2,
+      "title": "Understanding Business Cycles",
+      "summary": "The four phases of the business cycle, how credit cycles amplify it, how inventories, labour, capital spending, consumers, housing and trade behave in each phase, and which indicators lead, coincide or lag.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "BT"
+        ],
+        "note": "BT covered the trade cycle and basic macro aims. New for CFA: the four named phases with output-gap language, credit cycles, sector behaviour by phase, and the specific leading/coincident/lagging indicators."
+      },
+      "lessons": [
+        {
+          "id": "econ-02-a",
+          "title": "Phases and credit cycles",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Business cycle = swings around potential GDP",
+              "body": "Business cycles are recurring but irregular fluctuations in aggregate activity across many sectors. CFA describes them with the **output gap** (actual − potential GDP) and four phases:\n\n- **Recovery**: through the trough, gap negative but closing.\n- **Expansion**: growth above trend, gap turns positive.\n- **Slowdown**: past the peak, growth slows, gap still positive but shrinking.\n- **Contraction**: activity falls, gap turns negative. A deep, long one is a recession."
+            },
+            {
+              "kind": "compare",
+              "title": "What happens in each phase",
+              "rows": [
+                [
+                  "Phase",
+                  "Activity",
+                  "Employment",
+                  "Inflation"
+                ],
+                [
+                  "Recovery",
+                  "Rising, below potential",
+                  "Hours up, then hiring",
+                  "Low/still falling"
+                ],
+                [
+                  "Expansion",
+                  "Above trend",
+                  "Hiring, unemployment falls",
+                  "Picks up"
+                ],
+                [
+                  "Slowdown",
+                  "Growth slowing",
+                  "Hiring slows",
+                  "Still rising"
+                ],
+                [
+                  "Contraction",
+                  "Falling",
+                  "Layoffs, unemployment up",
+                  "Eases with a lag"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Credit cycles",
+              "body": "Credit cycles are swings in lending and borrowing. In good times lenders loosen standards and asset prices rise, which feeds more borrowing (positive feedback). When conditions turn, lending tightens and asset prices fall.\n\n- Credit cycles tend to be **longer and deeper** than business cycles.\n- They **amplify** business cycles; a credit boom often precedes a deep recession or financial crisis.\n- Credit-cycle peaks are often linked to housing booms and busts."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "BT used boom/recession/depression/recovery. CFA uses **recovery → expansion → slowdown → contraction**, defined by growth versus trend and the output gap. A \"slowdown\" is still positive growth; only contraction means falling output. Learn the inflation pattern: inflation keeps rising into the slowdown and only eases during contraction, because it lags."
+            }
+          ]
+        },
+        {
+          "id": "econ-02-b",
+          "title": "Sectors and economic indicators",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Inventories and labour",
+              "body": "**Inventories**: when sales unexpectedly slow, unsold goods pile up, so the inventory/sales ratio jumps early in a contraction. Firms then cut production. In recovery, sales outpace output and the ratio falls, then restocking boosts growth.\n\n**Labour**: firms first adjust *hours and overtime* (fast, cheap), and only later hire or fire. So hours worked lead, while unemployment lags."
+            },
+            {
+              "kind": "concept",
+              "title": "Capital spending, consumers, housing, trade",
+              "body": "- **Capital spending**: early in recovery, spending targets efficiency; later in expansion it adds capacity. It is very cyclical and sensitive to profits and rates.\n- **Consumers**: durables (cars, appliances) swing the most; services and non-durables are steadier. Spending follows *permanent* income.\n- **Housing**: driven by mortgage rates and affordability; turns early.\n- **Trade**: imports rise with domestic growth; exports depend on foreign growth and the exchange rate."
+            },
+            {
+              "kind": "compare",
+              "title": "Indicator examples (US-style)",
+              "rows": [
+                [
+                  "Leading",
+                  "Coincident",
+                  "Lagging"
+                ],
+                [
+                  "Avg weekly hours, mfg",
+                  "Non-farm payrolls",
+                  "Avg duration of unemployment"
+                ],
+                [
+                  "Initial jobless claims",
+                  "Real personal income ex transfers",
+                  "Inventory/sales ratio"
+                ],
+                [
+                  "Building permits",
+                  "Industrial production",
+                  "Change in unit labour costs"
+                ],
+                [
+                  "Stock prices, yield spread",
+                  "Mfg and trade sales",
+                  "Avg prime rate"
+                ],
+                [
+                  "New orders, consumer expectations",
+                  "—",
+                  "C&I loans; consumer credit/income"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Classify by *when it turns*. Things that anticipate firms' plans (orders, permits, hours, claims, stock prices, the yield-curve spread) lead. Things that measure the current level (payrolls, income, output, sales) coincide. Things that respond only after the change is established (unemployment duration, inventory/sales, the prime rate, outstanding loans, services CPI) lag. Diffusion indexes measure how many components are rising."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "econ-02-q01",
+          "lesson": "econ-02-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In which business cycle phase is real GDP growth slowing while actual output is still above potential?",
+          "options": [
+            "Recovery",
+            "Contraction",
+            "Slowdown"
+          ],
+          "answer": 2,
+          "explanation": "In a slowdown, the economy has passed its peak: growth is slowing but the output gap is still positive. In recovery, output is rising but still below potential. In contraction, output is falling and drops below potential."
+        },
+        {
+          "id": "econ-02-q02",
+          "lesson": "econ-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Inflation is most likely to be rising during the:",
+          "options": [
+            "slowdown phase",
+            "recovery phase",
+            "contraction phase"
+          ],
+          "answer": 0,
+          "explanation": "Inflation lags the cycle. It picks up in expansion and keeps rising into the slowdown as capacity stays tight. In recovery, slack keeps inflation low or still falling. In contraction, inflation eases (with a lag)."
+        },
+        {
+          "id": "econ-02-q03",
+          "lesson": "econ-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with business cycles, credit cycles are most likely:",
+          "options": [
+            "shorter and less severe",
+            "longer and deeper, and they amplify business cycles",
+            "unrelated to asset prices"
+          ],
+          "answer": 1,
+          "explanation": "Credit cycles tend to be longer and deeper than business cycles and amplify them through collateral values and lending standards. They are closely tied to asset prices, especially housing. They are not shorter or milder."
+        },
+        {
+          "id": "econ-02-q04",
+          "lesson": "econ-02-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is a leading economic indicator?",
+          "options": [
+            "Average duration of unemployment",
+            "Industrial production",
+            "Building permits for new housing"
+          ],
+          "answer": 2,
+          "explanation": "Building permits are issued before construction starts, so they lead. Industrial production is coincident. Average duration of unemployment is lagging: it rises only after a downturn is under way."
+        },
+        {
+          "id": "econ-02-q05",
+          "lesson": "econ-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "At the start of a contraction, the inventory-to-sales ratio most likely:",
+          "options": [
+            "rises, because sales fall faster than firms can cut production",
+            "falls, because firms cut production before sales fall",
+            "is unchanged, because inventories are a lagging indicator"
+          ],
+          "answer": 0,
+          "explanation": "Unexpectedly weak sales leave unsold stock, so inventories build and the ratio jumps before firms cut output. It falls in recovery, when sales outpace production. Being a lagging indicator does not mean it is unchanged; it lags because the ratio peaks well into the downturn."
+        },
+        {
+          "id": "econ-02-q06",
+          "lesson": "econ-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "As demand weakens, firms typically respond first by:",
+          "options": [
+            "laying off permanent staff",
+            "reducing hours and overtime",
+            "cutting wage rates"
+          ],
+          "answer": 1,
+          "explanation": "Cutting hours and overtime is the fastest, cheapest and most reversible adjustment, so average weekly hours is a leading indicator. Layoffs come later (unemployment lags). Wage rates are sticky and adjust slowly."
+        },
+        {
+          "id": "econ-02-q07",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which category of consumer spending is most sensitive to the business cycle?",
+          "options": [
+            "Services such as healthcare",
+            "Non-durable goods such as food",
+            "Durable goods such as cars and appliances"
+          ],
+          "answer": 2,
+          "explanation": "Durable purchases can be postponed, so they swing the most with income and confidence. Services and non-durables are necessities with steadier demand, so they fluctuate less."
+        },
+        {
+          "id": "econ-02-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An analyst wants to confirm that a turning point has already occurred. She should rely mostly on:",
+          "options": [
+            "lagging indicators",
+            "leading indicators",
+            "the yield-curve spread"
+          ],
+          "answer": 0,
+          "explanation": "Lagging indicators change direction after the economy does, so they confirm turning points. Leading indicators (including the yield-curve spread) anticipate turns rather than confirm them."
+        },
+        {
+          "id": "econ-02-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "During the early recovery phase, business capital spending most likely focuses on:",
+          "options": [
+            "expanding capacity because utilization is very high",
+            "improving efficiency, such as replacing equipment and buying technology",
+            "cutting all investment, because profits are falling"
+          ],
+          "answer": 1,
+          "explanation": "Early in recovery, utilization is still low, so firms spend on efficiency (replacements, software) rather than capacity. Capacity expansion comes later in the expansion, when utilization is high. Large cuts in investment are typical of contraction, not recovery."
+        },
+        {
+          "id": "econ-02-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which pair contains one coincident and one lagging indicator, in that order?",
+          "options": [
+            "Initial jobless claims; industrial production",
+            "Stock prices; building permits",
+            "Non-farm payrolls; average prime rate"
+          ],
+          "answer": 2,
+          "explanation": "Non-farm payrolls is coincident and the average prime rate is lagging. Initial claims is leading and industrial production is coincident. Stock prices and building permits are both leading."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "econ-02-f01",
+          "front": "Four business cycle phases (CFA)",
+          "back": "Recovery (gap negative, closing) → Expansion (growth above trend, gap positive) → Slowdown (growth slowing, gap positive) → Contraction (output falling, gap negative)."
+        },
+        {
+          "id": "econ-02-f02",
+          "front": "Credit cycle vs business cycle",
+          "back": "Credit cycles are longer and deeper and amplify business cycles; credit booms often precede severe recessions or crises."
+        },
+        {
+          "id": "econ-02-f03",
+          "front": "Leading indicators (examples)",
+          "back": "Average weekly hours (mfg), initial jobless claims, new orders, building permits, stock prices, the 10-year minus policy-rate spread, consumer expectations, leading credit index."
+        },
+        {
+          "id": "econ-02-f04",
+          "front": "Coincident indicators (examples)",
+          "back": "Non-farm payrolls, real personal income less transfers, industrial production, manufacturing and trade sales."
+        },
+        {
+          "id": "econ-02-f05",
+          "front": "Lagging indicators (examples)",
+          "back": "Average duration of unemployment, inventory/sales ratio, change in unit labour costs, average prime rate, C&I loans outstanding, consumer credit/income, change in services CPI."
+        },
+        {
+          "id": "econ-02-f06",
+          "front": "Inventory/sales ratio over the cycle",
+          "back": "Jumps at the start of a contraction (unsold goods), then firms cut output; falls in recovery; restocking boosts growth."
+        }
+      ]
+    },
+    {
+      "id": "econ-03",
+      "lm": 3,
+      "title": "Fiscal Policy",
+      "summary": "How governments use spending and taxes to stabilize the economy and redistribute income, how big the multiplier is, why government debt may or may not matter, and why fiscal policy is slow.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "BT"
+        ],
+        "note": "BT covered fiscal tools, budget deficits and the basic Keynesian multiplier. New for CFA: the multiplier with a tax rate, the balanced-budget multiplier, Ricardian equivalence, the structural vs actual deficit, and the three implementation lags."
+      },
+      "lessons": [
+        {
+          "id": "econ-03-a",
+          "title": "Tools, objectives and the multiplier",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Fiscal vs monetary policy",
+              "body": "**Fiscal policy** = government spending and taxation (set by the legislature/treasury). **Monetary policy** = central bank control of money and credit (interest rates, OMOs).\n\nFiscal objectives: influence aggregate demand (stabilization), redistribute income and wealth, and allocate resources (public goods, taxes on harmful activities)."
+            },
+            {
+              "kind": "compare",
+              "title": "Fiscal tools",
+              "rows": [
+                [
+                  "Spending",
+                  "Revenue"
+                ],
+                [
+                  "Transfer payments (welfare, pensions)",
+                  "Direct taxes (income, wealth, corporate)"
+                ],
+                [
+                  "Current spending (wages, goods)",
+                  "Indirect taxes (VAT, excise, sales)"
+                ],
+                [
+                  "Capital spending (infrastructure)",
+                  "—"
+                ]
+              ]
+            },
+            {
+              "kind": "formula",
+              "title": "Fiscal multiplier",
+              "formula": "Multiplier = 1 ÷ [1 − c(1 − t)]",
+              "where": [
+                [
+                  "c",
+                  "marginal propensity to consume (MPC)"
+                ],
+                [
+                  "t",
+                  "tax rate on income"
+                ]
+              ],
+              "note": "Higher MPC or lower tax rate → bigger multiplier. A balanced-budget increase (ΔG = ΔT) has a multiplier of 1 in the simple model."
+            },
+            {
+              "kind": "example",
+              "title": "Multiplier at work",
+              "body": "MPC = 0.8, tax rate = 25%.\n\nMultiplier = 1 ÷ [1 − 0.8 × 0.75] = 1 ÷ 0.4 = **2.5**. A 100 increase in government spending raises GDP by 250 (ignoring crowding out).\n\nWithout taxes the multiplier would be 1 ÷ 0.2 = 5: taxes leak income at each round."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "BT wrote the multiplier as 1 ÷ (MPS + MPT + MPM). CFA uses 1 ÷ [1 − c(1 − t)], a closed economy where the leakages are saving and a proportional tax. Same logic, different notation: c(1 − t) is the share of each extra dollar of *gross* income that is spent. Watch for questions giving the MPS: c = 1 − MPS."
+            }
+          ]
+        },
+        {
+          "id": "econ-03-b",
+          "title": "Deficits, debt and fiscal lags",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Does government debt matter?",
+              "rows": [
+                [
+                  "Concerns",
+                  "Counterarguments"
+                ],
+                [
+                  "Higher future taxes reduce incentives",
+                  "Debt owed to citizens is a transfer"
+                ],
+                [
+                  "Crowding out: borrowing raises rates and cuts private investment",
+                  "Borrowing may fund productive capital"
+                ],
+                [
+                  "Risk of default or money printing",
+                  "Ricardian equivalence: people save for future taxes"
+                ],
+                [
+                  "High debt/GDP limits room to respond",
+                  "Deficits can help when there is slack"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Automatic vs discretionary; structural deficit",
+              "body": "**Automatic stabilizers** (progressive taxes, unemployment benefits) widen the deficit in recessions and narrow it in booms without new legislation.\n\n**Discretionary policy** needs deliberate action. To judge the stance, use the **structural (cyclically adjusted) budget balance**: the balance at full employment. A rising actual deficit in a recession may just be stabilizers working; a rising *structural* deficit signals expansionary policy."
+            },
+            {
+              "kind": "concept",
+              "title": "Implementation lags",
+              "body": "- **Recognition lag**: time to realize action is needed (data come late).\n- **Action lag**: time to decide and legislate.\n- **Impact lag**: time for the measures to affect the economy.\n\nBy the time a stimulus takes effect, the economy may already be recovering. Other limits: uncertainty about the output gap, crowding out, and the risk that a supply shock is misread as a demand problem."
+            },
+            {
+              "kind": "compare",
+              "title": "Policy mix",
+              "rows": [
+                [
+                  "Fiscal",
+                  "Monetary",
+                  "Likely result"
+                ],
+                [
+                  "Easy",
+                  "Tight",
+                  "Higher rates; public sector grows relative to private"
+                ],
+                [
+                  "Tight",
+                  "Easy",
+                  "Lower rates; private sector grows"
+                ],
+                [
+                  "Easy",
+                  "Easy",
+                  "Strongly expansionary"
+                ],
+                [
+                  "Tight",
+                  "Tight",
+                  "Strongly contractionary; lower demand and output"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Ricardian equivalence says a debt-financed tax cut has **no** effect on demand, because households save the tax cut to pay the future taxes. If households are credit-constrained or myopic, the tax cut does boost spending. And the balanced-budget multiplier is 1, not 0: a matched rise in G and T still expands GDP."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "econ-03-q01",
+          "lesson": "econ-03-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The marginal propensity to consume is 0.9 and the income tax rate is 30%. The fiscal multiplier is closest to:",
+          "options": [
+            "2.70",
+            "1.37",
+            "10.00"
+          ],
+          "answer": 0,
+          "explanation": "Multiplier = 1 ÷ [1 − 0.9 × (1 − 0.3)] = 1 ÷ (1 − 0.63) = 1 ÷ 0.37 ≈ 2.70. 10.00 ignores taxes (1 ÷ 0.1). 1.37 multiplies c by t instead of (1 − t): 1 ÷ (1 − 0.27)."
+        },
+        {
+          "id": "econ-03-q02",
+          "lesson": "econ-03-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is an indirect tax?",
+          "options": [
+            "Corporate income tax",
+            "Value-added tax",
+            "Wealth tax"
+          ],
+          "answer": 1,
+          "explanation": "VAT is levied on spending, so it is indirect. Corporate income and wealth taxes are levied directly on income or assets, so they are direct taxes."
+        },
+        {
+          "id": "econ-03-q03",
+          "lesson": "econ-03-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The government raises spending by 100 and finances it fully with a lump-sum tax increase of 100. In the simple Keynesian model, GDP most likely:",
+          "options": [
+            "is unchanged",
+            "rises by the full fiscal multiplier times 100",
+            "rises by about 100"
+          ],
+          "answer": 2,
+          "explanation": "The balanced-budget multiplier is 1: the extra spending injects 100, while the tax cuts consumption by only c × 100 (the rest comes out of saving), so the net first-round injection is 100(1 − c). The multiplier 1 ÷ (1 − c) turns that into exactly +100. GDP is not unchanged, because the tax reduces saving as well as spending. The full multiplier applies only to spending that is not tax-financed."
+        },
+        {
+          "id": "econ-03-q04",
+          "lesson": "econ-03-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is a tool of fiscal policy rather than monetary policy?",
+          "options": [
+            "Changing unemployment benefit levels",
+            "Changing the reserve requirement",
+            "Open market purchases of government bonds"
+          ],
+          "answer": 0,
+          "explanation": "Benefit levels are transfer payments set by the government, a fiscal tool. Reserve requirements and open market operations are central-bank (monetary) tools."
+        },
+        {
+          "id": "econ-03-q05",
+          "lesson": "econ-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Ricardian equivalence implies that a debt-financed tax cut will:",
+          "options": [
+            "have a larger effect than an equal spending increase",
+            "have little effect on aggregate demand, because households save it to meet future taxes",
+            "crowd out private investment by raising interest rates"
+          ],
+          "answer": 1,
+          "explanation": "Under Ricardian equivalence, rational households expect higher future taxes and save the tax cut, so consumption barely changes. A larger-than-spending effect is the opposite of the theory. Crowding out is a separate argument, about government borrowing pushing up rates."
+        },
+        {
+          "id": "econ-03-q06",
+          "lesson": "econ-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The time it takes a government to agree on and legislate a stimulus package after recognizing a recession is the:",
+          "options": [
+            "recognition lag",
+            "impact lag",
+            "action lag"
+          ],
+          "answer": 2,
+          "explanation": "The action lag is the time to decide and pass the measures. The recognition lag comes before it (realizing there is a problem). The impact lag comes after (the measures working through the economy)."
+        },
+        {
+          "id": "econ-03-q07",
+          "lesson": "econ-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "To judge whether a government's discretionary fiscal stance has become more expansionary, an analyst should look mainly at the change in the:",
+          "options": [
+            "structural (cyclically adjusted) budget deficit",
+            "actual budget deficit",
+            "debt-to-GDP ratio"
+          ],
+          "answer": 0,
+          "explanation": "The structural deficit removes the effect of automatic stabilizers, so a rise signals a deliberate easing. The actual deficit also rises automatically in a downturn. Debt/GDP depends on past deficits and GDP growth, not the current stance."
+        },
+        {
+          "id": "econ-03-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "MPC is 0.75 and the tax rate is 20%. The government increases spending by 60 with no change in tax rates. Ignoring crowding out, GDP is expected to rise by closest to:",
+          "options": [
+            "240",
+            "150",
+            "60"
+          ],
+          "answer": 1,
+          "explanation": "Multiplier = 1 ÷ [1 − 0.75 × 0.8] = 1 ÷ 0.4 = 2.5, so ΔGDP = 2.5 × 60 = 150. 240 uses 1 ÷ (1 − 0.75) = 4, ignoring taxes. 60 is the balanced-budget answer, which does not apply because the spending is not tax-financed."
+        },
+        {
+          "id": "econ-03-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which policy mix is most likely to lead to lower interest rates and a larger private sector share of GDP?",
+          "options": [
+            "Easy fiscal and tight monetary policy",
+            "Easy fiscal and easy monetary policy",
+            "Tight fiscal and easy monetary policy"
+          ],
+          "answer": 2,
+          "explanation": "Tight fiscal policy shrinks the public sector and lowers government borrowing, while easy monetary policy cuts rates, so private spending grows. Easy fiscal with tight monetary raises rates and expands the public sector. Both easy is strongly expansionary but does not specifically shift output toward the private sector."
+        },
+        {
+          "id": "econ-03-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which of the following is an example of an automatic stabilizer?",
+          "options": [
+            "A progressive income tax system",
+            "A one-off infrastructure program approved during a recession",
+            "A central bank cut in the policy rate"
+          ],
+          "answer": 0,
+          "explanation": "Progressive taxes take a smaller share of income as incomes fall, cushioning demand without new legislation. A newly approved program is discretionary. A rate cut is monetary policy."
+        },
+        {
+          "id": "econ-03-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which argument supports the view that a high government debt-to-GDP ratio is NOT a serious concern?",
+          "options": [
+            "Government borrowing raises interest rates and crowds out private investment",
+            "If the debt is owed to domestic citizens, debt service is largely a transfer within the economy",
+            "High debt may tempt the government to finance deficits by printing money"
+          ],
+          "answer": 1,
+          "explanation": "Debt owed internally means interest payments transfer income between citizens rather than draining it abroad, a standard counterargument. Crowding out and the temptation to monetize are arguments that debt *is* a concern."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "econ-03-f01",
+          "front": "Fiscal multiplier (with taxes)",
+          "back": "1 ÷ [1 − c(1 − t)]; c = MPC, t = tax rate. E.g. c = 0.8, t = 0.25 → 2.5."
+        },
+        {
+          "id": "econ-03-f02",
+          "front": "Balanced-budget multiplier",
+          "back": "1. A rise in G fully funded by an equal tax rise raises GDP by the same amount."
+        },
+        {
+          "id": "econ-03-f03",
+          "front": "Three fiscal policy lags",
+          "back": "Recognition (realizing the need), action (deciding/legislating), impact (time to take effect)."
+        },
+        {
+          "id": "econ-03-f04",
+          "front": "Ricardian equivalence",
+          "back": "Debt-financed tax cuts do not change demand, because households save them to pay expected future taxes."
+        },
+        {
+          "id": "econ-03-f05",
+          "front": "Structural (cyclically adjusted) budget balance",
+          "back": "Budget balance at full employment. Use it to judge the discretionary fiscal stance, because it strips out automatic stabilizers."
+        },
+        {
+          "id": "econ-03-f06",
+          "front": "Policy mix: tight fiscal + easy monetary",
+          "back": "Lower interest rates; the private sector grows relative to the public sector."
+        }
+      ]
+    },
+    {
+      "id": "econ-04",
+      "lm": 4,
+      "title": "Monetary Policy",
+      "summary": "What central banks aim for, the tools they use, how a rate change works through the economy, what makes a central bank effective, and where monetary policy runs out of power.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "BT"
+        ],
+        "note": "BT covered central bank tools and the general effect of interest rates on demand. New for CFA: the transmission mechanism in detail, the neutral rate, independence/credibility/transparency, targeting regimes, liquidity traps and QE, and the Fisher relation."
+      },
+      "lessons": [
+        {
+          "id": "econ-04-a",
+          "title": "Objectives, tools and transmission",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Central bank roles and objectives",
+              "body": "Roles: monopoly issuer of currency, banker to the government and to banks, **lender of last resort**, regulator/supervisor of payments and banks, manager of FX and gold reserves, and conductor of monetary policy.\n\nThe main objective is usually **price stability** (low, stable inflation, often around 2%). Some, like the US Fed, also target maximum employment; others watch exchange-rate stability or financial stability."
+            },
+            {
+              "kind": "compare",
+              "title": "Monetary policy tools",
+              "rows": [
+                [
+                  "Tool",
+                  "Expansionary move",
+                  "Effect"
+                ],
+                [
+                  "Policy rate",
+                  "Cut",
+                  "Cheaper bank funding, lower market rates"
+                ],
+                [
+                  "Reserve requirement",
+                  "Lower",
+                  "Banks can lend more"
+                ],
+                [
+                  "Open market operations",
+                  "Buy bonds",
+                  "Adds reserves, lowers rates"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Transmission mechanism",
+              "body": "A cut in the policy rate works through four channels:\n\n- **Market rates**: bank lending and deposit rates fall.\n- **Asset prices**: bond, equity and house prices rise (wealth effect).\n- **Expectations/confidence**: firms and households expect stronger growth.\n- **Exchange rate**: the currency tends to depreciate, boosting net exports.\n\nThese raise domestic demand and net external demand, which raises output and eventually inflation."
+            },
+            {
+              "kind": "formula",
+              "title": "Money multiplier and Fisher",
+              "formula": "Money multiplier = 1 ÷ reserve requirement;  i ≈ r + π^{e}",
+              "where": [
+                [
+                  "i",
+                  "nominal interest rate"
+                ],
+                [
+                  "r",
+                  "real interest rate"
+                ],
+                [
+                  "π^{e}",
+                  "expected inflation"
+                ]
+              ],
+              "note": "Reserve requirement of 10% → each 1 of new reserves can support up to 10 of deposits. Exact Fisher: (1 + i) = (1 + r)(1 + π^{e})."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Open market *purchases* (central bank buys bonds) **add** reserves and are expansionary; *sales* drain reserves and are contractionary. Under the quantity theory MV = PY, if velocity and real output are stable, faster money growth shows up as inflation."
+            }
+          ]
+        },
+        {
+          "id": "econ-04-b",
+          "title": "Effective central banks, targets and limits",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Qualities of an effective central bank",
+              "body": "- **Independence**: *operational* (sets rates itself to hit the target) vs *target* (also chooses the target). Most have operational but not target independence.\n- **Credibility**: people believe it will hit the target, so inflation expectations stay anchored and policy works with smaller rate moves.\n- **Transparency**: publishes forecasts, minutes and reasoning, which reinforces credibility."
+            },
+            {
+              "kind": "formula",
+              "title": "Neutral policy rate",
+              "formula": "Neutral rate = trend real growth + inflation target",
+              "where": [
+                [
+                  "Policy rate > neutral",
+                  "contractionary stance"
+                ],
+                [
+                  "Policy rate < neutral",
+                  "expansionary stance"
+                ]
+              ],
+              "note": "Example: trend growth 2%, target 2% → neutral 4%. A policy rate of 3% is expansionary."
+            },
+            {
+              "kind": "compare",
+              "title": "Targeting regimes",
+              "rows": [
+                [
+                  "Regime",
+                  "How it works",
+                  "Trade-off"
+                ],
+                [
+                  "Inflation targeting",
+                  "Explicit inflation target, independent bank",
+                  "Most common today"
+                ],
+                [
+                  "Interest-rate targeting",
+                  "Hold a policy rate level",
+                  "Money supply adjusts"
+                ],
+                [
+                  "Exchange-rate targeting",
+                  "Peg to an anchor currency",
+                  "Imports anchor's policy; gives up independence"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Limits of monetary policy",
+              "body": "- **Liquidity trap**: rates near zero and people hoard cash, so extra money does not lift spending.\n- **Deflation**: real rates rise even at a zero nominal rate; debt burdens grow.\n- **Weak link to long rates**: bond markets may push long yields up if they doubt the bank's inflation commitment.\n- **Banks may not lend**, even with ample reserves.\n\n**Quantitative easing (QE)**: large-scale asset purchases to push down longer-term yields when the policy rate is at its floor."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Exchange-rate targeting means the central bank must use interest rates (and reserves) to defend the peg, so domestic monetary policy is effectively imported from the anchor country. A country that pegs and allows free capital flows cannot also run an independent monetary policy (the \"impossible trinity\")."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "econ-04-q01",
+          "lesson": "econ-04-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which action by a central bank is expansionary?",
+          "options": [
+            "Selling government bonds in the open market",
+            "Raising the reserve requirement",
+            "Buying government bonds in the open market"
+          ],
+          "answer": 2,
+          "explanation": "Buying bonds pays for them with new reserves, increasing bank liquidity and lowering rates. Selling bonds drains reserves. Raising the reserve requirement reduces banks' ability to lend; both of those are contractionary."
+        },
+        {
+          "id": "econ-04-q02",
+          "lesson": "econ-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The reserve requirement is 20%. A central bank injects 500 of new reserves. The maximum increase in deposits in the banking system is closest to:",
+          "options": [
+            "2,500",
+            "100",
+            "625"
+          ],
+          "answer": 0,
+          "explanation": "Money multiplier = 1 ÷ 0.20 = 5; maximum deposit creation = 500 × 5 = 2,500. 100 multiplies by the reserve ratio instead of dividing. 625 divides by 0.8 (one round of lending) instead of using the full multiplier."
+        },
+        {
+          "id": "econ-04-q03",
+          "lesson": "econ-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The real interest rate is 2% and expected inflation is 3%. Using the exact Fisher relation, the nominal rate is closest to:",
+          "options": [
+            "5.00%",
+            "5.06%",
+            "6.00%"
+          ],
+          "answer": 1,
+          "explanation": "(1.02)(1.03) − 1 = 5.06%. 5.00% is the approximation (r + π). 6.00% multiplies the rates (2 × 3) instead of compounding."
+        },
+        {
+          "id": "econ-04-q04",
+          "lesson": "econ-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "In the monetary transmission mechanism, a cut in the policy rate is most likely to cause the domestic currency to:",
+          "options": [
+            "appreciate, reducing net exports",
+            "remain unchanged, since exchange rates are set by trade flows only",
+            "depreciate, increasing net exports"
+          ],
+          "answer": 2,
+          "explanation": "Lower rates reduce the return on domestic assets, so capital flows out and the currency tends to depreciate, which makes exports cheaper and lifts net external demand. Appreciation would follow a rate rise. Exchange rates respond to capital flows as well as trade."
+        },
+        {
+          "id": "econ-04-q05",
+          "lesson": "econ-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A central bank's inflation target is 2% and trend real GDP growth is 2.5%. The policy rate is 5%. The monetary policy stance is best described as:",
+          "options": [
+            "contractionary",
+            "neutral",
+            "expansionary"
+          ],
+          "answer": 0,
+          "explanation": "Neutral rate = 2.5% + 2% = 4.5%. A policy rate of 5% is above neutral, so the stance is contractionary. It would be neutral at 4.5% and expansionary below it."
+        },
+        {
+          "id": "econ-04-q06",
+          "lesson": "econ-04-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A central bank that sets its own policy rate but is given its inflation target by the government has:",
+          "options": [
+            "target independence",
+            "operational independence",
+            "no independence"
+          ],
+          "answer": 1,
+          "explanation": "Operational independence means the bank chooses how to set rates to achieve a target that someone else sets. Target independence would mean it also chooses the target. It clearly has some independence, so \"none\" is wrong."
+        },
+        {
+          "id": "econ-04-q07",
+          "lesson": "econ-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A liquidity trap is best described as a situation in which:",
+          "options": [
+            "banks cannot obtain reserves from the central bank",
+            "a currency board runs out of foreign reserves",
+            "interest rates are near zero and increases in money supply fail to stimulate spending"
+          ],
+          "answer": 2,
+          "explanation": "In a liquidity trap, people and banks hoard money at near-zero rates, so additional money does not lift demand. Banks lacking reserves is a funding problem, which a lender of last resort solves. A currency board running out of reserves is an exchange-rate crisis."
+        },
+        {
+          "id": "econ-04-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Money supply grows 5% a year, velocity is constant and real GDP grows 2% a year. Using the quantity theory of money, inflation is approximately:",
+          "options": [
+            "3.0%",
+            "2.5%",
+            "7.0%"
+          ],
+          "answer": 0,
+          "explanation": "MV = PY in growth terms: %ΔM + %ΔV ≈ %ΔP + %ΔY, so inflation ≈ 5% + 0% − 2% = 3% (exactly 1.05 ÷ 1.02 − 1 = 2.94%). 7.0% adds real growth instead of subtracting it. 2.5% divides money growth by real growth."
+        },
+        {
+          "id": "econ-04-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which of the following most directly enhances a central bank's credibility?",
+          "options": [
+            "Frequently changing its inflation target",
+            "Publishing its inflation forecasts and meeting minutes",
+            "Financing government deficits on request"
+          ],
+          "answer": 1,
+          "explanation": "Transparency (publishing forecasts and reasoning) helps markets understand and trust the bank, anchoring expectations. Changing targets often undermines credibility. Financing deficits on request signals a lack of independence and raises inflation fears."
+        },
+        {
+          "id": "econ-04-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A small open economy pegs its currency to the US dollar and allows free capital movement. Its central bank most likely:",
+          "options": [
+            "can set interest rates freely to target domestic inflation",
+            "can ignore capital flows because the peg is fixed",
+            "must keep interest rates broadly in line with US rates"
+          ],
+          "answer": 2,
+          "explanation": "With a peg and open capital account, rates must follow the anchor country to stop capital flows from breaking the peg, so the economy imports US monetary policy (impossible trinity). Independent rate-setting is what it gives up. Capital flows are exactly what threatens the peg."
+        },
+        {
+          "id": "econ-04-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Quantitative easing is most likely used when:",
+          "options": [
+            "the policy rate is near its lower bound and the central bank wants to lower long-term yields",
+            "inflation is well above target",
+            "the central bank wants to raise reserve requirements"
+          ],
+          "answer": 0,
+          "explanation": "QE (large-scale purchases of bonds and other assets) is used when conventional rate cuts are exhausted, to push down longer-term yields and support asset prices. With high inflation the bank would tighten. QE adds reserves; it is not about raising reserve requirements."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "econ-04-f01",
+          "front": "Three main monetary policy tools",
+          "back": "Policy rate, reserve requirements, open market operations (buy bonds = expansionary)."
+        },
+        {
+          "id": "econ-04-f02",
+          "front": "Four transmission channels",
+          "back": "Market interest rates, asset prices, expectations/confidence, exchange rate → domestic and external demand → output and inflation."
+        },
+        {
+          "id": "econ-04-f03",
+          "front": "Neutral policy rate",
+          "back": "Trend real growth + inflation target. Policy rate above neutral = contractionary; below = expansionary."
+        },
+        {
+          "id": "econ-04-f04",
+          "front": "Money multiplier",
+          "back": "1 ÷ reserve requirement. 10% reserve → multiplier of 10."
+        },
+        {
+          "id": "econ-04-f05",
+          "front": "Fisher relation",
+          "back": "i ≈ r + π^{e}; exact (1 + i) = (1 + r)(1 + π^{e})."
+        },
+        {
+          "id": "econ-04-f06",
+          "front": "Qualities of effective central banks",
+          "back": "Independence (operational vs target), credibility, transparency."
+        },
+        {
+          "id": "econ-04-f07",
+          "front": "Limits of monetary policy",
+          "back": "Liquidity trap, deflation, long rates not following short rates, banks unwilling to lend; QE used at the zero bound."
+        }
+      ]
+    },
+    {
+      "id": "econ-05",
+      "lm": 5,
+      "title": "Introduction to Geopolitics",
+      "summary": "How state and non-state actors cooperate or compete, the four archetypes of globalization and cooperation, the international institutions, the tools of geopolitics, and how geopolitical risk is classified and fed into investment decisions.",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "Not covered by ACCA (SBL touched PESTEL-style political risk only). Almost entirely new, qualitative and memory-heavy: learn the archetypes, the three risk types and the tool categories."
+      },
+      "lessons": [
+        {
+          "id": "econ-05-a",
+          "title": "Actors, cooperation and globalization",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "What geopolitics studies",
+              "body": "Geopolitics is how geography, politics and economics shape relations between **actors**:\n\n- **State actors**: national governments, which pursue national interests.\n- **Non-state actors**: firms, NGOs, investors and individuals that operate across borders.\n\nCountries are **cooperative** when they follow common rules and work with others, and **non-cooperative** when they act unilaterally. Motives for cooperating include national security, access to resources, economic gains, standardization of rules (e.g. IFRS, trade rules) and cultural ties (soft power)."
+            },
+            {
+              "kind": "concept",
+              "title": "Globalization vs nationalism",
+              "body": "**Globalization** = free cross-border flow of goods, services, capital, people and ideas. Benefits: higher productivity, wider markets, cheaper inputs, access to capital. Costs: inequality, job losses in exposed sectors, supply-chain fragility, loss of control.\n\n**Nationalism** (anti-globalization) = promoting one's own economy at others' expense, with limited economic and financial cooperation."
+            },
+            {
+              "kind": "compare",
+              "title": "Four archetypes",
+              "rows": [
+                [
+                  "Archetype",
+                  "Cooperation",
+                  "Globalization",
+                  "Hallmark"
+                ],
+                [
+                  "Autarky",
+                  "Non-cooperative",
+                  "Nationalist",
+                  "Self-sufficiency, state control"
+                ],
+                [
+                  "Hegemony",
+                  "Non-cooperative",
+                  "Globalized",
+                  "Dominant power sets terms"
+                ],
+                [
+                  "Bilateralism",
+                  "Cooperative",
+                  "Nationalist",
+                  "One-to-one deals"
+                ],
+                [
+                  "Multilateralism",
+                  "Cooperative",
+                  "Globalized",
+                  "Many partners, harmonized rules"
+                ]
+              ]
+            },
+            {
+              "kind": "compare",
+              "title": "International institutions",
+              "rows": [
+                [
+                  "Institution",
+                  "Main role"
+                ],
+                [
+                  "IMF",
+                  "Balance-of-payments stability; surveillance; short-term lending to countries in crisis"
+                ],
+                [
+                  "World Bank",
+                  "Long-term development finance and poverty reduction"
+                ],
+                [
+                  "WTO",
+                  "Rules for international trade; negotiates agreements; settles disputes"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Tell the institutions apart by *time horizon and purpose*: the IMF fixes short-term financial and currency crises (a lender of last resort to countries), the World Bank funds long-term development projects, and the WTO deals only with trade rules and disputes."
+            }
+          ]
+        },
+        {
+          "id": "econ-05-b",
+          "title": "Tools and geopolitical risk",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Tools of geopolitics",
+              "rows": [
+                [
+                  "Tool type",
+                  "Cooperative use",
+                  "Non-cooperative use"
+                ],
+                [
+                  "National security",
+                  "Alliances (e.g. NATO)",
+                  "Armed conflict, espionage"
+                ],
+                [
+                  "Economic",
+                  "FTAs, common markets",
+                  "Tariffs, quotas, nationalization"
+                ],
+                [
+                  "Financial",
+                  "Open currency use, welcoming foreign investment",
+                  "Sanctions, capital and investment restrictions"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Three types of geopolitical risk",
+              "body": "- **Event risk**: tied to known dates with uncertain outcomes (elections, treaty deadlines, new laws).\n- **Exogenous risk**: sudden, unanticipated shocks (invasions, coups, uprisings, natural disasters).\n- **Thematic risk**: known risks that build over time (climate change, cyberthreats, terrorism, pandemics).\n\nEach can change how cooperative a country is and how globalized its firms can be."
+            },
+            {
+              "kind": "concept",
+              "title": "Assessing the impact",
+              "body": "Investors judge **likelihood**, **velocity** (how fast the risk hits markets) and the **size and nature of impact**.\n\n- **High velocity** (often exogenous): sharp short-term volatility and flight to safety; can create buying opportunities for long-horizon investors.\n- **Medium velocity**: raises costs and disrupts operations over months.\n- **Low velocity** (thematic): slowly erodes value; often handled through ESG analysis.\n\nUse **scenario analysis** and **signposts** (observable markers that a scenario is unfolding)."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "An election is *event* risk even though its result is uncertain: the date is known. A surprise invasion is *exogenous*. Climate change is *thematic*, not exogenous, because it is known and evolves slowly. Sanctions are a *financial* tool, while tariffs and quotas are *economic* tools."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "econ-05-q01",
+          "lesson": "econ-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A country that aims for self-sufficiency, has little external trade or finance and does not cooperate with other states is best described as following:",
+          "options": [
+            "hegemony",
+            "autarky",
+            "bilateralism"
+          ],
+          "answer": 1,
+          "explanation": "Autarky combines nationalism (little trade or foreign finance) with non-cooperation. A hegemon is globalized and uses its dominance to set terms. Bilateralism is cooperative, through one-to-one agreements."
+        },
+        {
+          "id": "econ-05-q02",
+          "lesson": "econ-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A country that harmonizes rules and signs trade agreements with many partners and blocs, with its firms deeply embedded in global supply chains, best fits which archetype?",
+          "options": [
+            "Bilateralism",
+            "Hegemony",
+            "Multilateralism"
+          ],
+          "answer": 2,
+          "explanation": "Multilateralism is the cooperative, globalized archetype: many partners and harmonized rules. Bilateralism relies on one-to-one deals. Hegemony relies on a dominant power setting terms rather than cooperation."
+        },
+        {
+          "id": "econ-05-q03",
+          "lesson": "econ-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which institution's primary role is to promote long-term economic development and reduce poverty, mainly by funding projects?",
+          "options": [
+            "World Bank",
+            "International Monetary Fund",
+            "World Trade Organization"
+          ],
+          "answer": 0,
+          "explanation": "The World Bank provides long-term development finance. The IMF focuses on balance-of-payments and currency stability and short-term crisis lending. The WTO sets and enforces trade rules."
+        },
+        {
+          "id": "econ-05-q04",
+          "lesson": "econ-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is a non-state actor?",
+          "options": [
+            "A national ministry of trade",
+            "A multinational corporation",
+            "A national central bank"
+          ],
+          "answer": 1,
+          "explanation": "Multinational corporations are non-state actors. Ministries and national central banks are part of the state."
+        },
+        {
+          "id": "econ-05-q05",
+          "lesson": "econ-05-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A scheduled national election whose outcome could change trade policy is an example of:",
+          "options": [
+            "exogenous risk",
+            "thematic risk",
+            "event risk"
+          ],
+          "answer": 2,
+          "explanation": "Event risk involves known dates with uncertain outcomes, such as elections. Exogenous risk is unanticipated (e.g. a sudden invasion). Thematic risk evolves over time (e.g. climate change)."
+        },
+        {
+          "id": "econ-05-q06",
+          "lesson": "econ-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Freezing a rival country's central bank reserves held abroad is best classified as a:",
+          "options": [
+            "financial tool",
+            "national security tool",
+            "economic tool"
+          ],
+          "answer": 0,
+          "explanation": "Sanctions and restrictions on assets and capital are financial tools. Economic tools include tariffs, quotas, nationalization and trade agreements. National security tools include armed conflict, espionage and alliances."
+        },
+        {
+          "id": "econ-05-q07",
+          "lesson": "econ-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which characteristic of a geopolitical risk describes how quickly it affects asset prices?",
+          "options": [
+            "Likelihood",
+            "Velocity",
+            "Size and nature of impact"
+          ],
+          "answer": 1,
+          "explanation": "Velocity measures the speed at which a risk affects markets and portfolios. Likelihood is the probability it occurs. Size and nature of impact is how large the effect is and which assets it hits."
+        },
+        {
+          "id": "econ-05-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Climate change and cyberthreats are best classified as:",
+          "options": [
+            "event risks",
+            "exogenous risks",
+            "thematic risks"
+          ],
+          "answer": 2,
+          "explanation": "Thematic risks are known risks that evolve and expand over time, such as climate change and cyberthreats. Event risks are tied to known dates. Exogenous risks are sudden and unexpected."
+        },
+        {
+          "id": "econ-05-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A country imposes tariffs on imports from a rival and nationalizes foreign-owned factories. These actions are best described as:",
+          "options": [
+            "non-cooperative economic tools",
+            "cooperative economic tools",
+            "cooperative financial tools"
+          ],
+          "answer": 0,
+          "explanation": "Tariffs and nationalization are economic tools used non-cooperatively. Cooperative economic tools are FTAs and common markets. Financial tools involve currencies, capital and investment flows."
+        },
+        {
+          "id": "econ-05-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A long-horizon investor faces a sudden invasion that causes a sharp sell-off in an otherwise fundamentally sound market. The most appropriate interpretation is that this is a:",
+          "options": [
+            "low-velocity thematic risk that should be handled through ESG screening only",
+            "high-velocity exogenous risk that may create buying opportunities",
+            "event risk that could have been fully priced in from the political calendar"
+          ],
+          "answer": 1,
+          "explanation": "An invasion is unanticipated (exogenous) and hits prices quickly (high velocity). Short-term dislocations can create opportunities for investors with long horizons. It is not thematic or slow-moving, and it was not on a known calendar, so it is not event risk."
+        },
+        {
+          "id": "econ-05-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which motivation for cooperation is illustrated by countries adopting common accounting standards such as IFRS?",
+          "options": [
+            "National security",
+            "Access to natural resources",
+            "Standardization of rules"
+          ],
+          "answer": 2,
+          "explanation": "Common rules lower cross-border costs for firms and investors, which is the standardization motive. National security relates to defence and alliances. Resource access relates to securing energy, food or minerals."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "econ-05-f01",
+          "front": "Four geopolitical archetypes",
+          "back": "Autarky (non-cooperative, nationalist), hegemony (non-cooperative, globalized), bilateralism (cooperative, nationalist), multilateralism (cooperative, globalized)."
+        },
+        {
+          "id": "econ-05-f02",
+          "front": "IMF vs World Bank vs WTO",
+          "back": "IMF: currency/BoP stability, crisis lending. World Bank: long-term development and poverty reduction. WTO: trade rules and dispute settlement."
+        },
+        {
+          "id": "econ-05-f03",
+          "front": "Three types of geopolitical risk",
+          "back": "Event (known date, uncertain outcome), exogenous (sudden, unanticipated), thematic (known, evolves over time)."
+        },
+        {
+          "id": "econ-05-f04",
+          "front": "Three categories of geopolitical tools",
+          "back": "National security (alliances, conflict), economic (FTAs, tariffs, quotas, nationalization), financial (currency access, investment restrictions, sanctions)."
+        },
+        {
+          "id": "econ-05-f05",
+          "front": "Assessing geopolitical risk",
+          "back": "Likelihood, velocity (high/medium/low) and size and nature of impact. Tools: scenario analysis and signposts."
+        }
+      ]
+    },
+    {
+      "id": "econ-06",
+      "lm": 6,
+      "title": "International Trade",
+      "summary": "Why countries gain from trade, who loses, how tariffs, quotas, export subsidies and voluntary export restraints redistribute welfare, and the levels of regional integration from free trade areas to monetary unions.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "BT"
+        ],
+        "note": "BT covered the case for free trade, protectionism and trading blocs in outline. New for CFA: welfare effects of each restriction (consumer/producer surplus, quota rents, deadweight loss), small vs large country effects, and the exact ladder of integration."
+      },
+      "lessons": [
+        {
+          "id": "econ-06-a",
+          "title": "Gains from trade and trade restrictions",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Benefits and costs of trade",
+              "body": "**Benefits**: specialization by **comparative advantage** (lowest opportunity cost), economies of scale, more variety, more competition and faster technology transfer. Exporters and consumers gain.\n\n**Costs**: workers and firms in import-competing industries lose; can widen income inequality; dependence on foreign supply.\n\nEven a country with an *absolute* advantage in everything gains by specializing where its opportunity cost is lowest."
+            },
+            {
+              "kind": "compare",
+              "title": "Trade restrictions: who gets what",
+              "rows": [
+                [
+                  "Measure",
+                  "Domestic price",
+                  "Who gets the 'rent'"
+                ],
+                [
+                  "Tariff",
+                  "Up",
+                  "Government (tariff revenue)"
+                ],
+                [
+                  "Import quota",
+                  "Up",
+                  "Licence holders (domestic or foreign)"
+                ],
+                [
+                  "Voluntary export restraint",
+                  "Up",
+                  "Foreign exporters"
+                ],
+                [
+                  "Export subsidy",
+                  "Up (in exporting country)",
+                  "Exporters, paid by taxpayers"
+                ]
+              ]
+            },
+            {
+              "kind": "example",
+              "title": "Tariff welfare: small country",
+              "body": "World price 10; tariff 2 raises the domestic price to 12. Demand falls from 100 to 90; domestic supply rises from 40 to 50; imports fall from 60 to 40.\n\n- Consumer surplus lost: 2 × (100 + 90)/2 = 190\n- Producer surplus gained: 2 × (40 + 50)/2 = 90\n- Tariff revenue: 2 × 40 = 80\n- **Deadweight loss** = 190 − 90 − 80 = **20**"
+            },
+            {
+              "kind": "concept",
+              "title": "Small vs large country",
+              "body": "A **small country** is a price taker, so a tariff or quota always reduces its national welfare (deadweight loss).\n\nA **large country** can push down the world price of its imports. The terms-of-trade gain may offset the deadweight loss, so it *can* gain (at the expense of trading partners).\n\nAn export subsidy in a large country *lowers* the world price, so part of the subsidy benefits foreign consumers."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Quotas and VERs raise prices like a tariff but the government usually collects no revenue. Under a VER, the quota rent goes to **foreign** exporters, so the importing country's welfare loss is bigger than with an equivalent tariff. Capital restrictions (on investment flows) are a separate topic: their aims are covered in the FX LM."
+            }
+          ]
+        },
+        {
+          "id": "econ-06-b",
+          "title": "Trading blocs and integration",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Ladder of regional integration",
+              "rows": [
+                [
+                  "Level",
+                  "Adds"
+                ],
+                [
+                  "Free trade area",
+                  "No barriers on trade among members"
+                ],
+                [
+                  "Customs union",
+                  "+ common external trade policy (tariffs)"
+                ],
+                [
+                  "Common market",
+                  "+ free movement of labour and capital"
+                ],
+                [
+                  "Economic union",
+                  "+ common institutions and economic policy"
+                ],
+                [
+                  "Monetary union",
+                  "+ common currency"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Why form trading blocs?",
+              "body": "- Bigger markets and economies of scale; more competition.\n- **Trade creation**: cheaper member imports replace costlier domestic output (welfare gain).\n- **Trade diversion**: imports shift from a low-cost non-member to a higher-cost member because of the tariff gap (welfare loss).\n- Political benefits: closer ties, reduced conflict.\n\nChallenges: loss of national sovereignty, adjustment costs for displaced workers, and in a monetary union the loss of independent monetary policy and the exchange rate."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Pick the *highest* level of integration the facts support. Common external tariff → at least a customs union. Free movement of workers and capital → common market. Shared currency → monetary union (e.g. the eurozone). NAFTA/USMCA is a free trade area: each member keeps its own tariffs on non-members."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "econ-06-q01",
+          "lesson": "econ-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A small country imposes a tariff on imports. Compared with free trade, the country's:",
+          "options": [
+            "consumer surplus falls, producer surplus rises and national welfare falls",
+            "producer surplus falls and consumer surplus rises",
+            "national welfare rises because the government collects tariff revenue"
+          ],
+          "answer": 0,
+          "explanation": "The tariff raises the domestic price: consumers lose surplus, domestic producers gain, and the government collects revenue. Because the consumer loss exceeds the producer gain plus revenue, there is a deadweight loss, so national welfare falls for a small country. Tariff revenue is only part of the transfer, not a net gain."
+        },
+        {
+          "id": "econ-06-q02",
+          "lesson": "econ-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Under a voluntary export restraint, the quota rent is captured by:",
+          "options": [
+            "the importing country's government",
+            "foreign exporters",
+            "domestic producers in the importing country"
+          ],
+          "answer": 1,
+          "explanation": "A VER is imposed by the exporting country (usually under pressure), so the foreign exporters sell less at a higher price and keep the rent. With a tariff, the importing government gets the revenue. Domestic producers gain from a higher price under all restrictions, but they do not capture the quota rent."
+        },
+        {
+          "id": "econ-06-q03",
+          "lesson": "econ-06-a",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "World price is 20. A small country imposes a tariff of 4. Domestic demand falls from 200 to 180 and domestic supply rises from 80 to 100. The deadweight loss is closest to:",
+          "options": [
+            "320",
+            "40",
+            "80"
+          ],
+          "answer": 2,
+          "explanation": "Consumer surplus lost = 4 × (200 + 180)/2 = 760. Producer surplus gained = 4 × (80 + 100)/2 = 360. Tariff revenue = 4 × (180 − 100) = 320. Deadweight loss = 760 − 360 − 320 = 80 (= ½ × 4 × 20 + ½ × 4 × 20). 320 is the tariff revenue. 40 counts only one of the two deadweight triangles."
+        },
+        {
+          "id": "econ-06-q04",
+          "lesson": "econ-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A country has an absolute advantage in producing both cloth and wine. According to the theory of comparative advantage, it should:",
+          "options": [
+            "specialize in the good with the lower opportunity cost and trade",
+            "produce both goods and not trade",
+            "specialize in the good it produces with the fewest labour hours in absolute terms only"
+          ],
+          "answer": 0,
+          "explanation": "Gains from trade come from comparative advantage (lower opportunity cost), even if one country is absolutely better at everything. Not trading forgoes those gains. Absolute labour hours alone do not decide specialization."
+        },
+        {
+          "id": "econ-06-q05",
+          "lesson": "econ-06-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A group of countries removes trade barriers among themselves and adopts a common external tariff, but does not allow free movement of labour. This is a:",
+          "options": [
+            "free trade area",
+            "customs union",
+            "common market"
+          ],
+          "answer": 1,
+          "explanation": "A customs union is an FTA plus a common external trade policy. A free trade area lacks the common external tariff. A common market would also allow free movement of labour and capital."
+        },
+        {
+          "id": "econ-06-q06",
+          "lesson": "econ-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "After joining a customs union, a country switches its imports of a good from a low-cost non-member to a higher-cost member. This is called:",
+          "options": [
+            "trade creation",
+            "dumping",
+            "trade diversion"
+          ],
+          "answer": 2,
+          "explanation": "Trade diversion is when the common tariff shifts imports from an efficient outsider to a less efficient member, a welfare cost. Trade creation replaces costlier domestic output with cheaper member imports. Dumping is selling abroad below cost or home price."
+        },
+        {
+          "id": "econ-06-q07",
+          "lesson": "econ-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The main additional cost of joining a monetary union, compared with a common market, is the loss of:",
+          "options": [
+            "independent monetary policy and exchange-rate adjustment",
+            "free movement of capital",
+            "the common external tariff"
+          ],
+          "answer": 0,
+          "explanation": "A monetary union adds a single currency, so members give up their own interest-rate policy and cannot devalue to adjust to shocks. Free capital movement is already part of a common market. The common external tariff is gained at the customs-union stage, not lost."
+        },
+        {
+          "id": "econ-06-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A large country imposes a tariff and the world price of the imported good falls. Compared with a small country imposing the same tariff, the large country:",
+          "options": [
+            "suffers a larger welfare loss",
+            "may gain national welfare, because the terms-of-trade gain can exceed the deadweight loss",
+            "collects no tariff revenue"
+          ],
+          "answer": 1,
+          "explanation": "A large importer pushes down the world price, shifting part of the tariff burden onto foreign exporters. That terms-of-trade gain can outweigh the deadweight loss. A small country cannot affect the world price, so it always loses. Tariff revenue is still collected."
+        },
+        {
+          "id": "econ-06-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An export subsidy in a small exporting country most likely:",
+          "options": [
+            "lowers the domestic price of the exported good",
+            "raises government revenue",
+            "raises the domestic price of the exported good and creates a deadweight loss"
+          ],
+          "answer": 2,
+          "explanation": "Producers can earn the world price plus the subsidy by exporting, so they divert supply abroad and the domestic price rises to that level. Consumers lose, producers gain, taxpayers pay the subsidy, and there is a deadweight loss. It costs the government money rather than raising revenue."
+        },
+        {
+          "id": "econ-06-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which group is most likely to lose from a country's move to free trade?",
+          "options": [
+            "Workers in import-competing industries",
+            "Consumers of imported goods",
+            "Export-oriented firms"
+          ],
+          "answer": 0,
+          "explanation": "Import competition lowers prices and output in import-competing industries, hurting their workers and owners. Consumers gain from lower prices and more variety. Exporters gain access to bigger markets."
+        },
+        {
+          "id": "econ-06-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Members of a bloc trade freely with each other, share a common external tariff, allow free movement of labour and capital, and coordinate economic policies through common institutions, but each keeps its own currency. The bloc is best described as a(n):",
+          "options": [
+            "common market",
+            "economic union",
+            "monetary union"
+          ],
+          "answer": 1,
+          "explanation": "Common institutions and coordinated economic policy on top of a common market make it an economic union. A common market lacks the common institutions. A monetary union would also need a single currency."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "econ-06-f01",
+          "front": "Comparative vs absolute advantage",
+          "back": "Absolute: produce with fewer resources. Comparative: lower opportunity cost. Trade gains come from comparative advantage."
+        },
+        {
+          "id": "econ-06-f02",
+          "front": "Tariff effects (small country)",
+          "back": "Domestic price up; consumer surplus down; producer surplus up; government revenue; deadweight loss → national welfare falls."
+        },
+        {
+          "id": "econ-06-f03",
+          "front": "Quota rent: quota vs VER",
+          "back": "Import quota: rent to licence holders (domestic or foreign). VER: rent to foreign exporters → larger loss for the importer."
+        },
+        {
+          "id": "econ-06-f04",
+          "front": "Integration ladder",
+          "back": "FTA → customs union (+ common external tariff) → common market (+ factor mobility) → economic union (+ common institutions/policy) → monetary union (+ single currency)."
+        },
+        {
+          "id": "econ-06-f05",
+          "front": "Trade creation vs trade diversion",
+          "back": "Creation: cheaper member imports replace domestic output (gain). Diversion: imports shift from a cheaper non-member to a costlier member (loss)."
+        },
+        {
+          "id": "econ-06-f06",
+          "front": "Large-country tariff",
+          "back": "Can improve national welfare through a terms-of-trade gain (lower world price), at the expense of trading partners."
+        }
+      ]
+    },
+    {
+      "id": "econ-07",
+      "lm": 7,
+      "title": "Capital Flows and the FX Market",
+      "summary": "How the FX market works and who trades in it, how to read a price/base quote and compute currency moves, nominal vs real exchange rates, exchange-rate regimes, and how exchange rates and capital controls affect trade and capital flows.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM",
+          "BT"
+        ],
+        "note": "FM gave spot and forward rates, transaction/translation/economic risk and hedging. New for CFA: the strict price/base quote notation, % change of base vs price currency, the real exchange rate formula, the full list of exchange-rate regimes and FX market participants."
+      },
+      "lessons": [
+        {
+          "id": "econ-07-a",
+          "title": "Quotes, % changes and real exchange rates",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Reading a quote: price/base",
+              "body": "CFA writes S(A/B) = units of **A (price currency)** needed to buy **one unit of B (base currency)**.\n\nUSD/EUR = 1.10 means 1 EUR costs 1.10 USD. If USD/EUR rises, the **base (EUR) appreciates** and the USD depreciates.\n\nDirect quote = domestic currency per unit of foreign (domestic is the price currency). Indirect quote = the reverse."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM's IRP formula F = S × (1 + i_{c})/(1 + i_{b}) uses c = **counter** currency and b = base. CFA's \"price currency\" is exactly FM's counter currency. The trap is the label: trading screens write **EUR/USD 1.10** (base first) for 1.10 USD per EUR, but CFA writes the same quote as **USD/EUR 1.10** (price first). Always ask: which currency is the \"1 unit\"? That is the base."
+            },
+            {
+              "kind": "formula",
+              "title": "% change of each currency",
+              "formula": "Base: S_{1}/S_{0} − 1;  Price: S_{0}/S_{1} − 1",
+              "where": [
+                [
+                  "S_{0}, S_{1}",
+                  "start and end quotes in price/base form"
+                ]
+              ],
+              "note": "The two % changes are NOT equal and opposite: a 10% rise in one currency means a fall of less than 10% (9.09%) in the other."
+            },
+            {
+              "kind": "example",
+              "title": "Percentage change",
+              "body": "USD/EUR moves from 1.10 to 1.21.\n\n- EUR (base): 1.21/1.10 − 1 = **+10.00%**\n- USD (price): 1.10/1.21 − 1 = **−9.09%**\n\nTo get the USD's change, you could invert the quotes to EUR/USD (0.9091 → 0.8264) and use the base formula: same −9.09%."
+            },
+            {
+              "kind": "formula",
+              "title": "Real exchange rate",
+              "formula": "q(d/f) = S(d/f) × (P_{f} ÷ P_{d})",
+              "where": [
+                [
+                  "S(d/f)",
+                  "nominal rate, domestic per foreign"
+                ],
+                [
+                  "P_{f}, P_{d}",
+                  "foreign and domestic price levels"
+                ]
+              ],
+              "note": "Higher domestic inflation (P_{d} up) lowers q(d/f): real **appreciation** of the domestic currency, so domestic goods lose competitiveness."
+            },
+            {
+              "kind": "example",
+              "title": "Real rate in practice",
+              "body": "A US analyst: S(USD/EUR) = 1.10 unchanged over a year; eurozone prices +2%, US prices +5% (index base 1.00).\n\nq = 1.10 × 1.02/1.05 = **1.0686**. The real USD/EUR fell, so the USD appreciated in real terms: US goods became relatively more expensive even though the nominal rate did not move."
+            }
+          ]
+        },
+        {
+          "id": "econ-07-b",
+          "title": "Market participants and currency regimes",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "FX market: functions and participants",
+              "body": "Functions: settle cross-border trade and investment, **hedge** currency risk, and **speculate**. Products: spot (usually T + 2), forwards, FX swaps, futures, options.\n\n- **Sell side**: dealers, mainly large banks.\n- **Buy side**: corporations; real money (pension funds, insurers) and leveraged (hedge funds) investors; retail; governments; central banks; sovereign wealth funds.\n\nVolume is dominated by financial flows, not trade."
+            },
+            {
+              "kind": "compare",
+              "title": "Exchange-rate regimes (most to least fixed)",
+              "rows": [
+                [
+                  "Regime",
+                  "Key feature"
+                ],
+                [
+                  "No separate legal tender",
+                  "Uses another currency (dollarization) or a monetary union"
+                ],
+                [
+                  "Currency board",
+                  "Law fixes the rate; base money fully backed by FX reserves"
+                ],
+                [
+                  "Fixed peg",
+                  "Rate held within ±1% band; discretion over reserves"
+                ],
+                [
+                  "Target zone",
+                  "Fixed parity with a wider band"
+                ],
+                [
+                  "Crawling peg",
+                  "Peg adjusted periodically (e.g. for inflation)"
+                ],
+                [
+                  "Managed float",
+                  "Intervention without a stated target"
+                ],
+                [
+                  "Independent float",
+                  "Market-determined"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Impossible trinity",
+              "body": "A country cannot have all three at once: a **fixed exchange rate**, **free capital flows** and an **independent monetary policy**.\n\nA currency board or dollarization gives up monetary policy; a free float keeps it. The \"ideal\" regime (credibly fixed, fully convertible, independent policy) is therefore impossible."
+            },
+            {
+              "kind": "concept",
+              "title": "Exchange rates, trade and capital flows",
+              "body": "Identity: **X − M = (S − I) + (T − G)**. A trade deficit means domestic saving falls short of investment, financed by capital inflows.\n\nA depreciation improves the trade balance only if export and import demand are elastic enough (Marshall–Lerner), and often only after a delay (J-curve).\n\nCapital restrictions aim to: reduce asset-price and FX volatility, defend a fixed rate, keep domestic interest rates low, and protect strategic industries from foreign ownership."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "econ-07-q01",
+          "lesson": "econ-07-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The JPY/USD exchange rate moves from 150.00 to 160.00. The percentage change in the value of the yen is closest to:",
+          "options": [
+            "+6.67%",
+            "−6.67%",
+            "−6.25%"
+          ],
+          "answer": 2,
+          "explanation": "JPY is the price currency: %Δ = S_{0}/S_{1} − 1 = 150/160 − 1 = −6.25%. +6.67% (160/150 − 1) is the appreciation of the USD, the base currency. −6.67% wrongly assumes the two changes are equal and opposite."
+        },
+        {
+          "id": "econ-07-q02",
+          "lesson": "econ-07-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A quote of GBP/EUR = 0.86 means:",
+          "options": [
+            "1 EUR costs 0.86 GBP",
+            "1 GBP buys 0.86 EUR",
+            "1 EUR costs 1.16 GBP"
+          ],
+          "answer": 0,
+          "explanation": "In CFA price/base notation, GBP/EUR = 0.86 is 0.86 GBP (price) per 1 EUR (base). Reading it as 1 GBP = 0.86 EUR reverses the base. 1.16 is the inverse (≈ 1/0.86), which would be the EUR/GBP quote."
+        },
+        {
+          "id": "econ-07-q03",
+          "lesson": "econ-07-a",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "For a Chinese analyst, S(CNY/USD) is 7.00 and stays unchanged over a year. US prices rise 3% and Chinese prices rise 6%. The real exchange rate q(CNY/USD) is closest to, and indicates:",
+          "options": [
+            "7.20, a real depreciation of the CNY",
+            "6.80, a real appreciation of the CNY",
+            "6.80, a real depreciation of the CNY"
+          ],
+          "answer": 1,
+          "explanation": "q(d/f) = S(d/f) × P_{f}/P_{d} = 7.00 × 1.03/1.06 = 6.80. Fewer real CNY per real USD means the CNY has appreciated in real terms (about −2.8% in q): Chinese goods became relatively dearer. 7.20 inverts the price ratio (7.00 × 1.06/1.03). Same number but 'depreciation' misreads the direction."
+        },
+        {
+          "id": "econ-07-q04",
+          "lesson": "econ-07-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "USD/EUR rises from 1.0500 to 1.0920. Which statement is correct?",
+          "options": [
+            "The euro appreciated by 4.0% and the dollar depreciated by 4.0%",
+            "The dollar appreciated by 4.0% against the euro",
+            "The euro appreciated by 4.0% and the dollar depreciated by about 3.8%"
+          ],
+          "answer": 2,
+          "explanation": "EUR is the base: 1.0920/1.0500 − 1 = +4.0%. USD is the price currency: 1.0500/1.0920 − 1 = −3.85%. The changes are not symmetric. The dollar weakened, since more USD is needed per EUR."
+        },
+        {
+          "id": "econ-07-q05",
+          "lesson": "econ-07-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A regime in which the domestic currency is fully backed by foreign reserves and the exchange rate is fixed by law is a:",
+          "options": [
+            "currency board",
+            "crawling peg",
+            "managed float"
+          ],
+          "answer": 0,
+          "explanation": "A currency board fixes the rate by legislation and backs the monetary base with FX reserves (e.g. Hong Kong). A crawling peg adjusts periodically. A managed float has no announced target rate."
+        },
+        {
+          "id": "econ-07-q06",
+          "lesson": "econ-07-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A country with a fixed exchange rate and no capital controls wants to cut interest rates to fight a recession. According to the impossible trinity, it most likely must:",
+          "options": [
+            "cut rates freely without affecting the peg",
+            "keep rates in line with the anchor currency's rates",
+            "raise rates to attract capital inflows to boost growth"
+          ],
+          "answer": 1,
+          "explanation": "With a fixed rate and open capital flows, monetary independence is lost: cutting rates would trigger outflows and break the peg. Cutting rates freely contradicts the trinity. Raising rates would deepen the recession and is not required by the peg."
+        },
+        {
+          "id": "econ-07-q07",
+          "lesson": "econ-07-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which of the following FX market participants is classified as a leveraged account on the buy side?",
+          "options": [
+            "A pension fund",
+            "A dealing bank",
+            "A hedge fund"
+          ],
+          "answer": 2,
+          "explanation": "Hedge funds use leverage, so they are leveraged accounts. Pension funds are real money accounts (limited leverage). Dealing banks are the sell side."
+        },
+        {
+          "id": "econ-07-q08",
+          "lesson": "econ-07-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A country runs a persistent trade deficit while its government budget is balanced. The identity X − M = (S − I) + (T − G) implies that:",
+          "options": [
+            "private investment exceeds private saving, financed by foreign capital inflows",
+            "private saving exceeds private investment",
+            "the government must be running a surplus"
+          ],
+          "answer": 0,
+          "explanation": "With T − G = 0, a negative X − M means S − I < 0: investment exceeds saving, and the gap is financed by capital inflows. Saving exceeding investment would give a trade surplus. The budget is balanced, not in surplus."
+        },
+        {
+          "id": "econ-07-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which is least likely an objective of capital restrictions?",
+          "options": [
+            "Keeping domestic interest rates low",
+            "Increasing the volatility of domestic asset prices",
+            "Protecting strategic industries from foreign ownership"
+          ],
+          "answer": 1,
+          "explanation": "Capital restrictions aim to *reduce* volatility, maintain a fixed exchange rate, keep domestic rates low and protect strategic industries. Increasing volatility is the opposite of the aim."
+        },
+        {
+          "id": "econ-07-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "An investor reads on a trading screen 'EUR/USD 1.0850' (market convention, EUR is the base currency). In CFA price/base notation, the number of euros needed to buy one US dollar is closest to:",
+          "options": [
+            "1.0850",
+            "0.0850",
+            "0.9217"
+          ],
+          "answer": 2,
+          "explanation": "The screen quote means 1.0850 USD per EUR (CFA writes it USD/EUR 1.0850). EUR per USD (CFA: EUR/USD) is its inverse: 1/1.0850 = 0.9217. Using 1.0850 directly confuses market and CFA labels. 0.0850 just drops the leading 1 from the quote and has no economic meaning."
+        },
+        {
+          "id": "econ-07-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Following a depreciation of the domestic currency, a country's trade balance first worsens and then improves. This is known as the:",
+          "options": [
+            "J-curve effect",
+            "Marshall–Lerner condition",
+            "impossible trinity"
+          ],
+          "answer": 0,
+          "explanation": "The J-curve describes the delayed improvement: existing contracts and slow volume responses mean the trade balance worsens first. Marshall–Lerner is the elasticity condition for the eventual improvement. The impossible trinity is about regime choices."
+        },
+        {
+          "id": "econ-07-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Higher domestic inflation than foreign inflation, with the nominal exchange rate S(d/f) unchanged, will most likely:",
+          "options": [
+            "increase the domestic country's export competitiveness",
+            "reduce the domestic country's export competitiveness",
+            "leave real competitiveness unchanged"
+          ],
+          "answer": 1,
+          "explanation": "q(d/f) = S × P_{f}/P_{d}: higher P_{d} lowers q, a real appreciation of the domestic currency, so its goods become relatively more expensive and exports less competitive. Real competitiveness changes even if the nominal rate does not."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "econ-07-f01",
+          "front": "CFA quote notation S(A/B)",
+          "back": "Units of A (price currency) per 1 unit of B (base currency). USD/EUR 1.10 = 1.10 USD per EUR. Screen convention 'EUR/USD 1.10' is the same quote."
+        },
+        {
+          "id": "econ-07-f02",
+          "front": "% change: base vs price currency",
+          "back": "Base: S_{1}/S_{0} − 1. Price: S_{0}/S_{1} − 1. Not equal and opposite."
+        },
+        {
+          "id": "econ-07-f03",
+          "front": "Real exchange rate",
+          "back": "q(d/f) = S(d/f) × P_{f}/P_{d}. Falls when domestic prices rise faster → real appreciation of the domestic currency."
+        },
+        {
+          "id": "econ-07-f04",
+          "front": "Impossible trinity",
+          "back": "Cannot have a fixed exchange rate, free capital flows and independent monetary policy at the same time."
+        },
+        {
+          "id": "econ-07-f05",
+          "front": "Currency board",
+          "back": "Exchange rate fixed by law; monetary base fully backed by foreign reserves; no independent monetary policy (e.g. Hong Kong)."
+        },
+        {
+          "id": "econ-07-f06",
+          "front": "Objectives of capital restrictions",
+          "back": "Reduce volatility, maintain a fixed exchange rate, keep domestic rates low, protect strategic industries."
+        },
+        {
+          "id": "econ-07-f07",
+          "front": "Trade balance identity",
+          "back": "X − M = (S − I) + (T − G). Trade deficit = saving shortfall financed by capital inflows."
+        }
+      ]
+    },
+    {
+      "id": "econ-08",
+      "lm": 8,
+      "title": "Exchange Rate Calculations",
+      "summary": "Computing cross rates, using covered interest parity to price forwards, converting forward points into outright rates, and interpreting forward premiums and discounts.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM"
+        ],
+        "note": "FM taught interest rate parity and forward contracts using counter/base notation. New for CFA: cross-rate arithmetic in price/base notation, forward points, days/360 money-market periods, and arbitrage reasoning when the quoted forward is wrong."
+      },
+      "lessons": [
+        {
+          "id": "econ-08-a",
+          "title": "Cross rates",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Cross rate",
+              "formula": "(A/C) = (A/B) × (B/C)",
+              "where": [
+                [
+                  "B",
+                  "the common currency that must cancel"
+                ]
+              ],
+              "note": "Arrange the quotes so the common currency cancels like a fraction. If it doesn't, invert one quote first: (B/A) = 1 ÷ (A/B)."
+            },
+            {
+              "kind": "example",
+              "title": "Multiply case",
+              "body": "USD/EUR = 1.1000 and JPY/USD = 150.00. Find JPY/EUR.\n\nJPY/EUR = (JPY/USD) × (USD/EUR) = 150.00 × 1.1000 = **165.00** yen per euro. The USD cancels."
+            },
+            {
+              "kind": "example",
+              "title": "Divide case",
+              "body": "MXN/USD = 18.0000 and CAD/USD = 1.3500. Find MXN/CAD.\n\nBoth have USD as the base, so invert one: USD/CAD = 1/1.3500. MXN/CAD = 18.0000 ÷ 1.3500 = **13.3333**. The reverse, CAD/MXN = 1.35 ÷ 18 = 0.0750."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Writing the answer and checking the units catches nearly every error. MXN/USD × CAD/USD does not cancel (you get MXN·CAD/USD², nonsense). A wrong cross rate is usually off by a factor of the squared quote (e.g. 18 × 1.35 = 24.3 instead of 13.33). Sanity check: 1 CAD is worth less than 1 USD, so it should buy fewer pesos than 18."
+            }
+          ]
+        },
+        {
+          "id": "econ-08-b",
+          "title": "Forwards and covered interest parity",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Forward rate (covered interest parity)",
+              "formula": "F(P/B) = S(P/B) × (1 + i_{P} × τ) ÷ (1 + i_{B} × τ)",
+              "where": [
+                [
+                  "i_{P}",
+                  "interest rate of the price currency"
+                ],
+                [
+                  "i_{B}",
+                  "interest rate of the base currency"
+                ],
+                [
+                  "τ",
+                  "days/360 (fraction of a year)"
+                ]
+              ],
+              "note": "The **price** currency's rate goes on **top**. Rates are simple (not compounded) for periods under a year."
+            },
+            {
+              "kind": "example",
+              "title": "Forward rate",
+              "body": "S(USD/EUR) = 1.1000; i_{USD} = 5%, i_{EUR} = 3%; 180 days.\n\nF = 1.1000 × (1 + 0.05 × 180/360)/(1 + 0.03 × 180/360) = 1.1000 × 1.025/1.015 = **1.1108**.\n\nThe EUR (base, lower rate) trades at a forward **premium**; the USD (higher rate) at a forward discount."
+            },
+            {
+              "kind": "formula",
+              "title": "Forward points and premium",
+              "formula": "F − S = S × (i_{P} − i_{B}) × τ ÷ (1 + i_{B} × τ);  points = (F − S) × 10^{4}",
+              "where": [
+                [
+                  "Points > 0",
+                  "base currency at a forward premium"
+                ],
+                [
+                  "Points < 0",
+                  "base currency at a forward discount"
+                ]
+              ],
+              "note": "Most quotes have 4 decimals, so 1 point = 0.0001. For JPY quotes (2 decimals) 1 point = 0.01."
+            },
+            {
+              "kind": "example",
+              "title": "Using forward points",
+              "body": "S(CAD/USD) = 1.3500 and 90-day forward points = −25.5.\n\nF = 1.3500 + (−25.5/10,000) = 1.3500 − 0.00255 = **1.34745**. Negative points: the USD (base) is at a forward discount, so the USD rate must be higher than the CAD rate."
+            },
+            {
+              "kind": "concept",
+              "title": "Why parity must hold: covered arbitrage",
+              "body": "Two routes must give the same result: (1) invest in the price currency, or (2) convert spot to the base currency, invest there, and sell it forward. If F is too high, buy the base currency spot, invest it, and sell it forward; if F is too low, do the reverse.\n\nThe rule of thumb: **the higher-interest-rate currency trades at a forward discount**, which offsets its interest advantage. Forward rates are not forecasts of future spot rates."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "Same formula as FM's F_{0} = S_{0} × (1 + i_{c})/(1 + i_{b}), with counter = price. Differences: CFA uses a 360-day year for money-market periods (FM questions often gave annual rates to pro-rate yourself), and quotes forwards as **points** added to spot. PPP and uncovered interest parity (used in FM to forecast spot rates) are not in this LM: at Level I, focus on covered interest parity."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "econ-08-q01",
+          "lesson": "econ-08-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "USD/EUR = 1.1000 and JPY/USD = 150.00. The JPY/EUR cross rate is closest to:",
+          "options": [
+            "136.36",
+            "0.0061",
+            "165.00"
+          ],
+          "answer": 2,
+          "explanation": "JPY/EUR = (JPY/USD) × (USD/EUR) = 150 × 1.10 = 165.00. 136.36 divides 150 by 1.10 (USD does not cancel). 0.0061 is 1/165, the EUR/JPY quote (euros per yen), i.e. the inverse."
+        },
+        {
+          "id": "econ-08-q02",
+          "lesson": "econ-08-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "MXN/USD = 18.0000 and CAD/USD = 1.3500. The CAD/MXN cross rate is closest to:",
+          "options": [
+            "0.0750",
+            "13.3333",
+            "24.3000"
+          ],
+          "answer": 0,
+          "explanation": "CAD/MXN = (CAD/USD) × (USD/MXN) = 1.35 × (1/18) = 0.0750. 13.3333 is MXN/CAD (the inverse). 24.30 multiplies the two quotes, so USD does not cancel."
+        },
+        {
+          "id": "econ-08-q03",
+          "lesson": "econ-08-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "To compute a cross rate from two quotes that share the same base currency, an analyst should:",
+          "options": [
+            "multiply the two quotes",
+            "divide one quote by the other",
+            "add the two quotes"
+          ],
+          "answer": 1,
+          "explanation": "With a common base (e.g. MXN/USD and CAD/USD), divide: MXN/CAD = (MXN/USD) ÷ (CAD/USD). Multiplying works when the common currency is the price currency in one quote and the base in the other. Adding quotes has no meaning."
+        },
+        {
+          "id": "econ-08-q04",
+          "lesson": "econ-08-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "S(USD/EUR) = 1.1000. The 180-day USD rate is 5% and the EUR rate is 3% (annualized, 360-day basis). The 180-day forward rate is closest to:",
+          "options": [
+            "1.0893",
+            "1.1214",
+            "1.1108"
+          ],
+          "answer": 2,
+          "explanation": "F = 1.10 × (1 + 0.05 × 0.5)/(1 + 0.03 × 0.5) = 1.10 × 1.025/1.015 = 1.1108. 1.0893 puts the EUR rate on top (base and price swapped). 1.1214 uses full annual rates without scaling by 180/360."
+        },
+        {
+          "id": "econ-08-q05",
+          "lesson": "econ-08-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "S(CAD/USD) = 1.3500 and the 3-month forward points are −25.5. The 3-month outright forward rate is:",
+          "options": [
+            "1.34745",
+            "1.37550",
+            "1.32450"
+          ],
+          "answer": 0,
+          "explanation": "Points are in units of 0.0001: F = 1.3500 − 0.00255 = 1.34745. 1.37550 adds instead of subtracts and misplaces the decimal. 1.32450 treats the points as 0.0255 (wrong scaling)."
+        },
+        {
+          "id": "econ-08-q06",
+          "lesson": "econ-08-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "If the interest rate on the base currency is higher than the interest rate on the price currency, the base currency will most likely trade at a forward:",
+          "options": [
+            "premium",
+            "discount",
+            "rate equal to spot"
+          ],
+          "answer": 1,
+          "explanation": "F/S = (1 + i_{P}τ)/(1 + i_{B}τ) < 1 when i_{B} > i_{P}, so F < S: the base currency is at a forward discount, offsetting its higher yield. A premium happens when the base currency has the lower rate. F = S only when rates are equal."
+        },
+        {
+          "id": "econ-08-q07",
+          "lesson": "econ-08-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Under covered interest parity, a forward exchange rate is best described as:",
+          "options": [
+            "the market's unbiased forecast of the future spot rate",
+            "a rate set by the central bank",
+            "a no-arbitrage rate set by the spot rate and the two interest rates"
+          ],
+          "answer": 2,
+          "explanation": "The forward rate comes from arbitrage between spot, the two money-market rates and the forward; it is not a forecast. Central banks do not set forward rates in a floating market."
+        },
+        {
+          "id": "econ-08-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "S(USD/GBP) = 1.2500. The 90-day USD rate is 4.50% and the GBP rate is 5.25% (360-day basis). The 90-day forward points are closest to:",
+          "options": [
+            "−23.1",
+            "+23.1",
+            "−18.5"
+          ],
+          "answer": 0,
+          "explanation": "F = 1.25 × (1 + 0.045 × 0.25)/(1 + 0.0525 × 0.25) = 1.25 × 1.01125/1.013125 = 1.247687. Points = (1.247687 − 1.25) × 10,000 = −23.1. The GBP (base) has the higher rate, so it trades at a forward discount and the points must be negative; +23.1 gets the sign wrong (swapping the rates gives about +23.2). −18.5 is the % discount (−0.185%) mistaken for points."
+        },
+        {
+          "id": "econ-08-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "S(USD/AUD) = 0.6500. The 270-day USD rate is 4.0% and the AUD rate is 4.5% (annualized, 360-day basis). The 270-day forward rate is closest to:",
+          "options": [
+            "0.6469",
+            "0.6476",
+            "0.6524"
+          ],
+          "answer": 1,
+          "explanation": "F = 0.65 × (1 + 0.04 × 0.75)/(1 + 0.045 × 0.75) = 0.65 × 1.03/1.03375 = 0.6476. 0.6469 uses full annual rates (1.04/1.045) without scaling by 270/360. 0.6524 swaps the price and base rates."
+        },
+        {
+          "id": "econ-08-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "S(USD/EUR) = 1.1000; 1-year rates are 5% (USD) and 3% (EUR). A dealer quotes a 1-year forward of 1.1300. Starting by borrowing USD 1.10, the riskless profit per EUR 1 bought spot is closest to:",
+          "options": [
+            "USD 0.0000, because there is no arbitrage",
+            "USD 0.0086",
+            "USD 0.0089"
+          ],
+          "answer": 2,
+          "explanation": "Parity forward = 1.10 × 1.05/1.03 = 1.1214, below the quote, so the EUR is overpriced forward. Borrow USD 1.10, buy EUR 1, invest at 3% → EUR 1.03, sell forward at 1.13 → USD 1.1639; repay 1.10 × 1.05 = 1.1550. Profit = 0.0089. Equivalently 1.03 × (1.13 − 1.1214) = 0.0089. Zero ignores the mispricing. 0.0086 is just 1.13 − 1.1214, forgetting that EUR 1.03 (principal plus interest), not EUR 1, is sold forward."
+        },
+        {
+          "id": "econ-08-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "S(JPY/USD) = 150.00 and the 1-year forward rate trades at a 1.2% discount to spot. The 1-year forward rate is closest to:",
+          "options": [
+            "148.20",
+            "151.80",
+            "148.80"
+          ],
+          "answer": 0,
+          "explanation": "A discount on the USD (base) means F = S × (1 − 0.012) = 150 × 0.988 = 148.20. 151.80 treats it as a premium. 148.80 subtracts 1.2 yen instead of 1.2%."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "econ-08-f01",
+          "front": "Cross rate rule",
+          "back": "(A/C) = (A/B) × (B/C). Make the common currency cancel; invert a quote if needed: (B/A) = 1/(A/B)."
+        },
+        {
+          "id": "econ-08-f02",
+          "front": "Covered interest parity (price/base)",
+          "back": "F = S × (1 + i_{price} × days/360) ÷ (1 + i_{base} × days/360). Price currency rate on top."
+        },
+        {
+          "id": "econ-08-f03",
+          "front": "Forward points",
+          "back": "Points = (F − S) × 10^{4} for 4-decimal quotes. F = S + points/10,000. Positive points = base at a premium."
+        },
+        {
+          "id": "econ-08-f04",
+          "front": "Which currency trades at a forward discount?",
+          "back": "The one with the higher interest rate. It offsets the yield advantage."
+        },
+        {
+          "id": "econ-08-f05",
+          "front": "Forward premium formula",
+          "back": "F − S = S × (i_{P} − i_{B})τ ÷ (1 + i_{B}τ)."
+        },
+        {
+          "id": "econ-08-f06",
+          "front": "Covered interest arbitrage direction",
+          "back": "If market F > parity F: buy base spot, invest in base, sell base forward (borrow price currency). If market F < parity F: do the reverse."
+        }
+      ]
+    }
+  ]
+}

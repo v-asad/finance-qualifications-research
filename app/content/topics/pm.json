@@ -1,0 +1,2431 @@
+{
+  "id": "pm",
+  "name": "Portfolio Construction",
+  "weight": [
+    8,
+    12
+  ],
+  "blurb": "How investors trade off risk and return, price risk with CAPM, judge managers, write an IPS, spot behavioural biases and manage risk. Formula-light apart from LMs 1–2, so it is a high-yield topic for the weight.",
+  "accaNote": "ACCA FM (and AFM) gave you CAPM, beta and the systematic vs unsystematic split. New for CFA: utility and indifference curves, the CAL/CML, two-asset portfolio maths, Sharpe/Treynor/M²/Jensen's alpha, the IPS, behavioural biases and the CFA risk-management vocabulary.",
+  "modules": [
+    {
+      "id": "pm-01",
+      "lm": 1,
+      "title": "Portfolio Risk and Return: Part I",
+      "summary": "Investors are risk averse, so they rank portfolios by utility, not return. Combining assets that are not perfectly correlated cuts risk, which produces the efficient frontier; adding a risk-free asset gives the capital allocation line.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM covered diversification and the idea that combining assets reduces risk. New for CFA: the utility function, indifference curves, the two-asset variance formula, the efficient frontier and the CAL with the optimal risky weight."
+      },
+      "lessons": [
+        {
+          "id": "pm-01-a",
+          "title": "Asset classes, risk aversion and utility",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "The historical risk–return ladder",
+              "body": "Over long periods, higher average return has come with higher volatility. From lowest to highest risk and return:\n\n- Treasury bills\n- Government bonds\n- Corporate bonds\n- Large-cap equities\n- Small-cap equities\n\nReturns are **not normal**: equity returns show negative skew and fat tails (excess kurtosis), so SD understates crash risk. Liquidity also matters: thinly traded assets (emerging markets, alternatives) carry extra costs."
+            },
+            {
+              "kind": "concept",
+              "title": "Three attitudes to risk",
+              "body": "Offer a choice between a sure $50 and a 50/50 gamble of $0 or $100 (same expected value).\n\n- **Risk averse** (A > 0): takes the sure $50. Needs extra return to bear risk. This is the CFA default investor.\n- **Risk neutral** (A = 0): indifferent. Ranks only by expected return.\n- **Risk seeking** (A < 0): takes the gamble.\n\nThe bigger A, the more risk averse the investor."
+            },
+            {
+              "kind": "formula",
+              "title": "Utility of a portfolio",
+              "formula": "U = E(r) − ½ × A × σ^{2}",
+              "where": [
+                [
+                  "U",
+                  "utility (certainty-equivalent return)"
+                ],
+                [
+                  "E(r)",
+                  "expected return, as a decimal"
+                ],
+                [
+                  "A",
+                  "risk-aversion coefficient"
+                ],
+                [
+                  "σ^{2}",
+                  "variance of return, as a decimal"
+                ]
+              ],
+              "note": "Choose the portfolio with the highest U, not the highest return."
+            },
+            {
+              "kind": "example",
+              "title": "Utility in numbers",
+              "body": "E(r) = 10%, σ = 20%, A = 4.\n\nU = 0.10 − 0.5 × 4 × 0.20^{2} = 0.10 − 0.08 = **0.02 (2%)**.\n\nSo this risky portfolio is worth the same to the investor as a sure 2%. Work in decimals: plugging in 10 and 20 gives 10 − 0.5 × 4 × 400 = −790, which is nonsense."
+            },
+            {
+              "kind": "concept",
+              "title": "Indifference curves",
+              "body": "An indifference curve joins all (σ, E(r)) points with equal utility.\n\n- Risk averse: curves slope **upward** and are convex. More risk must be paid for.\n- **Steeper curve = more risk averse** (needs more extra return per unit of risk).\n- Risk neutral: flat (horizontal) lines. Risk seeking: downward sloping.\n- Curves further **up and to the left** give higher utility.\n- One investor's curves never cross."
+            }
+          ]
+        },
+        {
+          "id": "pm-01-b",
+          "title": "Two-asset portfolios and diversification",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Two-asset portfolio return and risk",
+              "formula": "E(R_{p}) = w_{1}E(R_{1}) + w_{2}E(R_{2})\nσ_{p}^{2} = w_{1}^{2}σ_{1}^{2} + w_{2}^{2}σ_{2}^{2} + 2w_{1}w_{2}ρ_{12}σ_{1}σ_{2}",
+              "where": [
+                [
+                  "w",
+                  "weights (sum to 1)"
+                ],
+                [
+                  "ρ_{12}",
+                  "correlation between the two returns"
+                ],
+                [
+                  "ρ_{12}σ_{1}σ_{2}",
+                  "= Cov(R_{1}, R_{2})"
+                ]
+              ],
+              "note": "Return is a plain weighted average; risk is not, unless ρ = +1."
+            },
+            {
+              "kind": "example",
+              "title": "A 60/40 portfolio",
+              "body": "w₁ = 0.6, σ₁ = 20%; w₂ = 0.4, σ₂ = 10%; ρ = 0.3.\n\nσ_{p}^{2} = 0.36(0.04) + 0.16(0.01) + 2(0.6)(0.4)(0.3)(0.20)(0.10)\n= 0.0144 + 0.0016 + 0.00288 = 0.01888\n\nσ_{p} = √0.01888 = **13.74%**.\n\nThe weighted-average SD is 0.6(20%) + 0.4(10%) = 16%. Diversification saved 2.26 percentage points."
+            },
+            {
+              "kind": "concept",
+              "title": "Correlation drives the benefit",
+              "body": "- **ρ = +1**: σ_{p} equals the weighted average of the SDs. No diversification benefit.\n- **ρ < +1**: σ_{p} is below the weighted average. Lower ρ, bigger benefit.\n- **ρ = −1**: a zero-risk portfolio exists, with w₁ = σ₂ ÷ (σ₁ + σ₂).\n\nWarning: correlations tend to rise in crises, so diversification fails just when you need it most."
+            },
+            {
+              "kind": "formula",
+              "title": "Equally weighted portfolio of N assets",
+              "formula": "σ_{p}^{2} = σ̄^{2} ÷ N + [(N − 1) ÷ N] × Cov̄",
+              "where": [
+                [
+                  "σ̄^{2}",
+                  "average variance of the assets"
+                ],
+                [
+                  "Cov̄",
+                  "average covariance between pairs"
+                ],
+                [
+                  "N",
+                  "number of assets"
+                ]
+              ],
+              "note": "As N grows, the first term vanishes and σ_{p}^{2} tends to the average covariance: that is the risk you cannot diversify away."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM taught you diversification in words: combine assets and unsystematic risk falls. CFA expects you to **compute** it. Know the two-asset variance formula cold, convert correlation to covariance (Cov = ρσ₁σ₂), and remember the trap options: the weighted-average SD (assumes ρ = +1) and the answer that drops the covariance term (assumes ρ = 0)."
+            }
+          ]
+        },
+        {
+          "id": "pm-01-c",
+          "title": "Efficient frontier, CAL and the optimal portfolio",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Minimum-variance and efficient frontiers",
+              "body": "Plot every possible risky portfolio. For each target return, the one with the lowest SD lies on the **minimum-variance frontier**.\n\n- The leftmost point is the **global minimum-variance portfolio (GMV)**.\n- The part of the frontier **above** the GMV is the **efficient frontier**: highest return for each level of risk.\n- Anything below or to the right of it is dominated.\n\nAdding assets with low correlation pushes the frontier up and to the left."
+            },
+            {
+              "kind": "formula",
+              "title": "Capital allocation line (CAL)",
+              "formula": "E(R_{c}) = R_{f} + [(E(R_{i}) − R_{f}) ÷ σ_{i}] × σ_{c}\ny* = (E(R_{i}) − R_{f}) ÷ (A × σ_{i}^{2})",
+              "where": [
+                [
+                  "R_{f}",
+                  "risk-free rate"
+                ],
+                [
+                  "E(R_{i}), σ_{i}",
+                  "risky portfolio's return and SD"
+                ],
+                [
+                  "σ_{c}",
+                  "SD of the complete portfolio = y × σ_{i}"
+                ],
+                [
+                  "y*",
+                  "optimal weight in the risky portfolio"
+                ]
+              ],
+              "note": "The slope of the CAL is the risky portfolio's Sharpe ratio."
+            },
+            {
+              "kind": "example",
+              "title": "Moving along the CAL",
+              "body": "R_{f} = 3%; risky portfolio 11% return, 20% SD.\n\n- 40% risky: E = 3% + 0.4 × 8% = **6.2%**, σ = 0.4 × 20% = **8%** (lending).\n- 150% risky (borrow 50% at R_{f}): E = 3% + 1.5 × 8% = **15%**, σ = **30%**.\n\nOptimal weight for A = 4: y* = 0.08 ÷ (4 × 0.04) = **0.5**, giving 7% return and 10% SD."
+            },
+            {
+              "kind": "concept",
+              "title": "Choosing the optimal portfolio",
+              "body": "The best CAL is the steepest one: it touches the efficient frontier at the **optimal risky portfolio** (tangency).\n\nThen each investor picks their point on that CAL where it touches their **highest indifference curve**.\n\n**Two-fund separation**: everyone (with the same expectations) holds the same risky portfolio. Risk aversion only changes the split between it and the risk-free asset. A more risk-averse investor lends more; a less risk-averse one borrows."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "pm-01-q01",
+          "lesson": "pm-01-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A portfolio has an expected return of 10% and a standard deviation of 20%. For an investor with a risk-aversion coefficient of 4, the utility of this portfolio is closest to:",
+          "options": [
+            "2.0%",
+            "8.0%",
+            "−6.0%"
+          ],
+          "answer": 0,
+          "explanation": "U = 0.10 − 0.5 × 4 × 0.20^{2} = 0.10 − 0.08 = 0.02, or 2.0%. 8.0% forgets the risk-aversion coefficient (0.10 − 0.5 × 0.04); −6.0% forgets the ½ (0.10 − 4 × 0.04)."
+        },
+        {
+          "id": "pm-01-q02",
+          "lesson": "pm-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Compared with a less risk-averse investor, the indifference curves of a more risk-averse investor are most likely:",
+          "options": [
+            "flatter.",
+            "downward sloping.",
+            "steeper."
+          ],
+          "answer": 2,
+          "explanation": "A more risk-averse investor demands more extra return for each extra unit of risk, so the curves are steeper. Flatter curves describe lower risk aversion (flat lines = risk neutral). Downward-sloping curves describe a risk seeker."
+        },
+        {
+          "id": "pm-01-q03",
+          "lesson": "pm-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A risk-neutral investor choosing among several portfolios will select the portfolio with the:",
+          "options": [
+            "lowest standard deviation.",
+            "highest Sharpe ratio.",
+            "highest expected return."
+          ],
+          "answer": 2,
+          "explanation": "Risk neutral means A = 0, so U = E(r): only expected return matters. Lowest SD is what an extremely risk-averse investor might focus on. The highest Sharpe ratio identifies the best risky portfolio to combine with the risk-free asset, but a risk-neutral investor ignores risk."
+        },
+        {
+          "id": "pm-01-q04",
+          "lesson": "pm-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Over long historical periods, which asset class has shown the highest standard deviation of annual returns?",
+          "options": [
+            "Small-cap equities",
+            "Long-term government bonds",
+            "Large-cap equities"
+          ],
+          "answer": 0,
+          "explanation": "Small-cap equities sit at the top of the historical risk–return ladder, with both the highest average return and the highest volatility. Large caps are next. Government bonds are much less volatile."
+        },
+        {
+          "id": "pm-01-q05",
+          "lesson": "pm-01-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A portfolio holds 60% in Asset X (SD 20%) and 40% in Asset Y (SD 10%). The correlation between X and Y is 0.3. The portfolio standard deviation is closest to:",
+          "options": [
+            "12.65%",
+            "16.00%",
+            "13.74%"
+          ],
+          "answer": 2,
+          "explanation": "σ² = 0.6²(0.04) + 0.4²(0.01) + 2(0.6)(0.4)(0.3)(0.2)(0.1) = 0.0144 + 0.0016 + 0.00288 = 0.01888; σ = 13.74%. 16.00% is the weighted average of SDs (assumes ρ = +1). 12.65% drops the covariance term (assumes ρ = 0)."
+        },
+        {
+          "id": "pm-01-q06",
+          "lesson": "pm-01-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The standard deviation of a two-asset portfolio equals the weighted average of the two assets' standard deviations only when the correlation is:",
+          "options": [
+            "0",
+            "+1",
+            "−1"
+          ],
+          "answer": 1,
+          "explanation": "With ρ = +1 the variance formula becomes a perfect square, (w₁σ₁ + w₂σ₂)², so σ_{p} is the weighted average and there is no diversification benefit. At ρ = 0 or −1, σ_{p} is below the weighted average; at −1 it can even be zero."
+        },
+        {
+          "id": "pm-01-q07",
+          "lesson": "pm-01-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "As the number of assets in an equally weighted portfolio becomes very large, the portfolio variance approaches the:",
+          "options": [
+            "average covariance between the assets.",
+            "average variance of the assets.",
+            "zero."
+          ],
+          "answer": 0,
+          "explanation": "σ_{p}^{2} = σ̄²/N + [(N − 1)/N] × Cov̄. As N → ∞, the first term goes to zero and (N − 1)/N → 1, leaving the average covariance. That covariance is the undiversifiable (systematic) risk, so variance does not go to zero unless assets are uncorrelated."
+        },
+        {
+          "id": "pm-01-q08",
+          "lesson": "pm-01-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Two assets have standard deviations of 20% and 30% and a correlation of 0.5. Their covariance is closest to:",
+          "options": [
+            "0.0300",
+            "0.0600",
+            "0.2500"
+          ],
+          "answer": 0,
+          "explanation": "Cov = ρσ₁σ₂ = 0.5 × 0.20 × 0.30 = 0.03. 0.06 forgets the correlation (σ₁σ₂ only). 0.25 multiplies the correlation by the sum of the SDs instead of their product."
+        },
+        {
+          "id": "pm-01-q09",
+          "lesson": "pm-01-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which portfolio lies on the minimum-variance frontier but NOT on the efficient frontier?",
+          "options": [
+            "The global minimum-variance portfolio",
+            "The optimal risky (tangency) portfolio",
+            "A frontier portfolio with a lower expected return than the global minimum-variance portfolio"
+          ],
+          "answer": 2,
+          "explanation": "The efficient frontier is the part of the minimum-variance frontier at or above the global minimum-variance portfolio. Frontier portfolios below the GMV are dominated: the same SD can be achieved with a higher return. The GMV and the tangency portfolio are both efficient."
+        },
+        {
+          "id": "pm-01-q10",
+          "lesson": "pm-01-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The risk-free rate is 3%. A risky portfolio has an expected return of 11% and a standard deviation of 20%. An investor borrows at the risk-free rate to invest 150% of her wealth in the risky portfolio. Her expected return and standard deviation are closest to:",
+          "options": [
+            "16.5% and 30%",
+            "15.0% and 30%",
+            "15.0% and 20%"
+          ],
+          "answer": 1,
+          "explanation": "E = 3% + 1.5 × (11% − 3%) = 15%; σ = 1.5 × 20% = 30% (the risk-free asset adds no risk). 16.5% is 1.5 × 11% and ignores the cost of borrowing. 20% forgets that leverage scales risk."
+        },
+        {
+          "id": "pm-01-q11",
+          "lesson": "pm-01-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Under two-fund separation, compared with a less risk-averse investor, a more risk-averse investor will most likely hold:",
+          "options": [
+            "the same risky portfolio with a larger allocation to the risk-free asset.",
+            "a different risky portfolio closer to the global minimum-variance portfolio.",
+            "the same risky portfolio financed partly by borrowing."
+          ],
+          "answer": 0,
+          "explanation": "All investors hold the same optimal risky portfolio; risk aversion only changes how much goes into the risk-free asset. A more risk-averse investor lends more. Switching to a different risky portfolio is inefficient once a risk-free asset exists. Borrowing is typical of the less risk-averse investor."
+        },
+        {
+          "id": "pm-01-q12",
+          "lesson": "pm-01-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "R_{f} = 3%. The optimal risky portfolio has an expected return of 11% and an SD of 20%. For an investor with A = 4, the optimal weight in the risky portfolio is closest to:",
+          "options": [
+            "25%",
+            "50%",
+            "100%"
+          ],
+          "answer": 1,
+          "explanation": "y* = (0.11 − 0.03) ÷ (4 × 0.20²) = 0.08 ÷ 0.16 = 0.50. 25% doubles A in the denominator (0.08 ÷ (8 × 0.04)); 100% ignores risk aversion."
+        },
+        {
+          "id": "pm-01-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An investor with a risk-aversion coefficient of 2 is choosing among three portfolios:\n\n- Portfolio 1: E(r) 8%, SD 10%\n- Portfolio 2: E(r) 12%, SD 20%\n- Portfolio 3: E(r) 15%, SD 30%\n\nWhich portfolio should she choose?",
+          "options": [
+            "Portfolio 1",
+            "Portfolio 3",
+            "Portfolio 2"
+          ],
+          "answer": 2,
+          "explanation": "U = E(r) − ½ × 2 × σ²: Portfolio 1 = 0.08 − 0.01 = 0.07; Portfolio 2 = 0.12 − 0.04 = 0.08; Portfolio 3 = 0.15 − 0.09 = 0.06. Portfolio 2 has the highest utility. Portfolio 3 has the highest return but its risk penalty is too large; Portfolio 1 has the lowest risk but gives up too much return."
+        },
+        {
+          "id": "pm-01-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A portfolio is split equally between Asset A (SD 25%) and Asset B (SD 15%). The correlation between A and B is −0.2. The portfolio standard deviation is closest to:",
+          "options": [
+            "13.23%",
+            "14.58%",
+            "20.00%"
+          ],
+          "answer": 0,
+          "explanation": "σ² = 0.25(0.0625) + 0.25(0.0225) + 2(0.5)(0.5)(−0.2)(0.25)(0.15) = 0.015625 + 0.005625 − 0.00375 = 0.0175; σ = 13.23%. 14.58% ignores the (negative) covariance term. 20% is the weighted average of SDs, valid only if ρ = +1."
+        },
+        {
+          "id": "pm-01-q15",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "An equally weighted portfolio holds 20 stocks. The average stock variance is 0.09 and the average covariance between stocks is 0.018. The portfolio standard deviation is closest to:",
+          "options": [
+            "13.42%",
+            "6.71%",
+            "14.70%"
+          ],
+          "answer": 2,
+          "explanation": "σ² = 0.09/20 + (19/20)(0.018) = 0.0045 + 0.0171 = 0.0216; σ = 14.70%. 13.42% is √0.018, the limit as N → ∞. 6.71% is √(0.09/20), which ignores covariance entirely."
+        },
+        {
+          "id": "pm-01-q16",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Asset 1 has an SD of 20% and Asset 2 an SD of 10%. Their returns are perfectly negatively correlated. The weight in Asset 1 that produces a zero-risk portfolio is closest to:",
+          "options": [
+            "66.7%",
+            "33.3%",
+            "50.0%"
+          ],
+          "answer": 1,
+          "explanation": "With ρ = −1, σ_{p} = |w₁σ₁ − w₂σ₂| = 0 when w₁ = σ₂ ÷ (σ₁ + σ₂) = 10 ÷ 30 = 33.3%. Check: 0.333 × 20% = 0.667 × 10% = 6.67%. 66.7% puts the larger weight on the riskier asset; 50% does not offset the different volatilities."
+        },
+        {
+          "id": "pm-01-q17",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "R_{f} = 4%. The optimal risky portfolio has an expected return of 10% and an SD of 20%. An investor with A = 2.5 holds her optimal complete portfolio. Its expected return is closest to:",
+          "options": [
+            "7.6%",
+            "7.0%",
+            "10.0%"
+          ],
+          "answer": 0,
+          "explanation": "y* = (0.10 − 0.04) ÷ (2.5 × 0.04) = 0.06 ÷ 0.10 = 0.60. E = 4% + 0.6 × 6% = 7.6% (SD = 0.6 × 20% = 12%). 7.0% assumes a 50/50 split; 10% assumes she puts everything in the risky portfolio."
+        },
+        {
+          "id": "pm-01-q18",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Adding a new asset class that has low correlation with the existing assets will most likely shift the efficient frontier:",
+          "options": [
+            "down and to the right.",
+            "up and to the left.",
+            "only upward, with no change in minimum risk."
+          ],
+          "answer": 1,
+          "explanation": "Low correlation lets the optimiser reach lower risk for any given return (and higher return for any risk), so the frontier moves up and to the left. Down and to the right would mean the opportunity set got worse, which cannot happen by adding an option. The minimum achievable risk also falls."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "pm-01-f01",
+          "front": "Utility formula",
+          "back": "U = E(r) − ½Aσ². Use decimals. A > 0 risk averse, A = 0 risk neutral, A < 0 risk seeking."
+        },
+        {
+          "id": "pm-01-f02",
+          "front": "Two-asset portfolio variance",
+          "back": "σ_{p}^{2} = w₁²σ₁² + w₂²σ₂² + 2w₁w₂ρ₁₂σ₁σ₂ (the last term is 2w₁w₂Cov₁₂)."
+        },
+        {
+          "id": "pm-01-f03",
+          "front": "Equally weighted N-asset portfolio variance",
+          "back": "σ̄²/N + [(N − 1)/N]Cov̄. As N → ∞ it tends to the average covariance."
+        },
+        {
+          "id": "pm-01-f04",
+          "front": "Zero-risk weight when ρ = −1",
+          "back": "w₁ = σ₂ ÷ (σ₁ + σ₂)"
+        },
+        {
+          "id": "pm-01-f05",
+          "front": "Optimal weight in the risky portfolio (single risky asset + R_{f})",
+          "back": "y* = [E(R) − R_{f}] ÷ (Aσ²)"
+        },
+        {
+          "id": "pm-01-f06",
+          "front": "Efficient frontier",
+          "back": "The part of the minimum-variance frontier at and above the global minimum-variance portfolio: highest return for each level of risk."
+        },
+        {
+          "id": "pm-01-f07",
+          "front": "Indifference curve: steeper or flatter for more risk-averse investors?",
+          "back": "Steeper. Risk neutral = flat; risk seeking = downward sloping. Higher-left curves = more utility."
+        },
+        {
+          "id": "pm-01-f08",
+          "front": "Slope of the capital allocation line",
+          "back": "[E(R_{i}) − R_{f}] ÷ σ_{i}: the Sharpe ratio of the risky portfolio. The optimal CAL is the steepest one, tangent to the efficient frontier."
+        }
+      ]
+    },
+    {
+      "id": "pm-02",
+      "lm": 2,
+      "title": "Portfolio Risk and Return: Part II",
+      "summary": "When everyone holds the market portfolio, only systematic risk (beta) is rewarded. CAPM and the SML price that risk, and Sharpe, Treynor, M² and Jensen's alpha judge whether a manager beat it.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM and AFM covered CAPM, beta, systematic vs unsystematic risk and CAPM assumptions/limitations. New for CFA: the CML vs SML distinction, computing beta from covariance/correlation, risk decomposition, and the four performance measures."
+      },
+      "lessons": [
+        {
+          "id": "pm-02-a",
+          "title": "The CML, systematic risk and beta",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "From the CAL to the CML",
+              "body": "If all investors share the same expectations (homogeneous expectations), they all find the same optimal risky portfolio. In equilibrium that must be the **market portfolio** of all risky assets.\n\nThe CAL that uses the market portfolio is the **capital market line (CML)**.\n\n- Left of M: lending (part in R_{f}).\n- Right of M: borrowing to buy more of M.\n- If the borrowing rate exceeds R_{f}, the CML kinks and is flatter to the right of M."
+            },
+            {
+              "kind": "formula",
+              "title": "Capital market line",
+              "formula": "E(R_{p}) = R_{f} + [(E(R_{m}) − R_{f}) ÷ σ_{m}] × σ_{p}",
+              "where": [
+                [
+                  "E(R_{m}), σ_{m}",
+                  "market portfolio return and SD"
+                ],
+                [
+                  "σ_{p}",
+                  "SD of the investor's portfolio"
+                ]
+              ],
+              "note": "x-axis = total risk (σ). Only efficient portfolios (R_{f} + M mixes) lie on the CML. Example: R_{f} 3%, E(R_{m}) 9%, σ_{m} 15%, σ_{p} 10% → 3% + 0.4 × 10% = 7%."
+            },
+            {
+              "kind": "concept",
+              "title": "Systematic vs nonsystematic risk",
+              "body": "**Systematic** (market) risk comes from economy-wide factors: rates, GDP, inflation. It cannot be diversified away.\n\n**Nonsystematic** (unique, firm-specific) risk can be diversified away at almost no cost, so the market **does not reward** it.\n\nReturn-generating models explain returns with factors. Multifactor models use several (e.g., market, size, value). The **market model** uses one: R_{i} = α_{i} + β_{i}R_{m} + ε_{i}."
+            },
+            {
+              "kind": "formula",
+              "title": "Beta and risk decomposition",
+              "formula": "β_{i} = Cov(R_{i}, R_{m}) ÷ σ_{m}^{2} = ρ_{i,m} × σ_{i} ÷ σ_{m}\nσ_{i}^{2} = β_{i}^{2}σ_{m}^{2} + σ_{ε}^{2}",
+              "where": [
+                [
+                  "β_{i}^{2}σ_{m}^{2}",
+                  "systematic variance"
+                ],
+                [
+                  "σ_{ε}^{2}",
+                  "nonsystematic variance"
+                ]
+              ],
+              "note": "Example: ρ = 0.6, σ_{i} = 30%, σ_{m} = 20% → β = 0.6 × 30 ÷ 20 = 0.9. The market's beta is 1; R_{f} has beta 0."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "In FM, beta was usually given, or you ungeared/regeared it. CFA makes you **compute** beta from covariance or from correlation and SDs, and split total risk into systematic and nonsystematic parts. Watch the trap: beta divides covariance by the market **variance**, not by σ_{m}. Correlation and beta are different things: a stock can have low correlation but high beta if it is very volatile."
+            }
+          ]
+        },
+        {
+          "id": "pm-02-b",
+          "title": "CAPM and the security market line",
+          "minutes": 8,
+          "fastTrack": [
+            "FM",
+            "AFM"
+          ],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "CAPM / security market line",
+              "formula": "E(R_{i}) = R_{f} + β_{i} × [E(R_{m}) − R_{f}]",
+              "where": [
+                [
+                  "E(R_{m}) − R_{f}",
+                  "market risk premium"
+                ],
+                [
+                  "β_{i}",
+                  "systematic risk of asset i"
+                ]
+              ],
+              "note": "Example: R_{f} 3%, E(R_{m}) 9%, β 1.2 → 3% + 1.2 × 6% = 10.2%. Portfolio beta = weighted average of the asset betas."
+            },
+            {
+              "kind": "compare",
+              "title": "CML vs SML",
+              "rows": [
+                [
+                  "",
+                  "CML",
+                  "SML"
+                ],
+                [
+                  "x-axis",
+                  "Total risk, σ",
+                  "Systematic risk, β"
+                ],
+                [
+                  "What plots on it",
+                  "Only efficient portfolios",
+                  "Every correctly priced asset or portfolio"
+                ],
+                [
+                  "Slope",
+                  "(E(R_{m}) − R_{f}) ÷ σ_{m}",
+                  "E(R_{m}) − R_{f}"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "CAPM assumptions",
+              "body": "- Investors are risk averse, utility-maximising and rational.\n- Markets are frictionless: no taxes or transaction costs.\n- Single-period horizon for everyone.\n- Homogeneous expectations.\n- Assets are infinitely divisible.\n- Markets are competitive: investors are price takers.\n\nThe model is still useful even though none of these hold exactly."
+            },
+            {
+              "kind": "example",
+              "title": "Using the SML to pick stocks",
+              "body": "R_{f} 3%, E(R_{m}) 9%. Stock Q: β 1.3, analyst forecast 11%.\n\nRequired (CAPM) = 3% + 1.3 × 6% = 10.8%.\n\nForecast 11% > required 10.8% → Q plots **above** the SML → **undervalued** → buy. Alpha = +0.2%.\n\nBelow the SML → overvalued → sell. Other uses: cost of equity for capital budgeting, and setting return targets for portfolios."
+            }
+          ]
+        },
+        {
+          "id": "pm-02-c",
+          "title": "Performance measures",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Sharpe and Treynor",
+              "formula": "Sharpe = (R_{p} − R_{f}) ÷ σ_{p}\nTreynor = (R_{p} − R_{f}) ÷ β_{p}",
+              "where": [
+                [
+                  "σ_{p}",
+                  "total risk"
+                ],
+                [
+                  "β_{p}",
+                  "systematic risk"
+                ]
+              ],
+              "note": "Both are excess return per unit of risk. Higher is better. Neither tells you how much (in %) you beat the market."
+            },
+            {
+              "kind": "formula",
+              "title": "M² and Jensen's alpha",
+              "formula": "M² = (R_{p} − R_{f}) × (σ_{m} ÷ σ_{p}) − (R_{m} − R_{f})\nα_{p} = R_{p} − [R_{f} + β_{p}(R_{m} − R_{f})]",
+              "where": [
+                [
+                  "M²",
+                  "% excess return over the market after levering/delevering p to the market's σ"
+                ],
+                [
+                  "α_{p}",
+                  "% return above the CAPM (SML) return"
+                ]
+              ],
+              "note": "M² ranks portfolios exactly like Sharpe but in percentage points. Some texts quote M² as a level: R_{f} + (R_{p} − R_{f})σ_{m}/σ_{p}."
+            },
+            {
+              "kind": "example",
+              "title": "One fund, four measures",
+              "body": "Fund: R 12%, σ 18%, β 1.1. Market: R 10%, σ 15%. R_{f} 2%.\n\n- Sharpe = 10 ÷ 18 = **0.556** (market 8 ÷ 15 = 0.533)\n- Treynor = 10 ÷ 1.1 = **9.09%** (market 8%)\n- M² = 10 × (15 ÷ 18) − 8 = 8.33 − 8 = **+0.33%**\n- α = 12 − (2 + 1.1 × 8) = 12 − 10.8 = **+1.2%**\n\nThe fund beat the market on every measure."
+            },
+            {
+              "kind": "compare",
+              "title": "Which measure when?",
+              "rows": [
+                [
+                  "Measure",
+                  "Risk used",
+                  "Use when the portfolio is…"
+                ],
+                [
+                  "Sharpe, M²",
+                  "Total (σ)",
+                  "the investor's whole portfolio (not well diversified)"
+                ],
+                [
+                  "Treynor, Jensen's α",
+                  "Systematic (β)",
+                  "one part of a well-diversified portfolio"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM/AFM stopped at CAPM's required return (and maybe alpha). CFA loves asking which measure to use. Rule: **total risk** (Sharpe, M²) when the fund is all the investor holds; **systematic risk** (Treynor, alpha) when it sits in a diversified portfolio. Sharpe and M² always give the same ranking; Treynor can rank differently from Sharpe when a fund carries a lot of unsystematic risk."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "pm-02-q01",
+          "lesson": "pm-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The risk-free rate is 3%, the market's expected return is 9% and the market SD is 15%. An efficient portfolio on the CML has an SD of 10%. Its expected return is closest to:",
+          "options": [
+            "6.0%",
+            "7.0%",
+            "9.0%"
+          ],
+          "answer": 1,
+          "explanation": "E = 3% + [(9% − 3%) ÷ 15%] × 10% = 3% + 0.4 × 10% = 7%. 6.0% (9% × 10/15) ignores the risk-free rate in the mix; 9% is the market return, which needs σ = 15%."
+        },
+        {
+          "id": "pm-02-q02",
+          "lesson": "pm-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A stock has an SD of 30% and a correlation of 0.6 with the market. The market SD is 20%. The stock's beta is closest to:",
+          "options": [
+            "0.60",
+            "1.50",
+            "0.90"
+          ],
+          "answer": 2,
+          "explanation": "β = ρσ_{i}/σ_{m} = 0.6 × 0.30 ÷ 0.20 = 0.90. 0.60 confuses correlation with beta; 1.50 is σ_{i}/σ_{m} without the correlation."
+        },
+        {
+          "id": "pm-02-q03",
+          "lesson": "pm-02-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In equilibrium, investors are compensated for bearing:",
+          "options": [
+            "systematic risk only.",
+            "nonsystematic risk only.",
+            "both systematic and nonsystematic risk."
+          ],
+          "answer": 0,
+          "explanation": "Nonsystematic risk can be diversified away at no cost, so the market does not pay a premium for it. Only systematic (market) risk, measured by beta, earns a risk premium."
+        },
+        {
+          "id": "pm-02-q04",
+          "lesson": "pm-02-a",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "A stock has a beta of 1.2 and an SD of 30%. The market SD is 20%. The proportion of the stock's total variance that is systematic is closest to:",
+          "options": [
+            "80%",
+            "36%",
+            "64%"
+          ],
+          "answer": 2,
+          "explanation": "Systematic variance = β²σ_{m}² = 1.44 × 0.04 = 0.0576. Total variance = 0.09. Proportion = 0.0576 ÷ 0.09 = 64% (this equals R² of the market model). 36% is the nonsystematic share. 80% compares β × σ_{m} (24%) with σ_{i} (30%), i.e., SDs not variances."
+        },
+        {
+          "id": "pm-02-q05",
+          "lesson": "pm-02-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The risk-free rate is 3% and the expected market return is 9%. Using CAPM, the required return on a stock with a beta of 1.2 is closest to:",
+          "options": [
+            "10.2%",
+            "13.8%",
+            "10.8%"
+          ],
+          "answer": 0,
+          "explanation": "E(R) = 3% + 1.2 × (9% − 3%) = 10.2%. 13.8% multiplies beta by the market return instead of the premium (3% + 1.2 × 9%). 10.8% is 1.2 × 9% and omits the risk-free rate."
+        },
+        {
+          "id": "pm-02-q06",
+          "lesson": "pm-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An analyst's forecast return for a stock is higher than its CAPM required return. The stock plots:",
+          "options": [
+            "below the SML and is overvalued.",
+            "on the CML and is fairly valued.",
+            "above the SML and is undervalued."
+          ],
+          "answer": 2,
+          "explanation": "A forecast above the required return means positive alpha: the stock plots above the SML, so its price is too low (undervalued) and it is a buy. Below the SML means overvalued. Individual stocks are judged against the SML (beta), not the CML."
+        },
+        {
+          "id": "pm-02-q07",
+          "lesson": "pm-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A portfolio is 40% in a stock with beta 1.5 and 60% in a stock with beta 0.8. The risk-free rate is 3% and the market risk premium is 5%. The portfolio's CAPM expected return is closest to:",
+          "options": [
+            "8.4%",
+            "8.8%",
+            "8.0%"
+          ],
+          "answer": 0,
+          "explanation": "β_{p} = 0.4(1.5) + 0.6(0.8) = 1.08. E(R) = 3% + 1.08 × 5% = 8.4%. 8.8% uses a simple average beta of 1.15; 8.0% assumes a beta of 1."
+        },
+        {
+          "id": "pm-02-q08",
+          "lesson": "pm-02-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is an assumption of the CAPM?",
+          "options": [
+            "Investors have different expectations about returns.",
+            "There are no taxes or transaction costs.",
+            "Investors have multi-period investment horizons."
+          ],
+          "answer": 1,
+          "explanation": "CAPM assumes frictionless markets with no taxes or transaction costs. It assumes homogeneous (not different) expectations and a single-period horizon."
+        },
+        {
+          "id": "pm-02-q09",
+          "lesson": "pm-02-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A fund returned 12% with an SD of 18% and a beta of 1.1. The risk-free rate is 2%. The fund's Sharpe ratio is closest to:",
+          "options": [
+            "0.67",
+            "0.56",
+            "9.09"
+          ],
+          "answer": 1,
+          "explanation": "Sharpe = (12% − 2%) ÷ 18% = 0.556. 0.67 forgets to subtract R_{f} (12 ÷ 18). 9.09 is the Treynor ratio in % (10 ÷ 1.1)."
+        },
+        {
+          "id": "pm-02-q10",
+          "lesson": "pm-02-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A fund returned 12% with an SD of 18%. The market returned 10% with an SD of 15%. The risk-free rate is 2%. The fund's M² (relative to the market) is closest to:",
+          "options": [
+            "+2.00%",
+            "+4.00%",
+            "+0.33%"
+          ],
+          "answer": 2,
+          "explanation": "M² = (12% − 2%) × (15 ÷ 18) − (10% − 2%) = 8.33% − 8% = +0.33%. +2.00% is the raw return difference, ignoring the fund's higher risk. +4.00% scales the excess return the wrong way: 10% × (18 ÷ 15) − 8% = 4%."
+        },
+        {
+          "id": "pm-02-q11",
+          "lesson": "pm-02-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A fund returned 12% with a beta of 1.1. The market returned 10% and the risk-free rate is 2%. The fund's Jensen's alpha is closest to:",
+          "options": [
+            "+1.2%",
+            "+2.0%",
+            "−1.0%"
+          ],
+          "answer": 0,
+          "explanation": "CAPM return = 2% + 1.1 × (10% − 2%) = 10.8%. α = 12% − 10.8% = +1.2%. +2.0% just subtracts the market return (assumes β = 1). −1.0% uses 1.1 × 10% + 2% = 13% (beta times the market return, not the premium)."
+        },
+        {
+          "id": "pm-02-q12",
+          "lesson": "pm-02-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An investor holds a single actively managed fund as her entire portfolio. The most appropriate measure for evaluating it is the:",
+          "options": [
+            "Treynor ratio.",
+            "Sharpe ratio.",
+            "Jensen's alpha."
+          ],
+          "answer": 1,
+          "explanation": "If the fund is her whole portfolio, its unsystematic risk matters, so a total-risk measure (Sharpe, or equivalently M²) is right. Treynor and Jensen's alpha use beta and suit a fund that is one part of a well-diversified portfolio."
+        },
+        {
+          "id": "pm-02-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "The risk-free rate is 2%, the expected market return is 8% and the market SD is 16%. An investor wants a portfolio on the CML with an SD of 12%. The expected return of that portfolio is closest to:",
+          "options": [
+            "6.0%",
+            "8.0%",
+            "6.5%"
+          ],
+          "answer": 2,
+          "explanation": "Weight in the market = 12 ÷ 16 = 0.75. E = 2% + 0.75 × (8% − 2%) = 6.5%. 6.0% is 0.75 × 8% and ignores the 25% earning R_{f}. 8.0% uses the market return instead of the premium (2% + 0.75 × 8%)."
+        },
+        {
+          "id": "pm-02-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A stock has an SD of 25% and a correlation of 0.4 with the market. The market SD is 20%, the risk-free rate is 4% and the expected market return is 10%. The stock's CAPM required return is closest to:",
+          "options": [
+            "7.0%",
+            "11.5%",
+            "6.4%"
+          ],
+          "answer": 0,
+          "explanation": "β = 0.4 × 25 ÷ 20 = 0.5. E(R) = 4% + 0.5 × 6% = 7.0%. 11.5% uses σ_{i}/σ_{m} = 1.25 as beta (ignores correlation). 6.4% uses the correlation 0.4 as beta."
+        },
+        {
+          "id": "pm-02-q15",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "The risk-free rate is 2%.\n\n- Fund A: return 14%, SD 25%, beta 0.9\n- Fund B: return 11%, SD 14%, beta 1.2\n\nWhich statement is most accurate?",
+          "options": [
+            "Fund B is better on both Sharpe and Treynor.",
+            "Fund A is better on both Sharpe and Treynor.",
+            "Fund B has the higher Sharpe ratio, but Fund A has the higher Treynor ratio."
+          ],
+          "answer": 2,
+          "explanation": "Sharpe: A = 12/25 = 0.48; B = 9/14 = 0.64, so B wins. Treynor: A = 12/0.9 = 13.3%; B = 9/1.2 = 7.5%, so A wins. A carries a lot of unsystematic risk: it is the better addition to a well-diversified portfolio, while B is better as a stand-alone holding."
+        },
+        {
+          "id": "pm-02-q16",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "The risk-free rate is 3% and the expected market return is 9%. An analyst forecasts a 11% return for a stock with a beta of 1.3. The stock is most likely:",
+          "options": [
+            "undervalued, with an alpha of about +0.2%.",
+            "overvalued, with an alpha of about −3.7%.",
+            "undervalued, with an alpha of about +2.0%."
+          ],
+          "answer": 0,
+          "explanation": "Required = 3% + 1.3 × 6% = 10.8%. Alpha = 11% − 10.8% = +0.2%, so the stock plots above the SML and is undervalued. −3.7% uses 3% + 1.3 × 9% = 14.7% (beta times the market return). +2.0% compares the forecast with the market return, ignoring beta."
+        },
+        {
+          "id": "pm-02-q17",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "The covariance between a stock's returns and the market's returns is 0.027. The market SD is 15%. The stock's beta is closest to:",
+          "options": [
+            "0.18",
+            "0.83",
+            "1.20"
+          ],
+          "answer": 2,
+          "explanation": "β = Cov ÷ σ_{m}² = 0.027 ÷ 0.0225 = 1.20. 0.18 divides by σ_{m} instead of the variance. 0.83 is the reciprocal (0.0225 ÷ 0.027)."
+        },
+        {
+          "id": "pm-02-q18",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which pair of performance measures will always rank a set of portfolios in the same order?",
+          "options": [
+            "Sharpe ratio and M²",
+            "Treynor ratio and Sharpe ratio",
+            "Jensen's alpha and M²"
+          ],
+          "answer": 0,
+          "explanation": "M² = Sharpe_{p} × σ_{m} − (R_{m} − R_{f}), a linear transformation of the Sharpe ratio with a positive slope, so the rankings are identical. Treynor and Jensen's alpha use beta (systematic risk), so they can rank differently from the total-risk measures."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "pm-02-f01",
+          "front": "Capital market line",
+          "back": "E(R_{p}) = R_{f} + [(E(R_{m}) − R_{f})/σ_{m}] × σ_{p}. x-axis = total risk; only efficient portfolios lie on it."
+        },
+        {
+          "id": "pm-02-f02",
+          "front": "Beta (two ways)",
+          "back": "β = Cov(R_{i}, R_{m}) ÷ σ_{m}² = ρ_{i,m} × σ_{i} ÷ σ_{m}"
+        },
+        {
+          "id": "pm-02-f03",
+          "front": "CAPM / SML",
+          "back": "E(R_{i}) = R_{f} + β_{i}[E(R_{m}) − R_{f}]. x-axis = beta; all correctly priced assets lie on it. Above = undervalued."
+        },
+        {
+          "id": "pm-02-f04",
+          "front": "Total risk decomposition",
+          "back": "σ_{i}² = β²σ_{m}² (systematic) + σ_{ε}² (nonsystematic). Systematic share = R²."
+        },
+        {
+          "id": "pm-02-f05",
+          "front": "Sharpe vs Treynor",
+          "back": "Sharpe = (R_{p} − R_{f})/σ_{p} (total risk). Treynor = (R_{p} − R_{f})/β_{p} (systematic risk)."
+        },
+        {
+          "id": "pm-02-f06",
+          "front": "M²",
+          "back": "(R_{p} − R_{f})(σ_{m}/σ_{p}) − (R_{m} − R_{f}). Same ranking as Sharpe, expressed in % vs the market."
+        },
+        {
+          "id": "pm-02-f07",
+          "front": "Jensen's alpha",
+          "back": "α = R_{p} − [R_{f} + β_{p}(R_{m} − R_{f})]: return above the SML."
+        },
+        {
+          "id": "pm-02-f08",
+          "front": "CML vs SML slopes",
+          "back": "CML slope = (E(R_{m}) − R_{f})/σ_{m} (market Sharpe ratio). SML slope = E(R_{m}) − R_{f} (market risk premium)."
+        }
+      ]
+    },
+    {
+      "id": "pm-03",
+      "lm": 3,
+      "title": "Portfolio Management: An Overview",
+      "summary": "Why investors think in portfolios, the three-step portfolio management process, the needs of different investor types, and how the asset management industry and pooled products are organised.",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "Largely new. ACCA touched on pension schemes from an accounting angle only; the investor-needs framework, the asset-management industry and fund structures are CFA-specific."
+      },
+      "lessons": [
+        {
+          "id": "pm-03-a",
+          "title": "The portfolio approach and the process",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Why a portfolio approach?",
+              "body": "Judge each investment by what it does to the **whole portfolio**, not on its own. Combining imperfectly correlated assets lowers risk for the same expected return.\n\n**Diversification ratio** = portfolio SD ÷ average SD of the single holdings. Example: 15% ÷ 25% = 0.6. Lower is better.\n\nLimit: in crises, correlations jump towards 1, so diversification protects less than normal. It does not guarantee against loss."
+            },
+            {
+              "kind": "concept",
+              "title": "Three steps of portfolio management",
+              "body": "**1. Planning**: understand the client's needs and circumstances; write the investment policy statement (IPS).\n\n**2. Execution**: asset allocation (top-down economic view), security analysis (bottom-up), then portfolio construction and trading.\n\n**3. Feedback**: monitoring and rebalancing; performance measurement and reporting.\n\nIt is a continuous loop: feedback can send you back to update the IPS."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Know which step a task belongs to. Writing the IPS = planning. Choosing the asset mix and picking securities = execution. Rebalancing and reporting results = feedback. A common trap puts **asset allocation** in planning; it is part of execution (the IPS sets the constraints, execution sets the mix)."
+            }
+          ]
+        },
+        {
+          "id": "pm-03-b",
+          "title": "Types of investors and their needs",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Investor types at a glance",
+              "rows": [
+                [
+                  "Investor",
+                  "Risk tolerance",
+                  "Horizon",
+                  "Liquidity need"
+                ],
+                [
+                  "Individual",
+                  "Varies",
+                  "Varies",
+                  "Varies"
+                ],
+                [
+                  "DB pension",
+                  "High",
+                  "Long (young plan)",
+                  "Low (young plan)"
+                ],
+                [
+                  "Endowment / foundation",
+                  "High",
+                  "Very long (perpetual)",
+                  "Low"
+                ],
+                [
+                  "Bank",
+                  "Low",
+                  "Short",
+                  "High"
+                ],
+                [
+                  "Life insurer",
+                  "Low",
+                  "Long",
+                  "Low–moderate"
+                ],
+                [
+                  "P&C insurer",
+                  "Low",
+                  "Short",
+                  "High"
+                ],
+                [
+                  "Sovereign wealth fund",
+                  "High",
+                  "Long",
+                  "Low"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "DB vs DC pensions",
+              "body": "**Defined benefit (DB)**: employer promises a pension formula (e.g., % of final salary). The **employer** bears investment risk and must manage assets against liabilities.\n\n**Defined contribution (DC)**: employer pays agreed contributions into the employee's account. The **employee** bears investment risk and chooses investments. DC plans are portable when changing jobs.\n\nThe trend is from DB to DC."
+            },
+            {
+              "kind": "concept",
+              "title": "Institutions in a sentence each",
+              "body": "- **Endowments** (universities) and **foundations** (grant-making) are perpetual; they spend a set % a year and can hold illiquid alternatives.\n- **Banks** invest excess reserves conservatively; liabilities are short-term deposits.\n- **Insurers** hold a conservative portfolio matched to claims: long for life, short for property & casualty.\n- **Sovereign wealth funds** invest state surplus (often commodity revenue) for the long term."
+            }
+          ]
+        },
+        {
+          "id": "pm-03-c",
+          "title": "Asset managers and pooled products",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "The asset management industry",
+              "body": "- **Active vs passive**: active managers try to beat a benchmark; passive managers track an index at low cost. Passive's share keeps growing.\n- **Traditional vs alternative**: traditional = long-only stocks and bonds, lower fees; alternative = hedge funds, private equity, real estate, commodities, higher fees.\n- **Ownership**: independent firms or units of banks/insurers; private or public.\n- **Trends**: growth of passive, consolidation, use of big data and technology."
+            },
+            {
+              "kind": "compare",
+              "title": "Pooled investment products",
+              "rows": [
+                [
+                  "Product",
+                  "Key features"
+                ],
+                [
+                  "Open-end mutual fund",
+                  "Units created/redeemed at NAV daily"
+                ],
+                [
+                  "Closed-end fund",
+                  "Fixed shares traded on exchange; price can differ from NAV"
+                ],
+                [
+                  "ETF",
+                  "Exchange-traded; creation/redemption keeps price near NAV; often low cost"
+                ],
+                [
+                  "Separately managed account",
+                  "Investor owns the securities directly; can be customised; higher minimum"
+                ],
+                [
+                  "Hedge fund",
+                  "Few restrictions, leverage, shorting; accredited investors; 'management + incentive' fees"
+                ],
+                [
+                  "Private equity / VC",
+                  "Buys whole companies or stakes in start-ups; long lock-ups"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "In an **open-end** fund, investors buy and redeem directly with the fund at NAV, so the fund grows and shrinks. In a **closed-end** fund, the share count is fixed and investors trade with each other on an exchange, so the price can be at a premium or discount to NAV. An SMA is not a pooled fund: the client owns the securities, which helps with tax management."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "pm-03-q01",
+          "lesson": "pm-03-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Within the portfolio management process, determining the strategic asset allocation is part of the:",
+          "options": [
+            "planning step.",
+            "execution step.",
+            "feedback step."
+          ],
+          "answer": 1,
+          "explanation": "Execution covers asset allocation, security analysis and portfolio construction. Planning is understanding the client and writing the IPS. Feedback is monitoring, rebalancing and performance reporting."
+        },
+        {
+          "id": "pm-03-q02",
+          "lesson": "pm-03-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A portfolio has an SD of 15%. The average SD of the securities in it is 25%. The diversification ratio is closest to:",
+          "options": [
+            "1.67",
+            "0.40",
+            "0.60"
+          ],
+          "answer": 2,
+          "explanation": "Diversification ratio = portfolio SD ÷ average single-security SD = 15 ÷ 25 = 0.60. 1.67 inverts the ratio. 0.40 is the risk reduction (1 − 0.60), not the ratio."
+        },
+        {
+          "id": "pm-03-q03",
+          "lesson": "pm-03-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which statement about diversification is most accurate?",
+          "options": [
+            "It eliminates the possibility of losses in a market crash.",
+            "Its benefit tends to shrink in crises because correlations rise.",
+            "It works best when assets are highly positively correlated."
+          ],
+          "answer": 1,
+          "explanation": "During crises correlations tend to rise towards 1, so diversification provides less protection just when it is needed. It cannot prevent losses in a broad market fall, and it works best with low (not high) correlation."
+        },
+        {
+          "id": "pm-03-q04",
+          "lesson": "pm-03-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In a defined contribution pension plan, investment risk is borne by the:",
+          "options": [
+            "employee.",
+            "employer.",
+            "plan sponsor's shareholders."
+          ],
+          "answer": 0,
+          "explanation": "In a DC plan the employer's obligation is the contribution; the employee's eventual pension depends on investment results, so the employee bears the risk. In a DB plan the employer (and ultimately its shareholders) bears it."
+        },
+        {
+          "id": "pm-03-q05",
+          "lesson": "pm-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which investor is most likely to have the highest liquidity needs and the shortest time horizon?",
+          "options": [
+            "A university endowment",
+            "A sovereign wealth fund",
+            "A property and casualty insurer"
+          ],
+          "answer": 2,
+          "explanation": "P&C claims are uncertain and paid quickly, so a P&C insurer needs liquidity and has a short horizon. Endowments and sovereign wealth funds are long-horizon investors with low liquidity needs."
+        },
+        {
+          "id": "pm-03-q06",
+          "lesson": "pm-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with a bank, a university endowment most likely has:",
+          "options": [
+            "lower risk tolerance and a shorter horizon.",
+            "higher risk tolerance and a longer horizon.",
+            "higher liquidity needs and a shorter horizon."
+          ],
+          "answer": 1,
+          "explanation": "An endowment is intended to last in perpetuity, spends only a small % each year and can hold illiquid, riskier assets. A bank funds itself with short-term deposits, so it has low risk tolerance, high liquidity needs and a short horizon."
+        },
+        {
+          "id": "pm-03-q07",
+          "lesson": "pm-03-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Shares of which fund type trade on an exchange with a fixed number of shares outstanding, so their price can differ significantly from NAV?",
+          "options": [
+            "Closed-end fund",
+            "Open-end mutual fund",
+            "Separately managed account"
+          ],
+          "answer": 0,
+          "explanation": "A closed-end fund has a fixed share count and trades on an exchange, so it can sit at a premium or discount to NAV. Open-end funds issue and redeem at NAV. An SMA is not a traded fund at all."
+        },
+        {
+          "id": "pm-03-q08",
+          "lesson": "pm-03-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A wealthy client wants a portfolio managed for her, but she wants to own the securities directly and control the timing of capital gains for tax purposes. The most suitable product is a(n):",
+          "options": [
+            "exchange-traded fund.",
+            "open-end mutual fund.",
+            "separately managed account."
+          ],
+          "answer": 2,
+          "explanation": "In an SMA the investor owns the individual securities, so the portfolio can be customised and gains harvested to suit her tax position. ETF and mutual fund investors own fund shares, not the underlying securities."
+        },
+        {
+          "id": "pm-03-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which activity belongs to the feedback step of the portfolio management process?",
+          "options": [
+            "Drafting an investment policy statement",
+            "Analysing individual securities",
+            "Rebalancing the portfolio to its target weights"
+          ],
+          "answer": 2,
+          "explanation": "Feedback covers monitoring, rebalancing and performance measurement/reporting. Drafting the IPS is planning; security analysis is execution."
+        },
+        {
+          "id": "pm-03-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A life insurance company most likely has:",
+          "options": [
+            "a long time horizon and a relatively conservative portfolio.",
+            "a short time horizon and high liquidity needs.",
+            "a very high risk tolerance and a perpetual horizon."
+          ],
+          "answer": 0,
+          "explanation": "Life insurance liabilities are long-dated and fairly predictable, so the horizon is long, but insurers are regulated and must protect policyholders, so the portfolio is conservative (mostly bonds). Short horizon/high liquidity describes P&C insurers; a perpetual horizon with high risk tolerance describes endowments."
+        },
+        {
+          "id": "pm-03-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "In a defined benefit pension plan with a young workforce, compared with a plan whose members are mostly retired, the plan most likely has:",
+          "options": [
+            "higher liquidity needs and lower risk tolerance.",
+            "lower liquidity needs and higher risk tolerance.",
+            "the same needs, because the employer bears the risk in both."
+          ],
+          "answer": 1,
+          "explanation": "A young workforce means benefit payments are far off: liquidity needs are low and the long horizon supports more risk. A mature plan pays out heavily now, so it needs liquidity and tends to lower risk. Who bears the risk does not make the two plans' needs the same."
+        },
+        {
+          "id": "pm-03-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about trends in the asset management industry is most accurate?",
+          "options": [
+            "Assets are moving from passive to active strategies because of lower fees.",
+            "Fee pressure and growth in index investing are leading to industry consolidation.",
+            "Use of data and technology in investment decisions is declining."
+          ],
+          "answer": 1,
+          "explanation": "Passive investing keeps gaining share and fees are falling, which squeezes margins and drives consolidation. Money is flowing to passive, not active (and active is the more expensive option). Use of big data and technology is growing."
+        },
+        {
+          "id": "pm-03-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Compared with a traditional long-only equity manager, a hedge fund most likely:",
+          "options": [
+            "charges lower fees and faces more regulation.",
+            "is open to all retail investors with daily liquidity.",
+            "can use leverage and short selling and charges an incentive fee."
+          ],
+          "answer": 2,
+          "explanation": "Hedge funds have flexible mandates (leverage, shorting, derivatives) and usually charge a management fee plus an incentive (performance) fee. They face lighter regulation, charge more, are usually limited to qualified investors and often have lock-ups."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "pm-03-f01",
+          "front": "Three steps of the portfolio management process",
+          "back": "Planning (client needs, IPS) → Execution (asset allocation, security analysis, construction) → Feedback (monitoring, rebalancing, performance reporting)."
+        },
+        {
+          "id": "pm-03-f02",
+          "front": "Diversification ratio",
+          "back": "Portfolio SD ÷ average SD of single securities. Lower = more diversification benefit."
+        },
+        {
+          "id": "pm-03-f03",
+          "front": "DB vs DC: who bears investment risk?",
+          "back": "DB: the employer (sponsor). DC: the employee."
+        },
+        {
+          "id": "pm-03-f04",
+          "front": "Investor with high liquidity needs and short horizon (two examples)",
+          "back": "Banks and property & casualty insurers."
+        },
+        {
+          "id": "pm-03-f05",
+          "front": "Open-end vs closed-end fund",
+          "back": "Open-end: units issued/redeemed at NAV, fund size changes. Closed-end: fixed shares traded on exchange; price can be at premium/discount to NAV."
+        },
+        {
+          "id": "pm-03-f06",
+          "front": "Separately managed account (SMA)",
+          "back": "Portfolio run for one investor who owns the securities directly; customisable, tax-efficient, higher minimums."
+        }
+      ]
+    },
+    {
+      "id": "pm-04",
+      "lm": 4,
+      "title": "Basics of Portfolio Planning and Construction",
+      "summary": "The investment policy statement sets return and risk objectives and the client's constraints. Strategic asset allocation turns the IPS into a long-run asset mix, possibly core–satellite and with ESG considerations.",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "New material. ACCA does not cover the IPS, willingness vs ability to take risk, or ESG integration approaches in an investment context (SBL/SBR touch on sustainability reporting only)."
+      },
+      "lessons": [
+        {
+          "id": "pm-04-a",
+          "title": "The IPS: return and risk objectives",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Why an IPS and what is in it",
+              "body": "The IPS is a written plan agreed between client and manager. It guides decisions, keeps both sides disciplined and gives a benchmark for review.\n\nTypical parts: client description; purpose; duties of each party; **objectives (return and risk)**; **constraints**; guidelines (permitted assets, leverage, derivatives); evaluation and review; appendices (strategic asset allocation, rebalancing policy).\n\nReview it at least annually and whenever circumstances change."
+            },
+            {
+              "kind": "concept",
+              "title": "Return and risk objectives",
+              "body": "**Return objective**: what return is needed and desired, stated absolute (e.g., 7%) or relative (e.g., benchmark + 1%). Say whether it is nominal or real, pre- or after-tax.\n\n**Risk objective**: absolute (e.g., SD ≤ 12%, no loss > 10% in a year) or relative (e.g., tracking error ≤ 2%).\n\nThe return objective must be consistent with the risk the client can and will bear."
+            },
+            {
+              "kind": "compare",
+              "title": "Ability vs willingness to take risk",
+              "rows": [
+                [
+                  "",
+                  "Ability (objective)",
+                  "Willingness (subjective)"
+                ],
+                [
+                  "Based on",
+                  "Horizon, wealth vs needs, income stability, liquidity needs",
+                  "Attitude, psychology, past behaviour, questionnaires"
+                ],
+                [
+                  "Example high",
+                  "Young, wealthy, secure job",
+                  "Says 'happy to ride out big falls'"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "If ability and willingness disagree, the **more conservative** one usually sets overall risk tolerance. If willingness exceeds ability, ability wins: you cannot let a client take risk she cannot afford. If ability exceeds willingness, go with willingness but you may **educate** the client about the cost of being too cautious."
+            },
+            {
+              "kind": "example",
+              "title": "Required return",
+              "body": "Client needs to spend 4% of the portfolio a year, keep pace with 2.5% inflation, and pay 0.5% fees.\n\n- Additive: 4% + 2.5% + 0.5% = **7.0%**\n- Multiplicative: (1.04)(1.025)(1.005) − 1 = **7.13%**\n\nBoth approaches appear; multiplicative is more precise for maintaining real value over many years."
+            }
+          ]
+        },
+        {
+          "id": "pm-04-b",
+          "title": "Constraints",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "The five constraints",
+              "body": "Remember **TTLLU**:\n\n- **Time horizon**: can be single or multi-stage (e.g., to retirement, then retirement).\n- **Tax**: affects asset location and after-tax return targets.\n- **Liquidity**: expected and unexpected cash needs (house purchase, emergency fund).\n- **Legal and regulatory**: e.g., prudent investor rules, insurer and pension regulation, insider restrictions.\n- **Unique circumstances**: ethical/religious preferences, concentrated holdings, special needs."
+            },
+            {
+              "kind": "concept",
+              "title": "How constraints link to risk",
+              "body": "- Longer horizon → more ability to take risk (time to recover from losses).\n- Large near-term liquidity needs → less ability; keep part in cash-like assets.\n- Big wealth relative to needs → more ability.\n- A concentrated position (e.g., employer's shares) adds unique risk; consider diversifying, subject to tax.\n\nConstraints restrict the **choice of portfolios**; objectives set what the portfolio must achieve."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Do not confuse **objectives** with **constraints**. 'Return of 6% a year' and 'tracking error below 2%' are objectives. 'Needs $200,000 in 18 months', 'cannot hold tobacco shares' and 'taxed at 30%' are constraints (liquidity, unique circumstances, tax)."
+            }
+          ]
+        },
+        {
+          "id": "pm-04-c",
+          "title": "Asset allocation, core–satellite and ESG",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Specifying asset classes",
+              "body": "Good asset classes are:\n\n- internally **homogeneous** (assets inside behave alike);\n- **mutually exclusive** (no overlaps);\n- **not highly correlated** with each other (so they diversify);\n- large enough to absorb investment without huge costs.\n\nExamples: domestic equities, global equities, investment-grade bonds, inflation-linked bonds, real estate, cash."
+            },
+            {
+              "kind": "concept",
+              "title": "Strategic asset allocation (SAA)",
+              "body": "The SAA is the **long-term target mix** of asset classes that best meets the IPS objectives within its constraints, using capital market expectations.\n\nIt is the main driver of a portfolio's risk and return over time.\n\n**Tactical asset allocation (TAA)**: short-term deliberate deviations from the SAA to exploit perceived opportunities. **Rebalancing** brings weights back within agreed ranges."
+            },
+            {
+              "kind": "concept",
+              "title": "Core–satellite",
+              "body": "Put the bulk (the **core**) in low-cost passive or enhanced-index funds that deliver the SAA's market exposure.\n\nSurround it with **satellites**: active managers or specialist strategies seeking alpha.\n\nBenefits: keeps costs and tracking risk controlled while still allowing active bets where managers have skill."
+            },
+            {
+              "kind": "compare",
+              "title": "ESG integration approaches",
+              "rows": [
+                [
+                  "Approach",
+                  "What it does"
+                ],
+                [
+                  "Exclusionary (negative) screening",
+                  "Removes sectors/firms (e.g., tobacco, weapons)"
+                ],
+                [
+                  "Best-in-class (positive) screening",
+                  "Picks the top ESG performers within each sector"
+                ],
+                [
+                  "Thematic investing",
+                  "Targets a theme, e.g., clean energy, water"
+                ],
+                [
+                  "Impact investing",
+                  "Seeks measurable social/environmental impact plus a return"
+                ],
+                [
+                  "Engagement / active ownership",
+                  "Uses voting and dialogue to change company behaviour"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "pm-04-q01",
+          "lesson": "pm-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 35-year-old surgeon with a secure income and substantial savings scores very low on a risk-attitude questionnaire and says market falls make her anxious. Her overall risk tolerance is best described as:",
+          "options": [
+            "above average, because ability determines risk tolerance.",
+            "below average, reflecting her low willingness.",
+            "average, splitting the difference between ability and willingness."
+          ],
+          "answer": 1,
+          "explanation": "Her ability is high (young, secure income, wealth) but her willingness is low. When they conflict, the more conservative one generally sets risk tolerance, so it is below average; the adviser may educate her about the cost of excess caution. Simply following ability ignores her preferences; averaging is not the standard approach."
+        },
+        {
+          "id": "pm-04-q02",
+          "lesson": "pm-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A foundation spends 4% of assets a year, expects inflation of 2.5% and pays costs of 0.5%. Using the multiplicative method, its required nominal return is closest to:",
+          "options": [
+            "7.00%",
+            "6.50%",
+            "7.13%"
+          ],
+          "answer": 2,
+          "explanation": "(1.04)(1.025)(1.005) − 1 = 7.13%. 7.00% is the additive approximation. 6.50% omits the 0.5% costs."
+        },
+        {
+          "id": "pm-04-q03",
+          "lesson": "pm-04-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is a relative risk objective?",
+          "options": [
+            "Tracking error versus the benchmark of no more than 2% a year",
+            "Portfolio standard deviation no greater than 12%",
+            "No loss greater than 10% in any year"
+          ],
+          "answer": 0,
+          "explanation": "A relative risk objective is measured against a benchmark, e.g., tracking error. SD limits and maximum-loss limits are absolute risk objectives."
+        },
+        {
+          "id": "pm-04-q04",
+          "lesson": "pm-04-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A client's ability to take risk is most likely increased by:",
+          "options": [
+            "a large planned home purchase next year.",
+            "a strong dislike of seeing portfolio losses.",
+            "a long investment time horizon."
+          ],
+          "answer": 2,
+          "explanation": "A long horizon gives time to recover from losses, raising ability. A large near-term outflow increases liquidity needs and reduces ability. Disliking losses is about willingness, not ability."
+        },
+        {
+          "id": "pm-04-q05",
+          "lesson": "pm-04-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A client tells his adviser he must not hold shares in alcohol producers for religious reasons. In the IPS, this is a:",
+          "options": [
+            "legal and regulatory constraint.",
+            "risk objective.",
+            "unique circumstances constraint."
+          ],
+          "answer": 2,
+          "explanation": "Personal ethical or religious restrictions are unique circumstances. It is not imposed by law or regulation, and it is a constraint, not a risk objective."
+        },
+        {
+          "id": "pm-04-q06",
+          "lesson": "pm-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which of the following is a constraint rather than an objective in an IPS?",
+          "options": [
+            "Need to withdraw $150,000 in two years to pay school fees",
+            "Target return of 6% a year after inflation",
+            "Maximum portfolio standard deviation of 15%"
+          ],
+          "answer": 0,
+          "explanation": "A known cash withdrawal is a liquidity constraint. The return target is a return objective and the SD cap is an (absolute) risk objective."
+        },
+        {
+          "id": "pm-04-q07",
+          "lesson": "pm-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 55-year-old plans to work until 65 and then live on her portfolio. Her time horizon is best described as:",
+          "options": [
+            "single-stage, about 10 years.",
+            "multi-stage: pre-retirement and then retirement.",
+            "short-term, because retirement is near."
+          ],
+          "answer": 1,
+          "explanation": "Her circumstances change at retirement (contributions stop, withdrawals start), so the horizon is multi-stage: about 10 years to retirement plus her retirement years. Treating it as only 10 years or as short-term ignores the decades of retirement the portfolio must fund."
+        },
+        {
+          "id": "pm-04-q08",
+          "lesson": "pm-04-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which ESG approach invests in the companies with the best ESG scores within each industry?",
+          "options": [
+            "Exclusionary screening",
+            "Best-in-class screening",
+            "Thematic investing"
+          ],
+          "answer": 1,
+          "explanation": "Best-in-class (positive) screening picks the top ESG performers sector by sector. Exclusionary screening removes whole sectors or firms. Thematic investing targets a theme such as clean energy."
+        },
+        {
+          "id": "pm-04-q09",
+          "lesson": "pm-04-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In a core–satellite approach, the core is most likely invested in:",
+          "options": [
+            "passive or enhanced-index strategies.",
+            "concentrated high-alpha active strategies.",
+            "cash and short-term bonds only."
+          ],
+          "answer": 0,
+          "explanation": "The core gives low-cost market exposure through passive or enhanced-index funds; the satellites hold active strategies seeking alpha. The core is not restricted to cash."
+        },
+        {
+          "id": "pm-04-q10",
+          "lesson": "pm-04-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which is a desirable property when specifying asset classes for asset allocation?",
+          "options": [
+            "Asset classes should be highly correlated with each other.",
+            "Asset classes should overlap to capture all securities.",
+            "Assets within a class should have similar risk and return characteristics."
+          ],
+          "answer": 2,
+          "explanation": "Each class should be internally homogeneous, classes should be mutually exclusive (no overlap), and they should not be highly correlated with each other so that allocation among them diversifies risk."
+        },
+        {
+          "id": "pm-04-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A client with a modest portfolio relative to his retirement spending needs tells his adviser he is comfortable with aggressive investments and large swings in value. His overall risk tolerance is best described as:",
+          "options": [
+            "above average, because his willingness is high.",
+            "below average, because his ability is limited.",
+            "above average, because he needs high returns to meet his goals."
+          ],
+          "answer": 1,
+          "explanation": "His willingness is high but his ability is low: his assets are small relative to needs, so he cannot afford big losses. When willingness exceeds ability, ability governs. Needing a high return does not give him the capacity to absorb losses."
+        },
+        {
+          "id": "pm-04-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which item is least likely to appear in an investment policy statement?",
+          "options": [
+            "The duties and responsibilities of the client and the manager",
+            "Procedures for reviewing and updating the IPS",
+            "A list of specific securities to purchase next quarter"
+          ],
+          "answer": 2,
+          "explanation": "An IPS sets objectives, constraints, guidelines, duties and review procedures; it does not list specific trades. Security selection happens in execution, within the IPS framework."
+        },
+        {
+          "id": "pm-04-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A pension fund votes its shares and meets company boards to push for better climate disclosure. This ESG approach is best described as:",
+          "options": [
+            "impact investing.",
+            "exclusionary screening.",
+            "active ownership (engagement)."
+          ],
+          "answer": 2,
+          "explanation": "Using voting rights and dialogue to influence company behaviour is engagement/active ownership. Impact investing targets measurable social or environmental outcomes through the choice of investments. Exclusionary screening removes companies rather than engaging with them."
+        },
+        {
+          "id": "pm-04-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A manager temporarily overweights equities relative to the strategic asset allocation because she expects strong short-term equity returns. This is best described as:",
+          "options": [
+            "tactical asset allocation.",
+            "rebalancing.",
+            "a change in the strategic asset allocation."
+          ],
+          "answer": 0,
+          "explanation": "A short-term, deliberate deviation from the SAA to exploit a market view is tactical asset allocation. Rebalancing moves weights back toward the SAA. Changing the SAA itself would reflect a change in the client's long-term objectives or capital market expectations."
+        },
+        {
+          "id": "pm-04-q15",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about the strategic asset allocation is most accurate?",
+          "options": [
+            "It is set each quarter based on the manager's market forecasts.",
+            "It is the long-term target mix designed to meet the IPS objectives within its constraints.",
+            "It matters less to long-run results than individual security selection."
+          ],
+          "answer": 1,
+          "explanation": "The SAA is the long-run policy mix built from the IPS and capital market expectations, and it is the main driver of portfolio risk and return. Quarterly forecast-driven shifts are tactical, not strategic."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "pm-04-f01",
+          "front": "IPS constraints (TTLLU)",
+          "back": "Time horizon, Tax, Liquidity, Legal & regulatory, Unique circumstances."
+        },
+        {
+          "id": "pm-04-f02",
+          "front": "Ability vs willingness conflict: which wins?",
+          "back": "Usually the more conservative of the two. If willingness > ability, ability governs. If ability > willingness, follow willingness but educate the client."
+        },
+        {
+          "id": "pm-04-f03",
+          "front": "Absolute vs relative risk objective",
+          "back": "Absolute: SD limit, max loss, VaR. Relative: tracking error vs a benchmark."
+        },
+        {
+          "id": "pm-04-f04",
+          "front": "Strategic vs tactical asset allocation",
+          "back": "SAA: long-term target mix meeting the IPS. TAA: short-term deliberate deviations from the SAA to exploit views."
+        },
+        {
+          "id": "pm-04-f05",
+          "front": "Core–satellite",
+          "back": "Passive/enhanced-index core for market exposure; active satellites for alpha."
+        },
+        {
+          "id": "pm-04-f06",
+          "front": "Five ESG approaches",
+          "back": "Exclusionary screening, best-in-class screening, thematic investing, impact investing, engagement/active ownership."
+        },
+        {
+          "id": "pm-04-f07",
+          "front": "Good asset-class specification",
+          "back": "Homogeneous within, mutually exclusive, low correlation between classes, enough capacity."
+        }
+      ]
+    },
+    {
+      "id": "pm-05",
+      "lm": 5,
+      "title": "The Behavioral Biases of Individuals",
+      "summary": "Investors make systematic mistakes. Cognitive errors (faulty reasoning) can often be corrected with information; emotional biases (feelings) are harder to fix and are usually adapted to. Biases help explain bubbles and anomalies.",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "New material. ACCA does not cover behavioural finance biases or their classification."
+      },
+      "lessons": [
+        {
+          "id": "pm-05-a",
+          "title": "Cognitive errors",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Cognitive vs emotional",
+              "body": "**Cognitive errors** come from faulty reasoning, memory or information processing. Better information, education and advice can **correct** them.\n\n**Emotional biases** come from feelings, impulses or intuition. They are hard to correct, so advisers usually **adapt** to them.\n\nCognitive errors split into **belief perseverance** (clinging to existing beliefs) and **processing errors** (handling information badly)."
+            },
+            {
+              "kind": "compare",
+              "title": "Belief perseverance biases",
+              "rows": [
+                [
+                  "Bias",
+                  "What it looks like"
+                ],
+                [
+                  "Conservatism",
+                  "Slow to update views on new information"
+                ],
+                [
+                  "Confirmation",
+                  "Seeks out evidence that supports existing views; ignores the rest"
+                ],
+                [
+                  "Representativeness",
+                  "Judges by stereotypes or small samples ('good company = good stock')"
+                ],
+                [
+                  "Illusion of control",
+                  "Believes he can influence outcomes he cannot"
+                ],
+                [
+                  "Hindsight",
+                  "'I knew it all along' after the event"
+                ]
+              ]
+            },
+            {
+              "kind": "compare",
+              "title": "Information-processing biases",
+              "rows": [
+                [
+                  "Bias",
+                  "What it looks like"
+                ],
+                [
+                  "Anchoring and adjustment",
+                  "Sticks to an initial number (e.g., purchase price) and adjusts too little"
+                ],
+                [
+                  "Mental accounting",
+                  "Treats money differently by 'bucket' or source, ignoring correlations"
+                ],
+                [
+                  "Framing",
+                  "Decision changes with how the question is presented (gain vs loss)"
+                ],
+                [
+                  "Availability",
+                  "Overweights what is easy to recall: recent, vivid, familiar"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Conservatism vs anchoring: both under-react. Conservatism = sticking with a prior **view/forecast**; anchoring = sticking to a starting **number**. Conservatism is belief perseverance; anchoring is processing.\n\nRepresentativeness vs availability: representativeness = 'it looks like a typical X'; availability = 'I can easily remember X'."
+            }
+          ]
+        },
+        {
+          "id": "pm-05-b",
+          "title": "Emotional biases and market effects",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "The six emotional biases",
+              "rows": [
+                [
+                  "Bias",
+                  "What it looks like"
+                ],
+                [
+                  "Loss aversion",
+                  "Losses hurt about twice as much as equal gains please; holds losers, sells winners too soon"
+                ],
+                [
+                  "Overconfidence",
+                  "Overrates own knowledge and skill; trades too much, under-diversifies"
+                ],
+                [
+                  "Self-control",
+                  "Favours spending now over saving for the long term"
+                ],
+                [
+                  "Status quo",
+                  "Does nothing; keeps the default"
+                ],
+                [
+                  "Endowment",
+                  "Values an asset more just because he owns it"
+                ],
+                [
+                  "Regret aversion",
+                  "Avoids action for fear of being wrong; herds"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Overconfidence: the odd one",
+              "body": "Overconfidence has a cognitive side (illusion of knowledge), but the CFA curriculum classifies it as **emotional** because it stems mainly from feelings about oneself and is hard to correct.\n\nForms: **prediction overconfidence** (confidence intervals too narrow) and **certainty overconfidence** (probabilities too high). Self-attribution bias (credit for wins, blame luck for losses) feeds it.\n\nResult: excessive trading, under-diversification, lower returns."
+            },
+            {
+              "kind": "concept",
+              "title": "Biases in markets",
+              "body": "- **Momentum**: availability, hindsight and regret (herding) push investors to chase recent winners.\n- **Bubbles and crashes**: overconfidence, confirmation and self-attribution feed bubbles; conservatism delays recognising the turn; loss aversion and regret amplify the crash.\n- **Value vs growth**: representativeness ('great company = great investment') makes investors overpay for growth and neglect value stocks; the halo effect is related."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Classify first. Mnemonic for emotional: **LOSSER** = Loss aversion, Overconfidence, Self-control, Status quo, Endowment, Regret aversion. Everything else on the list is cognitive.\n\nThen the treatment: cognitive → **moderate/correct** through education; emotional → **adapt** to it (e.g., build the portfolio the client can live with)."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "pm-05-q01",
+          "lesson": "pm-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An investor bought a stock at $50. It now trades at $35 after a profit warning, but he keeps estimating its value as 'about $48'. He most likely shows:",
+          "options": [
+            "anchoring and adjustment.",
+            "availability bias.",
+            "representativeness."
+          ],
+          "answer": 0,
+          "explanation": "He is fixed on an initial number (his $50 purchase price) and adjusts too little for new information: anchoring. Availability is overweighting easily recalled information. Representativeness is judging by stereotype or small samples."
+        },
+        {
+          "id": "pm-05-q02",
+          "lesson": "pm-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An analyst who is positive on a company reads only research that agrees with her and dismisses negative reports as poorly argued. This is best described as:",
+          "options": [
+            "hindsight bias.",
+            "confirmation bias.",
+            "illusion of control."
+          ],
+          "answer": 1,
+          "explanation": "Seeking evidence that supports an existing view and discounting contrary evidence is confirmation bias, a belief-perseverance error. Hindsight bias is believing past events were predictable; illusion of control is believing one can influence outcomes."
+        },
+        {
+          "id": "pm-05-q03",
+          "lesson": "pm-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An investor keeps a 'safe' bond account for retirement and a 'fun money' account for speculative trades, without considering how the two interact. This is an example of:",
+          "options": [
+            "framing bias.",
+            "mental accounting.",
+            "status quo bias."
+          ],
+          "answer": 1,
+          "explanation": "Treating money in separate mental buckets and ignoring correlations across them is mental accounting, an information-processing error. Framing is reacting to how a choice is presented; status quo bias is inertia, an emotional bias."
+        },
+        {
+          "id": "pm-05-q04",
+          "lesson": "pm-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Cognitive errors are generally:",
+          "options": [
+            "harder to correct than emotional biases and best adapted to.",
+            "caused by feelings and impulses.",
+            "easier to correct through education and better information."
+          ],
+          "answer": 2,
+          "explanation": "Cognitive errors stem from faulty reasoning, so information and education can moderate them. Emotional biases come from feelings and are harder to correct, so advisers usually adapt to them."
+        },
+        {
+          "id": "pm-05-q05",
+          "lesson": "pm-05-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An investor refuses to sell a stock that has fallen 40% because selling would 'make the loss real', yet he quickly sells stocks that rise 10%. This is most likely:",
+          "options": [
+            "loss aversion.",
+            "endowment bias.",
+            "conservatism bias."
+          ],
+          "answer": 0,
+          "explanation": "Holding losers too long and selling winners too early (the disposition effect) is the classic sign of loss aversion. Endowment bias is valuing what you own more because you own it. Conservatism is slowness to update forecasts."
+        },
+        {
+          "id": "pm-05-q06",
+          "lesson": "pm-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which of the following is classified as an emotional bias?",
+          "options": [
+            "Hindsight bias",
+            "Availability bias",
+            "Status quo bias"
+          ],
+          "answer": 2,
+          "explanation": "Status quo bias (inertia, sticking with the default) is emotional. Hindsight is a belief-perseverance cognitive error; availability is an information-processing cognitive error."
+        },
+        {
+          "id": "pm-05-q07",
+          "lesson": "pm-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A trader who credits his gains to skill and blames losses on bad luck, and who trades very frequently, most likely shows:",
+          "options": [
+            "regret aversion.",
+            "self-control bias.",
+            "overconfidence."
+          ],
+          "answer": 2,
+          "explanation": "Self-attribution (skill for wins, luck for losses) and excessive trading are hallmarks of overconfidence. Regret aversion leads to inaction or herding; self-control bias is preferring consumption now over saving."
+        },
+        {
+          "id": "pm-05-q08",
+          "lesson": "pm-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Investors who assume that well-run companies with strong recent growth must be good investments, causing growth stocks to be overpriced, are showing:",
+          "options": [
+            "representativeness.",
+            "loss aversion.",
+            "mental accounting."
+          ],
+          "answer": 0,
+          "explanation": "Equating 'good company' with 'good investment' and extrapolating recent growth is representativeness, one behavioural explanation of the value effect. Loss aversion and mental accounting do not describe this stereotype-based judgement."
+        },
+        {
+          "id": "pm-05-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An employee keeps her pension contributions in the plan's default money-market fund for 20 years, even after being told this is unlikely to meet her goals. Her bias is best classified as:",
+          "options": [
+            "a cognitive error, best corrected with education.",
+            "an emotional bias, which the adviser should probably adapt to.",
+            "a cognitive error caused by availability."
+          ],
+          "answer": 1,
+          "explanation": "Staying with the default despite information is status quo bias, an emotional bias; since information has not changed her behaviour, the adviser should adapt (e.g., change defaults, use automatic escalation). It is not a cognitive error and not availability."
+        },
+        {
+          "id": "pm-05-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "After a market crash, an investor says, 'It was obvious the market was overvalued; I saw it coming.' He never sold before the crash. This is most likely:",
+          "options": [
+            "hindsight bias.",
+            "regret aversion.",
+            "illusion of control."
+          ],
+          "answer": 0,
+          "explanation": "Believing after the event that the outcome was predictable is hindsight bias, a belief-perseverance cognitive error. Regret aversion is avoiding decisions to avoid regret. Illusion of control is believing one can influence outcomes."
+        },
+        {
+          "id": "pm-05-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A client is offered two descriptions of the same strategy: '80% chance of meeting your goal' and '20% chance of falling short'. She accepts the first and rejects the second. This bias is:",
+          "options": [
+            "an emotional bias called loss aversion.",
+            "a cognitive error called framing.",
+            "a cognitive error called conservatism."
+          ],
+          "answer": 1,
+          "explanation": "Her choice changes only because of how the identical outcome is presented: framing, an information-processing cognitive error. Loss aversion is about weighting losses more than gains of the same size; conservatism is slowness to update beliefs."
+        },
+        {
+          "id": "pm-05-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An investor inherited shares from her father and refuses to sell them even though she would never buy them at today's price. This is most likely:",
+          "options": [
+            "endowment bias.",
+            "anchoring bias.",
+            "confirmation bias."
+          ],
+          "answer": 0,
+          "explanation": "Valuing an asset more simply because she owns it (especially inherited assets) is endowment bias, an emotional bias. Anchoring is fixation on a reference number; confirmation is seeking supporting evidence."
+        },
+        {
+          "id": "pm-05-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Which combination of biases is most often linked to the formation of asset-price bubbles?",
+          "options": [
+            "Status quo bias and endowment bias",
+            "Overconfidence and confirmation bias",
+            "Self-control bias and mental accounting"
+          ],
+          "answer": 1,
+          "explanation": "In bubbles, overconfidence (and self-attribution) leads investors to believe their rising gains reflect skill, and confirmation bias makes them ignore warning signs. Status quo, endowment, self-control and mental accounting relate more to inertia and saving behaviour than to bubble formation."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "pm-05-f01",
+          "front": "Six emotional biases (LOSSER)",
+          "back": "Loss aversion, Overconfidence, Self-control, Status quo, Endowment, Regret aversion."
+        },
+        {
+          "id": "pm-05-f02",
+          "front": "Belief perseverance biases (5)",
+          "back": "Conservatism, confirmation, representativeness, illusion of control, hindsight."
+        },
+        {
+          "id": "pm-05-f03",
+          "front": "Information-processing biases (4)",
+          "back": "Anchoring and adjustment, mental accounting, framing, availability."
+        },
+        {
+          "id": "pm-05-f04",
+          "front": "Cognitive vs emotional: treatment",
+          "back": "Cognitive: moderate/correct through education and information. Emotional: usually adapt to them."
+        },
+        {
+          "id": "pm-05-f05",
+          "front": "Disposition effect (selling winners, holding losers)",
+          "back": "Driven by loss aversion."
+        },
+        {
+          "id": "pm-05-f06",
+          "front": "Conservatism vs anchoring",
+          "back": "Conservatism: slow to update a prior view (belief perseverance). Anchoring: stuck near an initial number (processing). Both cognitive."
+        }
+      ]
+    },
+    {
+      "id": "pm-06",
+      "lm": 6,
+      "title": "Introduction to Risk Management",
+      "summary": "Risk management is not risk minimisation: it is choosing which risks to take, in what amount, within the organisation's tolerance. Covers governance, risk budgeting, the main financial and non-financial risks, how to measure them and how to modify them.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "SBL",
+          "FM"
+        ],
+        "note": "SBL covered enterprise risk management, risk appetite and the TARA responses (transfer, avoid, reduce, accept); FM covered FX and interest-rate hedging. New for CFA: risk budgeting, VaR/CVaR terminology, the CFA list of non-financial risks and the four methods of modifying risk."
+      },
+      "lessons": [
+        {
+          "id": "pm-06-a",
+          "title": "Framework, governance, tolerance and budgeting",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "What risk management is",
+              "body": "Risk management means identifying, measuring and **choosing** the level and type of risk an organisation takes so that it matches its goals.\n\nIt is **not** about minimising risk: a firm that avoids all risk earns no return. Good risk management can still lose money; the test is whether the risks taken were the intended ones.\n\nThe framework covers governance, identification, measurement, policies, monitoring, mitigation and reporting."
+            },
+            {
+              "kind": "concept",
+              "title": "Governance and risk tolerance",
+              "body": "**Risk governance** is top-down: the **board** sets overall risk tolerance and oversees management, often through a risk committee and a chief risk officer.\n\n**Risk tolerance** = the amount of risk the organisation is willing and able to bear. Set it by looking inward (goals, strengths, ability to absorb losses) and outward (the environment's dangers).\n\nThe board should decide which risks are acceptable, unacceptable and how big a loss is tolerable."
+            },
+            {
+              "kind": "concept",
+              "title": "Risk budgeting",
+              "body": "Risk budgeting allocates the total risk the organisation will take across activities, managers or asset classes, much like a financial budget allocates money.\n\nThe risk budget can be set in SD, VaR, beta, tracking error or 'risk factor' terms.\n\nGoal: get the most return per unit of risk spent. If a manager uses up her risk budget, she must cut risk elsewhere before adding more."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "SBL's ERM and risk appetite map well onto CFA's framework and risk tolerance. Differences: CFA stresses that the **board** sets tolerance, that risk is **budgeted** like capital, and it uses different response names. SBL's TARA (transfer, avoid, reduce, accept) ≈ CFA's prevention/avoidance, acceptance (self-insurance/diversification), transfer (insurance) and shifting (derivatives)."
+            }
+          ]
+        },
+        {
+          "id": "pm-06-b",
+          "title": "Types of risk, measuring and modifying risk",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Financial vs non-financial risks",
+              "rows": [
+                [
+                  "Financial",
+                  "Non-financial"
+                ],
+                [
+                  "Market (prices, rates, FX, commodities)",
+                  "Operational (people, systems, processes, cyber)"
+                ],
+                [
+                  "Credit (counterparty fails to pay)",
+                  "Legal / compliance / regulatory"
+                ],
+                [
+                  "Liquidity (cannot trade near fair value)",
+                  "Model risk (wrong model or inputs)"
+                ],
+                [
+                  "",
+                  "Settlement, solvency, tail risk, accounting, tax"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Risks interact",
+              "body": "Risks rarely arrive alone. A market fall hits collateral values, causing margin calls (**liquidity** risk); counterparties under stress may default (**credit** risk); hurried trading raises **operational** risk.\n\nInteractions can make the total much worse than the sum of the parts, which is why stress tests look at combined scenarios.\n\nIndividuals face similar risks: mortality, longevity, health and job loss."
+            },
+            {
+              "kind": "concept",
+              "title": "Measuring risk",
+              "body": "- **SD**: total volatility. **Beta**: equity market sensitivity. **Duration**: bond rate sensitivity. Options use the Greeks (delta, gamma, vega).\n- **VaR**: minimum loss expected over a period with a given probability. '5% one-day VaR = $1m' → on 5% of days (about 1 in 20) losses are **at least** $1m.\n- **CVaR** (expected shortfall): average loss **when** the VaR is exceeded, so CVaR ≥ VaR.\n- **Scenario analysis / stress tests**: what happens in specific bad events."
+            },
+            {
+              "kind": "compare",
+              "title": "Modifying risk",
+              "rows": [
+                [
+                  "Method",
+                  "What it means"
+                ],
+                [
+                  "Prevention / avoidance",
+                  "Do not take the activity or stop it"
+                ],
+                [
+                  "Acceptance",
+                  "Bear it: self-insure (reserves) or diversify"
+                ],
+                [
+                  "Transfer",
+                  "Pay someone to take it, mainly insurance"
+                ],
+                [
+                  "Shifting",
+                  "Change the payoff distribution, mainly derivatives (forwards, futures, options, swaps)"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "pm-06-q01",
+          "lesson": "pm-06-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which statement best describes the goal of risk management?",
+          "options": [
+            "To minimise the organisation's total risk",
+            "To eliminate all losses",
+            "To take the type and level of risk that matches the organisation's goals"
+          ],
+          "answer": 2,
+          "explanation": "Risk management is choosing which risks to take and how much, consistent with objectives and tolerance. Minimising risk would also minimise return, and no process can eliminate all losses."
+        },
+        {
+          "id": "pm-06-q02",
+          "lesson": "pm-06-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Within an organisation, overall risk tolerance should be set by the:",
+          "options": [
+            "board of directors.",
+            "individual portfolio managers.",
+            "risk-management back office."
+          ],
+          "answer": 0,
+          "explanation": "Risk governance is top-down: the board sets risk tolerance and oversees its implementation. Portfolio managers operate within the limits; the risk function measures and monitors them."
+        },
+        {
+          "id": "pm-06-q03",
+          "lesson": "pm-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A pension fund allocates a 4% total tracking-error allowance across its equity, bond and alternatives managers. This is an example of:",
+          "options": [
+            "risk transfer.",
+            "risk budgeting.",
+            "risk shifting."
+          ],
+          "answer": 1,
+          "explanation": "Allocating the total acceptable risk across activities or managers is risk budgeting. Transfer means passing risk to another party (e.g., insurer); shifting means changing the payoff distribution with derivatives."
+        },
+        {
+          "id": "pm-06-q04",
+          "lesson": "pm-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A portfolio has a one-day 5% VaR of $2 million. Over 250 trading days, on how many days would you expect a loss of at least $2 million?",
+          "options": [
+            "About 5",
+            "About 12.5",
+            "About 237.5"
+          ],
+          "answer": 1,
+          "explanation": "A 5% VaR is exceeded on 5% of days: 0.05 × 250 = 12.5 days. About 5 treats 5% as a count, not a frequency. 237.5 is the number of days the loss stays below the VaR."
+        },
+        {
+          "id": "pm-06-q05",
+          "lesson": "pm-06-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A company buys a currency forward to lock in the exchange rate on a future foreign-currency receipt. This method of modifying risk is best described as:",
+          "options": [
+            "risk shifting.",
+            "risk transfer.",
+            "risk acceptance."
+          ],
+          "answer": 0,
+          "explanation": "Using derivatives to change the distribution of outcomes is risk shifting. Transfer is mainly insurance; acceptance means bearing the risk (self-insuring or diversifying)."
+        },
+        {
+          "id": "pm-06-q06",
+          "lesson": "pm-06-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A trading firm suffers losses when a software error duplicates thousands of orders. This is best classified as:",
+          "options": [
+            "market risk.",
+            "liquidity risk.",
+            "operational risk."
+          ],
+          "answer": 2,
+          "explanation": "Losses from failed processes, people or systems (including IT failures) are operational risk, a non-financial risk. Market risk is from price moves; liquidity risk is the inability to trade near fair value."
+        },
+        {
+          "id": "pm-06-q07",
+          "lesson": "pm-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with VaR at the same confidence level and horizon, conditional VaR (CVaR) is:",
+          "options": [
+            "always smaller, because it is a minimum loss.",
+            "greater than or equal, because it is the average loss beyond VaR.",
+            "identical whenever returns are normal."
+          ],
+          "answer": 1,
+          "explanation": "CVaR is the expected loss given that the VaR threshold is exceeded, so it is at least as large as VaR. VaR, not CVaR, is the minimum loss in the tail. Even with normal returns CVaR exceeds VaR."
+        },
+        {
+          "id": "pm-06-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A firm decides not to self-insure a key warehouse and instead buys a policy covering fire damage. Its approach to this risk is:",
+          "options": [
+            "risk shifting.",
+            "risk transfer.",
+            "risk prevention."
+          ],
+          "answer": 1,
+          "explanation": "Paying an insurer to bear the loss is risk transfer. Shifting uses derivatives to change payoffs; prevention/avoidance would mean not operating the warehouse (or eliminating the hazard)."
+        },
+        {
+          "id": "pm-06-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "During a sharp market fall, a hedge fund faces margin calls and must sell illiquid holdings at deep discounts, and one of its prime brokers defaults. This situation best illustrates:",
+          "options": [
+            "the interaction of market, liquidity and credit risk.",
+            "a purely operational risk event.",
+            "model risk alone."
+          ],
+          "answer": 0,
+          "explanation": "The market move (market risk) triggered margin calls and forced sales at poor prices (liquidity risk), while the broker failure is counterparty credit risk. The point is that risks interact and compound. Nothing here is primarily a process failure or a model error."
+        },
+        {
+          "id": "pm-06-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about risk tolerance is most accurate?",
+          "options": [
+            "It is set by the risk manager after each loss.",
+            "It should be set without reference to the organisation's external environment.",
+            "It reflects both the organisation's willingness and its ability to bear risk."
+          ],
+          "answer": 2,
+          "explanation": "Risk tolerance is the amount of risk the organisation is willing and able to bear, set by the board considering internal goals and capacity and the external environment. It is not reset by the risk manager after every loss."
+        },
+        {
+          "id": "pm-06-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A bank uses a credit model that assumes housing prices never fall nationally. When they do, losses far exceed the model's estimates. This is primarily an example of:",
+          "options": [
+            "settlement risk.",
+            "model risk.",
+            "solvency risk."
+          ],
+          "answer": 1,
+          "explanation": "Losses from a flawed model or mis-specified assumptions are model risk. Settlement risk arises when one side of a trade pays but the other fails to deliver. Solvency risk is running out of cash to survive, which could follow, but the root cause is the model."
+        },
+        {
+          "id": "pm-06-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which risk measure is most appropriate for the interest-rate sensitivity of a bond portfolio?",
+          "options": [
+            "Beta",
+            "Duration",
+            "Delta"
+          ],
+          "answer": 1,
+          "explanation": "Duration measures a bond's price sensitivity to changes in interest rates. Beta measures sensitivity to equity market moves; delta measures an option's sensitivity to the underlying price."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "pm-06-f01",
+          "front": "Four ways to modify risk",
+          "back": "Prevention/avoidance; acceptance (self-insure, diversify); transfer (insurance); shifting (derivatives)."
+        },
+        {
+          "id": "pm-06-f02",
+          "front": "VaR",
+          "back": "Minimum loss expected with a given probability over a period. 5% daily VaR $1m → losses ≥ $1m on ~1 day in 20."
+        },
+        {
+          "id": "pm-06-f03",
+          "front": "CVaR (expected shortfall)",
+          "back": "Average loss given that VaR is exceeded. Always ≥ VaR."
+        },
+        {
+          "id": "pm-06-f04",
+          "front": "Who sets risk tolerance?",
+          "back": "The board (governing body), as part of top-down risk governance."
+        },
+        {
+          "id": "pm-06-f05",
+          "front": "Risk budgeting",
+          "back": "Allocating the organisation's total risk across activities, managers or asset classes to maximise return per unit of risk."
+        },
+        {
+          "id": "pm-06-f06",
+          "front": "Financial vs non-financial risks",
+          "back": "Financial: market, credit, liquidity. Non-financial: operational, legal/compliance, model, settlement, solvency, tail, accounting, tax."
+        },
+        {
+          "id": "pm-06-f07",
+          "front": "Risk measure by asset",
+          "back": "Equities: beta/SD. Bonds: duration. Options: delta, gamma, vega. Portfolio-wide: VaR, CVaR, stress tests."
+        }
+      ]
+    }
+  ]
+}

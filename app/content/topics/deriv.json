@@ -1,0 +1,3184 @@
+{
+  "id": "deriv",
+  "name": "Derivatives",
+  "weight": [
+    6,
+    9
+  ],
+  "blurb": "How forwards, futures, swaps and options work and how they are priced and valued by no-arbitrage: cost of carry, put–call parity and the one-period binomial model. Mostly short calculation questions that reward clean formulas and sign discipline.",
+  "accaNote": "FM/AFM taught hedging with forwards, futures, options and swaps from the treasurer's side, so payoffs and FRAs/IR futures will feel familiar. CFA focuses on pricing and valuation by no-arbitrage (price vs value, carry, swap rates, option bounds, parity, binomial), which is mostly new.",
+  "modules": [
+    {
+      "id": "deriv-01",
+      "lm": 1,
+      "title": "Derivative Instrument and Derivative Market Features",
+      "summary": "What a derivative is, the contract features every derivative shares, and how over-the-counter and exchange-traded markets differ.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM/AFM introduced forwards, futures, margin and OTC vs exchange contracts as hedging tools. CFA adds precise terminology (underlying, contract size, CCP, novation) and the market-structure view."
+      },
+      "lessons": [
+        {
+          "id": "deriv-01-a",
+          "title": "What a derivative is",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "A contract on something else",
+              "body": "A **derivative** is a contract whose value comes from (is *derived* from) the performance of an **underlying**: a share, index, bond, interest rate, currency, commodity or credit event.\n\nThe contract fixes the rules today; cash or delivery happens later. Two **counterparties** take opposite sides, so one side's gain is the other's loss before costs: a **zero-sum** game."
+            },
+            {
+              "kind": "compare",
+              "title": "Features in every contract",
+              "rows": [
+                [
+                  "Feature",
+                  "Meaning"
+                ],
+                [
+                  "Underlying",
+                  "Asset, rate or event that drives value"
+                ],
+                [
+                  "Contract size / notional",
+                  "Quantity covered, e.g. 100 shares or USD 10m"
+                ],
+                [
+                  "Expiration (maturity)",
+                  "Date the contract ends"
+                ],
+                [
+                  "Price / rate",
+                  "Forward price, strike (exercise) price or fixed rate agreed today"
+                ],
+                [
+                  "Settlement",
+                  "Physical delivery or cash settlement"
+                ],
+                [
+                  "Counterparties",
+                  "Long (buyer) and short (seller)"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Types of underlying",
+              "body": "- **Equities**: single shares, equity indexes\n- **Fixed income and interest rates**: bonds, market reference rates (MRR) such as SOFR\n- **Currencies**: exchange rates\n- **Commodities**: soft (agricultural) and hard (energy, metals)\n- **Credit**: default of a reference entity\n- **Other**: weather, volatility, inflation, cryptocurrency\n\nThe underlying need not be tradable (an index or a rate is not an asset you can own directly)."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Long = buyer, who benefits when the underlying rises (for forwards, futures and calls). Short = seller. For a **put**, the long benefits when the underlying falls. Expect a question that tests whether you can name who gains in each position."
+            }
+          ]
+        },
+        {
+          "id": "deriv-01-b",
+          "title": "OTC vs exchange-traded markets",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Exchange-traded derivatives (ETD)",
+              "body": "Traded on an organised exchange with **standardised** terms (size, expiry, underlying grade).\n\nA **central counterparty (CCP)** or clearinghouse stands between buyer and seller (novation), so each trader faces the CCP, not each other. Traders post **margin** and positions are **marked to market** daily. Result: high transparency, liquidity and very low counterparty credit risk, but no customisation."
+            },
+            {
+              "kind": "concept",
+              "title": "Over-the-counter (OTC) derivatives",
+              "body": "Negotiated privately between two parties, usually a dealer and an end user. Terms are **customised** (exact amount, date, underlying).\n\nTrade-offs: less transparency, lower liquidity, and more **counterparty credit risk**. After 2008, regulators pushed many standard OTC swaps into **central clearing** through CCPs, plus trade reporting and margin rules, so the gap has narrowed."
+            },
+            {
+              "kind": "compare",
+              "title": "ETD vs OTC",
+              "rows": [
+                [
+                  "",
+                  "Exchange-traded",
+                  "OTC"
+                ],
+                [
+                  "Terms",
+                  "Standardised",
+                  "Customised"
+                ],
+                [
+                  "Counterparty",
+                  "CCP",
+                  "Dealer / bilateral"
+                ],
+                [
+                  "Credit risk",
+                  "Very low",
+                  "Higher (unless cleared)"
+                ],
+                [
+                  "Transparency",
+                  "High",
+                  "Lower"
+                ],
+                [
+                  "Liquidity",
+                  "High",
+                  "Lower"
+                ],
+                [
+                  "Examples",
+                  "Futures, listed options",
+                  "Forwards, swaps, most FRAs"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM treated exchange futures and OTC forwards from the treasurer's hedging angle (margin as a cash-flow nuisance). CFA wants the **market-structure** vocabulary: CCP, novation, standardisation, clearing mandates, and the trade-off of customisation vs credit risk and liquidity."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-01-q01",
+          "lesson": "deriv-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is *least likely* a required feature of a derivative contract?",
+          "options": [
+            "An underlying",
+            "An expiration date",
+            "Physical delivery of the underlying"
+          ],
+          "answer": 2,
+          "explanation": "Every derivative specifies an underlying and an expiration date. Settlement can be physical **or** cash, so physical delivery is not required; index and interest-rate derivatives are almost always cash settled."
+        },
+        {
+          "id": "deriv-01-q02",
+          "lesson": "deriv-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An investor who is long a forward contract on an equity index will most likely benefit if the index:",
+          "options": [
+            "rises",
+            "falls",
+            "stays unchanged"
+          ],
+          "answer": 0,
+          "explanation": "The long forward agrees to buy at a fixed price, so a higher index at expiry produces a gain (S_{T} − F_{0}(T) > 0). A fall helps the short. An unchanged index gives the long S_{0} − F_{0}(T), usually a small loss because the forward price includes the cost of carry."
+        },
+        {
+          "id": "deriv-01-q03",
+          "lesson": "deriv-01-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A derivative whose underlying is SOFR, a market reference rate, is *best* described as having an underlying that is:",
+          "options": [
+            "a tradable asset that must be delivered",
+            "a commodity",
+            "an interest rate that is not itself an asset"
+          ],
+          "answer": 2,
+          "explanation": "A rate such as SOFR is not something you can own, so these contracts must cash settle. Derivatives can have non-asset underlyings (rates, indexes, credit events, weather)."
+        },
+        {
+          "id": "deriv-01-q04",
+          "lesson": "deriv-01-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Compared with OTC derivatives, exchange-traded derivatives *most likely* have:",
+          "options": [
+            "customised terms",
+            "lower counterparty credit risk",
+            "less transparency"
+          ],
+          "answer": 1,
+          "explanation": "The CCP guarantees performance and daily margining limits exposure, so counterparty risk is very low. Customisation and lower transparency are features of OTC contracts."
+        },
+        {
+          "id": "deriv-01-q05",
+          "lesson": "deriv-01-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "When a central counterparty (CCP) clears a trade between a buyer and a seller, the CCP *most likely*:",
+          "options": [
+            "becomes the buyer to every seller and the seller to every buyer",
+            "acts only as a broker and takes no position",
+            "guarantees the trade only for the buyer"
+          ],
+          "answer": 0,
+          "explanation": "Through novation the CCP steps into the middle of each trade, so each side faces the CCP. It is not merely a broker, and its guarantee protects both sides."
+        },
+        {
+          "id": "deriv-01-q06",
+          "lesson": "deriv-01-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A corporate treasurer needs to hedge a currency payment of exactly EUR 3,417,500 due on 19 March. The instrument that *best* matches this need is most likely:",
+          "options": [
+            "an exchange-traded currency future",
+            "an OTC currency forward",
+            "a listed currency option with standard expiry"
+          ],
+          "answer": 1,
+          "explanation": "An OTC forward can be tailored to the exact amount and date. Exchange-traded futures and listed options come in standard sizes and expiry dates, leaving a mismatch (basis risk)."
+        },
+        {
+          "id": "deriv-01-q07",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about derivative markets is *most* accurate?",
+          "options": [
+            "Exchange-traded derivatives offer more customisation than OTC derivatives.",
+            "OTC derivatives are marked to market daily through an exchange clearinghouse by definition.",
+            "Post-crisis regulation required many standardised OTC swaps to be centrally cleared."
+          ],
+          "answer": 2,
+          "explanation": "Regulators mandated central clearing and reporting for many standard OTC swaps. Customisation is an OTC feature, not an ETD one. OTC trades are bilateral by definition; only those voluntarily or mandatorily cleared go through a CCP."
+        },
+        {
+          "id": "deriv-01-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which of the following is *most likely* a disadvantage of exchange-traded derivatives relative to OTC derivatives?",
+          "options": [
+            "Higher counterparty credit risk",
+            "Lower liquidity",
+            "Inability to tailor contract terms"
+          ],
+          "answer": 2,
+          "explanation": "Standardisation is the price of liquidity and low credit risk. ETDs have lower counterparty risk and higher liquidity, so those options describe OTC, not ETD."
+        },
+        {
+          "id": "deriv-01-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Gains and losses between the two counterparties to a derivative, ignoring transaction costs, are *best* described as:",
+          "options": [
+            "zero-sum",
+            "positive-sum",
+            "always favouring the long"
+          ],
+          "answer": 0,
+          "explanation": "Whatever one side gains the other loses, so the contract nets to zero. Derivatives may create value for society through risk transfer, but the payoffs between counterparties are zero-sum; neither side is favoured by construction."
+        },
+        {
+          "id": "deriv-01-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A pension fund wants to reduce counterparty credit risk on a large interest rate swap while keeping the trade OTC. The fund would *most likely*:",
+          "options": [
+            "clear the swap through a central counterparty",
+            "convert the swap into an option",
+            "increase the swap notional"
+          ],
+          "answer": 0,
+          "explanation": "Central clearing replaces bilateral exposure with exposure to a CCP that collects margin. Converting to an option changes the economic exposure; a bigger notional increases rather than reduces exposure."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-01-f01",
+          "front": "Derivative (definition)",
+          "back": "A contract whose value is derived from an underlying asset, rate, index or event, with terms set today and performance later."
+        },
+        {
+          "id": "deriv-01-f02",
+          "front": "Six features of a derivative contract",
+          "back": "Underlying, contract size/notional, expiration date, price or rate (forward price/strike/fixed rate), settlement method, counterparties (long and short)."
+        },
+        {
+          "id": "deriv-01-f03",
+          "front": "Role of a central counterparty (CCP)",
+          "back": "Becomes buyer to every seller and seller to every buyer (novation); collects margin and marks to market daily, so counterparty credit risk is very low."
+        },
+        {
+          "id": "deriv-01-f04",
+          "front": "ETD vs OTC in one line",
+          "back": "ETD: standardised, CCP, transparent, liquid, low credit risk. OTC: customised, bilateral, less transparent, less liquid, more credit risk."
+        },
+        {
+          "id": "deriv-01-f05",
+          "front": "Cash vs physical settlement",
+          "back": "Cash: pay the difference in value. Physical: deliver the underlying. Rate and index derivatives must cash settle."
+        }
+      ]
+    },
+    {
+      "id": "deriv-02",
+      "lm": 2,
+      "title": "Forward Commitment and Contingent Claim Features and Instruments",
+      "summary": "The two families of derivatives: forward commitments (forwards, futures, swaps) with symmetric payoffs, and contingent claims (options, credit derivatives) with asymmetric payoffs. Payoff and profit diagrams.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM/AFM used forwards, futures, options and swaps for FX and interest-rate hedging, so payoffs are familiar. New: CFA notation (S_{T}, F_{0}(T), c_{T}, p_{T}), short option positions, and credit default swaps."
+      },
+      "lessons": [
+        {
+          "id": "deriv-02-a",
+          "title": "Forwards, futures and swaps",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Forward commitment",
+              "body": "A **forward commitment** obliges both parties to transact at a price fixed today. Neither side can walk away.\n\nThree instruments: **forwards** (OTC), **futures** (exchange-traded forwards with daily settlement) and **swaps** (a series of forward-like exchanges). Payoffs are **symmetric**: the long's gain from a rise equals its loss from an equal fall."
+            },
+            {
+              "kind": "formula",
+              "title": "Forward payoff at expiry",
+              "formula": "Long: S_{T} − F_{0}(T)    Short: F_{0}(T) − S_{T}",
+              "where": [
+                [
+                  "S_{T}",
+                  "spot price of underlying at expiry T"
+                ],
+                [
+                  "F_{0}(T)",
+                  "forward price agreed at time 0 for delivery at T"
+                ]
+              ],
+              "note": "No money changes hands at initiation, so payoff = profit for a forward."
+            },
+            {
+              "kind": "example",
+              "title": "Forward payoff",
+              "body": "You go long a forward at F_{0}(T) = 100. At expiry S_{T} = 93.\n\nLong payoff = 93 − 100 = **−7**; short payoff = **+7**. The long must pay 100 for something worth 93."
+            },
+            {
+              "kind": "compare",
+              "title": "Forward vs future vs swap",
+              "rows": [
+                [
+                  "",
+                  "Forward",
+                  "Future",
+                  "Swap"
+                ],
+                [
+                  "Market",
+                  "OTC",
+                  "Exchange",
+                  "Mostly OTC"
+                ],
+                [
+                  "Settlement",
+                  "At expiry",
+                  "Daily MTM",
+                  "Periodic"
+                ],
+                [
+                  "Credit risk",
+                  "Yes",
+                  "Minimal (CCP)",
+                  "Yes, unless cleared"
+                ],
+                [
+                  "Example",
+                  "FX forward",
+                  "Equity index future",
+                  "Pay-fixed interest rate swap"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "deriv-02-b",
+          "title": "Option payoffs and profits",
+          "minutes": 9,
+          "fastTrack": [
+            "FM",
+            "AFM"
+          ],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Contingent claims: options",
+              "body": "An **option** gives the buyer the **right, not the obligation**, to buy (**call**) or sell (**put**) the underlying at the **exercise (strike) price X**. The buyer pays a **premium** (c_{0} or p_{0}) up front; the seller (writer) receives it and must perform if the buyer exercises.\n\n**European** options exercise only at expiry; **American** any time up to expiry."
+            },
+            {
+              "kind": "formula",
+              "title": "Option payoffs at expiry",
+              "formula": "c_{T} = max(0, S_{T} − X)    p_{T} = max(0, X − S_{T})",
+              "where": [
+                [
+                  "c_{T}, p_{T}",
+                  "call and put payoff to the long"
+                ],
+                [
+                  "X",
+                  "exercise (strike) price"
+                ]
+              ],
+              "note": "Profit = payoff − premium (long); premium − payoff (short)."
+            },
+            {
+              "kind": "example",
+              "title": "Call and put profit",
+              "body": "Call: X = 50, c_{0} = 4, S_{T} = 58. Payoff = 8, profit = 8 − 4 = **4**. Breakeven = X + c_{0} = **54**.\n\nPut: X = 50, p_{0} = 3, S_{T} = 42. Payoff = 8, profit = 8 − 3 = **5**. Breakeven = X − p_{0} = **47**."
+            },
+            {
+              "kind": "compare",
+              "title": "Max gain and loss",
+              "rows": [
+                [
+                  "Position",
+                  "Max gain",
+                  "Max loss"
+                ],
+                [
+                  "Long call",
+                  "Unlimited",
+                  "c_{0}"
+                ],
+                [
+                  "Short call",
+                  "c_{0}",
+                  "Unlimited"
+                ],
+                [
+                  "Long put",
+                  "X − p_{0}",
+                  "p_{0}"
+                ],
+                [
+                  "Short put",
+                  "p_{0}",
+                  "X − p_{0}"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Payoff ignores the premium; profit includes it. If a question asks for profit, subtract the premium for the long (add it for the short). Also: a short put loses most when the underlying goes to zero, not when it rises."
+            }
+          ]
+        },
+        {
+          "id": "deriv-02-c",
+          "title": "Credit derivatives and the two families compared",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Credit default swap (CDS)",
+              "body": "A **CDS** is a contingent claim on credit. The **protection buyer** pays a periodic premium (the CDS spread) to the **protection seller**. If a **credit event** (e.g. default, bankruptcy, restructuring) hits the reference entity, the seller compensates the buyer for the loss on the reference debt.\n\nBuying protection is like buying a put on the bond's credit quality."
+            },
+            {
+              "kind": "compare",
+              "title": "Forward commitment vs contingent claim",
+              "rows": [
+                [
+                  "",
+                  "Forward commitment",
+                  "Contingent claim"
+                ],
+                [
+                  "Obligation",
+                  "Both sides must perform",
+                  "Buyer has a right; seller must perform if exercised"
+                ],
+                [
+                  "Upfront payment",
+                  "None (value 0 at start)",
+                  "Premium paid by buyer"
+                ],
+                [
+                  "Payoff shape",
+                  "Symmetric (linear)",
+                  "Asymmetric (kinked)"
+                ],
+                [
+                  "Instruments",
+                  "Forwards, futures, swaps",
+                  "Options, CDS"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Hybrids and embedded derivatives",
+              "body": "Many securities contain options: **callable bonds** (issuer holds a call), **putable bonds** (investor holds a put), **convertible bonds** (investor holds a call on shares). Interest rate **caps and floors** are strips of options on rates.\n\nRecognising the embedded option tells you who benefits from volatility."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "A swap is a forward commitment, even though it has many payment dates. A CDS is a contingent claim because payment depends on a credit event. These two classifications are popular one-line questions."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-02-q01",
+          "lesson": "deriv-02-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A trader is short a forward with F_{0}(T) = 1,250. At expiry the underlying is 1,190. The trader's payoff per unit is closest to:",
+          "options": [
+            "−60",
+            "+60",
+            "+1,190"
+          ],
+          "answer": 1,
+          "explanation": "Short payoff = F_{0}(T) − S_{T} = 1,250 − 1,190 = **+60**. −60 is the long's payoff; 1,190 confuses payoff with the spot price."
+        },
+        {
+          "id": "deriv-02-q02",
+          "lesson": "deriv-02-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is *least likely* a forward commitment?",
+          "options": [
+            "Interest rate swap",
+            "Futures contract",
+            "Call option"
+          ],
+          "answer": 2,
+          "explanation": "A call gives the buyer a right, not an obligation, so it is a contingent claim. Swaps and futures oblige both parties to perform."
+        },
+        {
+          "id": "deriv-02-q03",
+          "lesson": "deriv-02-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with a forward contract, a futures contract on the same underlying *most likely*:",
+          "options": [
+            "is settled daily through mark-to-market",
+            "has customised contract terms",
+            "carries more counterparty credit risk"
+          ],
+          "answer": 0,
+          "explanation": "Futures are exchange-traded, standardised and marked to market daily via a CCP, which reduces credit risk. Customisation and higher credit risk describe forwards."
+        },
+        {
+          "id": "deriv-02-q04",
+          "lesson": "deriv-02-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An investor buys a put with X = 40 for a premium of 2.50. At expiry the stock is 36. The investor's profit is closest to:",
+          "options": [
+            "1.50",
+            "4.00",
+            "−2.50"
+          ],
+          "answer": 0,
+          "explanation": "Payoff = max(0, 40 − 36) = 4.00; profit = 4.00 − 2.50 = **1.50**. 4.00 is the payoff before the premium; −2.50 would apply only if the put expired worthless."
+        },
+        {
+          "id": "deriv-02-q05",
+          "lesson": "deriv-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A trader writes a call with X = 70 for a premium of 3. At expiry the stock is 78. The trader's profit is closest to:",
+          "options": [
+            "+3",
+            "−8",
+            "−5"
+          ],
+          "answer": 2,
+          "explanation": "Short call payoff = −max(0, 78 − 70) = −8; profit = −8 + 3 = **−5**. +3 assumes the call expires worthless; −8 ignores the premium received."
+        },
+        {
+          "id": "deriv-02-q06",
+          "lesson": "deriv-02-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The breakeven underlying price at expiry for a long call with X = 25 bought for 1.80 is:",
+          "options": [
+            "23.20",
+            "26.80",
+            "25.00"
+          ],
+          "answer": 1,
+          "explanation": "Long call breakeven = X + c_{0} = 25 + 1.80 = **26.80**. 23.20 is the put formula (X − premium); 25.00 ignores the premium."
+        },
+        {
+          "id": "deriv-02-q07",
+          "lesson": "deriv-02-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The maximum loss to the writer of a put with X = 60 and premium 4 is:",
+          "options": [
+            "4",
+            "56",
+            "unlimited"
+          ],
+          "answer": 1,
+          "explanation": "Worst case S_{T} = 0: writer pays 60 and keeps the 4 premium, losing **56** = X − p_{0}. 4 is the writer's maximum gain; unlimited loss applies to a short call."
+        },
+        {
+          "id": "deriv-02-q08",
+          "lesson": "deriv-02-c",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In a credit default swap, the party that pays a periodic spread is the:",
+          "options": [
+            "protection seller",
+            "reference entity",
+            "protection buyer"
+          ],
+          "answer": 2,
+          "explanation": "The protection buyer pays the spread and receives compensation after a credit event. The seller receives the spread; the reference entity is not a party to the contract."
+        },
+        {
+          "id": "deriv-02-q09",
+          "lesson": "deriv-02-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which feature *best* distinguishes a contingent claim from a forward commitment?",
+          "options": [
+            "Only contingent claims have an underlying",
+            "Contingent claims have asymmetric payoffs",
+            "Only forward commitments trade OTC"
+          ],
+          "answer": 1,
+          "explanation": "Options and CDS pay only if a condition is met, creating kinked, asymmetric payoffs. Both families have underlyings, and both trade OTC and on exchanges."
+        },
+        {
+          "id": "deriv-02-q10",
+          "lesson": "deriv-02-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An investor holding a callable bond is *most likely*:",
+          "options": [
+            "long a call option on the bond",
+            "short a call option to the issuer",
+            "long a put option on the bond"
+          ],
+          "answer": 1,
+          "explanation": "The issuer holds the right to redeem early, so the bondholder has effectively sold a call to the issuer. A putable bond would give the holder a long put."
+        },
+        {
+          "id": "deriv-02-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An investor buys a call with X = 100 for 6 and a put with X = 95 for 3 on the same stock and expiry. At expiry the stock is 110. The combined profit is closest to:",
+          "options": [
+            "−9",
+            "10",
+            "1"
+          ],
+          "answer": 2,
+          "explanation": "Call payoff = 110 − 100 = 10; put payoff = max(0, 95 − 110) = 0. Profit = 10 − (6 + 3) = **1**. 10 ignores premiums; −9 assumes both options expire worthless."
+        },
+        {
+          "id": "deriv-02-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A trader writes a put with X = 60 for 4. At expiry the stock is 53. The trader's profit is closest to:",
+          "options": [
+            "−7",
+            "+4",
+            "−3"
+          ],
+          "answer": 2,
+          "explanation": "Writer pays max(0, 60 − 53) = 7 and keeps the 4 premium: profit = 4 − 7 = **−3**. −7 ignores the premium; +4 assumes the put expired out of the money."
+        },
+        {
+          "id": "deriv-02-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which position has a *limited* maximum loss and an *unlimited* maximum gain?",
+          "options": [
+            "Long call",
+            "Short call",
+            "Long put"
+          ],
+          "answer": 0,
+          "explanation": "A long call loses at most the premium and gains without limit as S_{T} rises. A short call has unlimited loss; a long put's gain is capped at X − p_{0} because the price cannot fall below zero."
+        },
+        {
+          "id": "deriv-02-q14",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "At initiation, which of the following positions requires an up-front payment by the long party?",
+          "options": [
+            "Long forward",
+            "Long interest rate swap (pay fixed)",
+            "Long put option"
+          ],
+          "answer": 2,
+          "explanation": "Option buyers pay a premium for their right. Forward commitments such as forwards and swaps are priced so their value is zero at initiation, so no money changes hands."
+        },
+        {
+          "id": "deriv-02-q15",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An investor is long a forward at F_{0}(T) = 48 and long a call with X = 48 bought for 2.00. At expiry S_{T} = 45. The combined profit is closest to:",
+          "options": [
+            "−3.00",
+            "−5.00",
+            "−1.00"
+          ],
+          "answer": 1,
+          "explanation": "Forward: 45 − 48 = −3. Call expires worthless: −2.00. Total = **−5.00**. −3.00 forgets the premium; −1.00 wrongly adds the premium as a gain."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-02-f01",
+          "front": "Forward payoff (long / short)",
+          "back": "Long: S_{T} − F_{0}(T). Short: F_{0}(T) − S_{T}. No premium, so payoff = profit."
+        },
+        {
+          "id": "deriv-02-f02",
+          "front": "Call and put payoff",
+          "back": "c_{T} = max(0, S_{T} − X); p_{T} = max(0, X − S_{T})."
+        },
+        {
+          "id": "deriv-02-f03",
+          "front": "Breakevens: long call / long put",
+          "back": "Call: X + c_{0}. Put: X − p_{0}."
+        },
+        {
+          "id": "deriv-02-f04",
+          "front": "Max loss: long call, long put, short put",
+          "back": "Long call: c_{0}. Long put: p_{0}. Short put: X − p_{0}. Short call: unlimited."
+        },
+        {
+          "id": "deriv-02-f05",
+          "front": "Forward commitment vs contingent claim",
+          "back": "Forward commitment (forward, future, swap): obligation both ways, zero value at start, symmetric payoff. Contingent claim (option, CDS): right for buyer, premium paid, asymmetric payoff."
+        },
+        {
+          "id": "deriv-02-f06",
+          "front": "CDS: who pays what",
+          "back": "Protection buyer pays periodic spread; protection seller compensates the buyer's credit loss if a credit event occurs."
+        }
+      ]
+    },
+    {
+      "id": "deriv-03",
+      "lm": 3,
+      "title": "Derivative Benefits, Risks, and Issuer and Investor Uses",
+      "summary": "Why derivatives exist (risk transfer, price discovery, low cost, leverage) and what can go wrong (leverage, opacity, basis, liquidity, counterparty and systemic risk); how issuers use hedge accounting and how investors use derivatives.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "SBR",
+          "FM",
+          "AFM"
+        ],
+        "note": "SBR covered IFRS 9 hedge accounting (fair value, cash flow, net investment hedges); FM/AFM covered hedging motives. New: CFA's list of market-level benefits and risks (price discovery, systemic risk, basis risk) and investor uses."
+      },
+      "lessons": [
+        {
+          "id": "deriv-03-a",
+          "title": "Benefits and risks",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Benefits of derivatives",
+              "body": "- **Risk allocation, transfer and management**: hedgers pass risk to those willing to bear it\n- **Information discovery**: futures and option prices reveal expected prices and volatility\n- **Operational advantages**: lower transaction costs, easy shorting, high liquidity\n- **Leverage / capital efficiency**: large exposure for a small outlay (margin or premium)\n- **Market efficiency**: cheap arbitrage pulls mispriced assets back in line"
+            },
+            {
+              "kind": "concept",
+              "title": "Risks of derivatives",
+              "body": "- **Greater implicit leverage**: small moves cause large gains or losses\n- **Lack of transparency**: complex OTC payoffs are hard to value\n- **Basis risk**: hedge and exposure don't move one-for-one\n- **Liquidity risk**: cash needed for margin calls or settlement before the hedged item pays\n- **Counterparty credit risk**: the other side may default (mainly OTC)\n- **Systemic risk**: excessive speculation and interconnection can spread failures (2008)"
+            },
+            {
+              "kind": "example",
+              "title": "Basis and liquidity risk in action",
+              "body": "An airline hedges jet fuel with crude-oil futures. Crude rises, the futures gain, but jet fuel rises even more: **basis risk** leaves part of the cost unhedged.\n\nSeparately, a farmer short wheat futures faces daily margin calls when wheat rallies, even though the crop will eventually sell at a high price: **liquidity risk**."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Leverage appears on **both** lists: it is a benefit (capital efficiency) and a risk (amplified losses). If a question asks which is *not* a benefit, look for counterparty risk, basis risk or systemic risk."
+            }
+          ]
+        },
+        {
+          "id": "deriv-03-b",
+          "title": "Issuer and investor uses",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Issuers: hedging and hedge accounting",
+              "body": "Companies use derivatives to offset **interest rate, currency and commodity** risk in their operations and financing. **Hedge accounting** lets them match the timing of derivative gains/losses with the hedged item, cutting P&L volatility. To qualify, the hedge relationship must be designated and documented at inception and be expected to be effective."
+            },
+            {
+              "kind": "compare",
+              "title": "Three hedge types",
+              "rows": [
+                [
+                  "Hedge",
+                  "Hedges",
+                  "Derivative gain/loss"
+                ],
+                [
+                  "Fair value",
+                  "Change in fair value of an asset/liability (e.g. fixed-rate debt)",
+                  "P&L, offset by the hedged item's change"
+                ],
+                [
+                  "Cash flow",
+                  "Variable future cash flows (e.g. floating-rate debt, forecast purchase)",
+                  "OCI (effective part), recycled to P&L when hedged item hits P&L"
+                ],
+                [
+                  "Net investment",
+                  "FX exposure of a foreign subsidiary's net assets",
+                  "OCI (translation reserve)"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Investor uses",
+              "body": "- **Replicate** a cash-market exposure cheaply (equity index futures instead of buying 500 shares)\n- **Modify or hedge** risk: shorten duration with bond futures, protect a portfolio with puts\n- **Express views** on direction, volatility or spreads with leverage\n- **Generate income**: write covered calls\n- **Access markets** that are hard or costly to trade directly (commodities, foreign indexes)"
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "SBR taught the IFRS 9 mechanics. CFA L1 only asks the **type**: fixed-rate debt swapped to floating is a **fair value** hedge; floating-rate debt swapped to fixed or a forecast purchase is a **cash flow** hedge; hedging a foreign subsidiary's equity is a **net investment** hedge. Cash flow and net investment hedge gains go to **OCI**."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-03-q01",
+          "lesson": "deriv-03-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Which of the following is *least likely* a benefit of derivatives markets?",
+          "options": [
+            "Information discovery about future prices",
+            "Lower transaction costs than cash markets",
+            "Counterparty credit risk"
+          ],
+          "answer": 2,
+          "explanation": "Counterparty credit risk is a risk, not a benefit. Price/information discovery and operational efficiency (low costs, easy shorting) are classic benefits."
+        },
+        {
+          "id": "deriv-03-q02",
+          "lesson": "deriv-03-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A coffee roaster hedges arabica purchases using robusta futures because no arabica contract exists. The roaster is *most* exposed to:",
+          "options": [
+            "basis risk",
+            "systemic risk",
+            "information risk"
+          ],
+          "answer": 0,
+          "explanation": "Hedging with a related but different underlying means the hedge and exposure may diverge: basis risk. Systemic risk concerns the financial system as a whole; information risk is not a CFA category here."
+        },
+        {
+          "id": "deriv-03-q03",
+          "lesson": "deriv-03-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A grain exporter is short futures to hedge a crop to be sold in six months. Prices rally sharply. The exporter's *most* immediate concern is:",
+          "options": [
+            "liquidity risk from margin calls",
+            "counterparty credit risk from the CCP",
+            "loss of the hedge's price protection"
+          ],
+          "answer": 0,
+          "explanation": "Losses on the short futures are settled daily, so the exporter must find cash now even though the crop's higher value arrives later. CCP credit risk is minimal, and the hedge still works economically."
+        },
+        {
+          "id": "deriv-03-q04",
+          "lesson": "deriv-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A company with fixed-rate bonds enters a receive-fixed, pay-floating interest rate swap to convert the debt to floating. Under hedge accounting this is *most likely* a:",
+          "options": [
+            "cash flow hedge",
+            "net investment hedge",
+            "fair value hedge"
+          ],
+          "answer": 2,
+          "explanation": "The swap offsets changes in the **fair value** of fixed-rate debt caused by interest rate moves. A cash flow hedge would convert variable cash flows to fixed; a net investment hedge relates to a foreign subsidiary."
+        },
+        {
+          "id": "deriv-03-q05",
+          "lesson": "deriv-03-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Under a qualifying cash flow hedge, the effective portion of the derivative's gain or loss is initially recognised in:",
+          "options": [
+            "profit or loss",
+            "other comprehensive income",
+            "retained earnings directly"
+          ],
+          "answer": 1,
+          "explanation": "Cash flow hedge gains/losses go to OCI and are reclassified to P&L when the hedged cash flow affects earnings. P&L treatment applies to fair value hedges; nothing goes straight to retained earnings."
+        },
+        {
+          "id": "deriv-03-q06",
+          "lesson": "deriv-03-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A fund manager buys equity index futures to gain market exposure from new cash inflows before picking individual stocks. This *best* illustrates using derivatives to:",
+          "options": [
+            "replicate a cash-market position efficiently",
+            "hedge a foreign subsidiary",
+            "generate premium income"
+          ],
+          "answer": 0,
+          "explanation": "Index futures give immediate, low-cost market exposure that replicates owning the index. There is no subsidiary, and buying futures does not generate premium income (writing options does)."
+        },
+        {
+          "id": "deriv-03-q07",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A US company hedges the euro-denominated net assets of its German subsidiary with a EUR/USD forward. The gains and losses on the forward are *most likely* recognised in:",
+          "options": [
+            "other comprehensive income",
+            "profit or loss each period",
+            "the cost of inventory"
+          ],
+          "answer": 0,
+          "explanation": "This is a net investment hedge, recognised in OCI (with the translation adjustment). P&L recognition fits fair value hedges; inventory basis adjustment can arise in cash flow hedges of purchases."
+        },
+        {
+          "id": "deriv-03-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which of the following is listed both as a benefit and as a risk of derivatives?",
+          "options": [
+            "Basis risk",
+            "Leverage",
+            "Information discovery"
+          ],
+          "answer": 1,
+          "explanation": "Leverage offers capital efficiency but magnifies losses. Basis risk is only a risk; information discovery is only a benefit."
+        },
+        {
+          "id": "deriv-03-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A manufacturer expects to buy copper in nine months and buys copper futures. Spot copper rises 12% while the futures rise only 9%. The shortfall is *best* attributed to:",
+          "options": [
+            "counterparty credit risk",
+            "basis risk",
+            "systemic risk"
+          ],
+          "answer": 1,
+          "explanation": "The hedge and the exposure moved by different amounts: basis risk. No default occurred (credit risk), and nothing system-wide is implied (systemic risk)."
+        },
+        {
+          "id": "deriv-03-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An issuer with floating-rate bank debt enters a pay-fixed, receive-floating interest rate swap. This hedge is *most likely* designated as a:",
+          "options": [
+            "cash flow hedge",
+            "fair value hedge",
+            "net investment hedge"
+          ],
+          "answer": 0,
+          "explanation": "Floating-rate debt has variable interest cash flows; the swap fixes them, so it is a cash flow hedge. Fair value hedges protect fixed-rate items from value changes."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-03-f01",
+          "front": "Five benefits of derivatives",
+          "back": "Risk transfer/management, information (price) discovery, operational advantages (low cost, shorting, liquidity), leverage/capital efficiency, market efficiency."
+        },
+        {
+          "id": "deriv-03-f02",
+          "front": "Six risks of derivatives",
+          "back": "Greater implicit leverage, lack of transparency, basis risk, liquidity risk, counterparty credit risk, systemic risk."
+        },
+        {
+          "id": "deriv-03-f03",
+          "front": "Fair value hedge",
+          "back": "Hedges value changes of a recognised item (e.g. fixed-rate debt swapped to floating). Derivative and hedged item both through P&L."
+        },
+        {
+          "id": "deriv-03-f04",
+          "front": "Cash flow hedge",
+          "back": "Hedges variable cash flows (floating-rate debt, forecast purchases). Effective portion to OCI, recycled to P&L later."
+        },
+        {
+          "id": "deriv-03-f05",
+          "front": "Net investment hedge",
+          "back": "Hedges FX exposure of a foreign subsidiary's net assets. Gains/losses in OCI with the translation adjustment."
+        },
+        {
+          "id": "deriv-03-f06",
+          "front": "Basis risk",
+          "back": "Risk that the hedge instrument and the hedged exposure do not move one-for-one (different underlying, date or location)."
+        }
+      ]
+    },
+    {
+      "id": "deriv-04",
+      "lm": 4,
+      "title": "Arbitrage, Replication, and the Cost of Carry in Pricing Derivatives",
+      "summary": "Derivatives are priced so that no riskless profit exists: a forward must equal the cost of buying the underlying today and carrying it to expiry, adjusted for income, storage costs and convenience yield.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM's interest rate parity (forward FX rate from interest differentials) is a cost-of-carry argument. New: general no-arbitrage pricing, replication, risk-neutral pricing, and carry adjustments for income, storage and convenience yield."
+      },
+      "lessons": [
+        {
+          "id": "deriv-04-a",
+          "title": "No-arbitrage and replication",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "The law of one price",
+              "body": "**Arbitrage** = a riskless profit with no net investment. Competitive markets eliminate it quickly, so two portfolios with identical future cash flows must have the same price today.\n\nDerivative pricing exploits this: build a **replicating portfolio** of the underlying plus borrowing/lending that matches the derivative's payoff. The derivative's price must equal the replicating portfolio's cost."
+            },
+            {
+              "kind": "concept",
+              "title": "Replicating a long forward",
+              "body": "Borrow S_{0} at the risk-free rate and buy the asset today. At T you own the asset (worth S_{T}) and owe S_{0}(1 + r)^{T}.\n\nNet = S_{T} − S_{0}(1 + r)^{T}, exactly the long forward's payoff if F_{0}(T) = S_{0}(1 + r)^{T}. Any other forward price creates an arbitrage."
+            },
+            {
+              "kind": "compare",
+              "title": "Exploiting a mispriced forward",
+              "rows": [
+                [
+                  "",
+                  "F too high (F > S_{0}(1 + r)^{T})",
+                  "F too low (F < S_{0}(1 + r)^{T})"
+                ],
+                [
+                  "Name",
+                  "Cash-and-carry",
+                  "Reverse cash-and-carry"
+                ],
+                [
+                  "Forward",
+                  "Sell (short) forward",
+                  "Buy (long) forward"
+                ],
+                [
+                  "Spot",
+                  "Borrow and buy asset",
+                  "Short-sell asset, lend proceeds"
+                ],
+                [
+                  "Profit at T",
+                  "F − S_{0}(1 + r)^{T}",
+                  "S_{0}(1 + r)^{T} − F"
+                ]
+              ]
+            },
+            {
+              "kind": "concept",
+              "title": "Risk-neutral pricing",
+              "body": "Because the payoff can be replicated, **investors' risk preferences and expected future spot price don't matter**. Price the derivative as if everyone is risk neutral: discount expected payoffs at the risk-free rate.\n\nSo a forward price is **not** a forecast of the future spot price; it is spot plus carry. Expected returns and risk premiums drop out."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM's interest rate parity (F = S × (1 + r_{price})/(1 + r_{base})) is the same idea for currencies. CFA generalises it: any forward = spot compounded at r, adjusted for what holding the asset costs or pays you. CFA uses (1 + r)^{T} with T in years, not periodic rates."
+            }
+          ]
+        },
+        {
+          "id": "deriv-04-b",
+          "title": "Cost of carry",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Forward price with carry",
+              "formula": "F_{0}(T) = [S_{0} − PV(I) + PV(C)] × (1 + r)^{T}",
+              "where": [
+                [
+                  "PV(I)",
+                  "PV of benefits: dividends, coupons, convenience yield"
+                ],
+                [
+                  "PV(C)",
+                  "PV of costs: storage, insurance"
+                ],
+                [
+                  "r",
+                  "annual risk-free rate"
+                ],
+                [
+                  "T",
+                  "time to expiry in years"
+                ]
+              ],
+              "note": "Benefits of holding the asset lower the forward price; costs raise it."
+            },
+            {
+              "kind": "example",
+              "title": "Forward on a dividend-paying share",
+              "body": "S_{0} = 100, r = 4%, T = 1. A dividend of 2 is paid in 6 months.\n\nPV(I) = 2/1.04^{0.5} = 1.9612\nF_{0}(1) = (100 − 1.9612) × 1.04 = **101.96**\n\nWithout the dividend F would be 104.00.",
+              "calc": "1.04 [yˣ] 0.5 [=] → 1.0198; 2 [÷] 1.0198 [=] → 1.9612; 100 [−] 1.9612 [=] [×] 1.04 [=] → 101.96"
+            },
+            {
+              "kind": "formula",
+              "title": "Continuous compounding version",
+              "formula": "F_{0}(T) = S_{0} × e^{(r + c − i)T}",
+              "where": [
+                [
+                  "c",
+                  "continuous storage cost rate"
+                ],
+                [
+                  "i",
+                  "continuous income yield (e.g. index dividend yield)"
+                ]
+              ],
+              "note": "Index example: S_{0} = 1,500, r = 3%, i = 2%, T = 0.5 → F = 1,500e^{0.005} = 1,507.52."
+            },
+            {
+              "kind": "concept",
+              "title": "Convenience yield",
+              "body": "Holding a physical commodity can bring a non-cash benefit: you can keep a factory running if supply is tight. This **convenience yield** acts like income and lowers the forward price.\n\nWhen convenience yield is large, futures can trade **below** spot (**backwardation**). When carry costs dominate, futures trade above spot (**contango**)."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Sign errors: **subtract** PV of benefits (dividends, coupons, convenience yield), **add** PV of costs (storage, insurance). Then compound the whole bracket at r. Don't compound the dividend from today; discount it from its payment date first."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-04-q01",
+          "lesson": "deriv-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A non-dividend-paying stock trades at 200. The 1-year risk-free rate is 5%. A 1-year forward is quoted at 212. An arbitrageur's riskless profit per share at expiry is closest to:",
+          "options": [
+            "10",
+            "12",
+            "2"
+          ],
+          "answer": 2,
+          "explanation": "Fair F = 200 × 1.05 = 210. The quote is too high, so sell the forward at 212, borrow 200 and buy the stock. At T deliver the stock for 212 and repay 210: profit **2**. 12 ignores financing; 10 is the financing cost itself."
+        },
+        {
+          "id": "deriv-04-q02",
+          "lesson": "deriv-04-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Under no-arbitrage pricing, the forward price of an asset *most likely* depends on:",
+          "options": [
+            "investors' expected future spot price",
+            "investors' risk aversion",
+            "the spot price and the cost of carry"
+          ],
+          "answer": 2,
+          "explanation": "Replication makes the forward = spot plus carry. Expected spot price and risk preferences drop out (risk-neutral pricing)."
+        },
+        {
+          "id": "deriv-04-q03",
+          "lesson": "deriv-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A forward price is below the no-arbitrage price S_{0}(1 + r)^{T}. To exploit this, an arbitrageur would *most likely*:",
+          "options": [
+            "sell the forward, borrow and buy the asset",
+            "buy the forward, short-sell the asset and lend the proceeds",
+            "buy the forward and buy the asset"
+          ],
+          "answer": 1,
+          "explanation": "A cheap forward is bought; the hedge is a short sale of the asset with the proceeds invested at r (reverse cash-and-carry). Selling the forward and buying the asset is the trade for an overpriced forward; buying both is not hedged."
+        },
+        {
+          "id": "deriv-04-q04",
+          "lesson": "deriv-04-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Which statement about risk-neutral pricing of derivatives is *most* accurate?",
+          "options": [
+            "It assumes investors are actually risk neutral.",
+            "Expected payoffs are discounted at the risk-free rate because the derivative can be replicated.",
+            "It requires estimating the asset's expected return."
+          ],
+          "answer": 1,
+          "explanation": "Replication with a riskless hedge lets us value the derivative as if investors were risk neutral, discounting at r. It does not assume investors really are risk neutral, and the asset's expected return is not needed."
+        },
+        {
+          "id": "deriv-04-q05",
+          "lesson": "deriv-04-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A non-income-producing asset trades at 80. The risk-free rate is 3%. The 6-month forward price is closest to:",
+          "options": [
+            "82.40",
+            "80.00",
+            "81.19"
+          ],
+          "answer": 2,
+          "explanation": "F = 80 × 1.03^{0.5} = **81.19**. 82.40 compounds for a full year; 80.00 ignores financing.",
+          "calc": "1.03 [yˣ] 0.5 [=] [×] 80 [=] → 81.19"
+        },
+        {
+          "id": "deriv-04-q06",
+          "lesson": "deriv-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Gold trades at 1,900 per ounce. The PV of storage and insurance for one year is 12. The 1-year risk-free rate is 4%. The 1-year forward price is closest to:",
+          "options": [
+            "1,976.00",
+            "1,988.48",
+            "1,963.52"
+          ],
+          "answer": 1,
+          "explanation": "F = (1,900 + 12) × 1.04 = **1,988.48**. 1,976.00 ignores the storage cost; 1,963.52 subtracts it as if it were a benefit."
+        },
+        {
+          "id": "deriv-04-q07",
+          "lesson": "deriv-04-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An increase in a commodity's convenience yield will *most likely* cause its forward price to:",
+          "options": [
+            "decrease",
+            "increase",
+            "stay the same"
+          ],
+          "answer": 0,
+          "explanation": "Convenience yield is a benefit of holding the physical asset, so it is subtracted in the cost of carry, lowering the forward price."
+        },
+        {
+          "id": "deriv-04-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A stock trades at 60 and will pay a dividend of 1.20 in 3 months. The risk-free rate is 5% (annual compounding). The 6-month forward price is closest to:",
+          "options": [
+            "61.48",
+            "58.80",
+            "60.27"
+          ],
+          "answer": 2,
+          "explanation": "PV(I) = 1.20/1.05^{0.25} = 1.1855. F = (60 − 1.1855) × 1.05^{0.5} = **60.27**. 61.48 ignores the dividend; 58.80 subtracts the dividend but ignores financing.",
+          "calc": "1.05 [yˣ] 0.25 [=] → 1.0123; 1.2 [÷] 1.0123 [=] → 1.1855; 60 [−] 1.1855 [=] [×] 1.05 [yˣ] 0.5 [=] → 60.27"
+        },
+        {
+          "id": "deriv-04-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An equity index is at 4,000 with a continuously compounded dividend yield of 1.5%. The continuously compounded risk-free rate is 4%. The 9-month forward price is closest to:",
+          "options": [
+            "4,075.71",
+            "4,121.82",
+            "4,168.45"
+          ],
+          "answer": 0,
+          "explanation": "F = 4,000 × e^{(0.04 − 0.015) × 0.75} = 4,000 × e^{0.01875} = **4,075.71**. 4,121.82 ignores the dividend yield; 4,168.45 adds it instead of subtracting."
+        },
+        {
+          "id": "deriv-04-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A non-dividend stock trades at 200, the 1-year risk-free rate is 5%, and the 1-year forward is quoted at 205. The arbitrage profit per share at expiry from the correct strategy is closest to:",
+          "options": [
+            "5, by selling the forward and buying the stock with borrowed funds",
+            "10, by buying the forward and short-selling the stock",
+            "5, by buying the forward, short-selling the stock and lending the proceeds"
+          ],
+          "answer": 2,
+          "explanation": "Fair F = 210 > 205, so the forward is cheap: buy it, short the stock and lend 200 to receive 210. At T pay 205 for the stock to close the short: profit 210 − 205 = **5**. Selling the cheap forward loses money; 10 confuses the financing with the profit."
+        },
+        {
+          "id": "deriv-04-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A commodity's futures prices decline as maturity lengthens. This pattern, called backwardation, is *most likely* explained by:",
+          "options": [
+            "high storage costs",
+            "a high convenience yield",
+            "high interest rates"
+          ],
+          "answer": 1,
+          "explanation": "Benefits from holding the physical (convenience yield) reduce the forward price below spot. High storage costs and high rates raise forward prices (contango)."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-04-f01",
+          "front": "No-arbitrage forward price (no carry)",
+          "back": "F_{0}(T) = S_{0}(1 + r)^{T}"
+        },
+        {
+          "id": "deriv-04-f02",
+          "front": "Forward price with carry",
+          "back": "F_{0}(T) = [S_{0} − PV(I) + PV(C)](1 + r)^{T}. Benefits (I) lower F; costs (C) raise F."
+        },
+        {
+          "id": "deriv-04-f03",
+          "front": "Continuous-compounding forward",
+          "back": "F_{0}(T) = S_{0}e^{(r + c − i)T}; equity index: S_{0}e^{(r − δ)T}"
+        },
+        {
+          "id": "deriv-04-f04",
+          "front": "Cash-and-carry vs reverse cash-and-carry",
+          "back": "F too high: sell forward, borrow, buy asset. F too low: buy forward, short asset, lend proceeds."
+        },
+        {
+          "id": "deriv-04-f05",
+          "front": "Risk-neutral pricing",
+          "back": "Because derivatives can be replicated, discount expected payoffs at the risk-free rate; expected spot price and risk preferences are irrelevant."
+        },
+        {
+          "id": "deriv-04-f06",
+          "front": "Contango vs backwardation",
+          "back": "Contango: forward > spot (carry costs dominate). Backwardation: forward < spot (benefits/convenience yield dominate)."
+        }
+      ]
+    },
+    {
+      "id": "deriv-05",
+      "lm": 5,
+      "title": "Pricing and Valuation of Forward Contracts and for an Underlying with Varying Maturities",
+      "summary": "A forward's price is fixed at initiation; its value starts at zero and then moves with the underlying. Interest-rate forwards: implied forward rates and forward rate agreements (FRAs).",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM used FRAs to lock in borrowing rates and computed FRA settlements loosely. New: price vs value distinction, valuing a forward mid-life, implied forward rates from spot rates, and the discounted FRA settlement formula with MRR."
+      },
+      "lessons": [
+        {
+          "id": "deriv-05-a",
+          "title": "Forward price vs forward value",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Price is fixed, value moves",
+              "body": "The **forward price** F_{0}(T) is the delivery price agreed at time 0. It never changes for that contract.\n\nThe **value** of the contract is what it is worth to hold it now. At initiation the price is set so that **V_{0} = 0**. Afterwards the value moves as the spot price (and rates) change."
+            },
+            {
+              "kind": "formula",
+              "title": "Value of a long forward",
+              "formula": "V_{t} = S_{t} − PV(I) + PV(C) − F_{0}(T)/(1 + r)^{T − t}",
+              "where": [
+                [
+                  "S_{t}",
+                  "spot price at time t"
+                ],
+                [
+                  "T − t",
+                  "years remaining"
+                ],
+                [
+                  "PV(I), PV(C)",
+                  "PV at t of remaining benefits and costs"
+                ]
+              ],
+              "note": "At expiry V_{T} = S_{T} − F_{0}(T). Short value = −V_{t}."
+            },
+            {
+              "kind": "example",
+              "title": "Valuing mid-life",
+              "body": "Long forward: S_{0} = 100, r = 4%, T = 1, no carry → F_{0}(1) = 104.\n\nAfter 3 months S_{t} = 103. Remaining time 0.75.\n\nV_{t} = 103 − 104/1.04^{0.75} = 103 − 100.985 = **+2.01** to the long (−2.01 to the short).",
+              "calc": "1.04 [yˣ] 0.75 [=] → 1.0298; 104 [÷] 1.0298 [=] → 100.985; 103 [−] 100.985 [=] → 2.01"
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Don't compute value as S_{t} − F_{0}(T) before expiry: the forward price is paid at T, so it must be **discounted** to t. Only at expiry is value simply S_{T} − F_{0}(T). Equivalently, V_{t} = PV of [F_{t}(T) − F_{0}(T)], the new forward price minus the old."
+            }
+          ]
+        },
+        {
+          "id": "deriv-05-b",
+          "title": "Implied forward rates",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Rates for different maturities",
+              "body": "Spot rates for different maturities imply forward rates between them. Investing for B years at the B-year spot rate must equal investing for A years then rolling over for (B − A) years at the **implied forward rate (IFR)**, otherwise arbitrage exists."
+            },
+            {
+              "kind": "formula",
+              "title": "Implied forward rate",
+              "formula": "(1 + z_{A})^{A} × (1 + IFR_{A,B−A})^{B − A} = (1 + z_{B})^{B}",
+              "where": [
+                [
+                  "z_{A}, z_{B}",
+                  "spot (zero) rates for A and B years"
+                ],
+                [
+                  "IFR_{A,B−A}",
+                  "rate for B − A years starting in A years, e.g. '1y1y'"
+                ]
+              ]
+            },
+            {
+              "kind": "example",
+              "title": "1y1y forward",
+              "body": "z_{1} = 3%, z_{2} = 4%.\n\n1 + IFR = 1.04^{2}/1.03 = 1.050097 → IFR_{1,1} = **5.01%**\n\nApproximation: 2 × 4% − 3% = 5%. Use the exact formula on the exam."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "When the forward period is more than one year, take the root: IFR = [(1 + z_{B})^{B}/(1 + z_{A})^{A}]^{1/(B − A)} − 1. Forgetting the root gives a multi-year total return, a classic distractor."
+            }
+          ]
+        },
+        {
+          "id": "deriv-05-c",
+          "title": "Forward rate agreements (FRAs)",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "What an FRA does",
+              "body": "An **FRA** is a forward on an interest rate. It fixes a rate on a notional amount (NA) for a future period. A **3×6 FRA** covers a 3-month period starting in 3 months.\n\nThe **long** (pay-fixed, receive-floating) gains if the market reference rate (MRR) rises above the FRA rate: used by a future borrower. The short gains if rates fall: used by a future lender."
+            },
+            {
+              "kind": "formula",
+              "title": "FRA settlement to the long (pay-fixed)",
+              "formula": "Payment = (MRR − FRA) × τ × NA / (1 + MRR × τ)",
+              "where": [
+                [
+                  "MRR",
+                  "market reference rate set at FRA expiry"
+                ],
+                [
+                  "τ",
+                  "accrual fraction, e.g. 90/360"
+                ],
+                [
+                  "NA",
+                  "notional amount"
+                ]
+              ],
+              "note": "Settled at the start of the rate period, so the interest difference is discounted at MRR."
+            },
+            {
+              "kind": "example",
+              "title": "FRA settlement",
+              "body": "Long 3×6 FRA at 2.5%, NA = 10,000,000, τ = 0.25. In 3 months MRR = 3.0%.\n\nInterest difference = (0.030 − 0.025) × 0.25 × 10m = 12,500\nSettlement = 12,500/(1 + 0.03 × 0.25) = **12,406.95** received by the long."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM called the hedger a 'buyer' of an FRA without much discounting. CFA: long FRA = pay fixed / receive MRR; payment is made at FRA expiry (start of the loan period), so **discount by (1 + MRR × τ)**. Don't forget τ (e.g. 90/360) either."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-05-q01",
+          "lesson": "deriv-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "The value of a forward contract to the long at initiation is *most likely*:",
+          "options": [
+            "equal to the forward price",
+            "zero",
+            "equal to the spot price"
+          ],
+          "answer": 1,
+          "explanation": "The forward price is set so neither side pays anything to enter: V_{0} = 0. The forward price is a contract term, not a value; the spot price is the cost of the underlying, not of the contract."
+        },
+        {
+          "id": "deriv-05-q02",
+          "lesson": "deriv-05-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A forward has F_{0}(T) = 50. At expiry the spot price is 47. The value of the contract to the short is:",
+          "options": [
+            "+3",
+            "−3",
+            "0"
+          ],
+          "answer": 0,
+          "explanation": "Short value at expiry = F_{0}(T) − S_{T} = 50 − 47 = **+3**. −3 is the long's value; 0 applies only at initiation."
+        },
+        {
+          "id": "deriv-05-q03",
+          "lesson": "deriv-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 1-year forward on a non-dividend stock was entered at 104 when the risk-free rate was 4%. Six months later the stock is 98 and the rate is still 4%. The value to the long is closest to:",
+          "options": [
+            "−6.00",
+            "−3.98",
+            "−7.90"
+          ],
+          "answer": 1,
+          "explanation": "V_{t} = 98 − 104/1.04^{0.5} = 98 − 101.98 = **−3.98**. −6.00 forgets to discount the forward price; −7.90 discounts the spot price instead of the forward price (96.10 − 104).",
+          "calc": "1.04 [yˣ] 0.5 [=] → 1.0198; 104 [÷] 1.0198 [=] → 101.98; 98 [−] 101.98 [=] → −3.98"
+        },
+        {
+          "id": "deriv-05-q04",
+          "lesson": "deriv-05-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Holding all else equal, an increase in the spot price of the underlying after initiation will *most likely*:",
+          "options": [
+            "increase the value of a long forward but leave its forward price unchanged",
+            "increase both the value and the forward price of the existing contract",
+            "decrease the value of a long forward"
+          ],
+          "answer": 0,
+          "explanation": "The contract's forward price is fixed at initiation. A higher spot price raises the long's value (V_{t} rises one-for-one with S_{t}). New contracts would have a higher forward price, but the existing one does not."
+        },
+        {
+          "id": "deriv-05-q05",
+          "lesson": "deriv-05-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "The 1-year spot rate is 2.0% and the 3-year spot rate is 3.0%. The 1y2y implied forward rate (annual) is closest to:",
+          "options": [
+            "3.50%",
+            "7.13%",
+            "2.50%"
+          ],
+          "answer": 0,
+          "explanation": "(1.03^{3}/1.02)^{1/2} − 1 = (1.071301)^{0.5} − 1 = **3.50%**. 7.13% forgets to annualise over 2 years; 2.50% is a simple average of the spot rates.",
+          "calc": "1.03 [yˣ] 3 [=] [÷] 1.02 [=] [√x] [−] 1 [=] → 0.0350"
+        },
+        {
+          "id": "deriv-05-q06",
+          "lesson": "deriv-05-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "If the spot yield curve is upward sloping, implied forward rates are *most likely*:",
+          "options": [
+            "below the spot rates",
+            "equal to the spot rates",
+            "above the spot rates"
+          ],
+          "answer": 2,
+          "explanation": "Longer spot rates are averages of shorter rates and forwards. If longer spot rates are higher, the forward rates pulling them up must be higher still."
+        },
+        {
+          "id": "deriv-05-q07",
+          "lesson": "deriv-05-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A company will borrow USD 20 million in 6 months for 3 months and fears rising rates. The appropriate FRA position is:",
+          "options": [
+            "short a 6×9 FRA",
+            "long a 6×9 FRA",
+            "long a 3×6 FRA"
+          ],
+          "answer": 1,
+          "explanation": "A future borrower is hedged by going long (pay fixed, receive MRR), which pays off if rates rise. The period starts in 6 months and ends in 9, so 6×9. A 3×6 FRA covers the wrong period; short is the lender's hedge."
+        },
+        {
+          "id": "deriv-05-q08",
+          "lesson": "deriv-05-c",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "A trader is long a 6×9 FRA at 3.2% on NA of 20,000,000 (τ = 0.25). At expiry MRR is 2.8%. The settlement to the trader is closest to:",
+          "options": [
+            "−19,861",
+            "−20,000",
+            "+19,861"
+          ],
+          "answer": 0,
+          "explanation": "(0.028 − 0.032) × 0.25 × 20m = −20,000, discounted: −20,000/(1 + 0.028 × 0.25) = **−19,861**. The long pays because rates fell. −20,000 forgets discounting; +19,861 has the sign reversed."
+        },
+        {
+          "id": "deriv-05-q09",
+          "lesson": "deriv-05-c",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "FRA settlement amounts are discounted using the:",
+          "options": [
+            "FRA fixed rate",
+            "market reference rate set at FRA expiry",
+            "risk-free rate at FRA initiation"
+          ],
+          "answer": 1,
+          "explanation": "The interest difference relates to a period ending later, but cash moves at FRA expiry, so it is discounted at the MRR for that period, the rate observed at settlement."
+        },
+        {
+          "id": "deriv-05-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A 1-year forward on a stock was priced at 51.48 when the stock was 50 and a dividend of 1.00 was expected in 6 months (r = 5%). Three months later the stock is 53, the dividend is still expected in 3 months and r = 5%. The value to the long is closest to:",
+          "options": [
+            "3.37",
+            "1.52",
+            "2.38"
+          ],
+          "answer": 2,
+          "explanation": "V_{t} = 53 − 1.00/1.05^{0.25} − 51.48/1.05^{0.75} = 53 − 0.988 − 49.630 = **2.38**. 3.37 ignores the dividend; 1.52 = 53 − 51.48 ignores discounting and the dividend."
+        },
+        {
+          "id": "deriv-05-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "The 2-year spot rate is 2.5% and the 5-year spot rate is 3.5%. The 2y3y implied forward rate is closest to:",
+          "options": [
+            "13.05%",
+            "4.17%",
+            "3.00%"
+          ],
+          "answer": 1,
+          "explanation": "(1.035^{5}/1.025^{2})^{1/3} − 1 = **4.17%**. 13.05% is the total 3-year return, not annualised; 3.00% averages the spot rates."
+        },
+        {
+          "id": "deriv-05-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A forward contract on an asset with storage costs is valued mid-life. Compared with an otherwise identical asset with no storage costs, the value of the long position, for a given spot price and forward price, is *most likely*:",
+          "options": [
+            "the same",
+            "lower",
+            "higher"
+          ],
+          "answer": 2,
+          "explanation": "V_{t} = S_{t} − PV(I) + PV(C) − PV(F_{0}(T)). The long avoids paying the remaining storage costs that an owner would bear, so +PV(C) raises the long's value."
+        },
+        {
+          "id": "deriv-05-q13",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A bank is short a 3×6 FRA at 4.0% on NA of 10 million. At FRA expiry, the 3-month MRR is 4.4%. The bank will *most likely*:",
+          "options": [
+            "receive a payment",
+            "neither pay nor receive",
+            "make a payment"
+          ],
+          "answer": 2,
+          "explanation": "Rates rose above the FRA rate, so the long (pay fixed) gains and the short pays: (0.044 − 0.040) × 0.25 × 10m/(1 + 0.044 × 0.25) ≈ 9,891."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-05-f01",
+          "front": "Forward price vs value",
+          "back": "Price F_{0}(T) is fixed at initiation. Value is 0 at initiation, then V_{t} = S_{t} − PV(I) + PV(C) − F_{0}(T)/(1 + r)^{T − t}; at expiry S_{T} − F_{0}(T)."
+        },
+        {
+          "id": "deriv-05-f02",
+          "front": "Implied forward rate",
+          "back": "(1 + z_{A})^{A}(1 + IFR)^{B − A} = (1 + z_{B})^{B}; take the (B − A) root."
+        },
+        {
+          "id": "deriv-05-f03",
+          "front": "FRA notation 3×6",
+          "back": "Rate period starts in 3 months and ends in 6 months (a 3-month rate)."
+        },
+        {
+          "id": "deriv-05-f04",
+          "front": "FRA settlement (long = pay fixed)",
+          "back": "(MRR − FRA) × τ × NA/(1 + MRR × τ), paid at FRA expiry."
+        },
+        {
+          "id": "deriv-05-f05",
+          "front": "Who goes long an FRA?",
+          "back": "A future borrower (gains if rates rise). A future lender goes short."
+        }
+      ]
+    },
+    {
+      "id": "deriv-06",
+      "lm": 6,
+      "title": "Pricing and Valuation of Futures Contracts",
+      "summary": "Futures are standardised forwards settled daily, so their value resets to zero after each mark-to-market. Futures and forward prices differ when the underlying is correlated with interest rates. Interest rate futures are quoted as 100 minus the rate.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM/AFM covered margin and interest rate futures hedges (ticks, basis). New: daily settlement resets value to zero, why futures and forward prices differ (rate correlation), and BPV of an interest rate future."
+      },
+      "lessons": [
+        {
+          "id": "deriv-06-a",
+          "title": "Mark-to-market and margin",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Daily settlement",
+              "body": "Each day the CCP sets a **settlement price**. Gains and losses since yesterday are paid in cash into or out of each trader's **margin account**. The contract is effectively rewritten at the new price every day.\n\nSo a futures contract's **value is zero after each settlement**; value builds up only within a day."
+            },
+            {
+              "kind": "concept",
+              "title": "Margin terms",
+              "body": "- **Initial margin**: deposit to open a position\n- **Maintenance margin**: minimum balance\n- **Margin call**: if the balance falls below maintenance, the trader must top up **back to initial margin** with **variation margin**\n\nMargin is a performance bond, not a down payment."
+            },
+            {
+              "kind": "example",
+              "title": "Margin call",
+              "body": "Long 1 contract at 120, multiplier 100. Initial margin 5,000; maintenance 3,500.\n\nDay 1 settles at 112: loss 800 → balance 4,200 (no call).\nDay 2 settles at 104: loss 800 → balance 3,400 < 3,500.\n\nVariation margin = 5,000 − 3,400 = **1,600**."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Top up to the **initial** margin, not the maintenance margin. Answering 100 (3,500 − 3,400) is the classic wrong answer."
+            }
+          ]
+        },
+        {
+          "id": "deriv-06-b",
+          "title": "Futures vs forward prices and interest rate futures",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "When futures ≠ forward prices",
+              "body": "With constant or non-random rates, futures and forward prices are equal. If the underlying is **positively correlated with interest rates**, daily gains on a long future arrive when rates are high (reinvested at high rates) and losses when rates are low (financed cheaply). Longs prefer the future, so **futures price > forward price**.\n\nNegative correlation → futures price < forward price."
+            },
+            {
+              "kind": "formula",
+              "title": "Interest rate futures",
+              "formula": "Quoted price = 100 − (100 × MRR)",
+              "where": [
+                [
+                  "MRR",
+                  "implied market reference rate for the period (e.g. 3-month SOFR)"
+                ]
+              ],
+              "note": "A long futures position gains when rates fall (price rises)."
+            },
+            {
+              "kind": "formula",
+              "title": "Basis point value (BPV) of an IR future",
+              "formula": "BPV = NA × 0.01% × period (e.g. 90/360)",
+              "where": [
+                [
+                  "NA",
+                  "contract notional, e.g. 1,000,000"
+                ]
+              ],
+              "note": "1,000,000 × 0.0001 × 0.25 = 25 per contract per basis point."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "Same pricing convention as FM (100 − rate). In FM a borrower **sells** interest rate futures; that still holds. CFA adds BPV and asks which way futures vs forward prices differ: **positive correlation with rates → futures price higher**."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-06-q01",
+          "lesson": "deriv-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A trader is long one futures contract at 120 (multiplier 100). Initial margin is 5,000 and maintenance margin 3,500. Settlement prices are 112 and then 104. The variation margin required after day 2 is closest to:",
+          "options": [
+            "100",
+            "1,600",
+            "3,400"
+          ],
+          "answer": 1,
+          "explanation": "Losses: (120 − 112) × 100 = 800 and (112 − 104) × 100 = 800, so balance = 3,400, below 3,500. Top up to initial: 5,000 − 3,400 = **1,600**. 100 tops up only to maintenance; 3,400 is the balance."
+        },
+        {
+          "id": "deriv-06-q02",
+          "lesson": "deriv-06-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "Immediately after daily settlement, the value of a futures contract is:",
+          "options": [
+            "zero",
+            "equal to the cumulative gain since initiation",
+            "equal to the initial margin"
+          ],
+          "answer": 0,
+          "explanation": "Gains and losses are paid out each day and the contract is reset at the settlement price, so its value returns to zero. Cumulative gains sit in the margin account, not in the contract."
+        },
+        {
+          "id": "deriv-06-q03",
+          "lesson": "deriv-06-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A trader is short 2 index futures at 2,150 with a multiplier of 50. Settlement prices on the next two days are 2,138 and 2,161. The cumulative mark-to-market gain (loss) over the two days is closest to:",
+          "options": [
+            "+1,200",
+            "−2,300",
+            "−1,100"
+          ],
+          "answer": 2,
+          "explanation": "Day 1: (2,150 − 2,138) × 50 × 2 = +1,200. Day 2: (2,138 − 2,161) × 50 × 2 = −2,300. Total **−1,100** = (2,150 − 2,161) × 100. The other options are single-day figures."
+        },
+        {
+          "id": "deriv-06-q04",
+          "lesson": "deriv-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "If an underlying asset's price is positively correlated with interest rates, its futures price is *most likely*:",
+          "options": [
+            "equal to the forward price",
+            "lower than the forward price",
+            "higher than the forward price"
+          ],
+          "answer": 2,
+          "explanation": "Long futures gains are reinvested at higher rates and losses financed at lower rates, making futures more attractive to longs, so they trade at a higher price than equivalent forwards."
+        },
+        {
+          "id": "deriv-06-q05",
+          "lesson": "deriv-06-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A 3-month interest rate futures contract is quoted at 96.80. The implied MRR is:",
+          "options": [
+            "3.20%",
+            "96.80%",
+            "0.80%"
+          ],
+          "answer": 0,
+          "explanation": "MRR = (100 − 96.80)/100 = **3.20%**. The other options misread the quote."
+        },
+        {
+          "id": "deriv-06-q06",
+          "lesson": "deriv-06-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Each 3-month interest rate futures contract has a notional of 1,000,000. The BPV of a position in 5 contracts is closest to:",
+          "options": [
+            "25",
+            "125",
+            "500"
+          ],
+          "answer": 1,
+          "explanation": "BPV per contract = 1,000,000 × 0.0001 × 90/360 = 25; × 5 = **125**. 25 is one contract; 500 uses a 1-year period."
+        },
+        {
+          "id": "deriv-06-q07",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A treasurer is long 10 three-month interest rate futures (NA 1,000,000 each). The implied MRR rises by 20 basis points. The change in value of the position is closest to:",
+          "options": [
+            "−5,000",
+            "+5,000",
+            "−500"
+          ],
+          "answer": 0,
+          "explanation": "BPV = 25 per contract; 10 contracts × 20 bp × 25 = 5,000. Rates up → futures price down → the long **loses 5,000**. −500 is one contract; +5,000 has the wrong sign."
+        },
+        {
+          "id": "deriv-06-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about futures and forwards is *most* accurate?",
+          "options": [
+            "Futures prices always equal forward prices on the same underlying.",
+            "If interest rates are constant, futures and forward prices are equal.",
+            "Futures are more exposed to counterparty credit risk."
+          ],
+          "answer": 1,
+          "explanation": "Price differences come from the interaction of daily settlement with random interest rates; with constant rates the prices are equal. Futures are cleared through a CCP, so they have less credit risk."
+        },
+        {
+          "id": "deriv-06-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Why does a futures contract's value differ from a forward's value during its life, even if the futures and forward prices are equal?",
+          "options": [
+            "Futures gains and losses are realised daily, resetting the contract's value to zero",
+            "Futures have no underlying",
+            "Forward contracts are revalued by the exchange daily"
+          ],
+          "answer": 0,
+          "explanation": "Daily mark-to-market moves accrued gains into the margin account, so the futures contract's value resets to zero, while a forward accumulates value until expiry. Both have underlyings; forwards are not exchange-settled."
+        },
+        {
+          "id": "deriv-06-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A company plans to borrow at a floating rate in 3 months. To hedge with 3-month interest rate futures it should *most likely*:",
+          "options": [
+            "buy futures, because futures prices rise when rates rise",
+            "buy futures, because it will be a borrower",
+            "sell futures, because futures prices fall when rates rise"
+          ],
+          "answer": 2,
+          "explanation": "Price = 100 − rate, so rising rates lower the price; a short futures position gains, offsetting higher borrowing cost. Futures prices do not rise with rates, and the borrower's hedge is short, not long."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-06-f01",
+          "front": "Futures value after daily settlement",
+          "back": "Zero: gains/losses are moved into margin accounts and the contract is reset at the settlement price."
+        },
+        {
+          "id": "deriv-06-f02",
+          "front": "Margin call amount",
+          "back": "When balance < maintenance margin, deposit variation margin to restore the **initial** margin."
+        },
+        {
+          "id": "deriv-06-f03",
+          "front": "Futures vs forward price",
+          "back": "Positive correlation of underlying with rates → futures price > forward price. Negative → futures < forward. Non-random rates → equal."
+        },
+        {
+          "id": "deriv-06-f04",
+          "front": "Interest rate futures price",
+          "back": "Price = 100 − (100 × MRR). Rates up → price down."
+        },
+        {
+          "id": "deriv-06-f05",
+          "front": "BPV of an interest rate future",
+          "back": "NA × 0.0001 × period fraction. 1m × 0.0001 × 0.25 = 25."
+        }
+      ]
+    },
+    {
+      "id": "deriv-07",
+      "lm": 7,
+      "title": "Pricing and Valuation of Interest Rate and Other Swaps",
+      "summary": "A swap is a portfolio of forward commitments. Its price is the fixed swap rate that makes its value zero at initiation; afterwards its value moves with market swap rates.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "FM",
+          "AFM"
+        ],
+        "note": "FM/AFM used interest rate swaps to switch fixed and floating debt and computed net settlement. New: pricing the fixed swap rate from discount factors and valuing an existing swap after rates move."
+      },
+      "lessons": [
+        {
+          "id": "deriv-07-a",
+          "title": "Swaps as a series of forwards",
+          "minutes": 7,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Plain-vanilla interest rate swap",
+              "body": "Two parties exchange interest on a notional (NA) that is never exchanged. The **fixed-rate payer** pays the **swap rate**; the floating-rate payer pays the **MRR**. Only the **net** amount changes hands each period.\n\nPay-fixed gains when rates rise; receive-fixed gains when rates fall."
+            },
+            {
+              "kind": "example",
+              "title": "Net settlement",
+              "body": "Pay-fixed at 3.0%, receive MRR, NA = 10,000,000, semiannual (τ = 0.5). MRR for the period = 3.6%.\n\nNet = (0.036 − 0.030) × 0.5 × 10m = **30,000** received by the fixed payer."
+            },
+            {
+              "kind": "concept",
+              "title": "Swap = portfolio of forwards",
+              "body": "Each settlement is like an FRA at the same fixed rate. But a single swap rate applies to all periods, while implied forward rates differ by period. So individual 'FRAs' are **off-market** (non-zero value): some positive, some negative, summing to **zero at initiation**.\n\nAlso: pay-fixed = long a floating-rate bond + short a fixed-rate bond."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "FM taught swaps as a tool to cut borrowing costs (comparative advantage). CFA asks how a swap is **priced** (the fixed rate) and **valued** later. Comparative advantage is not tested at CFA L1."
+            }
+          ]
+        },
+        {
+          "id": "deriv-07-b",
+          "title": "Swap rate and swap value",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Fixed swap rate (price)",
+              "formula": "s_{N} = (1 − DF_{N}) / (DF_{1} + DF_{2} + … + DF_{N})",
+              "where": [
+                [
+                  "DF_{i}",
+                  "discount factor = 1/(1 + z_{i})^{i}"
+                ],
+                [
+                  "z_{i}",
+                  "spot (zero) rate for period i"
+                ]
+              ],
+              "note": "Logic: a fixed bond paying s_{N} must be worth par, like a floating-rate bond at reset."
+            },
+            {
+              "kind": "example",
+              "title": "Pricing a 3-year swap",
+              "body": "Annual zero rates: 2.0%, 2.5%, 3.0%.\n\nDFs: 0.98039, 0.95181, 0.91514; sum = 2.84735\n\ns_{3} = (1 − 0.91514)/2.84735 = **2.98%**\n\nThe swap rate is close to, but below, the 3-year zero rate when the curve slopes up."
+            },
+            {
+              "kind": "formula",
+              "title": "Value of an existing swap (pay-fixed)",
+              "formula": "V = (s_{new} − s_{old}) × ΣDF_{remaining} × NA",
+              "where": [
+                [
+                  "s_{new}",
+                  "current swap rate for the remaining tenor"
+                ],
+                [
+                  "s_{old}",
+                  "fixed rate in the contract"
+                ]
+              ],
+              "note": "Receive-fixed value is the negative."
+            },
+            {
+              "kind": "example",
+              "title": "Valuing after rates rise",
+              "body": "Pay-fixed at 2.5% on NA 50m, 2 years left. Current 2-year swap rate 3.0%; DFs 0.971, 0.943 (sum 1.914).\n\nV = (0.030 − 0.025) × 1.914 × 50m = **+478,500** to the fixed payer: they locked in paying less than today's rate."
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "**Price** = the fixed swap rate (set so value = 0 at initiation). **Value** = what the position is worth later. Remember to multiply by the **sum of remaining DFs**, not just the number of years."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-07-q01",
+          "lesson": "deriv-07-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A company pays fixed 3.0% and receives MRR on NA of 10,000,000, settled semiannually. MRR for the period is 3.6%. The net settlement to the company is closest to:",
+          "options": [
+            "60,000 received",
+            "30,000 received",
+            "30,000 paid"
+          ],
+          "answer": 1,
+          "explanation": "(0.036 − 0.030) × 0.5 × 10m = **30,000**, received because MRR exceeds the fixed rate. 60,000 forgets the half-year fraction; 'paid' has the direction reversed."
+        },
+        {
+          "id": "deriv-07-q02",
+          "lesson": "deriv-07-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A pay-fixed, receive-floating interest rate swap is economically equivalent to:",
+          "options": [
+            "a long fixed-rate bond and a short floating-rate bond",
+            "a long floating-rate bond and a short fixed-rate bond",
+            "a long call on interest rates"
+          ],
+          "answer": 1,
+          "explanation": "The fixed payer receives floating (like owning a floater) and pays fixed (like having issued a fixed bond). The reverse describes receive-fixed. A swap is a forward commitment, not an option."
+        },
+        {
+          "id": "deriv-07-q03",
+          "lesson": "deriv-07-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "When a swap is viewed as a series of FRAs at the single swap rate, the values of the individual FRAs at initiation are *most likely*:",
+          "options": [
+            "each equal to zero",
+            "non-zero but summing to zero",
+            "all positive to the fixed payer"
+          ],
+          "answer": 1,
+          "explanation": "One fixed rate is used for every period, but implied forward rates differ, so each implicit FRA is off-market. Their values offset so that the swap's total value is zero at initiation."
+        },
+        {
+          "id": "deriv-07-q04",
+          "lesson": "deriv-07-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Discount factors for years 1, 2 and 3 are 0.97, 0.94 and 0.91. The 3-year annual-pay swap rate is closest to:",
+          "options": [
+            "3.00%",
+            "4.71%",
+            "3.19%"
+          ],
+          "answer": 2,
+          "explanation": "s = (1 − 0.91)/(0.97 + 0.94 + 0.91) = 0.09/2.82 = **3.19%**. 3.00% divides by 3 years instead of ΣDF; 4.71% omits the final DF from the denominator."
+        },
+        {
+          "id": "deriv-07-q05",
+          "lesson": "deriv-07-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A firm pays fixed 2.5% on a swap with NA 50 million and 2 annual payments remaining. The current 2-year swap rate is 3.0%, and DFs are 0.971 and 0.943. The value of the swap to the firm is closest to:",
+          "options": [
+            "+478,500",
+            "−478,500",
+            "+250,000"
+          ],
+          "answer": 0,
+          "explanation": "V = (0.030 − 0.025) × (0.971 + 0.943) × 50m = **+478,500**; rates rose, so paying the old lower fixed rate is valuable. −478,500 is the receive-fixed value; 250,000 ignores the second year and discounting."
+        },
+        {
+          "id": "deriv-07-q06",
+          "lesson": "deriv-07-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "At initiation, the price of an interest rate swap refers to:",
+          "options": [
+            "the fixed swap rate that makes the swap's value zero",
+            "the notional amount",
+            "the upfront payment by the fixed payer"
+          ],
+          "answer": 0,
+          "explanation": "The swap's 'price' is its fixed rate, set so neither side pays at inception. The notional is not exchanged, and there is no upfront payment in a plain-vanilla swap."
+        },
+        {
+          "id": "deriv-07-q07",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Annual spot rates for years 1, 2 and 3 are 1.5%, 2.0% and 2.5%. The 3-year annual-pay swap fixed rate is closest to:",
+          "options": [
+            "2.00%",
+            "2.50%",
+            "2.48%"
+          ],
+          "answer": 2,
+          "explanation": "DFs = 1/1.015 = 0.98522, 1/1.02^{2} = 0.96117, 1/1.025^{3} = 0.92860; sum = 2.87499. s = (1 − 0.92860)/2.87499 = **2.48%**. 2.50% uses the 3-year spot rate; 2.00% averages the spot rates."
+        },
+        {
+          "id": "deriv-07-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "An investor receives fixed 2.10% on a swap with NA 100 million and 3 annual payments remaining. The current 3-year swap rate is 2.48% and the remaining DFs sum to 2.875. The value of the swap to the investor is closest to:",
+          "options": [
+            "+1,092,500",
+            "−380,000",
+            "−1,092,500"
+          ],
+          "answer": 2,
+          "explanation": "Pay-fixed value = (0.0248 − 0.0210) × 2.875 × 100m = 1,092,500, so receive-fixed value = **−1,092,500**: the investor receives below today's market rate. −380,000 ignores discounting and the number of periods."
+        },
+        {
+          "id": "deriv-07-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Holding all else equal, a decline in market swap rates after initiation will *most likely*:",
+          "options": [
+            "increase the value of a receive-fixed swap",
+            "increase the value of a pay-fixed swap",
+            "leave both positions' values unchanged"
+          ],
+          "answer": 0,
+          "explanation": "The receive-fixed party keeps receiving the older, higher fixed rate, which is now above market, so its value rises; the pay-fixed side loses. Values change whenever swap rates move."
+        },
+        {
+          "id": "deriv-07-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which of the following *best* describes an interest rate swap?",
+          "options": [
+            "A contingent claim with an upfront premium",
+            "An exchange-traded futures strip",
+            "A forward commitment equivalent to a portfolio of FRAs"
+          ],
+          "answer": 2,
+          "explanation": "Both parties are obliged to make payments, and each settlement resembles an FRA. There is no premium, and swaps are mainly OTC, not exchange-traded."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-07-f01",
+          "front": "Fixed swap rate from DFs",
+          "back": "s_{N} = (1 − DF_{N})/ΣDF_{i}"
+        },
+        {
+          "id": "deriv-07-f02",
+          "front": "Value of pay-fixed swap",
+          "back": "(s_{new} − s_{old}) × ΣDF_{remaining} × NA. Receive-fixed = negative of this."
+        },
+        {
+          "id": "deriv-07-f03",
+          "front": "Swap as bonds",
+          "back": "Pay-fixed = long floating-rate bond + short fixed-rate bond. Receive-fixed = the reverse."
+        },
+        {
+          "id": "deriv-07-f04",
+          "front": "Swap as forwards",
+          "back": "Series of off-market FRAs at one fixed rate; individual values non-zero, sum = 0 at initiation."
+        },
+        {
+          "id": "deriv-07-f05",
+          "front": "Who gains when rates rise?",
+          "back": "Pay-fixed (receives MRR, locked a low fixed rate). Receive-fixed loses."
+        }
+      ]
+    },
+    {
+      "id": "deriv-08",
+      "lm": 8,
+      "title": "Pricing and Valuation of Options",
+      "summary": "Option value = exercise value + time value. No-arbitrage sets lower and upper bounds on option prices, and six factors (S, X, T, r, σ, income/carry) drive value.",
+      "acca": {
+        "overlap": "partial",
+        "papers": [
+          "AFM"
+        ],
+        "note": "AFM covered intrinsic vs time value and the Black–Scholes determinants. New: CFA's 'exercise value' terminology, no-arbitrage lower/upper bounds, and why option replication differs from forward replication."
+      },
+      "lessons": [
+        {
+          "id": "deriv-08-a",
+          "title": "Exercise value, moneyness and time value",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Moneyness",
+              "body": "- Call: **in the money** if S > X, **at the money** if S = X, **out of the money** if S < X\n- Put: in the money if S < X, out of the money if S > X\n\n**Exercise value** (intrinsic value) = what you'd get exercising now: max(0, S − X) for a call, max(0, X − S) for a put."
+            },
+            {
+              "kind": "formula",
+              "title": "Option value",
+              "formula": "Option value = exercise value + time value",
+              "where": [
+                [
+                  "Time value",
+                  "extra paid for the chance of a better payoff before expiry"
+                ]
+              ],
+              "note": "Time value → 0 at expiry (time value decay)."
+            },
+            {
+              "kind": "example",
+              "title": "Splitting the premium",
+              "body": "Call: S = 52, X = 50, price 5.60.\n\nExercise value = 52 − 50 = 2.00\nTime value = 5.60 − 2.00 = **3.60**\n\nAn out-of-the-money option's whole price is time value."
+            },
+            {
+              "kind": "concept",
+              "title": "Replication: forwards vs options",
+              "body": "A forward's linear payoff is replicated **statically**: buy the asset, borrow, hold to expiry. An option's kinked payoff needs a hedge ratio that **changes** with S and time, so replication must be rebalanced. The risk-neutral pricing logic is the same; the hedge is just dynamic."
+            },
+            {
+              "kind": "tip",
+              "title": "ACCA vs CFA",
+              "body": "AFM said 'intrinsic value'; CFA says **exercise value**. Same meaning. CFA also tests no-arbitrage bounds, which AFM did not."
+            }
+          ]
+        },
+        {
+          "id": "deriv-08-b",
+          "title": "Bounds and value drivers",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "European lower bounds",
+              "formula": "c_{0} ≥ max[0, S_{0} − X/(1 + r)^{T}]    p_{0} ≥ max[0, X/(1 + r)^{T} − S_{0}]",
+              "where": [
+                [
+                  "X/(1 + r)^{T}",
+                  "PV of the exercise price"
+                ]
+              ],
+              "note": "Bound uses PV(X), not X: you pay X only at expiry."
+            },
+            {
+              "kind": "example",
+              "title": "Lower bound example",
+              "body": "S_{0} = 52, X = 50, r = 5%, T = 0.5.\n\nPV(X) = 50/1.05^{0.5} = 48.795\nCall lower bound = 52 − 48.795 = **3.20** (not 2.00)\n\nPut with X = 55, S_{0} = 50: 55/1.05^{0.5} − 50 = **3.67**."
+            },
+            {
+              "kind": "compare",
+              "title": "Upper bounds",
+              "rows": [
+                [
+                  "",
+                  "European",
+                  "American"
+                ],
+                [
+                  "Call",
+                  "S_{0}",
+                  "S_{0}"
+                ],
+                [
+                  "Put",
+                  "X/(1 + r)^{T}",
+                  "X"
+                ]
+              ]
+            },
+            {
+              "kind": "compare",
+              "title": "What raises option value",
+              "rows": [
+                [
+                  "Increase in…",
+                  "Call",
+                  "Put"
+                ],
+                [
+                  "Underlying price S",
+                  "↑",
+                  "↓"
+                ],
+                [
+                  "Exercise price X",
+                  "↓",
+                  "↑"
+                ],
+                [
+                  "Time to expiry T",
+                  "↑",
+                  "↑ (usually)"
+                ],
+                [
+                  "Risk-free rate r",
+                  "↑",
+                  "↓"
+                ],
+                [
+                  "Volatility σ",
+                  "↑",
+                  "↑"
+                ],
+                [
+                  "Income (dividends)",
+                  "↓",
+                  "↑"
+                ],
+                [
+                  "Carry costs",
+                  "↑",
+                  "↓"
+                ]
+              ]
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "American ≥ European. An American call on a non-dividend stock is never exercised early (worth more alive than S − X), so it equals the European call. American puts may be exercised early when deep in the money. A deep-ITM European put can lose value as T rises."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-08-q01",
+          "lesson": "deriv-08-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A put has X = 45 and trades at 5.30 when the stock is 41. The put's time value is closest to:",
+          "options": [
+            "4.00",
+            "5.30",
+            "1.30"
+          ],
+          "answer": 2,
+          "explanation": "Exercise value = 45 − 41 = 4.00; time value = 5.30 − 4.00 = **1.30**. 4.00 is the exercise value; 5.30 is the full premium."
+        },
+        {
+          "id": "deriv-08-q02",
+          "lesson": "deriv-08-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A call option with an exercise price of 30 on a stock trading at 27 is:",
+          "options": [
+            "out of the money",
+            "in the money",
+            "at the money"
+          ],
+          "answer": 0,
+          "explanation": "A call is out of the money when S < X: exercising would mean paying 30 for a 27 stock. A put with the same terms would be in the money."
+        },
+        {
+          "id": "deriv-08-q03",
+          "lesson": "deriv-08-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "At expiration, the time value of an option is:",
+          "options": [
+            "equal to its exercise value",
+            "zero",
+            "equal to the premium paid"
+          ],
+          "answer": 1,
+          "explanation": "With no time left, the option is worth only its exercise value, so time value has decayed to zero."
+        },
+        {
+          "id": "deriv-08-q04",
+          "lesson": "deriv-08-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Compared with replicating a forward contract, replicating an option *most likely* requires:",
+          "options": [
+            "no borrowing or lending",
+            "a hedge ratio that is adjusted as the underlying price changes",
+            "holding the underlying unchanged until expiry"
+          ],
+          "answer": 1,
+          "explanation": "The option's non-linear payoff means the number of shares needed changes with S and time (dynamic replication). Holding a fixed position to expiry replicates a forward; both replications use borrowing or lending."
+        },
+        {
+          "id": "deriv-08-q05",
+          "lesson": "deriv-08-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A European call has S_{0} = 52, X = 50, r = 5% and T = 0.5 years. Its lower bound is closest to:",
+          "options": [
+            "2.00",
+            "3.20",
+            "0.00"
+          ],
+          "answer": 1,
+          "explanation": "Lower bound = 52 − 50/1.05^{0.5} = 52 − 48.795 = **3.20**. 2.00 uses X instead of PV(X); 0.00 is the floor that applies only when S_{0} < PV(X).",
+          "calc": "1.05 [yˣ] 0.5 [=] → 1.0247; 50 [÷] 1.0247 [=] → 48.795; 52 [−] 48.795 [=] → 3.20"
+        },
+        {
+          "id": "deriv-08-q06",
+          "lesson": "deriv-08-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A European put has X = 55, S_{0} = 50, r = 5% and T = 0.5 years. Its lower bound is closest to:",
+          "options": [
+            "3.67",
+            "5.00",
+            "0.00"
+          ],
+          "answer": 0,
+          "explanation": "55/1.05^{0.5} − 50 = 53.67 − 50 = **3.67**. 5.00 uses X undiscounted; 0.00 would apply only if PV(X) < S_{0}."
+        },
+        {
+          "id": "deriv-08-q07",
+          "lesson": "deriv-08-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "An increase in the volatility of the underlying will *most likely*:",
+          "options": [
+            "increase call values and decrease put values",
+            "decrease both call and put values",
+            "increase both call and put values"
+          ],
+          "answer": 2,
+          "explanation": "Higher volatility raises the chance of large favourable moves while losses are capped at the premium, so both calls and puts gain value."
+        },
+        {
+          "id": "deriv-08-q08",
+          "lesson": "deriv-08-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "An increase in the dividends expected on a stock during an option's life will *most likely*:",
+          "options": [
+            "decrease the value of calls and increase the value of puts",
+            "increase the value of calls and decrease the value of puts",
+            "have no effect on option values"
+          ],
+          "answer": 0,
+          "explanation": "Dividends lower the expected stock price at expiry (the option holder doesn't receive them), hurting calls and helping puts."
+        },
+        {
+          "id": "deriv-08-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A European put has X = 40, S_{0} = 45, r = 5% and T = 1 year. Its lower bound is:",
+          "options": [
+            "0.00",
+            "−6.90",
+            "5.00"
+          ],
+          "answer": 0,
+          "explanation": "PV(X) − S_{0} = 40/1.05 − 45 = −6.90, which is negative, so the bound is max(0, −6.90) = **0**. An option price cannot be negative; 5.00 reverses S and X."
+        },
+        {
+          "id": "deriv-08-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which statement about upper bounds on option prices is *most* accurate?",
+          "options": [
+            "A European put cannot be worth more than the PV of the exercise price.",
+            "A call cannot be worth more than the exercise price.",
+            "An American put cannot be worth more than the PV of the exercise price."
+          ],
+          "answer": 0,
+          "explanation": "The most a European put can pay is X at expiry, so p_{0} ≤ X/(1 + r)^{T}. A call is bounded by S_{0}, not X. An American put can be exercised immediately for up to X, so its upper bound is X."
+        },
+        {
+          "id": "deriv-08-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "For an American call on a stock that pays no dividends, which statement is *most* accurate?",
+          "options": [
+            "It is worth more than an otherwise identical European call because of early exercise.",
+            "It should never be exercised early, so it is worth the same as the European call.",
+            "It should be exercised early whenever it is in the money."
+          ],
+          "answer": 1,
+          "explanation": "Its lower bound S_{0} − PV(X) exceeds the exercise value S_{0} − X, so selling beats exercising; the early-exercise right has no value and American = European. Exercising when in the money gives up time value."
+        },
+        {
+          "id": "deriv-08-q12",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Holding other factors constant, an increase in the risk-free interest rate will *most likely*:",
+          "options": [
+            "increase put values",
+            "increase call values",
+            "decrease call values"
+          ],
+          "answer": 1,
+          "explanation": "A higher r lowers PV(X): calls (which pay X later) become more valuable and puts (which receive X later) less valuable."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-08-f01",
+          "front": "Option value decomposition",
+          "back": "Option value = exercise value (intrinsic) + time value; time value = 0 at expiry."
+        },
+        {
+          "id": "deriv-08-f02",
+          "front": "European call lower bound",
+          "back": "c_{0} ≥ max[0, S_{0} − X/(1 + r)^{T}]"
+        },
+        {
+          "id": "deriv-08-f03",
+          "front": "European put lower bound",
+          "back": "p_{0} ≥ max[0, X/(1 + r)^{T} − S_{0}]"
+        },
+        {
+          "id": "deriv-08-f04",
+          "front": "Upper bounds",
+          "back": "Calls (European/American): S_{0}. European put: X/(1 + r)^{T}. American put: X."
+        },
+        {
+          "id": "deriv-08-f05",
+          "front": "Effect of increases on call / put value",
+          "back": "S: +/−. X: −/+. T: +/+ (usually). r: +/−. σ: +/+. Dividends: −/+. Carry costs: +/−."
+        },
+        {
+          "id": "deriv-08-f06",
+          "front": "American call on non-dividend stock",
+          "back": "Never optimal to exercise early; worth the same as the European call."
+        }
+      ]
+    },
+    {
+      "id": "deriv-09",
+      "lm": 9,
+      "title": "Option Replication Using Put–Call Parity",
+      "summary": "A protective put and a fiduciary call have identical payoffs, so put–call parity links European call, put, underlying and bond prices. Rearranging it builds synthetic positions; replacing the asset with a forward gives put–call–forward parity.",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "Put–call parity is not examined in FM and only lightly in AFM. Treat this LM as new: rearrangements and synthetic positions are heavily tested."
+      },
+      "lessons": [
+        {
+          "id": "deriv-09-a",
+          "title": "Put–call parity",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "Two portfolios, same payoff",
+              "body": "**Protective put**: own the asset + long put. At expiry you have max(S_{T}, X).\n\n**Fiduciary call**: long call + zero-coupon bond paying X. At expiry you also have max(S_{T}, X).\n\nSame payoff in every state → same price today, or arbitrage exists."
+            },
+            {
+              "kind": "formula",
+              "title": "Put–call parity (European)",
+              "formula": "S_{0} + p_{0} = c_{0} + X/(1 + r)^{T}",
+              "where": [
+                [
+                  "S_{0}",
+                  "underlying price"
+                ],
+                [
+                  "p_{0}, c_{0}",
+                  "European put and call, same X and T"
+                ],
+                [
+                  "X/(1 + r)^{T}",
+                  "risk-free bond paying X at T"
+                ]
+              ]
+            },
+            {
+              "kind": "example",
+              "title": "Solving for the put",
+              "body": "S_{0} = 50, X = 50, r = 4%, T = 1, c_{0} = 4.50.\n\np_{0} = c_{0} + X/(1 + r)^{T} − S_{0}\n= 4.50 + 48.077 − 50 = **2.58**\n\nIf the put trades at 3.20 it is rich: sell the put, buy the synthetic put (buy call, short stock, lend PV(X)) and pocket 0.62 today."
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "Write parity once, then move terms: a term changes sign when it crosses the equals sign, and a minus sign means a **short** position. Check that all options share the same X and T and are European."
+            }
+          ]
+        },
+        {
+          "id": "deriv-09-b",
+          "title": "Synthetics, forwards and the firm as an option",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "compare",
+              "title": "Synthetic positions",
+              "rows": [
+                [
+                  "Synthetic",
+                  "Build it with"
+                ],
+                [
+                  "Call c_{0}",
+                  "S_{0} + p_{0} − PV(X): long asset, long put, borrow PV(X)"
+                ],
+                [
+                  "Put p_{0}",
+                  "c_{0} − S_{0} + PV(X): long call, short asset, lend PV(X)"
+                ],
+                [
+                  "Asset S_{0}",
+                  "c_{0} − p_{0} + PV(X)"
+                ],
+                [
+                  "Bond PV(X)",
+                  "S_{0} + p_{0} − c_{0}"
+                ]
+              ]
+            },
+            {
+              "kind": "formula",
+              "title": "Put–call–forward parity",
+              "formula": "F_{0}(T)/(1 + r)^{T} + p_{0} = c_{0} + X/(1 + r)^{T}",
+              "where": [
+                [
+                  "F_{0}(T)/(1 + r)^{T}",
+                  "replaces S_{0}: long forward + bond paying F_{0}(T) is a synthetic asset"
+                ]
+              ],
+              "note": "So c_{0} − p_{0} = [F_{0}(T) − X]/(1 + r)^{T}."
+            },
+            {
+              "kind": "example",
+              "title": "Put–call–forward parity",
+              "body": "F_{0}(1) = 52, X = 50, r = 4%, c_{0} = 5.00.\n\np_{0} = c_{0} + (X − F_{0}(T))/(1 + r)^{T} = 5.00 + (50 − 52)/1.04 = **3.08**"
+            },
+            {
+              "kind": "concept",
+              "title": "The firm as options",
+              "body": "Shareholders have limited liability. With assets V and zero-coupon debt with face D:\n\n- **Equity** = call on V with exercise price D: max(0, V_{T} − D)\n- **Debt** = risk-free bond PV(D) − put on V with exercise price D: lenders have effectively sold a put to shareholders\n\nHigher asset volatility helps shareholders and hurts lenders."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-09-q01",
+          "lesson": "deriv-09-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A stock trades at 50. A 1-year European call with X = 50 costs 4.50 and r = 4%. Using put–call parity, the 1-year European put with X = 50 is worth closest to:",
+          "options": [
+            "4.50",
+            "2.58",
+            "6.42"
+          ],
+          "answer": 1,
+          "explanation": "p_{0} = 4.50 + 50/1.04 − 50 = 4.50 + 48.077 − 50 = **2.58**. 4.50 assumes calls and puts are equal at the money (ignores PV(X)); 6.42 adds rather than subtracts the discount."
+        },
+        {
+          "id": "deriv-09-q02",
+          "lesson": "deriv-09-a",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "A fiduciary call consists of:",
+          "options": [
+            "a long call and a short put",
+            "a long stock and a long put",
+            "a long call and a risk-free bond paying X at expiry"
+          ],
+          "answer": 2,
+          "explanation": "Fiduciary call = call + bond that pays the exercise price. Stock + put is the protective put, its parity twin; call − put is a synthetic forward position."
+        },
+        {
+          "id": "deriv-09-q03",
+          "lesson": "deriv-09-a",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "Put–call parity implies a put should be worth 2.58 but it trades at 3.20. An arbitrageur would *most likely*:",
+          "options": [
+            "buy the put and sell the synthetic put",
+            "sell the put and buy the stock",
+            "sell the put and buy a call, short the stock and lend PV(X)"
+          ],
+          "answer": 2,
+          "explanation": "The put is overpriced: sell it and buy its replica (long call, short stock, lend PV(X)), locking in 3.20 − 2.58 = 0.62. Buying the expensive put is backwards; selling the put and buying stock is not a hedged replica."
+        },
+        {
+          "id": "deriv-09-q04",
+          "lesson": "deriv-09-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Put–call parity as S_{0} + p_{0} = c_{0} + X/(1 + r)^{T} holds for:",
+          "options": [
+            "American options on any stock",
+            "European options with the same exercise price and expiry",
+            "options with different exercise prices"
+          ],
+          "answer": 1,
+          "explanation": "The no-arbitrage argument requires both portfolios to be held to the same expiry with the same X, which works for European options. Early exercise breaks the exact equality for American options."
+        },
+        {
+          "id": "deriv-09-q05",
+          "lesson": "deriv-09-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A stock trades at 40, a 6-month European put with X = 40 costs 2.10 and r = 3%. The cost of a synthetic 6-month call with X = 40 is closest to:",
+          "options": [
+            "2.10",
+            "3.27",
+            "2.69"
+          ],
+          "answer": 2,
+          "explanation": "c_{0} = S_{0} + p_{0} − X/(1 + r)^{T} = 40 + 2.10 − 40/1.03^{0.5} = 42.10 − 39.413 = **2.69**. 3.27 discounts X for a full year; 2.10 assumes call = put."
+        },
+        {
+          "id": "deriv-09-q06",
+          "lesson": "deriv-09-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A 1-year forward price is 52, r = 4%, and a 1-year European call with X = 50 costs 5.00. By put–call–forward parity the matching put is worth closest to:",
+          "options": [
+            "3.08",
+            "3.00",
+            "7.00"
+          ],
+          "answer": 0,
+          "explanation": "p_{0} = c_{0} − (F_{0}(T) − X)/(1 + r)^{T} = 5.00 − 2/1.04 = **3.08**. 3.00 ignores discounting; 7.00 adds the undiscounted difference instead of subtracting it."
+        },
+        {
+          "id": "deriv-09-q07",
+          "lesson": "deriv-09-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "In the option view of a company financed with zero-coupon debt, the shareholders' position is *best* described as:",
+          "options": [
+            "a long put on the firm's assets",
+            "a long call on the firm's assets with exercise price equal to the debt's face value",
+            "a short call on the firm's assets"
+          ],
+          "answer": 1,
+          "explanation": "Limited liability gives shareholders max(0, V_{T} − D), a call on assets struck at D. Lenders hold a risk-free bond minus a put; a short call describes nobody here."
+        },
+        {
+          "id": "deriv-09-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A stock is 75, a 6-month European put with X = 70 costs 1.80 and r = 3%. The value of the matching European call is closest to:",
+          "options": [
+            "6.80",
+            "7.83",
+            "4.23"
+          ],
+          "answer": 1,
+          "explanation": "c_{0} = 75 + 1.80 − 70/1.03^{0.5} = 76.80 − 68.973 = **7.83**. 6.80 forgets to discount X; 4.23 subtracts the put instead of adding it."
+        },
+        {
+          "id": "deriv-09-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "Which combination replicates a long position in the underlying stock?",
+          "options": [
+            "Long call, short put, long risk-free bond paying X",
+            "Long call, long put, short bond",
+            "Short call, long put, long bond"
+          ],
+          "answer": 0,
+          "explanation": "Rearranging parity: S_{0} = c_{0} − p_{0} + X/(1 + r)^{T}. The other combinations have the wrong signs and replicate different payoffs, not a long stock position."
+        },
+        {
+          "id": "deriv-09-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Under the option view of the firm, an increase in the volatility of a company's assets, all else equal, will *most likely*:",
+          "options": [
+            "increase the value of debt",
+            "decrease the value of equity",
+            "increase the value of equity and decrease the value of debt"
+          ],
+          "answer": 2,
+          "explanation": "Equity is a call on the assets, so higher volatility raises its value. Debt = risk-free bond − put; the put becomes more valuable, so debt falls."
+        },
+        {
+          "id": "deriv-09-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "A long call combined with a short put, both European with X = 50 and the same expiry, has the same payoff at expiry as:",
+          "options": [
+            "a long forward at a forward price of 50",
+            "a protective put",
+            "a short position in the stock"
+          ],
+          "answer": 0,
+          "explanation": "c_{T} − p_{T} = S_{T} − 50 in every state, which is a long forward with delivery price 50. A protective put has a floor; a short stock position has the opposite sign."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-09-f01",
+          "front": "Put–call parity",
+          "back": "S_{0} + p_{0} = c_{0} + X/(1 + r)^{T} (protective put = fiduciary call)"
+        },
+        {
+          "id": "deriv-09-f02",
+          "front": "Put–call–forward parity",
+          "back": "F_{0}(T)/(1 + r)^{T} + p_{0} = c_{0} + X/(1 + r)^{T}"
+        },
+        {
+          "id": "deriv-09-f03",
+          "front": "Synthetic call",
+          "back": "c_{0} = S_{0} + p_{0} − X/(1 + r)^{T}: long stock, long put, borrow PV(X)."
+        },
+        {
+          "id": "deriv-09-f04",
+          "front": "Synthetic put",
+          "back": "p_{0} = c_{0} − S_{0} + X/(1 + r)^{T}: long call, short stock, lend PV(X)."
+        },
+        {
+          "id": "deriv-09-f05",
+          "front": "Long call + short put (same X, T)",
+          "back": "Synthetic long forward at price X: payoff S_{T} − X."
+        },
+        {
+          "id": "deriv-09-f06",
+          "front": "Firm as options",
+          "back": "Equity = call on assets struck at face value of debt D. Debt = PV(D) − put on assets."
+        }
+      ]
+    },
+    {
+      "id": "deriv-10",
+      "lm": 10,
+      "title": "Valuing a Derivative Using a One-Period Binomial Model",
+      "summary": "In a one-period binomial model the underlying moves up or down. Replicating the option with the underlying and borrowing (hedge ratio) or using risk-neutral probabilities gives the same no-arbitrage value.",
+      "acca": {
+        "overlap": "none",
+        "papers": [],
+        "note": "ACCA AFM used Black–Scholes; binomial trees, hedge ratios and risk-neutral probabilities are new."
+      },
+      "lessons": [
+        {
+          "id": "deriv-10-a",
+          "title": "Replication and the hedge ratio",
+          "minutes": 9,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "concept",
+              "title": "The one-period tree",
+              "body": "Today the underlying is S_{0}. At the end of one period it is either S_{1}^{u} = uS_{0} (up) or S_{1}^{d} = dS_{0} (down), with d < 1 + r < u (otherwise arbitrage).\n\nCompute the option payoff in each state: e.g. call c_{1}^{u} = max(0, S_{1}^{u} − X) and c_{1}^{d} = max(0, S_{1}^{d} − X)."
+            },
+            {
+              "kind": "formula",
+              "title": "Hedge ratio",
+              "formula": "h = (c_{1}^{u} − c_{1}^{d}) / (S_{1}^{u} − S_{1}^{d})",
+              "where": [
+                [
+                  "h",
+                  "shares per option that make the portfolio riskless"
+                ]
+              ],
+              "note": "Call: h between 0 and 1. Put: h between −1 and 0."
+            },
+            {
+              "kind": "example",
+              "title": "Replicating a call",
+              "body": "S_{0} = 40; up 48, down 32; r = 4%; X = 42. Call payoffs: 6 and 0.\n\nh = (6 − 0)/(48 − 32) = 0.375\n\nReplicate: buy 0.375 shares (15.00) and borrow PV of 0.375 × 32 = 12/1.04 = 11.538.\n\nc_{0} = 15.00 − 11.538 = **3.46**"
+            },
+            {
+              "kind": "tip",
+              "title": "Exam tip",
+              "body": "If the market call price differs from the replicating cost, arbitrage: call too expensive → sell call, buy h shares, borrow. Call too cheap → buy call, short h shares, lend. Real-world probabilities never enter the calculation."
+            }
+          ]
+        },
+        {
+          "id": "deriv-10-b",
+          "title": "Risk-neutral valuation",
+          "minutes": 8,
+          "fastTrack": [],
+          "cards": [
+            {
+              "kind": "formula",
+              "title": "Risk-neutral probability",
+              "formula": "q = (1 + r − d) / (u − d)",
+              "where": [
+                [
+                  "u",
+                  "S_{1}^{u}/S_{0}"
+                ],
+                [
+                  "d",
+                  "S_{1}^{d}/S_{0}"
+                ],
+                [
+                  "r",
+                  "risk-free rate for the period"
+                ]
+              ],
+              "note": "q is not the real-world probability of an up move."
+            },
+            {
+              "kind": "formula",
+              "title": "One-period option value",
+              "formula": "c_{0} = [q × c_{1}^{u} + (1 − q) × c_{1}^{d}] / (1 + r)",
+              "where": [
+                [
+                  "c_{1}^{u}, c_{1}^{d}",
+                  "option payoffs in up and down states"
+                ]
+              ],
+              "note": "Same formula for puts with p_{1}^{u}, p_{1}^{d}."
+            },
+            {
+              "kind": "example",
+              "title": "Same call, risk-neutral route",
+              "body": "S_{0} = 40, u = 1.2, d = 0.8, r = 4%, X = 42.\n\nq = (1.04 − 0.80)/(1.20 − 0.80) = 0.60\nc_{0} = (0.60 × 6 + 0.40 × 0)/1.04 = **3.46** (matches replication)\n\nPut (X = 42): payoffs 0 and 10 → p_{0} = 0.40 × 10/1.04 = **3.85**. Check parity: 3.46 + 42/1.04 = 43.85 = 40 + 3.85 ✓"
+            },
+            {
+              "kind": "tip",
+              "title": "Common trap",
+              "body": "Discount the expected payoff at the **risk-free rate**, not the stock's expected return, and use q, not the 'true' probability given in the vignette. A higher real-world chance of an up move does **not** change the option value."
+            }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "deriv-10-q01",
+          "lesson": "deriv-10-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A stock at 40 will be either 48 or 32 in one period. A call with X = 42 is being replicated. The hedge ratio is closest to:",
+          "options": [
+            "0.375",
+            "0.600",
+            "0.750"
+          ],
+          "answer": 0,
+          "explanation": "h = (6 − 0)/(48 − 32) = 6/16 = **0.375**. 0.600 is the risk-neutral probability; 0.750 divides by the up move only (6/8)."
+        },
+        {
+          "id": "deriv-10-q02",
+          "lesson": "deriv-10-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A stock at 40 will be either 48 or 32 in one period. A put has X = 42. The put's hedge ratio is closest to:",
+          "options": [
+            "+0.625",
+            "−0.375",
+            "−0.625"
+          ],
+          "answer": 2,
+          "explanation": "Put payoffs: up max(0, 42 − 48) = 0; down 42 − 32 = 10. h = (0 − 10)/(48 − 32) = **−0.625**; a put's hedge ratio is always negative because its payoff falls as the stock rises. +0.625 has the wrong sign; −0.375 uses the call's payoff difference."
+        },
+        {
+          "id": "deriv-10-q03",
+          "lesson": "deriv-10-a",
+          "pool": "lesson",
+          "difficulty": 3,
+          "stem": "The no-arbitrage value of a call is 3.46, but it trades at 4.00. An arbitrageur would *most likely*:",
+          "options": [
+            "buy the call, short h shares and lend",
+            "sell the call, buy h shares and borrow",
+            "sell the call and lend at the risk-free rate"
+          ],
+          "answer": 1,
+          "explanation": "The call is overpriced: sell it and buy the replicating portfolio (h shares financed partly by borrowing) for 3.46, keeping 0.54. Buying the call is the trade when it is cheap; selling and lending is unhedged."
+        },
+        {
+          "id": "deriv-10-q04",
+          "lesson": "deriv-10-a",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "In a one-period binomial model, the option value obtained by replication *most likely* depends on:",
+          "options": [
+            "the real-world probability of an up move",
+            "the up and down prices, the risk-free rate and the exercise price",
+            "the investor's risk aversion"
+          ],
+          "answer": 1,
+          "explanation": "The replicating portfolio is built only from the possible prices, X and r. Real-world probabilities and risk preferences do not enter."
+        },
+        {
+          "id": "deriv-10-q05",
+          "lesson": "deriv-10-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "A stock at 40 will be either 48 or 32 in one period; r = 4%. The risk-neutral probability of an up move is closest to:",
+          "options": [
+            "0.50",
+            "0.375",
+            "0.60"
+          ],
+          "answer": 2,
+          "explanation": "u = 1.2, d = 0.8: q = (1.04 − 0.80)/(1.20 − 0.80) = 0.24/0.40 = **0.60**. 0.50 ignores the interest rate; 0.375 is the call hedge ratio."
+        },
+        {
+          "id": "deriv-10-q06",
+          "lesson": "deriv-10-b",
+          "pool": "lesson",
+          "difficulty": 2,
+          "stem": "Using u = 1.2, d = 0.8, r = 4% and S_{0} = 40, the value of a one-period European put with X = 42 is closest to:",
+          "options": [
+            "3.85",
+            "4.00",
+            "5.77"
+          ],
+          "answer": 0,
+          "explanation": "Put payoffs 0 (up) and 10 (down). q = 0.60, so p_{0} = 0.40 × 10/1.04 = **3.85**. 4.00 is not discounted; 5.77 wrongly weights the down payoff by 0.60."
+        },
+        {
+          "id": "deriv-10-q07",
+          "lesson": "deriv-10-b",
+          "pool": "lesson",
+          "difficulty": 1,
+          "stem": "In risk-neutral valuation, the expected option payoff is discounted at the:",
+          "options": [
+            "expected return on the underlying",
+            "risk-free rate",
+            "investor's required return on the option"
+          ],
+          "answer": 1,
+          "explanation": "Because the option can be replicated with a riskless hedge, expected payoffs under risk-neutral probabilities are discounted at r."
+        },
+        {
+          "id": "deriv-10-q08",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "A stock at 100 can rise by a factor of 1.25 or fall by a factor of 0.80 in one period. The risk-free rate is 3%. The value of a one-period European call with X = 100 is closest to:",
+          "options": [
+            "12.14",
+            "12.78",
+            "12.41"
+          ],
+          "answer": 2,
+          "explanation": "q = (1.03 − 0.80)/(1.25 − 0.80) = 0.5111. Call payoffs 25 and 0. c_{0} = 0.5111 × 25/1.03 = **12.41**. 12.14 uses a 50% probability; 12.78 forgets to discount."
+        },
+        {
+          "id": "deriv-10-q09",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 3,
+          "stem": "Using the same stock (S_{0} = 100, u = 1.25, d = 0.80, r = 3%), the value of a one-period European put with X = 100 is closest to:",
+          "options": [
+            "9.49",
+            "9.78",
+            "10.00"
+          ],
+          "answer": 0,
+          "explanation": "Put payoffs 0 and 20. 1 − q = 0.4889. p_{0} = 0.4889 × 20/1.03 = **9.49**. 9.78 forgets to discount; 10.00 uses a 50% probability without discounting. Check: 12.41 + 100/1.03 − 100 = 9.49 by parity."
+        },
+        {
+          "id": "deriv-10-q10",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "An analyst learns that the true probability of an up move in a one-period binomial model is higher than previously thought; prices, u, d and r are unchanged. The no-arbitrage call value will *most likely*:",
+          "options": [
+            "increase",
+            "decrease",
+            "remain unchanged"
+          ],
+          "answer": 2,
+          "explanation": "The value comes from replication and risk-neutral q = (1 + r − d)/(u − d), which does not use real-world probabilities. With u, d, r and S_{0} unchanged, the value is unchanged."
+        },
+        {
+          "id": "deriv-10-q11",
+          "lesson": null,
+          "pool": "exam",
+          "difficulty": 2,
+          "stem": "In a one-period binomial model, which condition is required to rule out arbitrage?",
+          "options": [
+            "d < 1 + r < u",
+            "u < 1 + r",
+            "q equals the real-world probability"
+          ],
+          "answer": 0,
+          "explanation": "If the riskless return exceeded u (or fell below d), borrowing/lending and the stock would give a riskless profit. q need not equal any real-world probability."
+        }
+      ],
+      "flashcards": [
+        {
+          "id": "deriv-10-f01",
+          "front": "Up/down factors",
+          "back": "u = S_{1}^{u}/S_{0}; d = S_{1}^{d}/S_{0}; require d < 1 + r < u."
+        },
+        {
+          "id": "deriv-10-f02",
+          "front": "Risk-neutral probability",
+          "back": "q = (1 + r − d)/(u − d)"
+        },
+        {
+          "id": "deriv-10-f03",
+          "front": "One-period option value",
+          "back": "[q × payoff_{up} + (1 − q) × payoff_{down}]/(1 + r)"
+        },
+        {
+          "id": "deriv-10-f04",
+          "front": "Hedge ratio",
+          "back": "h = (c_{1}^{u} − c_{1}^{d})/(S_{1}^{u} − S_{1}^{d}); call 0 to 1, put −1 to 0."
+        },
+        {
+          "id": "deriv-10-f05",
+          "front": "Replicating a call",
+          "back": "Buy h shares and borrow PV(h × S_{1}^{d} − c_{1}^{d}); cost = c_{0}."
+        }
+      ]
+    }
+  ]
+}
