@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --tabbar-h: 64px;
+  --surface: #f5f8ff;
+  color-scheme: light;
+}
+:root.dark {
+  --surface: #0a1222;
+  color-scheme: dark;
+}
+:root[data-text='s'] { font-size: 15px; }
+:root[data-text='m'] { font-size: 16px; }
+:root[data-text='l'] { font-size: 18px; }
+
+html, body, #root { height: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  background: var(--surface);
+}
+body {
+  @apply bg-[#F5F8FF] text-ink antialiased dark:bg-night-850 dark:text-slate-100;
+  font-feature-settings: 'tnum' 1, 'cv11' 1;
+  overscroll-behavior-y: none;
+  touch-action: manipulation;
+}
+/* Every figure lines up like a ledger column. */
+.tnum { font-variant-numeric: tabular-nums; }
+
+button, a, [role='button'] { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+input, select, textarea { font-size: 16px; } /* prevents iOS zoom on focus */
+:focus-visible { outline: 3px solid theme('colors.brand.400'); outline-offset: 2px; border-radius: 10px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+}
+:root[data-reduce-motion='1'] *, :root[data-reduce-motion='1'] *::before, :root[data-reduce-motion='1'] *::after {
+  animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important;
+}
+
+@layer components {
+  .font-display { font-family: theme('fontFamily.display'); }
+  .h1 { @apply font-display text-[1.65rem] font-extrabold leading-tight tracking-tight; }
+  .h2 { @apply font-display text-xl font-extrabold leading-snug tracking-tight; }
+  .h3 { @apply font-display text-base font-bold leading-snug; }
+  .eyebrow { @apply text-[0.72rem] font-bold uppercase tracking-[0.08em] text-ink-mute dark:text-slate-400; }
+  .muted { @apply text-ink-mute dark:text-slate-400; }
+
+  .card { @apply rounded-3xl bg-white shadow-card ring-1 ring-brand-900/5 dark:bg-night-800 dark:ring-white/5 dark:shadow-none; }
+  .card-pad { @apply p-4; }
+
+  /* Chunky 3D buttons: a darker bottom edge that compresses on press. */
+  .btn {
+    @apply relative inline-flex min-h-[48px] items-center justify-center gap-2 rounded-2xl px-5 font-display text-[1.02rem] font-extrabold tracking-wide
+      transition-[transform,box-shadow,background-color] duration-100 ease-out disabled:cursor-not-allowed;
+    box-shadow: 0 4px 0 0 var(--edge, transparent);
+    transform: translateY(0);
+  }
+  .btn:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 0 0 0 var(--edge, transparent); }
+  .btn-primary { @apply bg-brand-600 text-white; --edge: theme('colors.brand.800'); }
+  .btn-primary:disabled { @apply bg-slate-200 text-slate-400 dark:bg-night-600 dark:text-slate-500; --edge: theme('colors.slate.300'); }
+  .dark .btn-primary:disabled { --edge: theme('colors.night.700'); }
+  .btn-ok { @apply bg-ok-500 text-white; --edge: theme('colors.ok.700'); }
+  .btn-bad { @apply bg-bad-500 text-white; --edge: theme('colors.bad.700'); }
+  .btn-gold { @apply bg-gold-400 text-ink; --edge: theme('colors.gold.600'); }
+  .btn-ghost { @apply bg-white text-brand-700 ring-2 ring-inset ring-slate-200 dark:bg-night-800 dark:text-brand-300 dark:ring-night-600; --edge: theme('colors.slate.200'); }
+  .dark .btn-ghost { --edge: theme('colors.night.600'); }
+  .btn-quiet { @apply bg-transparent text-brand-700 shadow-none dark:text-brand-300; box-shadow: none; }
+  .btn-quiet:active:not(:disabled) { transform: none; @apply opacity-70; }
+  .btn-sm { @apply min-h-[40px] rounded-xl px-4 text-[0.92rem]; }
+  .btn-block { @apply w-full; }
+
+  .chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-bold; }
+  .pill-tab { @apply rounded-full px-3.5 py-2 text-sm font-bold transition-colors; }
+
+  .field { @apply block w-full rounded-2xl border-2 border-slate-200 bg-white px-4 py-3 text-ink outline-none transition-colors placeholder:text-slate-400 focus:border-brand-500 dark:border-night-600 dark:bg-night-800 dark:text-slate-100; }
+  .label { @apply mb-1.5 block text-sm font-bold text-ink-soft dark:text-slate-300; }
+
+  .list-row { @apply flex min-h-[56px] w-full items-center gap-3 px-4 py-3 text-left active:bg-brand-50 dark:active:bg-night-700; }
+  .divide-soft > * + * { @apply border-t border-slate-100 dark:border-night-700; }
+
+  .safe-top { padding-top: var(--safe-top); }
+  .safe-bottom { padding-bottom: var(--safe-bottom); }
+  .pb-tabbar { padding-bottom: calc(var(--tabbar-h) + var(--safe-bottom) + 16px); }
+
+  /* Ledger paper for the roadmap */
+  .ledger-paper {
+    background-image:
+      linear-gradient(to right, transparent 27px, rgba(37,99,235,.18) 27px, rgba(37,99,235,.18) 29px, transparent 29px, transparent 31px, rgba(37,99,235,.18) 31px, rgba(37,99,235,.18) 32px, transparent 32px),
+      repeating-linear-gradient(to bottom, transparent 0, transparent 35px, rgba(37,99,235,.07) 35px, rgba(37,99,235,.07) 36px);
+  }
+  .dark .ledger-paper {
+    background-image:
+      linear-gradient(to right, transparent 27px, rgba(147,181,253,.14) 27px, rgba(147,181,253,.14) 29px, transparent 29px, transparent 31px, rgba(147,181,253,.14) 31px, rgba(147,181,253,.14) 32px, transparent 32px),
+      repeating-linear-gradient(to bottom, transparent 0, transparent 35px, rgba(147,181,253,.06) 35px, rgba(147,181,253,.06) 36px);
+  }
+}
+
+/* Lesson content typography */
+.prose-card p { @apply mb-3 last:mb-0; }
+.prose-card ul { @apply mb-3 list-none space-y-1.5 last:mb-0; }
+.prose-card li { @apply relative pl-5; }
+.prose-card li::before { content: ''; @apply absolute left-1 top-[0.6em] h-1.5 w-1.5 rounded-full bg-brand-500; }
+.prose-card strong { @apply font-bold text-ink dark:text-white; }
+.prose-card sup, .prose-card sub { font-size: 0.72em; line-height: 0; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
