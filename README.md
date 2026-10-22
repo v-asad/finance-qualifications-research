@@ -4,6 +4,10 @@ Research corpus for building exam-prep and learning software around professional
 
 > **As of:** 22 October 2026. Every file carries its own "as of" date, confidence markers and a Sources section. Syllabi change every year, so re-verify before seeding production content.
 
+## The app
+
+**[`app/`](app/)** is *Ledger*, a mobile-first PWA for passing CFA Level I in 60 days, built on this research and live at https://cfa.tomo.study. See [`docs/app/plan.md`](docs/app/plan.md) for the product plan and [`docs/app/duolingo-research.md`](docs/app/duolingo-research.md) for the UX research behind it.
+
 ## Contents
 
 ```
